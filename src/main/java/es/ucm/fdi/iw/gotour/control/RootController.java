@@ -1,4 +1,4 @@
-package com.example.demo.control;
+package es.ucm.fdi.iw.gotour.control;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

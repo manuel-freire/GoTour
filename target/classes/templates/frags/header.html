@@ -1,0 +1,29 @@
+        <th:block th:fragment="head">            
+            <ul>
+                <li>
+                    <a th:href="@{/}">(Logo de GoTour)</a>
+                </li>
+                <li>
+                    <a>Buscar (Icono Lupa)</a>
+                </li>
+                <li>
+                    <a>Mejor Valorados (Icono Estrella)</a>
+                </li>
+                <li>
+                    <a th:href="@{/perfil}">(Nombre de User)(Foto de perfil)</a>
+                </li>
+                
+            </ul>
+            
+        </th:block>
+        <!--To esto sobra es lo que hizo el profe de ejemplo, pero asi nos fijamos y hacemos uno nosotros-->
+        <!--<span th:text="${uid}">debug!</span>
+            <ul unless="${uid eq '12'}">
+                <a>login</a>
+                <a>regisrto</a>
+            </ul>
+            <ul if="${uid eq '12'}">
+                <a>Paco</a>
+                <a>5 mensajes sin leer</a>
+                <a>Logout</a>
+            </ul>-->
