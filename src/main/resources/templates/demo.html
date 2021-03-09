@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <style>
+            td, th { border: 1px solid gray; }
+            table { padding: 0; }
+        </style>
+    </head>
+
+    <body>
+        <th:block th:replace="frags/header.html">
+            Esto no se ve
+        </th:block>
+
+        <p>
+        Personas:
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                </tr>
+                <tr th:each="p: ${ps}">
+                    <td th:text="${p.nombre}">X</td>
+                    <td th:text="${p.apellido}">Y</td>
+                </tr>
+            </table>
+        </p>
+
+        Con text <p th:text="${welcome}">Bienvenue a l'Karmomètre!</p>
+        Con utext <p th:utext="${welcome}">Bienvenue a l'Karmomètre!</p>
+        <img src="../static/img/logo.png" th:src="@{/img/logo.png}" alt="un logotipo"/> <!-- usad siempre la @ -->
+        Y ahora, mal
+        <img src="../img/logo.png" alt="un logotipo"/>
+    </body>
+</html>

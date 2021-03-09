@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <style>
+        </style>
+    </head>
+
+    <body>
+        <th:block th:replace="frags/header.html">
+        </th:block>
+        <form>
+            <input type="text" name="lugar" placeholder="Ciudad,Pais">
+            <input type="radio" value="Ciudad" selected placeholder="Ciudad"/>
+            <input type="radio" value="Una zona" placeholder="Una zona"/>
+            <input type="radio" value="Varias zonas" placeholder="Varias zonas"/>
+            <input type="text" name="zona" disabled placeholder="Zona"/>
+            <input type="date" name="fechaini" placeholder="Fecha de inicio"/>
+            <input type="date" name="fechafin" placeholder="Fecha de fin"/>
+            <input type="submit" value="Buscar guias turisticos"/>
+        </form>
+        <!--<p>
+        Personas:
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                </tr>
+                <tr th:each="p: ${ps}">
+                    <td th:text="${p.nombre}">X</td>
+                    <td th:text="${p.apellido}">Y</td>
+                </tr>
+            </table>
+        </p>
+
+        Con text <p th:text="${welcome}">Bienvenue a l'Karmomètre!</p>
+        Con utext <p th:utext="${welcome}">Bienvenue a l'Karmomètre!</p>
+        <img src="../static/img/logo.png" th:src="@{/img/logo.png}" alt="un logotipo"/> <!-- usad siempre la @ -->
+        <!--Y ahora, mal
+        <img src="../img/logo.png" alt="un logotipo"/>-->
+    </body>
+</html>
