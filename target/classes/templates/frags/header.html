@@ -1,18 +1,18 @@
         <th:block th:fragment="head">            
             <ul>
                 <li>
-                    <a th:href="@{/}">(Logo de GoTour)</a>
+                    <a th:href="@{/}"><img id="logo" th:src="@{/img/icon.jpg}" alt="El logo de gotour" ></a>
+                    
                 </li>
                 <li>
-                    <a>Buscar (Icono Lupa)</a>
+                    <a>Buscar</a>
                 </li>
                 <li>
-                    <a>Mejor Valorados (Icono Estrella)</a>
+                    <a>Mejor Valorados</a>
                 </li>
                 <li>
-                    <a th:href="@{/perfil}">(Nombre de User)(Foto de perfil)</a>
-                </li>
-                
+                    <a th:href="@{/perfil}"><img id="iconouser" th:src="@{/img/usuario.png}" alt="La imagen del usuario" > Jesús Sánchez Granado</a>
+                </li> 
             </ul>
             
         </th:block>

@@ -5,15 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
     <th:block th:replace="frags/header.html">
     Esto no se ve
     </th:block>
-    <span> Nombre Usuario</span>
-    <span> Miembro desde: (Fecha)</span>
-    <span> Turista </span>
-    <span> (Foto de perfil) </span>
+    <div class="contenedor">
+        <div class="container1">
+            <span> Jesús Sánchez Granado</span>
+            <span> Miembro desde: 11/3/2021</span>
+            <span> Turista </span>
+        </div>
+        <div class="container2">
+            <img id="user" th:src="@{/img/usuario.png}" alt="La imagen del usuario" ></span>
+        </div>
+        
+    </div>
+    
     <h3>Tours contratados</h3>
     <div>
         <span>Nombre tour</span>

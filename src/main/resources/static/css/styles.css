@@ -1,0 +1,26 @@
+li{display: inline;
+   padding: 1%;}
+#logo{height: 3%;
+      width: 3%;
+      }
+#iconouser{height: 4%;
+      width: 4%;
+      border-radius: 50%;}
+
+#user{height: 10%;
+    width: 10%;}
+
+/* .contenedor{width: auto;
+            height: 30%;
+            display:inline-block;
+            border: 10px, red;}
+.container1{height: auto;
+            width: 60%;
+            float:left;
+            border: 5px, blue;
+            }
+.container1{height: auto;
+            width: 40%;
+            float: right;
+            border: 5px, brown;
+            } */
