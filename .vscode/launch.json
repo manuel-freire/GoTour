@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-GotourApplication<gotour>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "es.ucm.fdi.iw.gotour.GotourApplication",
+            "projectName": "gotour",
+            "args": ""
+        }
+    ]
+}
