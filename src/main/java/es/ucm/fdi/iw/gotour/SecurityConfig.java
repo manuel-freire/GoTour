@@ -1,4 +1,4 @@
-package es.ucm.fdi.iw.gotour;
+/*package es.ucm.fdi.iw.gotour;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,4 +15,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .formLogin()
             .permitAll();
     }
-}
+}*/

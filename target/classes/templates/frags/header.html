@@ -1,29 +1,18 @@
-        <th:block th:fragment="head">            
-            <ul>
-                <li>
-                    <a th:href="@{/}"><img id="logo" th:src="@{/img/icon.jpg}" alt="El logo de gotour" ></a>
-                    
-                </li>
-                <li>
-                    <a>Buscar</a>
-                </li>
-                <li>
-                    <a>Mejor Valorados</a>
-                </li>
-                <li>
-                    <a th:href="@{/perfil}"><img id="iconouser" th:src="@{/img/usuario.png}" alt="La imagen del usuario" > Jesús Sánchez Granado</a>
-                </li> 
-            </ul>
-            
-        </th:block>
-        <!--To esto sobra es lo que hizo el profe de ejemplo, pero asi nos fijamos y hacemos uno nosotros-->
-        <!--<span th:text="${uid}">debug!</span>
-            <ul unless="${uid eq '12'}">
-                <a>login</a>
-                <a>regisrto</a>
-            </ul>
-            <ul if="${uid eq '12'}">
-                <a>Paco</a>
-                <a>5 mensajes sin leer</a>
-                <a>Logout</a>
-            </ul>-->
+            <th:block id="supercabecera"th:fragment="head">
+                <div id="topnav">
+                 <a th:href="@{/}"><img id="logo" th:src="@{/img/icon.jpg}" alt="El logo de gotour" ></a>
+                 <div class="topnav-right">
+                     <a>Buscar</a>
+                     <div class="dropdown">
+                         <button class="dropbtn">usuario</button>
+                         <div class="dropdown-content">
+                           <a th:href="@{/perfil}">Mi perfil</a>
+                           <a th:href="@{/}">Notificaciones</a>
+                           <a th:href="@{/}">Salir</a>
+                         </div>
+                       </div>
+                     <!-- <a id="dropdown" th:href="@{/perfil}"><img id="iconouser" th:src="@{/img/usuario.png}" alt="La imagen del usuario" ></a>  -->
+                 </div>
+                </div>
+                 
+             </th:block>
