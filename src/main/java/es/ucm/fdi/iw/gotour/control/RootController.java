@@ -99,6 +99,12 @@ public class RootController {
         return "leeme";
     }
 
+    @GetMapping("/datosPrivados")
+    public String datosPrivados(Model model)
+    {  
+        return "datosPrivados";
+    }
+
     /*@GetMapping("/registro")
     public String registro(Model model)
     {  

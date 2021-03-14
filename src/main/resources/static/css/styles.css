@@ -1,24 +1,6 @@
-li{
-      display: inline;
-      padding: 1%;
-}
 a{
       color: blue;
       text-decoration: none;
-}
-#logo{
-      height: 3%;
-      width: 3%;
-}
-#iconouser{
-      height: 4%;
-      width: 4%;
-      border-radius: 50%;
-}
-
-#user{
-      height: 10%;
-      width: 10%;
 }
 
 .imagen-tour1{
@@ -86,3 +68,95 @@ a{
       margin-left: 20%;
 }
 
+#topnav {
+      overflow: hidden;
+      background-color: white;
+      height: 5%;
+    }
+    
+#topnav a {
+      float: left;
+      text-align: center;
+      color: black;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    
+    
+    
+#topnav .topnav-right {
+          margin-right: 4%;
+          float:right;
+    }
+#logo{height: 30%;
+      width: 30%;
+      }
+/* #logoelem{
+      float: left;
+      border:10px, black, solid;
+} */
+/* #cabecera{
+      height: 3%;
+      width: auto;
+      border: 5px;
+      border-style: solid;
+
+} */
+/* #cabeceraelem{
+      border: 10px, blue, solid,;
+} */
+
+#iconouser{height: 4%;
+      width: 4%;
+      border-radius: 50%;}
+
+#user{height: 10%;
+    width: 10%;}
+
+
+.dropdown {
+      float: left;
+      overflow: hidden;
+    }
+    
+.dropdown .dropbtn {
+      font-size: 16px;  
+      border: none;
+      outline: none;
+      color: black;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
+    }
+    
+.navbar a:hover, .dropdown:hover .dropbtn {
+      background-color:#333;
+    }
+    
+.dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+.dropdown-content a {
+      float: none;
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+    
+.dropdown-content a:hover {
+      background-color: #ddd;
+    }
+    
+.dropdown:hover .dropdown-content {
+      display: block;
+    }
