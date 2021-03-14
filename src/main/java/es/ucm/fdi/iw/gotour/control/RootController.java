@@ -93,6 +93,12 @@ public class RootController {
         return "admin";
     }
 
+    @GetMapping("/leeme")
+    public String leeme(Model model)
+    {  
+        return "leeme";
+    }
+
     /*@GetMapping("/registro")
     public String registro(Model model)
     {  
