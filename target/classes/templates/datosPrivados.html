@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <title>Datos privados</title>
+</head>
+<body>
+    <th:block th:replace="frags/header.html">
+    </th:block>
+    <div> Estos datos son privados y solo son usados para tareas de pago y de gestión de la aplicación</div>
+    <ul>
+        <li>
+            Nombre Completo: Pepito Pérez
+        </li>
+        <li>
+            Contraseña: alpargata1
+        </li>
+        <li>
+            Número de tarjeta: XXXX-XXXX-XXXX-XXXX
+        </li>
+        <li>
+            Fecha de caducidad:MM/YY
+        </li>
+        <li>
+            Número secreto: XXX
+        </li>
+        <li>
+            Número de teléfono:
+        </li>
+        <li>
+            Pregunta de seguridad: ¿Cual es el nombre de tu primera mascota?
+        </li>
+        <li>
+            Respuesta: Rex.
+        </li>
+    </ul>
+    <button type="button">Editar mis datos</button>
+    
+</body>
+</html>
