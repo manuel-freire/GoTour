@@ -10,27 +10,41 @@
 <body>
     <th:block th:replace="frags/header.html"></th:block>
     <div class="contenedor">
-        <div class="container1">
-            <span> Jesús Sánchez Granado</span>
-            <span> Miembro desde: 11/3/2021</span>
-            <span> Turista </span>
+        <div class="informacion">
+            <p th:text="${nombre} + ' ' + ${apellidos}">Nombre usuario</p>
+            <div th:if="${propio}">
+                <p> Miembro desde: <span th:text="${membresia}">Membresía</span></p>
+                <p> Rol: <span th:text="${rol}">Rol</span></p>
+            </div>
         </div>
-        <div class="container2">
-            <img id="user" th:src="@{/img/usuario.png}" alt="La imagen del usuario" ></span>
+        <img id="user" th:src="@{/img/perro.jpg}" alt="La imagen del usuario" ></span>
+        <span th:if="${estrellas == 1}">*</span>
+        <span th:if="${estrellas == 2}">**</span>
+        <span th:if="${estrellas == 3}">***</span>
+        <span th:if="${estrellas == 4}">****</span>
+        <span th:if="${estrellas == 5}">*****</span>
+        <div th:if="${rol == 'guia'}">
+            <h3>-------------Tours disponibles---------------</h3>
+            <img id="user" th:src="@{/img/coliseo.jpg}" alt="Coliseo" ></span>
+            <div th:each="tour: ${tourD1}">
+                <p th:text="${tour}"></p>
+            </div>
+            <p>-----------------------------------------------</p>
+            <img id="mad" th:src="@{/img/madrid.jpg}" alt="Madrid" ></span>
+            <div th:each="tour: ${tourD2}">
+                <p th:text="${tour}"></p>
+            </div>
+            <h3>-------------Tours cerrados-------------------</h3>
+            <img id="sant" th:src="@{/img/santillana.jpg}" alt="Santillana" ></span>
+            <div th:each="tour: ${tourC1}">
+                <p th:text="${tour}"></p>
+            </div>
+            <h3>-------------Reseñas--------------------------</h3>
+            <div th:each="resenya: ${resenya1}">
+                <p th:text="${resenya}"></p>
+            </div>
+            <p>-----------------------------------------------</p>
         </div>
-        
-    </div>
-    
-    <h3>Tours contratados</h3>
-    <div>
-        <span>Nombre tour</span>
-        <span>Descripcion</span>
-        <span>Fecha</span>
-        <span>Precio</span>
-        <span>Estado=(Estado)</span>
-        <span>(Foto guia)</span>
-        <span>Valoracion</span>
-        <a>Contactar</a>
     </div>
     
 </body>
