@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+    <th:block th:replace="frags/header.html">
+    </th:block>
+    <div class="main">
+        <div class="foto_tour">
+            <img class="imagen-tour1" th:src="@{/img/tour1.jpg}" alt="Imágen del tour"></span>
+        </div>
+        <div class="datos_tour">
+            <div class="datos_tour_sup">
+                <h1 class="tour_name">Tour por Machupichu</h1>
+                <button class="tour_inscribirse">Inscribirse</button>
+            </div>
+            <div class="datos_tour_mid">
+                <div class="bloque1">
+                    <div class="info_tour">
+                        <p>Fecha: 20/04/2021</p>
+                        <p>Lugar: Machupichu</p>
+                        <p>Personas: 5/10</p>
+                        <p>Precio: 25$</p>
+                    </div>
+                    <img class="mapa" th:src="@{/img/mapa1.jpg}" alt="La imagen del mapa"></span>
+                </div>
+                <div class="guia_tour">
+                    <div class="guia_tour_izq">
+                        <img class="guia_tour_foto" th:src="@{/img/guia1.jpg}" alt="La imagen del guia"></span>
+                        <img class="estrellas" th:src="@{/img/5estrellas.png}" alt="Estrellas de valoración"></span>
+                    </div>
+                    <div class="guia_tour_der">
+                        <p class="guia_tour_nombre">Rodrigo Gonzales</p>
+                        <div class="guia_tour_idiomas">
+                            <p>Ingles</p>
+                            <p>Frances</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="datos_tour_inf">
+                <div class="descripcion_tour">
+                    <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                        been the industry's standard dummy text.</span>
+                </div>
+                <div class="etquitetas_tour">
+                    <button>al aire libre</button>
+                    <button>monumento</button>
+                    <button>a pie</button>
+                    <button>antiguo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8"/>
-        <link rel="stylesheet" th:href="@{/css/styles.css}">
-    </head>
 
-    <body>
-        <th:block th:replace="frags/header.html">
-        </th:block>
-        <form>
-            <input type="text" name="pais" placeholder="Pais">
-            <input type="text" name="ciudad" placeholder="Ciudad">
-            <input type="text" name="lugar" placeholder="Lugar">
-            <input type="date" name="fechaini" placeholder="Fecha de inicio"/>
-            <input type="date" name="fechafin" placeholder="Fecha de fin"/>
-            <input type="submit" value="Buscar guias turisticos"/>
-        </form>
-        <div>Filtrar por:</div>
-        <input type="button" class="filtro" name="ordprecio" value="Precio"/>
-        <input type="button" class="filtro" name="ordhuecos" value="Huecos libres"/>
-        <input type="button" class="filtro" name="ordduracion" value="Duracion"/>
-        <input type="button" class="filtro" name="ordvaloracion" value="Valoracion"/>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+    <th:block th:replace="frags/header.html">
+    </th:block>
+    <form>
+        <input type="text" name="pais" placeholder="Pais">
+        <input type="text" name="ciudad" placeholder="Ciudad">
+        <input type="text" name="lugar" placeholder="Lugar">
+        <input type="date" name="fechaini" placeholder="Fecha de inicio" />
+        <input type="date" name="fechafin" placeholder="Fecha de fin" />
+        <input type="submit" value="Buscar guias turisticos" />
+    </form>
+    <div>Filtrar por:</div>
+    <input type="button" class="filtro" name="ordprecio" value="Precio" />
+    <input type="button" class="filtro" name="ordhuecos" value="Huecos libres" />
+    <input type="button" class="filtro" name="ordduracion" value="Duracion" />
+    <input type="button" class="filtro" name="ordvaloracion" value="Valoracion" />
+    <a th:href="@{/tour}">
         <div>
-            <div class="fotoguia"><img src="img/defaultuser.png" width="60"/></div>
+            <div class="fotoguia"><img src="img/defaultuser.png" width="60" /></div>
             <div class="infoguia">
                 <div class="nombre">Guia 1</div>
-                <div class="estrellas"><img src="img/star.png" width="30"/></div>
+                <div class="estrellas"><img src="img/star.png" width="30" /></div>
                 <div class="idiomas">Español, Ingles</div>
             </div>
             <div class="infotour">
@@ -35,7 +37,8 @@
                 <div class="idiomas">50€</div>
             </div>
         </div>
-        <!--<p>
+    </a>
+    <!--<p>
         Personas:
             <table>
                 <tr>
@@ -52,7 +55,8 @@
         Con text <p th:text="${welcome}">Bienvenue a l'Karmomètre!</p>
         Con utext <p th:utext="${welcome}">Bienvenue a l'Karmomètre!</p>
         <img src="../static/img/logo.png" th:src="@{/img/logo.png}" alt="un logotipo"/> <!-- usad siempre la @ -->
-        <!--Y ahora, mal
+    <!--Y ahora, mal
         <img src="../img/logo.png" alt="un logotipo"/>-->
-    </body>
+</body>
+
 </html>

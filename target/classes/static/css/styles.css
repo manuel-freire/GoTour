@@ -1,15 +1,88 @@
-li{display: inline;
-   padding: 1%;}
-#logo{height: 3%;
+li{
+      display: inline;
+      padding: 1%;
+}
+a{
+      color: black;
+      text-decoration: none;
+}
+#logo{
+      height: 3%;
       width: 3%;
-      }
-#iconouser{height: 4%;
+}
+#iconouser{
+      height: 4%;
       width: 4%;
-      border-radius: 50%;}
+      border-radius: 50%;
+}
 
-#user{height: 10%;
-    width: 10%;}
+#user{
+      height: 10%;
+      width: 10%;
+}
 
+.imagen-tour1{
+      width: 100%;
+      height: 400px;
+}
+.datos_tour_sup{
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+}
+.datos_tour_mid{
+      display: inline;
+      background-color: blueviolet;
+      width: 100%;
+}
+.datos_tour_inf{
+      width: 100%;
+}
+.tour_inscribirse{
+      float: right;
+      height: 20%;
+}
+.info_tour{
+      margin-left: 10%;
+
+}
+.mapa{
+      float: right;
+      width: 50%;
+      height: 50%;
+}
+.guia_tour_foto{
+      width: 80px;
+      height: 80px;
+}
+.estrellas{
+      width: 80px;
+      height: 20px;
+}
+.datos_tour{
+      display: inline-block;
+}
+.etquitetas_tour{
+      margin-top: 10px;
+}
+.bloque1{
+      display: flex;
+      justify-content: space-between;
+}
+.guia_tour{
+      display: flex;
+}
+.guia_tour_izq{
+      display: grid;
+}
+.guia_tour_der{
+      display: block;
+      margin-left: 4%;
+}
+.main{
+      width: 1000px;
+      margin-left: 20%;
+}
 /* .contenedor{width: auto;
             height: 30%;
             display:inline-block;
