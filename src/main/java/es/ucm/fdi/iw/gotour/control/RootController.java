@@ -149,10 +149,10 @@ public class RootController {
         return "tour";
     }
 
-    @GetMapping("/admin")
-    public String admin(Model model)
+    @GetMapping("/administracion")
+    public String administracion(Model model)
     {  
-        return "admin";
+        return "administracion";
     }
 
     @GetMapping("/leeme")
