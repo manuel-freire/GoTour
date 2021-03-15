@@ -14,8 +14,7 @@
     <div class="contenedor">
         <div class="container1">
             <span> Fernando Gonzalez Barrado</span>
-            <span> Miembro desde: 14/3/2021</span>
-            <span> Administrador </span>
+        
         </div>
         <div class="container2">
             <img id="user" th:src="@{/img/grafico_visitas.png}" alt="Imagen de visitas" ></span>
