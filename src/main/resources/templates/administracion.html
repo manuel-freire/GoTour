@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <th:block th:replace="frags/header.html">
+   
+    </th:block>
+    <div class="contenedor">
+        <div class="container1">
+            <span> Fernando Gonzalez Barrado</span>
+            <span> Miembro desde: 14/3/2021</span>
+            <span> Administrador </span>
+        </div>
+        <div class="container2">
+            <img id="user" th:src="@{/img/usuario.png}" alt="La imagen del usuario" ></span>
+        </div>
+        
+    </div>
+    
+    <h3>Visitas a la web</h3>
+    <div class="container2">
+            <img id="user" th:src="@{/img/grafico_visitas.png}" alt="Grafico visitas web" ></span>
+        </div>
+
+     <div class="project_cards-grid-item">
+                <div class="thumbnail">
+                    <img src="Assets/Prj1Preview.PNG">
+                </div>
+                <p class="alignCenter">A chess app with different game modes and an AI. Made in C# and WPF</p>
+
+                <div class="viewProjectBtnContainer">
+                    <span class="btn">Expand</span>
+                </div>
+            </div>
+            <div class="project_cards-grid-item">
+                <div class="thumbnail">
+                    <img src="Assets/Prj1Preview.PNG">
+                </div>
+                <p class="alignCenter">Something else</p>
+                <div class="viewProjectBtnContainer">
+                    <span class="btn">Expand</span>
+                </div>
+
+            </div>
+            <div class="project_cards-grid-item">
+                <div class="thumbnail">
+                    <img src="Assets/Prj1Preview.PNG">
+                </div>
+                <p class="alignCenter">Something else</p>
+                <div class="viewProjectBtnContainer">
+                    <span class="btn">Expand</span>
+                </div>
+
+            </div>
+            <div class="project_cards-grid-item">
+                <div class="thumbnail">
+                    <img src="Assets/Prj1Preview.PNG">
+                </div>
+
+                <p class="alignCenter">Something else</p>
+                <div class="viewProjectBtnContainer">
+                    <span class="btn">Expand</span>
+                </div>
+            </div>
+    
+</body>
+</html>
