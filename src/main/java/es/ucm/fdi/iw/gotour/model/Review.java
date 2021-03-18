@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
-/*import java.time;
+import java.time;
 
 //@Entity
 @Data
@@ -49,4 +49,4 @@ reviewsUser	private User guia;
 	@ManyToOne(mappedBy="")
 	private User guia;
 
-*/	
+}
