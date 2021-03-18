@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import lombok.Data;
 
-/*
+
 @Entity
 @Data
 public class User {
@@ -20,7 +20,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
+/*
 	
 	private String nombre;
 	private String apellidos;
@@ -38,6 +38,5 @@ public class User {
 	@Override
 	public String toString() {
 		return "";
-	}		
+	}	*/	
 }
-*/
