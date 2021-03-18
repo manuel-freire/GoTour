@@ -13,8 +13,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
-//import java.time;
-/*
+import java.time.LocalDate;
+
 //@Entity
 @Data
 public class Tour {
@@ -23,12 +23,12 @@ public class Tour {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private String lugar;
+	/*private String lugar;
 	private boolean activo;
 	private String descripcion;
 	
 	@NotNull
-	@ManyToOne(mappedBy="toursofrecidos")
+	@OneToMany(mappedBy="toursofrecidos")
 	private User guia;
 
 	@NotNull
@@ -59,6 +59,5 @@ public class Tour {
 	@Override
 	public String toString() {
 		return "";
-	}	
+	}	*/
 }
-*/

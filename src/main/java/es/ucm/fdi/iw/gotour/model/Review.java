@@ -1,19 +1,14 @@
 package es.ucm.fdi.iw.gotour.model;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import lombok.Data;
-/*import java.time;
 
 //@Entity
 @Data
@@ -23,30 +18,22 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private String lugar;
-	//private String descripcion;
+	private String texto;
+	private int puntuacion;
 	
 	@NotNull
-	@ManyToOne
-reviewsUser	private User guia;
+	@ManyToMany(mappedBy="id")
+	private User creador;
+
+	@NotNull
+	@ManyToMany(mappedBy="id")
+	private User destinatario;
+
+	@NotNull
+	@OneToMany(mappedBy="id")
+	private Tour tour_valorado;
 
 	@NotNull
 	private LocalDate fecha_review;
 
-	@NotNull
-	
-	private String descripcion;
-	
-	@NotNull
-	@ManyToOne(mappedBy="")
-	private User guia;
-
-    private User user;
-
-	
-	
-	@NotNull
-	@ManyToOne(mappedBy="")
-	private User guia;
-
-*/	
+}
