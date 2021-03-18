@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import lombok.Data;
 
-/*
+
 @Entity
 @Data
 public class User {
@@ -21,23 +21,4 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	
-	private String nombre;
-	private String apellidos;
-	
-	
-	@OneToMany
-	private List<Tour> toursofrecidos=new ArrayList<>();
-
-    @ManyToMany
-	private List<Tour> tourscontratados=new ArrayList<>();
-
-	@ManyToMany
-	private List<Review> reviews=new ArrayList<>();
-
-	@Override
-	public String toString() {
-		return "";
-	}		
 }
-*/
