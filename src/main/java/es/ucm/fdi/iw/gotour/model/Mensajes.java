@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 
-@Entity
+//@Entity
 @Data
 public class Mensajes {
 

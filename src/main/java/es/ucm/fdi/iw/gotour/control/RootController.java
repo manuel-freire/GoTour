@@ -10,26 +10,20 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-import javax.persistence.EntityManager;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
-import javax.validation.Valid;
+// import java.beans.Introspector;
+// import java.beans.PropertyDescriptor;
+// import java.lang.reflect.Field;
+// import java.lang.reflect.Method;
+// import java.util.HashMap;
+// import java.util.List;
+// import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.PropertyAccessor;
-import org.springframework.beans.PropertyAccessorFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+// import javax.persistence.EntityManager;
+// import javax.persistence.ManyToMany;
+// import javax.persistence.OneToMany;
+// import javax.servlet.http.HttpServletRequest;
+// import javax.transaction.Transactional;
+// import javax.validation.Valid;
 
 import es.ucm.fdi.iw.gotour.model.Mensajes;
 import es.ucm.fdi.iw.gotour.model.Usuario;
@@ -177,11 +171,11 @@ public class RootController {
         return "datosPrivados";
     }
 
-//     /*@GetMapping("/registro")
-//     public String registro(Model model)
-//     {  
-//         return "registro";
-//     }*///Esta está comentada porque nos ha dicho que si queremos si pero no es obligatoria de momento
+    /*@GetMapping("/registro")
+    public String registro(Model model)
+    {  
+        return "registro";
+    }*///Esta está comentada porque nos ha dicho que si queremos si pero no es obligatoria de momento
 
 
 
