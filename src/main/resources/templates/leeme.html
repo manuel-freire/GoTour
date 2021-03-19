@@ -4,23 +4,76 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
     <title>leeme</title>
 </head>
 <body>
-    <h1>Repositorio Git del proyecto</h1>
-    <a th:href="@{https://github.com/IW-G2/GoTour}">GoTour</a>
+    <div class="bloque">
+        <a th:href="@{https://github.com/IW-G2/GoTour}"><img th:src="@{/img/icon.jpg}" alt="La imagen del usuario" ></span></a>
+        <div class="bloque2">
+            <p class="intro">Como turista siempre es más interesante conocer un determinado lugar de la mano de una
+                persona que viva en ese lugar.</p>
+                <p class="intro">Esta aplicación organiza la quedada entre unos turistas y una persona local que realice de guía
+                    turístico.</p>
+                </div>
+            </div>
+            
+    <a th:href="@{https://github.com/IW-G2/GoTour}"><img class="git_icon" th:src="@{/img/git.png}" alt="Icono del git" ></a>
+    <h2>Rol turista registrado</h2>
+    <p>Como turista ves un panel con opciones. País, ciudad, zona, fecha de inicio, fecha fin.
+        Eliges el país y la ciudad donde quieres hacer la visita, en el caso de que no sea una ciudad también puedes
+        elegir una zona turística como puede ser el Coliseo de Roma o la Torre Eiffel de París.
+        Una vez que hayas seleccionado que vas a visitar y cuando, verás una lista de todas las personas que están
+        dispuestas a hacer de guía turístico de ese lugar. La lista consistirá en una foto de la persona, su nombre, los
+        idiomas que habla,sus valoraciones representadas por estrellas, el número de personas que han hecho turismo con
+        él y cuánto tiempo lleva haciendo esta guía. Se indica si el guía es profesional o un local (persona que vive
+        allí pero no es profesional).
+        Cuando contratas a un guía, se inicia una conversación con él y el plan aparece en tu perfil de usuario con
+        todos los detalles incluidas otras personas que se han apuntado a esta misma guia. El dinero que se paga por la
+        guía pasa por la aplicación, de tal modo que cuando termines la guía confirmas en la aplicación y allí es cuando
+        tu dinero se transfiere a la cuenta del guía.
+        Una vez que has terminado, valoraras al guía estableciendo las estrellitas, el nivel de los rasgos de
+        personalidad y dejando un comentario.
+    </p>
+    <h2>Rol turista no registrado</h2>
+    <p>Puede visualizar los tours disponibles pero no puede contratarlos</p>
+    <h2>Rol guía turístico</h2>
+    <p>Como guía turístico eres un profesional o simplemente una persona que vive en el lugar que ofertas guiar.
+        Para indicar que eres un profesional, necesitarás contactar con el administrador de la aplicación demostrando
+        que realmente eres un profesional.
+        En cualquier caso, tienes tu perfil de usuario donde puedes ver y modificar tus datos, ver tus valoraciones y
+        las guías que has realizado. Tienes la funcionalidad de ofertar recorridos, estableciendo el lugar donde los
+        ofertas, que días, el máximo de personas y el precio.
+        También puedes realizar valoraciones de los turistas a los que has guíado.
+    </p>
+    <h2>Rol administrador</h2>
+    <p>Como administrador te encargas de verificar a los guías que son profesionales.
+        De procesar las consultas, quejas de los clientes y de mantener la aplicación en su correcto funcionamiento.
+    </p>
+    <h2>WebSockets</h2>
+    <p>Se usarán WebSockets para  varias funcionalidades de la web, como el chat entre el turista y el guía, y el sistema de notificaciones.</p>
 
+    <h2>Vistas</h2>
+    <ul>
+        <li><a th:href="@{/}">Home:</a> es la primera pagina que ve el usuario al entrar en la aplicacion. Aqui se encuentra el buscador de toures y el resultado de la busqueda.</li>
+        <li><a th:href="@{/tour}">Tour:</a> aqui se ven todos los datos relativos a un tour concreto, seleccionado por el usuario.</li>
+        <li><a th:href="@{/perfil}">Perfil: </a> aqui se ven todos los datos relativos al usuario, su informacion personal y toures realizados o por realizar.</li>
+        <li><a th:href="@{/datosPrivados}">DatosPrivados:</a>Contiene los datos bancarios del usuario.</li>
+        <li><a th:href="@{/administracion}">Admin:</a> aqui se muestra un grafico con estadisticas de la aplicacion y un panel de mandos para el administrador.</li>
+    </ul>
+    <h2>Diagrama de clases</h2>
+    <img th:src="@{/img/diagrama.png}" alt="Diagrama de clases" ></span>
+
+    <h2>Recursos</h2>
     Todas las imagenes usadas que no son nuestras se han buscado utilizando la herramienta de google para buscar por licencia creative commons
-    <a th:href="@{/}">index</a>
-    <a th:href="@{/perfil}">perfil</a>
-    <a th:href="@{/tour}">tour</a>
-    <a th:href="@{/datosPrivados}">datosPrivados</a>
-    <a th:href="@{/administracion}">administracion</a>
-    <a th:href="@{https://live.staticflickr.com/8539/8635938198_a05a4fa393_z.jpg}">mapa1</a>
-    <a th:href="@{https://pixnio.com/free-images/travel/promoting-sustainable-tourism-to-the-ancient-maya-site.jpg}">tour1</a>
-    <a th:href="@{https://upload.wikimedia.org/wikipedia/commons/b/be/Perfil-Berna.jpg}">guia1</a>
-    <a th:href="@{https://cdn.pixabay.com/photo/2013/07/12/18/10/rating-153125_1280.png}">5estrellas</a>
-    <a th:href="@{https://commons.wikimedia.org/wiki/File:Grafico71.png}">grafico de visitas</a>
-    
+    <ul>
+        <li><a th:href="@{https://live.staticflickr.com/8539/8635938198_a05a4fa393_z.jpg}">mapa1.jpg</a></li>
+        <li><a th:href="@{https://pixnio.com/free-images/travel/promoting-sustainable-tourism-to-the-ancient-maya-site.jpg}">tour1.jpg</a></li>
+        <li><a th:href="@{https://upload.wikimedia.org/wikipedia/commons/b/be/Perfil-Berna.jpg}">guia1.jpg</a></li>
+        <li><a th:href="@{https://cdn.pixabay.com/photo/2013/07/12/18/10/rating-153125_1280.png}">5estrellas.png</a></li>
+        <li><a th:href="@{https://commons.wikimedia.org/wiki/File:Grafico71.png}">grafico_visitas.png</a></li>
+        <li><a th:href="@{data:image/png;base64,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}">git.png</a></li>
+    </ul>
+        
 </body>
 </html>

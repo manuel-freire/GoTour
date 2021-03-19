@@ -56,7 +56,7 @@ public class RootController {
 	
 	private static final Logger log = LogManager.getLogger(RootController.class);
 
-	@PostMapping("/addCar1")
+	/*@PostMapping("/addCar1")
 	@Transactional 
 	public String addCar1(
 			@RequestParam String company,
@@ -91,7 +91,7 @@ public class RootController {
 		log.info("Requesting info about car {}",  id);
 		model.addAttribute("car", entityManager.find(Car.class, id));
 		return "car";
-	}
+	}*/
 	
 	/**
 	 * Añade, modifica o elimina un nuevo objeto del tipo especificado con los campos especificados.
@@ -106,7 +106,7 @@ public class RootController {
 	 * @param model
 	 * @return
 	 */
-	@PostMapping("/")
+	/*@PostMapping("/")
 	@Transactional
 	public String mod(Model model, 
 			@RequestParam String tableName, 
@@ -183,7 +183,7 @@ public class RootController {
 			return null;
 		}
 	}
-		
+		*/
 	/**
 	 * Sets any property of an object.
 	 * @param o object to write to
@@ -191,7 +191,7 @@ public class RootController {
 	 * @param propertyValue to use. For references, use the id(s) of the object(s) to reference
 	 *     Only knows how to handle a few literals. To add more, convert them from String 
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	/*@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void setObjectProperty(Object o, String propertyName, String propertyValue) {
 		boolean ok = true;
 		try {
@@ -270,7 +270,7 @@ public class RootController {
 			return null;
 		}
 	}
-}
+}*/
 
 // import java.util.Date;
 
@@ -385,59 +385,59 @@ public class RootController {
 //         return "guia";
 //     }
 
-//     @GetMapping("/perfil")
-//     public String perfil(Model model)
-//     {  
-//         Date membresia = new Date();
-//         int id_usuario = 1;
-//         int id_sesion = 1;
-//         String[] tourD1 = {"Visita guiada del Coliseo", "Roma", "4 huecos disponibles"};
-//         String[] tourD2 = {"Madrid del siglo XIX", "Madrid", "9 huecos disponibles"};
-//         String[] tourC1 = {"Paseo cultural por Santillana del Mar", "Santillana del Mar"};
-//         String[] resenya1 = {"3 estrellas", "pedro", "Visita guiada del Coliseo", "Muy buen tour. El guía es muy agradable."};
-//         model.addAttribute("nombre", "Juan");
-//         model.addAttribute("apellidos", "Shánchez Pisuerga");
-//         if (id_usuario == id_sesion) model.addAttribute("propio", true);
-//         else model.addAttribute("propio", false);
-//         model.addAttribute("membresia", membresia);
-//         model.addAttribute("rol", "guia");
-//         model.addAttribute("tourD1",tourD1);
-//         model.addAttribute("tourD2",tourD2);
-//         model.addAttribute("tourC1",tourC1);
-//         model.addAttribute("resenya1",resenya1);
-//         model.addAttribute("estrellas", 3);
-//         return "perfil";
-//     }
+     /*@GetMapping("/perfil")
+     public String perfil(Model model)
+     {  
+         Date membresia = new Date();
+         int id_usuario = 1;
+         int id_sesion = 1;
+         String[] tourD1 = {"Visita guiada del Coliseo", "Roma", "4 huecos disponibles"};
+         String[] tourD2 = {"Madrid del siglo XIX", "Madrid", "9 huecos disponibles"};
+         String[] tourC1 = {"Paseo cultural por Santillana del Mar", "Santillana del Mar"};
+         String[] resenya1 = {"3 estrellas", "pedro", "Visita guiada del Coliseo", "Muy buen tour. El guía es muy agradable."};
+         model.addAttribute("nombre", "Juan");
+         model.addAttribute("apellidos", "Shánchez Pisuerga");
+         if (id_usuario == id_sesion) model.addAttribute("propio", true);
+         else model.addAttribute("propio", false);
+         model.addAttribute("membresia", membresia);
+         model.addAttribute("rol", "guia");
+         model.addAttribute("tourD1",tourD1);
+         model.addAttribute("tourD2",tourD2);
+         model.addAttribute("tourC1",tourC1);
+         model.addAttribute("resenya1",resenya1);
+         model.addAttribute("estrellas", 3);
+         return "perfil";
+     }*/
 
-//     @GetMapping("/busqueda")
-//     public String busqueda(Model model)
-//     {  
-//         return "busqueda";
-//     }
+     @GetMapping("/busqueda")
+     public String busqueda(Model model)
+     {  
+         return "busqueda";
+     }
 
-//     @GetMapping("/tour")
-//     public String tour(Model model)
-//     {  
-//         return "tour";
-//     }
+     @GetMapping("/tour")
+     public String tour(Model model)
+     {  
+         return "tour";
+     }
 
-//     @GetMapping("/administracion")
-//     public String administracion(Model model)
-//     {  
-//         return "administracion";
-//     }
+     @GetMapping("/administracion")
+     public String administracion(Model model)
+     {  
+         return "administracion";
+     }
 
-//     @GetMapping("/leeme")
-//     public String leeme(Model model)
-//     {  
-//         return "leeme";
-//     }
+     @GetMapping("/leeme")
+     public String leeme(Model model)
+     {  
+         return "leeme";
+     }
 
-//     @GetMapping("/datosPrivados")
-//     public String datosPrivados(Model model)
-//     {  
-//         return "datosPrivados";
-//     }
+     @GetMapping("/datosPrivados")
+     public String datosPrivados(Model model)
+     {  
+         return "datosPrivados";
+     }
 
 //     /*@GetMapping("/registro")
 //     public String registro(Model model)
@@ -449,4 +449,4 @@ public class RootController {
 
     
 
-// }
+ }
