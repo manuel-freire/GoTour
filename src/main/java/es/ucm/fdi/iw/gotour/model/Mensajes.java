@@ -1,5 +1,6 @@
 package es.ucm.fdi.iw.gotour.model;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,5 +24,5 @@ public class Mensajes {
 	private long id;
 
     private String contenido;
-    private LocalDate fecha;
+    private Date fecha;
 }
