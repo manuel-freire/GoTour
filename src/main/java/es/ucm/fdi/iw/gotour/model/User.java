@@ -52,16 +52,16 @@ public class User {
 	
 	private String respuesta_seguridad;
 
-	@ManyToMany(targetEntity=Tour.class, mappedBy="id_tour")
+	@ManyToMany(targetEntity=Tour.class)
 	private List<Tour> tour_ofrecidos=new ArrayList<>();
 
-	@ManyToMany(targetEntity=Tour.class, mappedBy="id_tour")
+	@ManyToMany(targetEntity=Tour.class)
 	private List<Tour> tours_asistidos=new ArrayList<>(); 
 
-	@ManyToMany(targetEntity=Review.class, mappedBy="id_review")
+	@ManyToMany(targetEntity=Review.class)
 	private List<Review> reviews_hechas=new ArrayList<>();
 	
-	@ManyToMany(targetEntity=Review.class, mappedBy="id_review")
+	@ManyToMany(targetEntity=Review.class)
 	private List<Review> reviews_recibidas=new ArrayList<>();
 	
 	private List<String> idiomas_hablados=new ArrayList<>();
