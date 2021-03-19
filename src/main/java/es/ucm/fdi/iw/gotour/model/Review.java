@@ -1,16 +1,14 @@
 package es.ucm.fdi.iw.gotour.model;
-import java.time.LocalDate;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-
 import lombok.Data;
 
-//@Entity
+@Entity
 @Data
 public class Review {
 
@@ -22,18 +20,15 @@ public class Review {
 	private int puntuacion;
 	
 	@NotNull
-	@ManyToMany(mappedBy="id")
+	@ManyToOne(targetEntity=User.class)
 	private User creador;
 
 	@NotNull
-	@ManyToMany(mappedBy="id")
+	@ManyToOne(targetEntity=User.class)
 	private User destinatario;
 
 	@NotNull
-	@OneToMany(mappedBy="id")
+	@ManyToOne(targetEntity=Tour.class)
 	private Tour tour_valorado;
-
-	@NotNull
-	private LocalDate fecha_review;
 
 }

@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 
 import lombok.Data;
 
-@Entity
+//@Entity
 @Data
 public class Driver {
 	@Id

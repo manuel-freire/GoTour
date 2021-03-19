@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 import java.time.LocalDate;
 
-//@Entity
+@Entity
 @Data
 public class Tour {
 
