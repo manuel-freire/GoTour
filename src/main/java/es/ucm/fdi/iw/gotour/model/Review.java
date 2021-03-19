@@ -23,11 +23,11 @@ public class Review {
 	
 	@NotNull
 	@ManyToMany(mappedBy="id")
-	private User creador;
+	private Usuario creador;
 
 	@NotNull
 	@ManyToMany(mappedBy="id")
-	private User destinatario;
+	private Usuario destinatario;
 
 	@NotNull
 	@OneToMany(mappedBy="id")

@@ -26,7 +26,7 @@ public class Tour {
 	/*private String lugar;
 	private boolean activo;
 	private String descripcion;
-	
+
 	@NotNull
 	@OneToMany(mappedBy="toursofrecidos")
 	private User guia;
