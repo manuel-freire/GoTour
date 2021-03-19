@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ElementCollection;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -22,7 +23,7 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id_user;
+	private long id;
 
     @NotNull
 	@Size(max=244)
@@ -40,37 +41,42 @@ public class Usuario {
 	@NotNull
 	@Size(max=244)
 	private String password;
-    private int num_tarjeta;
+    private int numtarjeta;
 	private String caducidad_tarjeta;
 
 	@NotNull
-	private int num_telefono;
+	private int numtelefono;
 
 	@NotNull
 	@Size(max=100)
-	private String pregunta_seguridad;
+	private String preguntaseguridad;
 
 	@NotNull
 	@Size(max=100)
 	
-	private String respuesta_seguridad;
+	private String respuestaseguridad;
+
+	@OneToMany(targetEntity=Tour.class)
+	@JoinColumn(name="guia_id")
+	private List<Tour> tourofrecidos=new ArrayList<>();
 
 	@ManyToMany(targetEntity=Tour.class)
-	private List<Tour> tour_ofrecidos=new ArrayList<>();
+	private List<Tour> toursasistidos=new ArrayList<>(); 
 
-	@ManyToMany(targetEntity=Tour.class)
-	private List<Tour> tours_asistidos=new ArrayList<>(); 
+	@OneToMany(targetEntity=Review.class)
+	@JoinColumn(name="creador_id")
+	private List<Review> reviewshechas=new ArrayList<>();
 
-	@ManyToMany(targetEntity=Review.class)
-	private List<Review> reviews_hechas=new ArrayList<>();
-
-	@OneToMany(targetEntity = Mensajes.class)
-	@JoinColumn(name="id_creador")
+	@OneToMany
+	@JoinColumn(name="creador_id")
 	private List<Mensajes> mensajes = new ArrayList<>();
 	
-	@ManyToMany(targetEntity=Review.class)
-	private List<Review> reviews_recibidas=new ArrayList<>();
-	private List<String> idiomas_hablados=new ArrayList<>();
+	@OneToMany(targetEntity=Review.class)
+	@JoinColumn(name="destinatario_id")
+	private List<Review> reviewsrecibidas=new ArrayList<>();
+
+	@ElementCollection
+	private List<String> idiomashablados=new ArrayList<>();
 	
 
 	@Override

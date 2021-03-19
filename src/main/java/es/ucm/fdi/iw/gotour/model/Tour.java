@@ -38,20 +38,20 @@ public class Tour {
 	private double precio;
 
 	@NotNull
-	private Date fecha_ini;
+	private Date fechaini;
 
 	@NotNull
-	private Date fecha_fin;
+	private Date fechafin;
 
 	@ElementCollection
 	private List<String>  tags = new ArrayList<>();
 
 	@NotNull
 	@ManyToOne
-	private User guia;
+	private Usuario guia;
 
-	@ManyToMany (mappedBy="tourscontratados")
-	private List<User>  turistas = new ArrayList<>();
+	@ManyToMany (mappedBy="toursasistidos")
+	private List<Usuario>  turistas = new ArrayList<>();
 	
 	@Override
 	public String toString() {
