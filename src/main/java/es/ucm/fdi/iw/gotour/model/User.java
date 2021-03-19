@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -17,7 +19,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long id_user;
 
     @NotNull
 	@Size(max=244)
@@ -47,18 +49,19 @@ public class User {
 
 	@NotNull
 	@Size(max=100)
+	
 	private String respuesta_seguridad;
 
-	@ManyToMany(targetEntity=Tour.class, mappedBy="tour")
+	@ManyToMany(targetEntity=Tour.class, mappedBy="id_tour")
 	private List<Tour> tour_ofrecidos=new ArrayList<>();
 
-	@ManyToMany(targetEntity=Tour.class, mappedBy="tour")
+	@ManyToMany(targetEntity=Tour.class, mappedBy="id_tour")
 	private List<Tour> tours_asistidos=new ArrayList<>(); 
 
-	@ManyToMany(targetEntity=Review.class, mappedBy="review")
+	@ManyToMany(targetEntity=Review.class, mappedBy="id_review")
 	private List<Review> reviews_hechas=new ArrayList<>();
 	
-	@ManyToMany(targetEntity=Review.class, mappedBy="review")
+	@ManyToMany(targetEntity=Review.class, mappedBy="id_review")
 	private List<Review> reviews_recibidas=new ArrayList<>();
 	
 	private List<String> idiomas_hablados=new ArrayList<>();
