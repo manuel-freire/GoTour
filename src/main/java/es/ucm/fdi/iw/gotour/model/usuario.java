@@ -1,21 +1,24 @@
 package es.ucm.fdi.iw.gotour.model;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import java.util.List;
-import java.util.ArrayList;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
+import lombok.Data;
 
-/*
+
 @Entity
 @Data
-public class User {
+public class usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +28,10 @@ public class User {
 	private String nombre;
 	private String apellidos;
 	
-	
-	@OneToMany
+	@OneToMany(targetEntity = Mensajes.class)
+	@JoinColumn(name="id_creador")
+	private List<Mensajes> mensajes = new ArrayList<>();
+	/*@OneToMany
 	private List<Tour> toursofrecidos=new ArrayList<>();
 
     @ManyToMany
@@ -34,10 +39,10 @@ public class User {
 
 	@ManyToMany
 	private List<Review> reviews=new ArrayList<>();
+	*/
 
 	@Override
 	public String toString() {
-		return "";
+		return "usuario #" + id;
 	}		
 }
-*/
