@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.persistence.JoinColumn;
 import java.util.Date;
 import lombok.Data;
 
