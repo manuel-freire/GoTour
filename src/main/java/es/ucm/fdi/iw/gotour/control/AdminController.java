@@ -1,4 +1,4 @@
-package es.ucm.fdi.iw.control;
+package es.ucm.fdi.iw.gotour.control;
 
 import java.io.File;
 
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import es.ucm.fdi.iw.LocalData;
-import es.ucm.fdi.iw.model.User;
+import es.ucm.fdi.iw.gotour.LocalData;
+import es.ucm.fdi.iw.gotour.model.User;
 
 /**
  * Admin-only controller

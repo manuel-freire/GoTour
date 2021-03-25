@@ -1,5 +1,4 @@
-package es.ucm.fdi.iw.control;
-
+package es.ucm.fdi.iw.gotour.control;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -41,10 +40,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import es.ucm.fdi.iw.LocalData;
-import es.ucm.fdi.iw.model.Message;
-import es.ucm.fdi.iw.model.User;
-import es.ucm.fdi.iw.model.User.Role;
+import es.ucm.fdi.iw.gotour.LocalData;
+import es.ucm.fdi.iw.gotour.model.Message;
+import es.ucm.fdi.iw.gotour.model.User;
+import es.ucm.fdi.iw.gotour.model.User.Role;
 
 /**
  * User-administration controller

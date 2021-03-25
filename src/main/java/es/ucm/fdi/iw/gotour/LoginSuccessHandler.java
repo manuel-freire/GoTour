@@ -1,4 +1,4 @@
-package es.ucm.fdi.iw;
+package es.ucm.fdi.iw.gotour;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import es.ucm.fdi.iw.model.User;
+import es.ucm.fdi.iw.gotour.model.User;
 
 /**
  * Called when a user is first authenticated (via login).

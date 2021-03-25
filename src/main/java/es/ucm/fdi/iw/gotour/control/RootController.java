@@ -1,4 +1,4 @@
-package es.ucm.fdi.iw.control;
+package es.ucm.fdi.iw.gotour.control;
 
 import javax.servlet.http.HttpServletRequest;
 

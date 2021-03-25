@@ -1,4 +1,4 @@
-package es.ucm.fdi.iw.model;
+package es.ucm.fdi.iw.gotour.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

@@ -1,4 +1,4 @@
-package es.ucm.fdi.iw.model;
+package es.ucm.fdi.iw.gotour.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +14,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.persistence.ManyToMany;
+import javax.persistence.ElementCollection;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -57,7 +61,6 @@ public class User implements Transferable<User.Transfer> {
 	public enum Role {
 		USER,			// used for logged-in, non-priviledged users
 		ADMIN,			// used for maximum priviledged users
-		
 		MODERATOR,		// remove or add roles as needed
 	}
 	
@@ -88,8 +91,58 @@ public class User implements Transferable<User.Transfer> {
 	private byte enabled;
 
 	// application-specific fields
-	private String firstName;
-	private String lastName;
+	@NotNull
+	@Size(max=244)
+	private String nombre;
+
+	@NotNull
+	@Size(max=244)
+	private String apellidos;
+	
+	
+	@NotNull
+	private String email;
+	private String rol;
+
+	@NotNull
+	@Size(max=244)
+    private int numtarjeta;
+	private String caducidad_tarjeta;
+
+	@NotNull
+	private int numtelefono;
+
+	@NotNull
+	@Size(max=100)
+	private String preguntaseguridad;
+
+	@NotNull
+	@Size(max=100)
+	
+	private String respuestaseguridad;
+
+	@OneToMany(targetEntity=Tour.class)
+	@JoinColumn(name="guia_id")
+	private List<Tour> tourofrecidos=new ArrayList<>();
+
+	@ManyToMany(targetEntity=Tour.class)
+	private List<Tour> toursasistidos=new ArrayList<>(); 
+
+	@OneToMany(targetEntity=Review.class)
+	@JoinColumn(name="creador_id")
+	private List<Review> reviewshechas=new ArrayList<>();
+
+	@OneToMany
+	@JoinColumn(name="creador_id")
+	private List<Mensajes> mensajes = new ArrayList<>();
+	
+	@OneToMany(targetEntity=Review.class)
+	@JoinColumn(name="destinatario_id")
+	private List<Review> reviewsrecibidas=new ArrayList<>();
+
+	@ElementCollection
+	private List<String> idiomashablados=new ArrayList<>();
+	
 
 	@OneToMany
 	@JoinColumn(name = "sender_id")

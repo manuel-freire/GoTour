@@ -1,4 +1,4 @@
-package es.ucm.fdi.iw.control;
+package es.ucm.fdi.iw.gotour.control;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import es.ucm.fdi.iw.model.Message;
-import es.ucm.fdi.iw.model.Transferable;
-import es.ucm.fdi.iw.model.User;
+import es.ucm.fdi.iw.gotour.model.Message;
+import es.ucm.fdi.iw.gotour.model.Transferable;
+import es.ucm.fdi.iw.gotour.model.User;
 
 /**
  * User-administration controller

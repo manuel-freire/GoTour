@@ -49,10 +49,10 @@ public class Tour {
 
 	@NotNull
 	@ManyToOne
-	private Usuario guia;
+	private User guia;
 
 	@ManyToMany (mappedBy="toursasistidos")
-	private List<Usuario>  turistas = new ArrayList<>();
+	private List<User>  turistas = new ArrayList<>();
 	
 	@Override
 	public String toString() {

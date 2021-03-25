@@ -27,7 +27,7 @@ public class Chat {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
     @ManyToMany 
-	private List<Usuario> users = new ArrayList<>();
+	private List<User> users = new ArrayList<>();
 	@OneToMany
 	@JoinColumn(name="id_chat")
 	private List<Mensajes> mensajes = new ArrayList<>();
