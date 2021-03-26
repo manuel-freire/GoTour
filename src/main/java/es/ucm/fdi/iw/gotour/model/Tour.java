@@ -5,8 +5,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.JoinColumn;
-import java.util.Date;
 import lombok.Data;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -16,44 +16,25 @@ public class Tour {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@NotNull
-	private String descripcion;
-
-	private String portada;
-
-	@NotNull
-	private String ciudad;
+	 @NotNull
+	 @ManyToOne
+	 private TourOfertado datos;
 
 	@NotNull
-	private String titulo;
-
-	private String lugar;
+	private LocalDate fechaIni;
 
 	@NotNull
-	private String pais;
-
-	private String mapa;
-	private boolean disponible;
-
+	private LocalDate fechaFin;
+    
 	@NotNull
-	private double precio;
-
-	@NotNull
-	private Date fechaini;
-
-	@NotNull
-	private Date fechafin;
-
-	@ElementCollection
-	private List<String>  tags = new ArrayList<>();
-
-	@NotNull
-	@ManyToOne
-	private Usuario guia;
+	private int actTuristas;
 
 	@ManyToMany (mappedBy="toursasistidos")
-	private List<Usuario>  turistas = new ArrayList<>();
-	
+	private List<User>  turistas = new ArrayList<>();
+    
+	@OneToMany (mappedBy="tourvalorado")
+	private List<Review>  reviews = new ArrayList<>();
+
 	@Override
 	public String toString() {
 		return "";

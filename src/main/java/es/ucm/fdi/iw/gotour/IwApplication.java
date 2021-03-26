@@ -2,12 +2,13 @@ package es.ucm.fdi.iw.gotour;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-public class GotourApplication {
+@EnableTransactionManagement	
+public class IwApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GotourApplication.class, args);
+		SpringApplication.run(IwApplication.class, args);
 	}
-
 }

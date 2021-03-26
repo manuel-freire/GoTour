@@ -21,11 +21,11 @@ public class Review {
 	private int puntuacion;
 	
 	@NotNull
-	@ManyToOne(targetEntity=Usuario.class)
-	private Usuario creador;
+	@ManyToOne(targetEntity=User.class)
+	private User creador;
 
-	@ManyToOne(targetEntity=Usuario.class)
-	private Usuario destinatario;
+	@ManyToOne(targetEntity=User.class)
+	private User destinatario;
 
 	@ManyToOne(targetEntity=Tour.class)
 	private Tour tourvalorado;
