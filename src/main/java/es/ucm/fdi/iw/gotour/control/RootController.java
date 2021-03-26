@@ -56,10 +56,10 @@ public class RootController {
 		return "error";
 	}
 	
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
+	// @GetMapping("/login")
+	// public String login() {
+	// 	return "login";
+	// }
 
 	public class Tour{
         private String fecha;
