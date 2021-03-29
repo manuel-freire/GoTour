@@ -4,20 +4,19 @@
 --
 
 -- Usuario de ejemplo con username = b y contraseña = aa  
-INSERT INTO user(id,enabled,username,password,roles,first_name,last_name) VALUES (
-	1, 1, 'a', 
-	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u',
-	'USER,ADMIN',
-	'Abundio', 'Ejémplez'
-);
+-- INSERT INTO user(id,enabled,username,password,roles,first_name,last_name) VALUES (
+-- 	1, 1, 'a', 
+-- 	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u',
+-- 	'USER,ADMIN',
+-- 	'Abundio', 'Ejémplez'
+-- );
 
--- Otro usuario de ejemplo con username = b y contraseña = aa  
-INSERT INTO user(id,enabled,username,password,roles,first_name,last_name) VALUES (
-	2, 1, 'b', 
-	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u',
+-- -- Otro usuario de ejemplo con username = b y contraseña = aa  
+INSERT INTO user(id,apellidos,caducidad_tarjeta, email,enabled,nombre,numtarjeta,numtelefono,password,preguntaseguridad,respuestaseguridad,roles,username) VALUES (
+	2,'Sanchez Granado','22/03','email',1,'Jesus',12,87, 
+	'123','Pregunta','Respuesta',
 	'USER',
-	'Berta', 'Muéstrez'
-);
+	'SPACEMARINE');
 
 -- -- Unos pocos auto-mensajes de prueba
 -- INSERT INTO MESSAGE VALUES(1,NULL,'2020-03-23 10:48:11.074000','probando 1',1,1);
