@@ -51,7 +51,9 @@ import lombok.AllArgsConstructor;
         @NamedQuery(name="User.hasUsername",
                 query="SELECT COUNT(u) "
                         + "FROM User u "
-                        + "WHERE u.username = :username")
+                        + "WHERE u.username = :username"),
+		@NamedQuery(name="userByLogin",
+				query="select u from User u where u.email = :loginParam")
 })
 public class User implements Transferable<User.Transfer> {
 
@@ -106,7 +108,8 @@ public class User implements Transferable<User.Transfer> {
 	@NotNull
 	@Size(max=244)
     private int numtarjeta;
-	private String caducidad_tarjeta;
+	private String caducidadtarjeta;
+	private int numsecreto;
 
 	@NotNull
 	private int numtelefono;

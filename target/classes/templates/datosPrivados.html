@@ -13,28 +13,28 @@
     <div> Estos datos son privados y solo son usados para tareas de pago y de gestión de la aplicación</div>
     <ul>
         <li>
-            Nombre Completo: Pepito Pérez
+            Nombre Completo: <span th:text="|${user.nombre} ${user.apellidos}|"> Pepito Pérez</span>
         </li>
         <li>
-            Contraseña: alpargata1
+            Contraseña: <span th:text="${user.password}">alpargata1</span> 
         </li>
         <li>
-            Número de tarjeta: XXXX-XXXX-XXXX-XXXX
+            Número de tarjeta: <span th:text="${user.numtarjeta}">XXXX-XXXX-XXXX-XXXX</span> 
         </li>
         <li>
-            Fecha de caducidad:MM/YY
+            Fecha de caducidad: <span th:text="${user.caducidadtarjeta}">MM/YY</span> 
         </li>
         <li>
-            Número secreto: XXX
+            Número secreto: <span th:text="${user.numsecreto}">XXX</span> 
         </li>
         <li>
-            Número de teléfono:
+            Número de teléfono: <span th:text="${user.numtelefono}">666666666</span> 
         </li>
         <li>
-            Pregunta de seguridad: ¿Cual es el nombre de tu primera mascota?
+            Pregunta de seguridad: <span th:text="${user.preguntaseguridad}">¿Cual fue tu primera mascota?</span> 
         </li>
         <li>
-            Respuesta: Rex.
+            Respuesta: <span th:text="${user.respuestaseguridad}">JoseLuis</span> 
         </li>
     </ul>
     <button type="button">Editar mis datos</button>

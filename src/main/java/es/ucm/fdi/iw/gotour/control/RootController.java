@@ -1,6 +1,7 @@
 package es.ucm.fdi.iw.gotour.control;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,10 +19,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+
 
 import org.springframework.beans.PropertyAccessor;
 import org.springframework.beans.PropertyAccessorFactory;
@@ -45,6 +48,8 @@ import es.ucm.fdi.iw.gotour.model.Chat;
 public class RootController {
 	
 	private static final Logger log = LogManager.getLogger(RootController.class);
+    @Autowired 
+	private EntityManager entityManager;
 
 	@GetMapping("/chat")
 	public String chat(Model model, HttpServletRequest request) {
@@ -191,8 +196,9 @@ public class RootController {
     }
 
     @GetMapping("/datosPrivados")
-    public String datosPrivados(Model model)
-    {  
+    public String datosPrivados(Model model, HttpSession session)
+    {   
+        model.addAttribute("user", entityManager.createNamedQuery("userByLogin", User.class).setParameter("loginParam", "email").getSingleResult());
         return "datosPrivados";
     }
 }
