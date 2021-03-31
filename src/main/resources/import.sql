@@ -14,7 +14,7 @@
 -- -- Otro usuario de ejemplo con username = b y contraseña = aa  
 INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,nombre,numSecreto,numtarjeta,numtelefono,password,preguntaseguridad,respuestaseguridad,roles,username) VALUES (
 	2,'Sanchez Granado','22/03','email',1,'Jesus',12,87,333, 
-	'123','Pregunta','Respuesta',
+	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u','Pregunta','Respuesta',
 	'USER',
 	'SPACEMARINE');
 

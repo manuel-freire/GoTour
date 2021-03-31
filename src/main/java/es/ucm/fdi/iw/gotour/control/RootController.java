@@ -61,10 +61,15 @@ public class RootController {
 		return "error";
 	}
 	
-	// @GetMapping("/login")
-	// public String login() {
-	// 	return "login";
-	// }
+	@GetMapping("/login")
+	public String login(Model model) {
+		return "login";
+	}
+
+    @GetMapping("/registro")
+	public String registro(Model model) {
+		return "registro";
+	}
 
 	public class Tour{
         private String fecha;
@@ -198,7 +203,7 @@ public class RootController {
     @GetMapping("/datosPrivados")
     public String datosPrivados(Model model, HttpSession session)
     {   
-        model.addAttribute("user", entityManager.createNamedQuery("userByLogin", User.class).setParameter("loginParam", "email").getSingleResult());
+        // model.addAttribute("user", entityManager.createNamedQuery("userByLogin", User.class).setParameter("loginParam", "email").getSingleResult());
         return "datosPrivados";
     }
 }

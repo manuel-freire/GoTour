@@ -13,28 +13,28 @@
     <div> Estos datos son privados y solo son usados para tareas de pago y de gestión de la aplicación</div>
     <ul>
         <li>
-            Nombre Completo: <span th:text="|${user.nombre} ${user.apellidos}|"> Pepito Pérez</span>
+            Nombre Completo: <span th:text="|${session.u.nombre} ${session.u.apellidos}|"> Pepito Pérez</span>
         </li>
         <li>
-            Contraseña: <span th:text="${user.password}">alpargata1</span> 
+            Contraseña: <span th:text="${session.u.password}">alpargata1</span> 
         </li>
         <li>
-            Número de tarjeta: <span th:text="${user.numtarjeta}">XXXX-XXXX-XXXX-XXXX</span> 
+            Número de tarjeta: <span th:text="${session.u.numtarjeta}">XXXX-XXXX-XXXX-XXXX</span> 
         </li>
         <li>
-            Fecha de caducidad: <span th:text="${user.caducidadtarjeta}">MM/YY</span> 
+            Fecha de caducidad: <span th:text="${session.u.caducidadtarjeta}">MM/YY</span> 
         </li>
         <li>
-            Número secreto: <span th:text="${user.numsecreto}">XXX</span> 
+            Número secreto: <span th:text="${session.u.numsecreto}">XXX</span> 
         </li>
         <li>
-            Número de teléfono: <span th:text="${user.numtelefono}">666666666</span> 
+            Número de teléfono: <span th:text="${session.u.numtelefono}">666666666</span> 
         </li>
         <li>
-            Pregunta de seguridad: <span th:text="${user.preguntaseguridad}">¿Cual fue tu primera mascota?</span> 
+            Pregunta de seguridad: <span th:text="${session.u.preguntaseguridad}">¿Cual fue tu primera mascota?</span> 
         </li>
         <li>
-            Respuesta: <span th:text="${user.respuestaseguridad}">JoseLuis</span> 
+            Respuesta: <span th:text="${session.u.respuestaseguridad}">JoseLuis</span> 
         </li>
     </ul>
     <button type="button">Editar mis datos</button>

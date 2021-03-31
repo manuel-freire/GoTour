@@ -101,8 +101,6 @@ public class User implements Transferable<User.Transfer> {
 	@Size(max=244)
 	private String apellidos;
 	
-	
-	@NotNull
 	private String email;
 
 	@NotNull
