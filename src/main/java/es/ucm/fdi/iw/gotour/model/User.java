@@ -90,7 +90,7 @@ public class User implements Transferable<User.Transfer> {
 	private String password;
 	@Column(nullable = false)
 	private String roles; // split by ',' to separate roles
-	private byte enabled;
+	private int enabled;
 
 	// application-specific fields
 	@NotNull
@@ -105,12 +105,12 @@ public class User implements Transferable<User.Transfer> {
 
 	@NotNull
 	@Size(max=244)
-    private int numtarjeta;
+    private long numtarjeta;
 	private String caducidadtarjeta;
 	private int numsecreto;
 
 	@NotNull
-	private int numtelefono;
+	private long numtelefono;
 
 	@NotNull
 	@Size(max=100)

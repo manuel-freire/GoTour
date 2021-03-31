@@ -70,6 +70,41 @@ public class RootController {
 	public String registro(Model model) {
 		return "registro";
 	}
+    @PostMapping("/registro2")
+    @Transactional
+    public String registrar(@RequestParam String nombre,  
+                            @RequestParam String apellidos, 
+                            @RequestParam String email,
+                            @RequestParam String password,
+                            @RequestParam String preguntaseguridad,
+                            @RequestParam String respuestaseguridad,
+                            @RequestParam String username,
+                            @RequestParam long numtelefono,
+                            @RequestParam long numtarjeta,
+                            @RequestParam String caducidadtarjeta,
+                            @RequestParam int numsecreto,
+                            Model model){
+        //String encodedPass = u.encodePassword(u.getPassword());
+        //u.setPassword(encodedPass);
+        User user = new User();
+        user.setNombre(nombre);
+        user.setApellidos(apellidos);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setPreguntaseguridad(preguntaseguridad);
+        user.setRespuestaseguridad(respuestaseguridad);
+        user.setUsername(username);
+        user.setNumtelefono(numtelefono);
+        user.setNumtarjeta(numtarjeta);
+        user.setCaducidadtarjeta(caducidadtarjeta);
+        user.setNumsecreto(numsecreto);
+        user.setRoles("USER");
+        user.setEnabled(1);
+        entityManager.persist(user);
+        entityManager.flush();
+        return "/perfil";
+
+    }
 
 	public class Tour{
         private String fecha;
