@@ -11,6 +11,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import es.ucm.fdi.iw.gotour.model.User;
 
@@ -19,6 +22,8 @@ public class IwUserDetailsService implements UserDetailsService {
 	private static Logger log = LogManager.getLogger(IwUserDetailsService.class);
 
     private EntityManager entityManager;
+	@Autowired
+	AuthenticationManager authmanager;
     
     @PersistenceContext
     public void setEntityManager(EntityManager em){

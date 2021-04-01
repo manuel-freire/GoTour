@@ -184,6 +184,8 @@ public class User implements Transferable<User.Transfer> {
 	 * {bcrypt}$2y$12$XCKz0zjXAP6hsFyVc8MucOzx6ER6IsC1qo5zQbclxhddR1t6SfrHm
 	 */
 	public String encodePassword(String rawPassword) {
+		System.out.println("La contraseña en bruto es ");
+		System.out.println(rawPassword);
 		return passwordEncoder.encode(rawPassword);
 	}	
 

@@ -25,6 +25,9 @@ import javax.persistence.OneToMany;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 
 import org.springframework.beans.PropertyAccessor;
 import org.springframework.beans.PropertyAccessorFactory;
@@ -50,6 +53,7 @@ public class RootController {
 	private static final Logger log = LogManager.getLogger(RootController.class);
     @Autowired 
 	private EntityManager entityManager;
+    private AuthenticationManager authman;
 
 	@GetMapping("/chat")
 	public String chat(Model model, HttpServletRequest request) {
@@ -83,14 +87,12 @@ public class RootController {
                             @RequestParam long numtarjeta,
                             @RequestParam String caducidadtarjeta,
                             @RequestParam int numsecreto,
-                            Model model){
-        //String encodedPass = u.encodePassword(u.getPassword());
-        //u.setPassword(encodedPass);
+                            Model model, HttpServletRequest request){
         User user = new User();
         user.setNombre(nombre);
         user.setApellidos(apellidos);
         user.setEmail(email);
-        user.setPassword(password);
+        user.setPassword(password);//de momento no se cifra la contraseña porque el encode da null pointer y no soy capaz de arreglarlo.
         user.setPreguntaseguridad(preguntaseguridad);
         user.setRespuestaseguridad(respuestaseguridad);
         user.setUsername(username);
@@ -102,7 +104,15 @@ public class RootController {
         user.setEnabled(1);
         entityManager.persist(user);
         entityManager.flush();
-        return "/perfil";
+        try {
+	        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
+            log.info("Se ha creado el token ", usernamePasswordAuthenticationToken);
+            authman.authenticate(usernamePasswordAuthenticationToken);
+            log.info("Deberia haber funcionado");
+	    } catch (Exception e) {
+	        log.error("HA PETAO AQUI AL AUTOLOGUEAR ", e);
+	    }
+        return "index";
 
     }
 

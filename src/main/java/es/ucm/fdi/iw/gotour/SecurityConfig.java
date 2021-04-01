@@ -54,8 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 	    http
 	        .authorizeRequests()
-				.antMatchers("**").permitAll()
-	            .antMatchers("/css/**", "/js/**", "/img/**", "/", "/error", "/registro").permitAll()
+				//.antMatchers("**").permitAll()
+	            .antMatchers("/css/**", "/js/**", "/img/**", "/", "/error", "/registro", "/registro2").permitAll()
 	            .antMatchers("/admin/**").hasRole("ADMIN")		  // <-- administration
 	            .anyRequest().authenticated()
 	            .and()
@@ -76,7 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
 		// by default in Spring Security 5, a wrapped new BCryptPasswordEncoder();
-		return PasswordEncoderFactories.createDelegatingPasswordEncoder(); 
+		return PasswordEncoderFactories.createDelegatingPasswordEncoder(); //esto elige el codificador en funcion de la contraseña del ususario, pero si el user es nuevo, no esta codificada todavia por lo que da nullpointer exception
 	}	
 	
 	/**
