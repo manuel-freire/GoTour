@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -53,6 +54,36 @@ import es.ucm.fdi.iw.gotour.model.User.Role;
 @Controller()
 @RequestMapping("user")
 public class UserController {
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+		/**
+	 * Tests a raw (non-encoded) password against the stored one.
+	 * @param rawPassword to test against
+	 * @return true if encoding rawPassword with correct salt (from old password)
+	 * matches old password. That is, true iff the password is correct  
+	 */
+	public boolean passwordMatches(String rawPassword, String EncodedPassword) {
+		return passwordEncoder.matches(rawPassword, EncodedPassword);
+	}
+
+	/**
+	 * Encodes a password, so that it can be saved for future checking. Notice
+	 * that encoding the same password multiple times will yield different
+	 * encodings, since encodings contain a randomly-generated salt.
+	 * @param rawPassword to encode
+	 * @return the encoded password (typically a 60-character string)
+	 * for example, a possible encoding of "test" is 
+	 * {bcrypt}$2y$12$XCKz0zjXAP6hsFyVc8MucOzx6ER6IsC1qo5zQbclxhddR1t6SfrHm
+	 */
+	public String encodePassword(String rawPassword) {
+		System.out.println("La contraseña en bruto es ");
+		System.out.println(rawPassword);
+		return passwordEncoder.encode(rawPassword);
+	}	
+
+	
 	
 	private static final Logger log = LogManager.getLogger(UserController.class);
 	
@@ -107,7 +138,7 @@ public class UserController {
 		
 		if (edited.getPassword() != null && edited.getPassword().equals(pass2)) {
 			// save encoded version of password
-			target.setPassword(target.encodePassword(edited.getPassword()));
+			target.setPassword(encodePassword(edited.getPassword()));
 		}		
 		target.setUsername(edited.getUsername());
 		return "user";
@@ -201,4 +232,56 @@ public class UserController {
 		}
 		return "user";
 	}
+	@GetMapping("/logout")
+	public String salir(Model model, HttpServletRequest request){
+		try{
+			request.logout();
+		}
+		catch(Exception e){
+			log.error("Fallo al hacer logout", e);
+		}
+		return "index";
+	}
+
+	@PostMapping("/registro2")
+    @Transactional
+    public String registrar(@RequestParam String nombre,  
+                            @RequestParam String apellidos, 
+                            @RequestParam String email,
+                            @RequestParam String password,
+                            @RequestParam String preguntaseguridad,
+                            @RequestParam String respuestaseguridad,
+                            @RequestParam String username,
+                            @RequestParam long numtelefono,
+                            @RequestParam long numtarjeta,
+                            @RequestParam String caducidadtarjeta,
+                            @RequestParam int numsecreto,
+                            Model model, HttpServletRequest request, HttpSession session){
+        User user = new User();
+        user.setNombre(nombre);
+        user.setApellidos(apellidos);
+        user.setEmail(email);
+		String encoded = encodePassword(password);
+        user.setPassword(encoded);//de momento no se cifra la contraseña porque el encode da null pointer y no soy capaz de arreglarlo.
+        user.setPreguntaseguridad(preguntaseguridad);
+        user.setRespuestaseguridad(respuestaseguridad);
+        user.setUsername(username);
+        user.setNumtelefono(numtelefono);
+        user.setNumtarjeta(numtarjeta);
+        user.setCaducidadtarjeta(caducidadtarjeta);
+        user.setNumsecreto(numsecreto);
+        user.setRoles("USER");
+        user.setEnabled(1);
+        entityManager.persist(user);
+        entityManager.flush();
+        try {//Creo que no funciona por lo mismo que el encode no funciona al crear usuario
+	        request.login(username, password);
+			session.setAttribute("u", user);
+            log.info("Deberia haber funcionado");
+	    } catch (Exception e) {
+	        log.error("HA PETAO AQUI AL AUTOLOGUEAR ", e);
+	    }
+        return "index";
+
+    }
 }
