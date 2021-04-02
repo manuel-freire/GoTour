@@ -1,6 +1,6 @@
 package es.ucm.fdi.iw.gotour.model;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -16,25 +17,12 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Car {
+public class Mensajes {
 
-	@Id
+    @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String company;
-	
-	@NotNull
-	@Size(max=10)
-	private String model;
-	
-	@ManyToMany 
-	private List<Driver> drivers = new ArrayList<>();
-	@OneToMany
-	@JoinColumn(name="car_id")
-	private List<Wheel> wheels = new ArrayList<>();
 
-	@Override
-	public String toString() {
-		return "Car #" + id;
-	}	
+    private String contenido;
+    private Date fecha;
 }
