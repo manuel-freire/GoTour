@@ -25,6 +25,9 @@ import javax.persistence.OneToMany;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 
 import org.springframework.beans.PropertyAccessor;
 import org.springframework.beans.PropertyAccessorFactory;
@@ -50,6 +53,7 @@ public class RootController {
 	private static final Logger log = LogManager.getLogger(RootController.class);
     @Autowired 
 	private EntityManager entityManager;
+    private AuthenticationManager authman;
 
 	@GetMapping("/chat")
 	public String chat(Model model, HttpServletRequest request) {
@@ -70,41 +74,6 @@ public class RootController {
 	public String registro(Model model) {
 		return "registro";
 	}
-    @PostMapping("/registro2")
-    @Transactional
-    public String registrar(@RequestParam String nombre,  
-                            @RequestParam String apellidos, 
-                            @RequestParam String email,
-                            @RequestParam String password,
-                            @RequestParam String preguntaseguridad,
-                            @RequestParam String respuestaseguridad,
-                            @RequestParam String username,
-                            @RequestParam long numtelefono,
-                            @RequestParam long numtarjeta,
-                            @RequestParam String caducidadtarjeta,
-                            @RequestParam int numsecreto,
-                            Model model){
-        //String encodedPass = u.encodePassword(u.getPassword());
-        //u.setPassword(encodedPass);
-        User user = new User();
-        user.setNombre(nombre);
-        user.setApellidos(apellidos);
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setPreguntaseguridad(preguntaseguridad);
-        user.setRespuestaseguridad(respuestaseguridad);
-        user.setUsername(username);
-        user.setNumtelefono(numtelefono);
-        user.setNumtarjeta(numtarjeta);
-        user.setCaducidadtarjeta(caducidadtarjeta);
-        user.setNumsecreto(numsecreto);
-        user.setRoles("USER");
-        user.setEnabled(1);
-        entityManager.persist(user);
-        entityManager.flush();
-        return "/perfil";
-
-    }
 
 	public class Tour{
         private String fecha;
