@@ -26,15 +26,18 @@
         <div class="tour" th:each="tour: ${tours}">
             <div class="fotoguia"><img th:src="@{img/guia1.jpg}" width="60" /></div>
             <div class="infoguia">
-                <div class="nombre">Guia 1</div>
+                <div class="nombre" th:text="${tour.getDatos().getGuia().getNombre()}"></div>
                 <div class="estrellas"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>
-                <div class="idiomas">Español, Ingles</div>
+                <!--<div class="idiomas"><span th:each="idioma:${tour.getDatos().getGuia().getIdiomashablados()}" ></span></div>-->
             </div>
             <div class="infotour">
-                <div class="fecha" th:text="${tour.getFecha()}"></div>
-                <div class="lugar" th:text="${tour.getLugar()}"></div>
-                <div class="personas" th:text="${tour.getPersonas()}"></div>
-                <div class="precio" th:text="${tour.getPrecio()}"></div>
+                <div class="titulo" th:text="${tour.getDatos().getTitulo()}"></div>
+                <div class="fecha" th:text="'Inicio: '+${tour.getFechaIni()}"></div>
+                <div class="fecha" th:text="'Fin: '+${tour.getFechaFin()}"></div>
+                <div class="lugar" th:text="${tour.getDatos().getCiudad()}+', '+${tour.getDatos().getPais()}"></div>
+                <div class="lugar" th:text="${tour.getDatos().getLugar()}"></div>
+                <div class="precio" th:text="${tour.getDatos().getPrecio}+'€'"></div>
+                <div class="personas" th:text="${tour.getActTuristas()}+'/'+${tour.getDatos().getMaxTuristas()}+' turistas'"></div>
             </div>
         </div>
     </a>

@@ -3,13 +3,20 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.persistence.JoinColumn;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import java.time.LocalDate;
+
 
 @Entity
 @Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class Tour {
 
 	@Id
@@ -38,5 +45,17 @@ public class Tour {
 	@Override
 	public String toString() {
 		return "";
+	}
+	public TourOfertado getDatos() {
+		return datos;
+	}
+	public LocalDate getFechaIni() {
+		return fechaIni;
+	}
+	public LocalDate getFechaFin() {
+		return fechaFin;
+	}
+	public int getActTuristas() {
+		return actTuristas;
 	}
 }

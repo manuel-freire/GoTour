@@ -38,9 +38,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import es.ucm.fdi.iw.gotour.model.Mensajes;
-import es.ucm.fdi.iw.gotour.model.User;
-import es.ucm.fdi.iw.gotour.model.Chat;
+import es.ucm.fdi.iw.gotour.model.*;
 
 /**
  * Landing-page controller
@@ -74,62 +72,6 @@ public class RootController {
 	public String registro(Model model) {
 		return "registro";
 	}
-
-	public class Tour{
-        private String fecha;
-        private String lugar;
-        private int personas;
-        private int precio;
-        //private Guia guia;
-
-        public Tour(String fecha,String lugar,int personas,int precio){
-            this.fecha=fecha;
-            this.lugar=lugar;
-            this.personas=personas;
-            this.precio=precio;
-            //this.guia=guia;
-        }
-
-        public String getFecha() {
-            return this.fecha;
-        }
-
-        public void setFecha(String fecha) {
-            this.fecha = fecha;
-        }
-
-        public String getLugar() {
-            return this.lugar;
-        }
-
-        public void setLugar(String lugar) {
-            this.lugar = lugar;
-        }
-
-        public int getPersonas() {
-            return this.personas;
-        }
-
-        public void setPersonas(int personas) {
-            this.personas = personas;
-        }
-
-        public int getPrecio() {
-            return this.precio;
-        }
-
-        public void setPrecio(int precio) {
-            this.precio = precio;
-        }
-
-        /*public Guia getGuia() {
-            return this.guia;
-        }
-        public void setGuia(Guia guia) {
-            this.guia = guia;
-        }     */  
-
-    }
     
 
     @GetMapping("/")            // <-- en qué URL se expone, y por qué métodos (GET)        
@@ -137,12 +79,14 @@ public class RootController {
             Model model)        // <-- hay muchos, muchos parámetros opcionales
     {
         // lógica de control -- aquí actualizas el modelo
-        ArrayList<Tour> tours= new ArrayList<>();
-        tours.add(new Tour("01/07/2021","Madrid",10,50));
-        tours.add(new Tour("21/07/2021","Londres",20,100));
-        tours.add(new Tour("15/04/2021","Barcelona",50,200));
-        tours.add(new Tour("31/08/2021","Paris",60,210));
-        model.addAttribute("tours",tours);
+        List<Tour> tours = entityManager.createQuery("Select t from Tour t").getResultList();        
+        // dumps them via log
+        log.info("Dumping table {}", "tour");
+        for (Object o : tours) {
+            log.info("\t{}", o);
+        }        
+        // adds them to model
+        model.addAttribute("tours", tours);		
         return "index";
     }
 

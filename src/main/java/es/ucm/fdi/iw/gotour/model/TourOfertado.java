@@ -3,13 +3,18 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.persistence.JoinColumn;
-import java.util.Date;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Entity
 @Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class TourOfertado {
 
 	@Id
@@ -53,4 +58,35 @@ public class TourOfertado {
 	public String toString() {
 		return "";
 	}
+	public String getLugar() {
+		return lugar;
+	}
+	public double getPrecio() {
+		return precio;
+	}
+	public int getMaxTuristas() {
+		return maxTuristas;
+	}
+	public String getCiudad() {
+		return ciudad;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public User getGuia() {
+		return guia;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public String getPortada() {
+		return portada;
+	}
+	public List<String> getTags() {
+		return tags;
+	}
+	public String getPais() {
+		return pais;
+	}
+	
 }

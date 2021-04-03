@@ -18,6 +18,14 @@ INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,nombre,numSecreto,
 	'USER',
 	'SPACEMARINE');
 
+INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,nombre,numSecreto,numtarjeta,numtelefono,password,preguntaseguridad,respuestaseguridad,roles,username) VALUES (
+	3,'Lopez Marques','22/03','dani@gmail.com',1,'Daniel',12,87,333, 
+	'{bcrypt}$2a$10$3dNdazcfIDwL6sR2bZzbq.OgBVAIKIbJ1iAxvVoYHjROgG1DIOVXi','Pregunta','Respuesta',
+	'USER',
+	'DANI');
+
+INSERT INTO TOUR_OFERTADO VALUES (1,'Madrid','Una visita por el centro de Madrid',TRUE,'Centro','',50,'España','',25,'Descubriendo Madrid',2);
+INSERT INTO TOUR VALUES(1,0,'2021-04-20','2021-04-21',1,2);
 -- -- Unos pocos auto-mensajes de prueba
 -- INSERT INTO MESSAGE VALUES(1,NULL,'2020-03-23 10:48:11.074000','probando 1',1,1);
 -- INSERT INTO MESSAGE VALUES(2,NULL,'2020-03-23 10:48:15.149000','probando 2',1,1);
