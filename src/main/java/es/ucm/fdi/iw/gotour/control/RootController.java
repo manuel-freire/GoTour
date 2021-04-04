@@ -12,8 +12,11 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,16 +35,15 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.beans.PropertyAccessor;
 import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PathVariable;
-import es.ucm.fdi.iw.gotour.model.Mensajes;
-import es.ucm.fdi.iw.gotour.model.User;
-import es.ucm.fdi.iw.gotour.model.Chat;
-import es.ucm.fdi.iw.gotour.model.TourOfertado;
+
+import es.ucm.fdi.iw.gotour.model.*;
+
 /**
  * Landing-page controller
  * 
@@ -74,6 +76,20 @@ public class RootController {
 	public String registro(Model model) {
 		return "registro";
 	}
+    @PostMapping("/")
+    public String searchTours(Model model,@RequestParam String pais
+                                        ,@RequestParam String ciudad
+                                        ,@RequestParam String lugar
+                                        ,@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechaini
+                                        ,@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechafin){
+        List<Tour> busqueda = entityManager.createNamedQuery("ToursBySearch")
+            .setParameter("paisParam", pais)
+            .setParameter("ciudadParam", ciudad)
+            .setParameter("lugarParam", lugar)
+            .setParameter("fechaIniParam", fechaini)
+            .setParameter("fechaFinParam", fechafin).getResultList();      	
+        model.addAttribute("busqueda", busqueda);	
+        return index(model);
 
     @GetMapping(value="tour/{id}")
 	public String tourOfertado(@PathVariable long id, Model model) {
@@ -145,13 +161,14 @@ public class RootController {
     public String index(        // <-- da igual, sólo para desarrolladores
             Model model)        // <-- hay muchos, muchos parámetros opcionales
     {
-        // lógica de control -- aquí actualizas el modelo
-        ArrayList<Tour> tours= new ArrayList<>();
-        tours.add(new Tour("01/07/2021","Madrid",10,50));
-        tours.add(new Tour("21/07/2021","Londres",20,100));
-        tours.add(new Tour("15/04/2021","Barcelona",50,200));
-        tours.add(new Tour("31/08/2021","Paris",60,210));
-        model.addAttribute("tours",tours);
+        List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();        
+        // dumps them via log
+        log.info("Dumping table {}", "tour");
+        for (Object o : tours) {
+            log.info("\t{}", o);
+        }        
+        // adds them to model
+        model.addAttribute("tours", tours);			
         return "index";
     }
 

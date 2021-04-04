@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.Size;
 import javax.persistence.JoinColumn;
 import lombok.AccessLevel;
@@ -12,8 +13,19 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
+
 @Entity
+@NamedQueries({
+	@NamedQuery(name="AllTours", query="Select t from Tour t"),
+	@NamedQuery(name="ToursBySearch", query="Select t from Tour t where t.datos.pais=:paisParam and "+
+																		"t.datos.ciudad=:ciudadParam and "+
+																		"t.datos.lugar=:lugarParam and "+
+																		"t.fechaIni=:fechaIniParam and "+
+																		"t.fechaFin=:fechaFinParam")
+	})
 @Data
+@Getter
+@NoArgsConstructor
 public class Tour {
 
 	@Id
