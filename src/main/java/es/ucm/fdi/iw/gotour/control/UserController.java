@@ -262,7 +262,7 @@ public class UserController {
         user.setApellidos(apellidos);
         user.setEmail(email);
 		String encoded = encodePassword(password);
-        user.setPassword(encoded);//de momento no se cifra la contraseña porque el encode da null pointer y no soy capaz de arreglarlo.
+        user.setPassword(encoded);
         user.setPreguntaseguridad(preguntaseguridad);
         user.setRespuestaseguridad(respuestaseguridad);
         user.setUsername(username);
@@ -274,12 +274,10 @@ public class UserController {
         user.setEnabled(1);
         entityManager.persist(user);
         entityManager.flush();
-        try {//Creo que no funciona por lo mismo que el encode no funciona al crear usuario
+        try {
 	        request.login(username, password);
 			session.setAttribute("u", user);
-            log.info("Deberia haber funcionado");
 	    } catch (Exception e) {
-	        log.error("HA PETAO AQUI AL AUTOLOGUEAR ", e);
 	    }
         return "index";
 

@@ -37,11 +37,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import es.ucm.fdi.iw.gotour.model.Mensajes;
 import es.ucm.fdi.iw.gotour.model.User;
 import es.ucm.fdi.iw.gotour.model.Chat;
-
+import es.ucm.fdi.iw.gotour.model.TourOfertado;
 /**
  * Landing-page controller
  * 
@@ -73,6 +73,15 @@ public class RootController {
     @GetMapping("/registro")
 	public String registro(Model model) {
 		return "registro";
+	}
+
+    @GetMapping(value="tour/{id}")
+	public String tourOfertado(@PathVariable long id, Model model) {
+        TourOfertado u = entityManager.createNamedQuery("TourOfertado.getTour", TourOfertado.class)
+		        .setParameter("id", id)
+		        .getSingleResult();
+        model.addAttribute("tour",u);
+		return "tour";
 	}
 
 	public class Tour{

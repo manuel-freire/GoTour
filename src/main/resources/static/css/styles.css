@@ -50,8 +50,16 @@ p {
       height: 20%;
 }
 .info_tour{
-      margin-left: 10%;
-
+      width: 100%;
+}
+.info_tour_int{
+      display: flex;
+      justify-content: space-between;
+      margin-right: 20%;
+}
+.guia_tour_idiomas{
+      font-size: 10px;
+      font-weight: lighter;
 }
 .mapa{
       float: right;
@@ -74,10 +82,15 @@ p {
 }
 .bloque1{
       display: flex;
+      width: 1000px;
       justify-content: space-between;
 }
 .guia_tour{
       display: flex;
+}
+.tour_name{
+      font-weight: bold;
+      font-size: 30px;
 }
 .guia_tour_izq{
       display: grid;
@@ -85,6 +98,9 @@ p {
 .guia_tour_der{
       display: block;
       margin-left: 4%;
+}
+.guia_tour_nombre{
+      font-weight: bold;
 }
 .main{
       width: 1000px;

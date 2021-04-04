@@ -5,8 +5,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.JoinColumn;
+import lombok.AccessLevel;
 import lombok.Data;
-import java.time.LocalDate;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Entity
 @Data
@@ -20,12 +24,6 @@ public class Tour {
 	 @ManyToOne
 	 private TourOfertado datos;
 
-	@NotNull
-	private LocalDate fechaIni;
-
-	@NotNull
-	private LocalDate fechaFin;
-    
 	@NotNull
 	private int actTuristas;
 
