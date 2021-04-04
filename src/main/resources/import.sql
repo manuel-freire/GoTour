@@ -17,12 +17,12 @@ INSERT INTO user VALUES (
 	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u','Pregunta','Respuesta',
 	'USER',
 	'SPACEMARINE');
-INSERT INTO TOUR_OFERTADO VALUES (1, 'Alcala', 'Esta es la descripcion del tour numero 1', 1, '2021-12-12 20:00:00', '2021-12-12 20:00:00', 'tour1', '/img/mapa1.jpg', 2, 'adas', '/img/mapa1.jpg', 8, 'Tour1', 2);
+INSERT INTO TOUR_OFERTADO VALUES (1, 'Alcala', 'Esta es la descripcion del tour numero 1', 1, '2021-12-12 20:00:00', '2021-12-12 20:00:00', 'tour1', '/img/mapa1.jpg', 2, 'adas', '/img/tour1.jpg', 8, 'Tour1', 2);
 INSERT INTO TOUR_OFERTADO_ETIQUETAS  VALUES(1, 'museo');
 INSERT INTO TOUR_OFERTADO_ETIQUETAS  VALUES(1, 'monumento');
 INSERT INTO TOUR_OFERTADO_ETIQUETAS  VALUES(1, 'familia');
 INSERT INTO TOUR_OFERTADO_ETIQUETAS  VALUES(1, 'historia');
-INSERT INTO TOUR_OFERTADO VALUES (1,'Madrid','Una visita por el centro de Madrid',TRUE,'Centro','',50,'España','',25,'Descubriendo Madrid',2);
+--INSERT INTO TOUR_OFERTADO VALUES (2,'Madrid','Una visita por el centro de Madrid',TRUE,'2021-12-12 20:00:00', '2021-12-12 20:00:00','Centro','/img/mapa1.jpg',50,'España','/img/tour1.jpg',25,'Descubriendo Madrid',2);
 INSERT INTO TOUR VALUES(1,0,'2021-04-21','2021-04-20',1,2);
 -- -- Unos pocos auto-mensajes de prueba
 -- INSERT INTO MESSAGE VALUES(1,NULL,'2020-03-23 10:48:11.074000','probando 1',1,1);

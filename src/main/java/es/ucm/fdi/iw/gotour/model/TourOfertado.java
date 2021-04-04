@@ -58,13 +58,13 @@ public class TourOfertado {
 	@NotNull
 	private int maxTuristas;
 
-	@ElementCollection
-	@CollectionTable(joinColumns = @JoinColumn(name="tourOfertado_id"))
-	private List<String>  etiquetas = new ArrayList<String>();
-
 	@NotNull
 	@ManyToOne
 	private User guia;
+	
+	@ElementCollection
+	@CollectionTable(joinColumns = @JoinColumn(name="tourOfertado_id"))
+	private List<String>  etiquetas = new ArrayList<String>();
 
 	@Override
 	public String toString() {

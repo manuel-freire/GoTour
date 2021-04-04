@@ -18,7 +18,7 @@
         <input type="submit" value="Buscar guias turisticos" />
     </form>
     <div class="tour" th:each="tour: ${busqueda}">
-        <div class="fotoguia"><img th:src="@{img/guia1.jpg}" width="60" /></div>
+        <div class="fotoguia"><img th:src="@{${tour.getDatos().getGuia().getFoto()}}" width="60" /></div>
         <div class="infoguia">
             <div class="nombre" th:text="${tour.getDatos().getGuia().getNombre()}"></div>
             <div class="estrellas"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>
@@ -41,7 +41,7 @@
     <input type="button" class="filtro" name="ordvaloracion" value="Valoracion" />
     <h2>EXPLORA</h2>
     <div class="tour" th:each="tour: ${tours}">
-        <div class="fotoguia"><img th:src="@{img/guia1.jpg}" width="60" /></div>
+        <div class="fotoguia"><img th:src="@{${tour.getDatos().getGuia().getFoto()}}" width="60" /></div>
         <div class="infoguia">
             <div class="nombre" th:text="${tour.getDatos().getGuia().getNombre()}"></div>
             <div class="estrellas"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>

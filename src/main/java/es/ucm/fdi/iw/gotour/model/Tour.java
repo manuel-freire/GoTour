@@ -15,17 +15,21 @@ import lombok.AllArgsConstructor;
 import java.time.LocalDate;
 
 @Entity
+@Data
+@Getter
+@NoArgsConstructor
 @NamedQueries({
 	@NamedQuery(name="AllTours", query="Select t from Tour t"),
 	@NamedQuery(name="ToursBySearch", query="Select t from Tour t where t.datos.pais=:paisParam and "+
 																		"t.datos.ciudad=:ciudadParam and "+
 																		"t.datos.lugar=:lugarParam and "+
 																		"t.fechaIni=:fechaIniParam and "+
-																		"t.fechaFin=:fechaFinParam")
-	})
-@Data
-@Getter
-@NoArgsConstructor
+																		"t.fechaFin=:fechaFinParam"),
+	@NamedQuery(name="Tour.getTour",
+		query="SELECT u FROM Tour u "
+				+ "WHERE u.id = :id ")
+})
+
 public class Tour {
 
 	@Id
@@ -41,14 +45,16 @@ public class Tour {
 
 	@NotNull
 	private LocalDate fechaFin;
+
 	@NotNull
 	private int actTuristas;
-
+	
 	@ManyToMany (mappedBy="toursasistidos")
 	private List<User>  turistas = new ArrayList<>();
     
 	@OneToMany (mappedBy="tourvalorado")
 	private List<Review>  reviews = new ArrayList<>();
+
 
 	@Override
 	public String toString() {

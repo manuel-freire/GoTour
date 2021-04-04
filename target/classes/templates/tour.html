@@ -14,7 +14,7 @@
     </th:block>
     <div class="main">
         <div class="foto_tour">
-            <img class="imagen-tour1" th:src="@{/img/tour1.jpg}" alt="Imágen del tour"></span>
+            <img class="imagen-tour1" th:src="@{${tour.getPortada()}}" alt="Imágen del tour"></span>
         </div>
         <div class="datos_tour">
             <div class="datos_tour_sup">
@@ -28,8 +28,8 @@
                         <div class="info_tour_int"><p>Fin: </p><p th:text="${tour.getFechaFin()}"></p></div>
                         <div class="info_tour_int"><p>Ciudad: </p><p th:text="${tour.getCiudad()}"></p></div>
                         <div class="info_tour_int"><p>Lugar: </p><p th:text="${tour.getLugar()}"></p></div>
-                        <div class="info_tour_int"><p>Personas: </p><p th:text="${tour.getMaxTuristas()}"></p></div>
-                        <div class="info_tour_int"><p>Precio: </p><p th:text="${tour.getPrecio()}+'€'"></p></div>
+                        <div class="info_tour_int"><p>Turistas: </p><p th:text="'0'+'/'+${tour.getMaxTuristas()}"></p></div>
+                        <div class="info_tour_int"><p>Precio: </p><p th:text="${tour.getPrecio()}+' €'"></p></div>
                     </div>
                     <img class="mapa" th:src="@{${tour.getMapa()}}" alt="La imagen del mapa"></span>
                 </div>
