@@ -18,26 +18,28 @@
         </div>
         <div class="datos_tour">
             <div class="datos_tour_sup">
-                <h1 class="tour_name">Tour por Machupichu</h1>
+                <p class="tour_name" th:text="${tour.getTitulo()}"></p>
                 <button class="tour_inscribirse">Inscribirse</button>
             </div>
             <div class="datos_tour_mid">
                 <div class="bloque1">
                     <div class="info_tour">
-                        <p>Fecha: 20/04/2021</p>
-                        <p>Lugar: Machupichu</p>
-                        <p>Personas: 5/10</p>
-                        <p>Precio: 25$</p>
+                        <div class="info_tour_int"><p>Inicio: </p><p th:text="${tour.getFechaIni()}"></p></div>
+                        <div class="info_tour_int"><p>Fin: </p><p th:text="${tour.getFechaFin()}"></p></div>
+                        <div class="info_tour_int"><p>Ciudad: </p><p th:text="${tour.getCiudad()}"></p></div>
+                        <div class="info_tour_int"><p>Lugar: </p><p th:text="${tour.getLugar()}"></p></div>
+                        <div class="info_tour_int"><p>Personas: </p><p th:text="${tour.getMaxTuristas()}"></p></div>
+                        <div class="info_tour_int"><p>Precio: </p><p th:text="${tour.getPrecio()}"></p><p>$</p></div>
                     </div>
-                    <img class="mapa" th:src="@{/img/mapa1.jpg}" alt="La imagen del mapa"></span>
+                    <img class="mapa" th:src="@{${tour.getMapa()}}" alt="La imagen del mapa"></span>
                 </div>
                 <div class="guia_tour">
                     <div class="guia_tour_izq">
-                        <img class="guia_tour_foto" th:src="@{/img/guia1.jpg}" alt="La imagen del guia"></span>
+                        <img class="guia_tour_foto" th:src="@{${tour.getGuia().getFoto()}}" alt="La imagen del guia"></span>
                         <img class="estrellas" th:src="@{/img/5estrellas.png}" alt="Estrellas de valoración"></span>
                     </div>
                     <div class="guia_tour_der">
-                        <p class="guia_tour_nombre">Rodrigo Gonzales</p>
+                        <p class="guia_tour_nombre" th:text="${tour.getGuia().getNombre()}">Rodrigo Gonzales</p>
                         <div class="guia_tour_idiomas">
                             <p>Ingles</p>
                             <p>Frances</p>
@@ -47,14 +49,13 @@
             </div>
             <div class="datos_tour_inf">
                 <div class="descripcion_tour">
-                    <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                    <span th:text="${tour.getDescripcion()}">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
                         been the industry's standard dummy text.</span>
                 </div>
-                <div class="etquitetas_tour">
-                    <button>al aire libre</button>
+                    <div class="etquitetas_tour">
+                    <button>museo</button>
                     <button>monumento</button>
-                    <button>a pie</button>
-                    <button>antiguo</button>
+                    <button>familia</button>
                 </div>
             </div>
         </div>

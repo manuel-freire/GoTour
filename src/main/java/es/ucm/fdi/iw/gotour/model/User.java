@@ -97,7 +97,7 @@ public class User implements Transferable<User.Transfer> {
 	private String apellidos;
 	
 	private String email;
-
+	private String foto;
 	@NotNull
 	@Size(max=244)
     private long numtarjeta;

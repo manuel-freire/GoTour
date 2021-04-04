@@ -4,12 +4,22 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.persistence.JoinColumn;
-import java.util.Date;
+import java.time.LocalDateTime;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+//INSERT INTO TOUR_OFERTADO VALUES (1, 'Alcala', 'tour1', 1, '2021-12-12 20:00:00', '2021-12-12 20:00:00', 'tour1', 'adsa', 2, 'adas', 'dada', 8, 'adas', 2);
 
 @Entity
 @Data
+@NamedQueries({
+	@NamedQuery(name="TourOfertado.getTour",
+			query="SELECT u FROM TourOfertado u "
+					+ "WHERE u.id = :id ")
+})
 public class TourOfertado {
 
 	@Id
@@ -30,6 +40,12 @@ public class TourOfertado {
 	private String lugar;
 
 	@NotNull
+	private LocalDateTime fechaIni;
+
+	@NotNull
+	private LocalDateTime fechaFin;
+    
+	@NotNull
 	private String pais;
 
 	private String mapa;
@@ -43,7 +59,8 @@ public class TourOfertado {
 	private int maxTuristas;
 
 	@ElementCollection
-	private List<String>  tags = new ArrayList<>();
+	@CollectionTable(joinColumns = @JoinColumn(name="tourOfertado_id"))
+	private List<String>  etiquetas = new ArrayList<String>();
 
 	@NotNull
 	@ManyToOne
