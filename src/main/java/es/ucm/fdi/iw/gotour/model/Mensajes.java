@@ -1,5 +1,6 @@
 package es.ucm.fdi.iw.gotour.model;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,10 +23,6 @@ public class Mensajes {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-    @NotNull
-    @ManyToOne(targetEntity=User.class)
-	private User emisor;
-
     private String contenido;
-    private LocalDate fecha;
+    private Date fecha;
 }
