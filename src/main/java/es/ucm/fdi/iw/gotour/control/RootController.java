@@ -1,8 +1,6 @@
 package es.ucm.fdi.iw.gotour.control;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -20,18 +18,14 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-
-
 import org.springframework.beans.PropertyAccessor;
 import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +35,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import es.ucm.fdi.iw.gotour.model.*;
 
 /**
@@ -76,6 +70,7 @@ public class RootController {
 	public String registro(Model model) {
 		return "registro";
 	}
+
     @PostMapping("/")
     public String searchTours(Model model,@RequestParam String pais
                                         ,@RequestParam String ciudad
@@ -90,6 +85,7 @@ public class RootController {
             .setParameter("fechaFinParam", fechafin).getResultList();      	
         model.addAttribute("busqueda", busqueda);	
         return index(model);
+    }
 
     @GetMapping(value="tour/{id}")
 	public String tourOfertado(@PathVariable long id, Model model) {

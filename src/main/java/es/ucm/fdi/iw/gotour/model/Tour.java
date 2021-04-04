@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-
+import java.time.LocalDate;
 
 @Entity
 @NamedQueries({
@@ -36,6 +36,11 @@ public class Tour {
 	 @ManyToOne
 	 private TourOfertado datos;
 
+	 @NotNull
+	private LocalDate fechaIni;
+
+	@NotNull
+	private LocalDate fechaFin;
 	@NotNull
 	private int actTuristas;
 

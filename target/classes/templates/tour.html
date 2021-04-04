@@ -29,7 +29,7 @@
                         <div class="info_tour_int"><p>Ciudad: </p><p th:text="${tour.getCiudad()}"></p></div>
                         <div class="info_tour_int"><p>Lugar: </p><p th:text="${tour.getLugar()}"></p></div>
                         <div class="info_tour_int"><p>Personas: </p><p th:text="${tour.getMaxTuristas()}"></p></div>
-                        <div class="info_tour_int"><p>Precio: </p><p th:text="${tour.getPrecio()}"></p><p>$</p></div>
+                        <div class="info_tour_int"><p>Precio: </p><p th:text="${tour.getPrecio()}+'€'"></p></div>
                     </div>
                     <img class="mapa" th:src="@{${tour.getMapa()}}" alt="La imagen del mapa"></span>
                 </div>

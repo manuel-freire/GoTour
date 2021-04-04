@@ -48,7 +48,7 @@
             <!--<div class="idiomas"><span th:each="idioma:${tour.getDatos().getGuia().getIdiomashablados()}" ></span></div>-->
         </div>
         <div class="infotour">
-            <div class="titulo"><a th:href="@{/tour}" th:text="${tour.getDatos().getTitulo()}"></a></div>
+            <div class="titulo"><a th:href="@{'/tour/'+${tour.getId()}}" th:text="${tour.getDatos().getTitulo()}"></a></div>
             <div class="fecha" th:text="'Inicio: '+${tour.getFechaIni()}"></div>
             <div class="fecha" th:text="'Fin: '+${tour.getFechaFin()}"></div>
             <div class="lugar" th:text="${tour.getDatos().getCiudad()}+', '+${tour.getDatos().getPais()}"></div>
