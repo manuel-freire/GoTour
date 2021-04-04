@@ -12,8 +12,11 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +35,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.beans.PropertyAccessor;
 import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -72,21 +76,35 @@ public class RootController {
 	public String registro(Model model) {
 		return "registro";
 	}
+    @PostMapping("/")
+    public String searchTours(Model model,@RequestParam String pais
+                                        ,@RequestParam String ciudad
+                                        ,@RequestParam String lugar
+                                        ,@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechaini
+                                        ,@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechafin){
+        List<Tour> busqueda = entityManager.createNamedQuery("ToursBySearch")
+            .setParameter("paisParam", pais)
+            .setParameter("ciudadParam", ciudad)
+            .setParameter("lugarParam", lugar)
+            .setParameter("fechaIniParam", fechaini)
+            .setParameter("fechaFinParam", fechafin).getResultList();      	
+        model.addAttribute("busqueda", busqueda);	
+        return index(model);
+    }
     
 
     @GetMapping("/")            // <-- en qué URL se expone, y por qué métodos (GET)        
     public String index(        // <-- da igual, sólo para desarrolladores
             Model model)        // <-- hay muchos, muchos parámetros opcionales
     {
-        // lógica de control -- aquí actualizas el modelo
-        List<Tour> tours = entityManager.createQuery("Select t from Tour t").getResultList();        
+        List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();        
         // dumps them via log
         log.info("Dumping table {}", "tour");
         for (Object o : tours) {
             log.info("\t{}", o);
         }        
         // adds them to model
-        model.addAttribute("tours", tours);		
+        model.addAttribute("tours", tours);			
         return "index";
     }
 

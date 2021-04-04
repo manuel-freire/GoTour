@@ -58,35 +58,5 @@ public class TourOfertado {
 	public String toString() {
 		return "";
 	}
-	public String getLugar() {
-		return lugar;
-	}
-	public double getPrecio() {
-		return precio;
-	}
-	public int getMaxTuristas() {
-		return maxTuristas;
-	}
-	public String getCiudad() {
-		return ciudad;
-	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public User getGuia() {
-		return guia;
-	}
-	public String getTitulo() {
-		return titulo;
-	}
-	public String getPortada() {
-		return portada;
-	}
-	public List<String> getTags() {
-		return tags;
-	}
-	public String getPais() {
-		return pais;
-	}
 	
 }

@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
@@ -13,9 +16,16 @@ import java.time.LocalDate;
 
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="AllTours", query="Select t from Tour t"),
+	@NamedQuery(name="ToursBySearch", query="Select t from Tour t where t.datos.pais=:paisParam and "+
+																		"t.datos.ciudad=:ciudadParam and "+
+																		"t.datos.lugar=:lugarParam and "+
+																		"t.fechaIni=:fechaIniParam and "+
+																		"t.fechaFin=:fechaFinParam")
+	})
 @Data
 @Getter
-@Setter
 @NoArgsConstructor
 public class Tour {
 
@@ -45,17 +55,5 @@ public class Tour {
 	@Override
 	public String toString() {
 		return "";
-	}
-	public TourOfertado getDatos() {
-		return datos;
-	}
-	public LocalDate getFechaIni() {
-		return fechaIni;
-	}
-	public LocalDate getFechaFin() {
-		return fechaFin;
-	}
-	public int getActTuristas() {
-		return actTuristas;
 	}
 }

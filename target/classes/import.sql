@@ -25,7 +25,7 @@ INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,nombre,numSecreto,
 	'DANI');
 
 INSERT INTO TOUR_OFERTADO VALUES (1,'Madrid','Una visita por el centro de Madrid',TRUE,'Centro','',50,'España','',25,'Descubriendo Madrid',2);
-INSERT INTO TOUR VALUES(1,0,'2021-04-20','2021-04-21',1,2);
+INSERT INTO TOUR VALUES(1,0,'2021-04-21','2021-04-20',1,2);
 -- -- Unos pocos auto-mensajes de prueba
 -- INSERT INTO MESSAGE VALUES(1,NULL,'2020-03-23 10:48:11.074000','probando 1',1,1);
 -- INSERT INTO MESSAGE VALUES(2,NULL,'2020-03-23 10:48:15.149000','probando 2',1,1);
