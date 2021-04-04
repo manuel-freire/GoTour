@@ -28,7 +28,6 @@ import javax.validation.Valid;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
-
 import org.springframework.beans.PropertyAccessor;
 import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +36,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import es.ucm.fdi.iw.gotour.model.Mensajes;
 import es.ucm.fdi.iw.gotour.model.User;
-import es.ucm.fdi.iw.gotour.model.Chat;
 
 /**
  * Landing-page controller
@@ -49,7 +48,7 @@ import es.ucm.fdi.iw.gotour.model.Chat;
  */
 @Controller
 public class RootController {
-	
+
 	private static final Logger log = LogManager.getLogger(RootController.class);
     @Autowired 
 	private EntityManager entityManager;
@@ -157,9 +156,21 @@ public class RootController {
     }
 
     @GetMapping("/perfil")
-    public String perfil(Model model)
+    public String perfil(Model model, HttpSession session)
+    {
+        User requester = (User)session.getAttribute("u");
+        User user = (User)entityManager.createNamedQuery("User.byId")
+            .setParameter("id", requester.getId()).getSingleResult();
+        model.addAttribute("user", user);
+        model.addAttribute("propio", true);
+        return "perfil";
+    }
+
+    /*
+    @GetMapping("/perfil/{username}")
+    public String perfil(@PathVariable String username, Model model)
     {  
-		Date membresia = new Date();
+        Date membresia = new Date();
         int id_usuario = 1;
         int id_sesion = 1;
         String[] tourD1 = {"Visita guiada del Coliseo", "Roma", "4 huecos disponibles"};
@@ -177,8 +188,7 @@ public class RootController {
         model.addAttribute("tourC1",tourC1);
         model.addAttribute("resenya1",resenya1);
         model.addAttribute("estrellas", 3);
-        return "perfil";
-    }
+    }*/
 
     @GetMapping("/busqueda")
     public String busqueda(Model model)
@@ -211,5 +221,3 @@ public class RootController {
         return "datosPrivados";
     }
 }
-
-

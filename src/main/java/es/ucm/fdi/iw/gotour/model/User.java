@@ -48,6 +48,9 @@ import lombok.AllArgsConstructor;
         @NamedQuery(name="User.byUsername",
                 query="SELECT u FROM User u "
                         + "WHERE u.username = :username AND u.enabled = 1"),
+		@NamedQuery(name="User.byId",
+				query="SELECT u FROM User u "
+						+ "WHERE u.id = :id AND u.enabled = 1"),
         @NamedQuery(name="User.hasUsername",
                 query="SELECT COUNT(u) "
                         + "FROM User u "
@@ -115,6 +118,9 @@ public class User implements Transferable<User.Transfer> {
 	@Size(max=100)
 	
 	private String respuestaseguridad;
+
+	@NotNull
+	private int puntuacion;
 
 	@OneToMany(targetEntity=Tour.class)
 	@JoinColumn(name="guia_id")

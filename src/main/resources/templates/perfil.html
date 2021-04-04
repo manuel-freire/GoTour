@@ -12,22 +12,20 @@
     <div class="contenedor">
         <div class="informacion">
             <div th:if="${propio}">
+                <p th:text="${user.getUsername()}">Nombre usuario</p>
                 <a th:href="@{/perfil}">Editar</a>
                 <a th:href="@{/perfil}">Nuevo tour</a>
+                <a th:href="@{/datosPrivados}">Mi cuenta</a>
             </div>
-            <p th:text="${nombre} + ' ' + ${apellidos}">Nombre usuario</p>
-            <div th:if="${propio}">
-                <p> Miembro desde: <span th:text="${membresia}">Membresía</span></p>
-                <p> Rol: <span th:text="${rol}">Rol</span></p>
-            </div>
+            <p th:text="${user.getNombre()} + ' ' + ${user.getApellidos()}">Nombre usuario</p>
         </div>
         <img id="user" th:src="@{/img/perro.jpg}" alt="La imagen del usuario" ></span>
-        <span th:if="${estrellas == 1}">*</span>
-        <span th:if="${estrellas == 2}">**</span>
-        <span th:if="${estrellas == 3}">***</span>
-        <span th:if="${estrellas == 4}">****</span>
-        <span th:if="${estrellas == 5}">*****</span>
-        <div th:if="${rol == 'guia'}">
+        <span th:if="${user.getPuntuacion() == 1}"><img th:src="@{img/star.png}" width="30" /></span>
+        <span th:if="${user.getPuntuacion() == 2}"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></span>
+        <span th:if="${user.getPuntuacion() == 3}"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></span>
+        <span th:if="${user.getPuntuacion() == 4}"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></span>
+        <span th:if="${user.getPuntuacion() == 5}"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></span>
+        <div>
             <h3>-------------Tours disponibles---------------</h3>
             <img id="user" th:src="@{/img/coliseo.jpg}" alt="Coliseo" ></span>
             <div th:each="tour: ${tourD1}">
