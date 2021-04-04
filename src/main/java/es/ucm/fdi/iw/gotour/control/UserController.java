@@ -284,4 +284,40 @@ public class UserController {
         return "index";
 
     }
+	@PostMapping("/actualizar")
+    public String actualizar(
+							@RequestParam String nombre,  
+                            @RequestParam String apellidos, 
+                            @RequestParam String email,
+                            @RequestParam String password,
+                            @RequestParam String preguntaseguridad,
+                            @RequestParam String respuestaseguridad,
+                            @RequestParam String username,
+                            @RequestParam long numtelefono,
+                            @RequestParam long numtarjeta,
+                            @RequestParam String caducidadtarjeta,
+                            @RequestParam int numsecreto,
+                            Model model, HttpServletRequest request, HttpSession session){
+        User user = (User)session.getAttribute("u");
+        user.setNombre(nombre);
+        user.setApellidos(apellidos);
+        user.setEmail(email);
+		String encoded = encodePassword(password);
+        user.setPassword(encoded);//de momento no se cifra la contraseña porque el encode da null pointer y no soy capaz de arreglarlo.
+        user.setPreguntaseguridad(preguntaseguridad);
+        user.setRespuestaseguridad(respuestaseguridad);
+        user.setUsername(username);
+        user.setNumtelefono(numtelefono);
+        user.setNumtarjeta(numtarjeta);
+        user.setCaducidadtarjeta(caducidadtarjeta);
+        user.setNumsecreto(numsecreto);
+        user.setRoles("USER");
+        user.setEnabled(1);
+        entityManager.flush();
+		session.setAttribute("u", user);
+        return "datosPrivados";
+
+    }
+
+
 }

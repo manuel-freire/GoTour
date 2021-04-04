@@ -18,6 +18,9 @@ INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,nombre,numSecreto,
 	'USER',
 	'SPACEMARINE');
 
+
+insert into user_idiomashablados(user_id, idiomashablados) values(2, 'ingles');
+insert into user_idiomashablados(user_id, idiomashablados) values(2, 'frances');
 -- -- Unos pocos auto-mensajes de prueba
 -- INSERT INTO MESSAGE VALUES(1,NULL,'2020-03-23 10:48:11.074000','probando 1',1,1);
 -- INSERT INTO MESSAGE VALUES(2,NULL,'2020-03-23 10:48:15.149000','probando 2',1,1);
