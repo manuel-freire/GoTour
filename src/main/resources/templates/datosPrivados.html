@@ -37,8 +37,7 @@
             Respuesta: <span th:text="${session.u.respuestaseguridad}">JoseLuis</span> 
         </li>
         <li>
-            Idiomas: <span th:each="idioma: ${session.u.idiomashablados}">JoseLuis</span>
-            <span th:text="${idioma}">ejemplo</span> 
+            Idiomas: <span th:each="idioma: ${session.u.idiomashablados}" th:text="${idioma} + ' '">idioma </span>
         </li>
 
     </ul>

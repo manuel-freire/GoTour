@@ -1,6 +1,7 @@
 package es.ucm.fdi.iw.gotour;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -50,7 +51,13 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	    log.info("Storing user info for {} in session {}", username, session.getId());
 		User u = entityManager.createNamedQuery("User.byUsername", User.class)
 		        .setParameter("username", username)
-		        .getSingleResult();		
+		        .getSingleResult();
+		
+		log.info("EL ID DEL USUARIO ES {}", u.getId());		
+		List<String> idiomas= entityManager.createNamedQuery("User.haslanguajes")
+			.setParameter("user_id", u.getId()).getResultList();
+		log.info("LA LISTA DE IDIOMAS OBTENIDOS ES {}", idiomas);
+		u.setIdiomashablados(idiomas);		
 		session.setAttribute("u", u);
 		
 		long unread = entityManager.createNamedQuery("Message.countUnread", Long.class)

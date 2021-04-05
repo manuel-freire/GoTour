@@ -15,6 +15,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.ElementCollection;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -51,7 +53,11 @@ import lombok.AllArgsConstructor;
         @NamedQuery(name="User.hasUsername",
                 query="SELECT COUNT(u) "
                         + "FROM User u "
-                        + "WHERE u.username = :username")
+                        + "WHERE u.username = :username"),
+})
+@NamedNativeQueries({
+		@NamedNativeQuery(name="User.haslanguajes",
+		query="SELECT idiomashablados from user_idiomashablados WHERE user_idiomashablados.user_id = :user_id")
 })
 public class User implements Transferable<User.Transfer> {
 
@@ -132,7 +138,6 @@ public class User implements Transferable<User.Transfer> {
 	@OneToMany(targetEntity=Review.class)
 	@JoinColumn(name="destinatario_id")
 	private List<Review> reviewsrecibidas=new ArrayList<>();
-
 	@ElementCollection
 	private List<String> idiomashablados=new ArrayList<>();
 	
