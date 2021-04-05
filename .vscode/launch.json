@@ -9,6 +9,16 @@
             "mainClass": "es.ucm.fdi.iw.gotour.GotourApplication",
             "projectName": "gotour",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-IwApplication<gotour>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "es.ucm.fdi.iw.gotour.IwApplication",
+            "projectName": "gotour",
+            "args": ""
         }
     ]
 }

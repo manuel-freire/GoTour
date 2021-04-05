@@ -15,6 +15,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.ElementCollection;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -48,10 +50,25 @@ import lombok.AllArgsConstructor;
         @NamedQuery(name="User.byUsername",
                 query="SELECT u FROM User u "
                         + "WHERE u.username = :username AND u.enabled = 1"),
+		@NamedQuery(name="User.byId",
+				query="SELECT u FROM User u "
+						+ "WHERE u.id = :id AND u.enabled = 1"),
         @NamedQuery(name="User.hasUsername",
                 query="SELECT COUNT(u) "
                         + "FROM User u "
-                        + "WHERE u.username = :username")
+                        + "WHERE u.username = :username"),
+		@NamedQuery(name="userByLogin",
+				query="select u from User u where u.email = :loginParam")
+		
+})
+
+@NamedNativeQueries({
+	@NamedNativeQuery(name="User.getToursOfrecidos",
+		query="SELECT * from Tour WHERE guia_id = :guia_id"),
+	@NamedNativeQuery(name="User.getReviewsRecibidas",
+		query="SELECT * FROM Review WHERE destinatario_id = :dest"),
+	@NamedNativeQuery(name="User.haslanguajes",
+	query="SELECT idiomashablados from user_idiomashablados WHERE user_idiomashablados.user_id = :user_id")
 })
 public class User implements Transferable<User.Transfer> {
 
@@ -71,11 +88,6 @@ public class User implements Transferable<User.Transfer> {
 	 * see passwordMatches & encodePassword 
 	 * All those annotations prevent persistence and Lombok-generated getters & setters
 	 */
-	@Autowired
-	@Transient
-	@Getter(value = AccessLevel.NONE)
-	@Setter(value = AccessLevel.NONE)
-	private PasswordEncoder passwordEncoder;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -88,7 +100,7 @@ public class User implements Transferable<User.Transfer> {
 	private String password;
 	@Column(nullable = false)
 	private String roles; // split by ',' to separate roles
-	private byte enabled;
+	private int enabled;
 
 	// application-specific fields
 	@NotNull
@@ -99,18 +111,16 @@ public class User implements Transferable<User.Transfer> {
 	@Size(max=244)
 	private String apellidos;
 	
-	
-	@NotNull
 	private String email;
-	private String rol;
-
+	private String foto;
 	@NotNull
 	@Size(max=244)
-    private int numtarjeta;
-	private String caducidad_tarjeta;
+    private long numtarjeta;
+	private String caducidadtarjeta;
+	private int numsecreto;
 
 	@NotNull
-	private int numtelefono;
+	private long numtelefono;
 
 	@NotNull
 	@Size(max=100)
@@ -121,8 +131,10 @@ public class User implements Transferable<User.Transfer> {
 	
 	private String respuestaseguridad;
 
+	@NotNull
+	private int puntuacion;
+
 	@OneToMany(targetEntity=Tour.class)
-	@JoinColumn(name="guia_id")
 	private List<Tour> tourofrecidos=new ArrayList<>();
 
 	@ManyToMany(targetEntity=Tour.class)
@@ -139,7 +151,6 @@ public class User implements Transferable<User.Transfer> {
 	@OneToMany(targetEntity=Review.class)
 	@JoinColumn(name="destinatario_id")
 	private List<Review> reviewsrecibidas=new ArrayList<>();
-
 	@ElementCollection
 	private List<String> idiomashablados=new ArrayList<>();
 	
@@ -164,28 +175,6 @@ public class User implements Transferable<User.Transfer> {
 				.anyMatch(r -> r.equals(roleName));
 	}
 	
-	/**
-	 * Tests a raw (non-encoded) password against the stored one.
-	 * @param rawPassword to test against
-	 * @return true if encoding rawPassword with correct salt (from old password)
-	 * matches old password. That is, true iff the password is correct  
-	 */
-	public boolean passwordMatches(String rawPassword) {
-		return passwordEncoder.matches(rawPassword, this.password);
-	}
-
-	/**
-	 * Encodes a password, so that it can be saved for future checking. Notice
-	 * that encoding the same password multiple times will yield different
-	 * encodings, since encodings contain a randomly-generated salt.
-	 * @param rawPassword to encode
-	 * @return the encoded password (typically a 60-character string)
-	 * for example, a possible encoding of "test" is 
-	 * {bcrypt}$2y$12$XCKz0zjXAP6hsFyVc8MucOzx6ER6IsC1qo5zQbclxhddR1t6SfrHm
-	 */
-	public String encodePassword(String rawPassword) {
-		return passwordEncoder.encode(rawPassword);
-	}	
 
     @Getter
     @AllArgsConstructor
@@ -200,4 +189,9 @@ public class User implements Transferable<User.Transfer> {
     public Transfer toTransfer() {
 		return new Transfer(id,	username, received.size(), sent.size());
     }
+
+	@Override
+	public String toString() {
+		return toTransfer().toString();
+	}
 }

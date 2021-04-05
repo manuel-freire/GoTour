@@ -3,12 +3,13 @@
                  <a th:href="@{/}"><img id="logo" th:src="@{/img/icon.jpg}" alt="El logo de gotour" ></a>
                  <div class="topnav-right">
                    <a>buscar</a>
-                     <div class="dropdown">
+                   <a th:if="${session.u==null}" th:href="@{/login}">login</a>
+                     <div class="dropdown" th:if="${session.u != null}">
                          <button class="dropbtn">usuario</button>
                          <div class="dropdown-content">
                            <a th:href="@{/perfil}">Mi perfil</a>
                            <a th:href="@{/}">Notificaciones</a>
-                           <a th:href="@{/}">Salir</a>
+                           <a th:href="@{/user/logout}">Salir</a>
                          </div>
                        </div>
                      <!-- <a id="dropdown" th:href="@{/perfil}"><img id="iconouser" th:src="@{/img/usuario.png}" alt="La imagen del usuario" ></a>  -->

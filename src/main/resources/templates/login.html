@@ -4,8 +4,10 @@
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
     <title>Login a la plantilla</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
   </head>
   <body>
+    <th:block th:replace="frags/header.html"></th:block>
      <div class="container">
       <form class="form-signin" method="post" th:action="@{/login}">
         <h2 class="form-signin-heading">Please sign in</h2>

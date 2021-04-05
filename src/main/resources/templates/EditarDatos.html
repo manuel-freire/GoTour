@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <title>Registro de usuario</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+  </head>
+  <body>
+    <th:block th:replace="frags/header.html">
+</th:block>
+     <div class="container">
+      <form class="form-register" method="post" th:action="@{/user/2/actualizar}">
+        <h2 class="form-register-heading">Introduzca sus nuevos datos a continuación</h2>
+        <p>
+            <select id="id">
+              <option th:value="${session.u.id}" selected></option>
+            </select>
+          <label for="nombre" class="sr-only">Nombre</label>
+          <input type="text" id="nombre" name="nombre" 
+            class="form-control" th:value="${session.u.nombre}"></input>
+        </p>
+        <p>
+            <label for="apellidos" class="sr-only">Apellidos</label>
+            <input type="text" id="apellidos" name="apellidos" 
+              class="form-control" th:value="${session.u.apellidos}" ></input>
+        </p>
+        <p>
+            <label for="email" class="sr-only">Email</label>
+            <input type="email" id="email" name="email" 
+              class="form-control" th:value="${session.u.email}"></input>
+        </p>
+        <p>
+          <label for="password" class="sr-only">Password</label>
+          <input type="password" id="password" name="password" 
+            class="form-control" th:value="${session.u.password}" ></input>
+        </p>
+        <p>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" 
+              class="form-control" th:value="${session.u.username}"></input>
+        </p>
+        <p>
+            <label for="telefono" class="sr-only">Número de teléfono</label>
+            <input type="tel" id="numtelefono" name="numtelefono" 
+              class="form-control" th:value="${session.u.numtelefono}"></input>
+        </p>
+        <p>
+            <label for="tarjeta" class="sr-only">Número de tarjeta</label>
+            <input type="number" id="numtarjeta" name="numtarjeta" 
+              class="form-control" th:value=${session.u.numtarjeta} required></input>
+        </p>
+        <p>
+            <label for="caducidad" class="sr-only">Caducidad de la tarjeta</label>
+            <input type="text" id="caducidadtarjeta" name="caducidadtarjeta" 
+              class="form-control" th:value="${session.u.caducidadtarjeta}" required></input>
+        </p>
+        <p>
+            <label for="secreto" class="sr-only">Número secreto</label>
+            <input type="number" id="numsecreto" name="numsecreto" 
+              class="form-control" th:value="${session.u.numsecreto}" required></input>
+        </p>
+
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar</button>
+      </form>
+</div>
+</body></html>

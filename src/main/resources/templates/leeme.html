@@ -56,10 +56,12 @@
     <h2>Vistas</h2>
     <ul>
         <li><a th:href="@{/}">Home:</a> es la primera pagina que ve el usuario al entrar en la aplicacion. Aqui se encuentra el buscador de toures y el resultado de la busqueda.</li>
-        <li><a th:href="@{/tour}">Tour:</a> aqui se ven todos los datos relativos a un tour concreto, seleccionado por el usuario.</li>
-        <li><a th:href="@{/perfil}">Perfil: </a> aqui se ven todos los datos relativos al usuario, su informacion personal y toures realizados o por realizar.</li>
-        <li><a th:href="@{/datosPrivados}">DatosPrivados:</a>Contiene los datos bancarios del usuario.</li>
-        <li><a th:href="@{/administracion}">Admin:</a> aqui se muestra un grafico con estadisticas de la aplicacion y un panel de mandos para el administrador.</li>
+        <li><a th:href="@{/tour/1}">Tour:</a> aqui se ven todos los datos relativos a un tour concreto, seleccionado por el usuario. EL enlace dirige al tour 1.</li>
+        <li><a th:href="@{${session.u.id}+'/EditarDatos'}">EditarDatos:</a>Permite editar los datos personales del usuario.</li>
+        <li><a th:href="@{${session.u.id}+'/datosPrivados'}">DatosPrivados:</a>Contiene los datos personales del usuario.</li>
+        <h1>No funcionan</h1>
+        <li><a th:href="@{${session.u.id}+'/perfil'}">Perfil: </a> aqui se ven todos los datos relativos al usuario, su informacion personal y toures realizados o por realizar.</li>
+        <li><a th:href="@{/admin}">Admin:</a> aqui se muestra un grafico con estadisticas de la aplicacion y un panel de mandos para el administrador.</li>
     </ul>
     <h2>Diagrama de clases</h2>
     <img th:src="@{/img/diagrama.png}" alt="Diagrama de clases" ></span>
