@@ -28,7 +28,7 @@
         <div>
             <h3>-------------Tours disponibles---------------</h3>
             <div class="tour" th:each="tour: ${user.getTourofrecidos()}">
-                <div th:if="${tour.getDatos().getDisponible()}">
+                <!--<div th:if="${tour.getDatos().getDisponible()}">
                     <img id="user" th:src="@{/img/coliseo.jpg}" alt="Coliseo" >
                     <div class="titulo"><a th:href="@{/tour}" th:text="${tour.getDatos().getTitulo()}"></a></div>
                     <div class="fecha" th:text="'Inicio: '+${tour.getFechaIni()}"></div>
@@ -38,10 +38,8 @@
                     <div class="precio" th:text="${tour.getDatos().getPrecio}+'€'"></div>
                     <div class="personas" th:text="${tour.getActTuristas()}+'/'+${tour.getDatos().getMaxTuristas()}+' turistas'"></div>
                     <p>-----------------------------------------------</p>
-                </div>
-            </div>
-            <!--<h3>-------------Tours cerrados-------------------</h3>
-        
+                </div>-->
+            </div>      
             <h3>-------------Reseñas--------------------------</h3>
             <div class="resenya" th:each="review: ${user.getReviewsrecibidas()}">
                 <img id="user" th:src="@{/img/defaultuser.jpg}" alt="user" >
@@ -53,7 +51,7 @@
                 <div th:if="${review.getPuntuacion() == 5}"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>
                 <div class="textoReview" th:text="${tour.getTexto()}"></div>
                 <p>-----------------------------------------------</p>
-            </div>-->
+            </div>
         </div>
     </div>
     

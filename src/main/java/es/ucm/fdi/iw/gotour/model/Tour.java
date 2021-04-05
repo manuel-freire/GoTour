@@ -10,6 +10,11 @@ import java.time.LocalDate;
 
 @Entity
 @Data
+@NamedNativeQueries({
+	@NamedNativeQuery(name="Tour.byId",
+			query="SELECT datos_id FROM Tour "
+					+ "WHERE id = :id")
+})
 public class Tour {
 
 	@Id

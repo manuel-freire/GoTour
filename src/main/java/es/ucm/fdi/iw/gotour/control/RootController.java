@@ -40,6 +40,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import es.ucm.fdi.iw.gotour.model.Mensajes;
 import es.ucm.fdi.iw.gotour.model.Tour;
+import es.ucm.fdi.iw.gotour.model.TourOfertado;
 import es.ucm.fdi.iw.gotour.model.User;
 
 /**
@@ -99,9 +100,16 @@ public class RootController {
         User requester = (User)session.getAttribute("u");
         User user = (User)entityManager.createNamedQuery("User.byId")
             .setParameter("id", requester.getId()).getSingleResult();
-        List<Tour> tours = entityManager.createNamedQuery("User.getToursOfrecidos")
-        .setParameter("guia_id", requester.getId()).getResultList();
-        user.setTourofrecidos(tours);
+        user.setTourofrecidos(entityManager.createNamedQuery("User.getToursOfrecidos")
+            .setParameter("guia_id", requester.getId()).getResultList());
+        user.setReviewsrecibidas(entityManager.createNamedQuery("User.getReviewsRecibidas")
+            .setParameter("dest", requester.getId()).getResultList());
+        /*for (int i=0; i<user.getTourofrecidos().size(); i++){
+            int datos_id = (int)entityManager.createNamedQuery("Tour.byId")
+                .setParameter("id", user.getTourofrecidos().get(i).getId()).getSingleResult();
+            user.getTourofrecidos().get(i).setDatos((TourOfertado)entityManager.createNamedQuery("TourOfrecido.byId")
+                .setParameter("id", datos_id).getSingleResult());
+        }*/
         model.addAttribute("user", user); 
         model.addAttribute("propio", true);
         return "perfil";

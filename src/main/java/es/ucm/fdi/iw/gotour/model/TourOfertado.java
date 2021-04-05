@@ -10,6 +10,13 @@ import lombok.Data;
 
 @Entity
 @Data
+@NamedQueries({
+	@NamedQuery(name="TourOfrecido.byId",
+			query="SELECT t FROM TourOfertado t "
+					+ "WHERE t.id = :id")
+})
+
+
 public class TourOfertado {
 
 	@Id
