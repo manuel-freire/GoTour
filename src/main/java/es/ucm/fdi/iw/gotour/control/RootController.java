@@ -189,7 +189,7 @@ public class RootController {
     }
 
     @GetMapping("/leeme")
-    public String leeme(Model model)
+    public String leeme(Model model, HttpSession session )
     {  
         return "leeme";
     }

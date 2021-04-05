@@ -22,6 +22,11 @@ INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,nombre,numSecreto,
 	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u','Pregunta','Respuesta',4,
 	'USER',
 	'SONIA');
+INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,nombre,numSecreto,numtarjeta,numtelefono,password,preguntaseguridad,respuestaseguridad,puntuacion,roles,username) VALUES (
+	1,'Garcia Tomasulo','22/03','email',1,'Sonia',12,87,333, 
+	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u','Pregunta','Respuesta',4,
+	'ADMIN',
+	'vicky');
 INSERT INTO TOUR_OFERTADO VALUES (1, 'Alcala', 'Esta es la descripcion del tour numero 1', 1, 'tour1', '/img/mapa1.jpg', 2, 'adas', '/img/tour1.jpg', 8, 'Tour1', 2);
 INSERT INTO TOUR_OFERTADO_ETIQUETAS  VALUES(1, 'museo');
 INSERT INTO TOUR_OFERTADO_ETIQUETAS  VALUES(1, 'monumento');
