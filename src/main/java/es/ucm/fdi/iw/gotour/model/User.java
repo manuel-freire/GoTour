@@ -53,9 +53,8 @@ import lombok.AllArgsConstructor;
                         + "FROM User u "
                         + "WHERE u.username = :username"),
 		@NamedQuery(name="userByLogin",
-				query="select u from User u where u.email = :loginParam"),
-		@NamedQuery(name="userDrop",
-				query="drop u from User u where u.username = :username")
+				query="select u from User u where u.email = :loginParam")
+		
 })
 public class User implements Transferable<User.Transfer> {
 

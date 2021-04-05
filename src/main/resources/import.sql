@@ -15,7 +15,12 @@
 INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,nombre,numSecreto,numtarjeta,numtelefono,password,preguntaseguridad,respuestaseguridad,roles,username) VALUES (
 	2,'Sanchez Granado','22/03','email',1,'Jesus',12,87,333, 
 	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u','Pregunta','Respuesta',
-	'USER',
+	'ADMIN',
+	'SPACEMARINE');
+INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,nombre,numSecreto,numtarjeta,numtelefono,password,preguntaseguridad,respuestaseguridad,roles,username) VALUES (
+	3,'Sanchez Granado','22/03','email',1,'Jesus',12,87,333, 
+	'aa','Pregunta','Respuesta',
+	'ADMIN',
 	'SPACEMARINE');
 
 -- -- Unos pocos auto-mensajes de prueba

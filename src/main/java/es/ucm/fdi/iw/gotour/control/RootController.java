@@ -192,12 +192,6 @@ public class RootController {
         return "tour";
     }
 
-    @GetMapping("/administracion")
-    public String administracion(Model model)
-    {  
-        return "administracion";
-    }
-
     @GetMapping("/leeme")
     public String leeme(Model model)
     {  
@@ -210,6 +204,51 @@ public class RootController {
         // model.addAttribute("user", entityManager.createNamedQuery("userByLogin", User.class).setParameter("loginParam", "email").getSingleResult());
         return "datosPrivados";
     }
+
+    
+	@GetMapping("/administracion")
+    public String administracion(Model model, HttpSession session)
+    {   
+        
+        return "administracion";
+    }
+
+    
+
+    @GetMapping("/admin/ajustes-generales")
+    public String ajustes_generales(Model model, HttpSession session)
+    {   
+        
+        return "ajustes-generales";
+    }
+
+    @GetMapping("/admin/gestion-usuarios")
+    public String gestion_usuarios(Model model, HttpSession session)
+    {   
+        
+        return "admin/gestion-usuarios";
+    }
+
+    @GetMapping("/admin/consulta-graficos-visitas")
+    public String consulta_graficos_visitas(Model model, HttpSession session)
+    {   
+        
+        return "admin/consulta-graficos-visitas";
+    }
+
+    @GetMapping("/admin/reportes-usuarios")
+    public String reportes_usuarios(Model model, HttpSession session)
+    {   
+        
+        return "admin/reportes-usuarios";
+    }
+
+
+
+
+
+    
+
 }
 
 
