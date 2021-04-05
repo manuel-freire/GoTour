@@ -57,6 +57,9 @@ import lombok.AllArgsConstructor;
                 query="SELECT COUNT(u) "
                         + "FROM User u "
                         + "WHERE u.username = :username"),
+		@NamedQuery(name="userByLogin",
+				query="select u from User u where u.email = :loginParam")
+		
 })
 
 @NamedNativeQueries({

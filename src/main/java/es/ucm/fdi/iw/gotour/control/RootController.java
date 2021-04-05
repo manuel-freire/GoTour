@@ -188,12 +188,6 @@ public class RootController {
         return "tour";
     }
 
-    @GetMapping("/administracion")
-    public String administracion(Model model)
-    {  
-        return "administracion";
-    }
-
     @GetMapping("/leeme")
     public String leeme(Model model)
     {  

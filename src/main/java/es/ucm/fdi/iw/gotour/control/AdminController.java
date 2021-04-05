@@ -2,6 +2,7 @@ package es.ucm.fdi.iw.gotour.control;
 
 import java.io.File;
 
+
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
@@ -49,6 +50,7 @@ public class AdminController {
 		
 		return "admin";
 	}
+
 	
 	@PostMapping("/toggleuser")
 	@Transactional
@@ -67,5 +69,9 @@ public class AdminController {
 			target.setEnabled((byte)1);
 		}
 		return index(model);
-	}	
+	}
+
+
+	
+
 }
