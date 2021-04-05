@@ -254,7 +254,7 @@ public class UserController {
 			session.setAttribute("u", user);
 	    } catch (Exception e) {
 	    }
-        return "perfil";
+        return "index";
 
     }
 	@PostMapping("/{id}/actualizar")
@@ -288,7 +288,7 @@ public class UserController {
         return "datosPrivados";
 
     }
-	@GetMapping("/{id}/perfil/")
+	@GetMapping("/{id}/perfil")
     public String perfil(Model model, @PathVariable("id") Long id)
     {
 		User u = entityManager.find(User.class, id);
