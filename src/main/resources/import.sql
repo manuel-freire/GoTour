@@ -17,6 +17,10 @@ INSERT INTO user VALUES (
 	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u','Pregunta','Respuesta',
 	'USER',
 	'SPACEMARINE');
+
+
+insert into user_idiomashablados(user_id, idiomashablados) values(2, 'ingles');
+insert into user_idiomashablados(user_id, idiomashablados) values(2, 'frances');
 INSERT INTO TOUR_OFERTADO VALUES (1, 'Alcala', 'Esta es la descripcion del tour numero 1', 1, '2021-12-12 20:00:00', '2021-12-12 20:00:00', 'tour1', '/img/mapa1.jpg', 2, 'adas', '/img/tour1.jpg', 8, 'Tour1', 2);
 INSERT INTO TOUR_OFERTADO_ETIQUETAS  VALUES(1, 'museo');
 INSERT INTO TOUR_OFERTADO_ETIQUETAS  VALUES(1, 'monumento');

@@ -196,6 +196,9 @@ p {
   
   
   }
+#linkboton{
+      color: black;
+}
   .project_cards-grid-item {
       padding:5px;
       width:100%;
