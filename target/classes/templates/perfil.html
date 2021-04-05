@@ -12,42 +12,46 @@
     <div class="contenedor">
         <div class="informacion">
             <div th:if="${propio}">
+                <p th:text="${user.getUsername()}">Nombre usuario</p>
                 <a th:href="@{/perfil}">Editar</a>
                 <a th:href="@{/perfil}">Nuevo tour</a>
+                <a th:href="@{/datosPrivados}">Mi cuenta</a>
             </div>
-            <p th:text="${u.getNombre()} + ' ' + ${u.getApellidos()}">Nombre usuario</p>
-            <div th:if="${propio}">
-                <p> Miembro desde: <span th:text="${membresia}">Membresía</span></p>
-                <p> Rol: <span th:text="${rol}">Rol</span></p>
-            </div>
+            <p th:text="${user.getNombre()} + ' ' + ${user.getApellidos()}">Nombre usuario</p>
         </div>
-        <img id="user" th:src="@{/img/perro.jpg}" alt="La imagen del usuario" ></span>
-        <span th:if="${estrellas == 1}">*</span>
-        <span th:if="${estrellas == 2}">**</span>
-        <span th:if="${estrellas == 3}">***</span>
-        <span th:if="${estrellas == 4}">****</span>
-        <span th:if="${estrellas == 5}">*****</span>
-        <div th:if="${rol == 'guia'}">
+        <img id="user" th:src="@{/img/perro.jpg}" alt="La imagen del usuario" >
+        <div th:if="${user.getPuntuacion() == 1}"><img th:src="@{img/star.png}" width="30" /></div>
+        <div th:if="${user.getPuntuacion() == 2}"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>
+        <div th:if="${user.getPuntuacion() == 3}"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>
+        <div th:if="${user.getPuntuacion() == 4}"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>
+        <div th:if="${user.getPuntuacion() == 5}"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>
+        <div>
             <h3>-------------Tours disponibles---------------</h3>
-            <img id="user" th:src="@{/img/coliseo.jpg}" alt="Coliseo" ></span>
-            <div th:each="tour: ${tourD1}">
-                <p th:text="${tour}"></p>
-            </div>
-            <p>-----------------------------------------------</p>
-            <img id="mad" th:src="@{/img/madrid.jpg}" alt="Madrid" ></span>
-            <div th:each="tour: ${tourD2}">
-                <p th:text="${tour}"></p>
-            </div>
-            <h3>-------------Tours cerrados-------------------</h3>
-            <img id="sant" th:src="@{/img/santillana.jpg}" alt="Santillana" ></span>
-            <div th:each="tour: ${tourC1}">
-                <p th:text="${tour}"></p>
-            </div>
+            <div class="tour" th:each="tour: ${user.getTourofrecidos()}">
+                <!--<div th:if="${tour.getDatos().getDisponible()}">
+                    <img id="user" th:src="@{/img/coliseo.jpg}" alt="Coliseo" >
+                    <div class="titulo"><a th:href="@{/tour}" th:text="${tour.getDatos().getTitulo()}"></a></div>
+                    <div class="fecha" th:text="'Inicio: '+${tour.getFechaIni()}"></div>
+                    <div class="fecha" th:text="'Fin: '+${tour.getFechaFin()}"></div>
+                    <div class="lugar" th:text="${tour.getDatos().getCiudad()}+', '+${tour.getDatos().getPais()}"></div>
+                    <div class="lugar" th:text="${tour.getDatos().getLugar()}"></div>
+                    <div class="precio" th:text="${tour.getDatos().getPrecio}+'€'"></div>
+                    <div class="personas" th:text="${tour.getActTuristas()}+'/'+${tour.getDatos().getMaxTuristas()}+' turistas'"></div>
+                    <p>-----------------------------------------------</p>
+                </div>-->
+            </div>      
             <h3>-------------Reseñas--------------------------</h3>
-            <div th:each="resenya: ${resenya1}">
-                <p th:text="${resenya}"></p>
+            <div class="resenya" th:each="review: ${user.getReviewsrecibidas()}">
+                <img id="user" th:src="@{/img/defaultuser.jpg}" alt="user" >
+                <div class="creador"><a th:href="@{/perfil}" th:text="${review.getCreador()}"></a></div>
+                <div th:if="${rewiew.getPuntuacion() == 1}"><img th:src="@{img/star.png}" width="30" /></div>
+                <div th:if="${review.getPuntuacion() == 2}"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>
+                <div th:if="${review.getPuntuacion() == 3}"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>
+                <div th:if="${review.getPuntuacion() == 4}"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>
+                <div th:if="${review.getPuntuacion() == 5}"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>
+                <div class="textoReview" th:text="${tour.getTexto()}"></div>
+                <p>-----------------------------------------------</p>
             </div>
-            <p>-----------------------------------------------</p>
         </div>
     </div>
     

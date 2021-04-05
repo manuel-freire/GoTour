@@ -46,7 +46,7 @@ import es.ucm.fdi.iw.gotour.model.*;
  */
 @Controller
 public class RootController {
-	
+
 	private static final Logger log = LogManager.getLogger(RootController.class);
     @Autowired 
 	private EntityManager entityManager;
@@ -130,6 +130,52 @@ public class RootController {
         model.addAttribute("user", "");   
         return "guia";
     }
+
+    @GetMapping("/perfil")
+    public String perfil(Model model, HttpSession session)
+    {
+        User requester = (User)session.getAttribute("u");
+        User user = (User)entityManager.createNamedQuery("User.byId")
+            .setParameter("id", requester.getId()).getSingleResult();
+        user.setTourofrecidos(entityManager.createNamedQuery("User.getToursOfrecidos")
+            .setParameter("guia_id", requester.getId()).getResultList());
+        user.setReviewsrecibidas(entityManager.createNamedQuery("User.getReviewsRecibidas")
+            .setParameter("dest", requester.getId()).getResultList());
+        /*for (int i=0; i<user.getTourofrecidos().size(); i++){
+            int datos_id = (int)entityManager.createNamedQuery("Tour.byId")
+                .setParameter("id", user.getTourofrecidos().get(i).getId()).getSingleResult();
+            user.getTourofrecidos().get(i).setDatos((TourOfertado)entityManager.createNamedQuery("TourOfrecido.byId")
+                .setParameter("id", datos_id).getSingleResult());
+        }*/
+        model.addAttribute("user", user); 
+        model.addAttribute("propio", true);
+        return "perfil";
+    }
+
+    /*
+    @GetMapping("/perfil/{username}")
+    public String perfil(@PathVariable String username, Model model)
+    {  
+        Date membresia = new Date();
+        int id_usuario = 1;
+        int id_sesion = 1;
+        String[] tourD1 = {"Visita guiada del Coliseo", "Roma", "4 huecos disponibles"};
+        String[] tourD2 = {"Madrid del siglo XIX", "Madrid", "9 huecos disponibles"};
+        String[] tourC1 = {"Paseo cultural por Santillana del Mar", "Santillana del Mar"};
+        String[] resenya1 = {"3 estrellas", "pedro", "Visita guiada del Coliseo", "Muy buen tour. El guía es muy agradable."};
+        model.addAttribute("nombre", "Juan");
+        model.addAttribute("apellidos", "Shánchez Pisuerga");
+        if (id_usuario == id_sesion) model.addAttribute("propio", true);
+        else model.addAttribute("propio", false);
+        model.addAttribute("membresia", membresia);
+        model.addAttribute("rol", "guia");
+        model.addAttribute("tourD1",tourD1);
+        model.addAttribute("tourD2",tourD2);
+        model.addAttribute("tourC1",tourC1);
+        model.addAttribute("resenya1",resenya1);
+        model.addAttribute("estrellas", 3);
+    }*/
+
     @GetMapping("/busqueda")
     public String busqueda(Model model)
     {  
@@ -154,5 +200,3 @@ public class RootController {
         return "leeme";
     }
 }
-
-

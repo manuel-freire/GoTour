@@ -50,11 +50,22 @@ import lombok.AllArgsConstructor;
         @NamedQuery(name="User.byUsername",
                 query="SELECT u FROM User u "
                         + "WHERE u.username = :username AND u.enabled = 1"),
+		@NamedQuery(name="User.byId",
+				query="SELECT u FROM User u "
+						+ "WHERE u.id = :id AND u.enabled = 1"),
         @NamedQuery(name="User.hasUsername",
                 query="SELECT COUNT(u) "
                         + "FROM User u "
                         + "WHERE u.username = :username"),
 })
+
+@NamedNativeQueries({
+	@NamedNativeQuery(name="User.getToursOfrecidos",
+		query="SELECT * from Tour WHERE guia_id = :guia_id"),
+	@NamedNativeQuery(name="User.getReviewsRecibidas",
+		query="SELECT * FROM Review WHERE destinatario_id = :dest")
+})
+
 @NamedNativeQueries({
 		@NamedNativeQuery(name="User.haslanguajes",
 		query="SELECT idiomashablados from user_idiomashablados WHERE user_idiomashablados.user_id = :user_id")
@@ -119,6 +130,9 @@ public class User implements Transferable<User.Transfer> {
 	@Size(max=100)
 	
 	private String respuestaseguridad;
+
+	@NotNull
+	private int puntuacion;
 
 	@OneToMany(targetEntity=Tour.class)
 	private List<Tour> tourofrecidos=new ArrayList<>();

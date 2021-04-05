@@ -37,7 +37,7 @@ public class Tour {
 	private long id;
 
 	 @NotNull
-	 @ManyToOne
+	 @ManyToOne (targetEntity=TourOfertado.class)
 	 private TourOfertado datos;
 
 	 @NotNull

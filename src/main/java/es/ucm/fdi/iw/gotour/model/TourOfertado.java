@@ -63,6 +63,8 @@ public class TourOfertado {
 	@NotNull
 	private int maxTuristas;
 
+	@OneToMany (mappedBy="datos")
+	private List<Tour>  instancias = new ArrayList<>();
 	@NotNull
 	@ManyToOne
 	private User guia;
