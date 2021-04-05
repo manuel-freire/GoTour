@@ -15,7 +15,7 @@
                 <a th:href="@{/perfil}">Editar</a>
                 <a th:href="@{/perfil}">Nuevo tour</a>
             </div>
-            <p th:text="${nombre} + ' ' + ${apellidos}">Nombre usuario</p>
+            <p th:text="${u.getNombre()} + ' ' + ${u.getApellidos()}">Nombre usuario</p>
             <div th:if="${propio}">
                 <p> Miembro desde: <span th:text="${membresia}">Membresía</span></p>
                 <p> Rol: <span th:text="${rol}">Rol</span></p>

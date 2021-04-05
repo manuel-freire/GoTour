@@ -36,9 +36,6 @@
         <li>
             Respuesta: <span th:text="${session.u.respuestaseguridad}">JoseLuis</span> 
         </li>
-        <li>
-            Idiomas: <span th:each="idioma: ${session.u.idiomashablados}" th:text="${idioma} + ' '">idioma </span>
-        </li>
 
     </ul>
     <button type="button"> <a id= "linkboton" th:href="@{/EditarDatos}">

@@ -10,11 +10,12 @@
     <th:block th:replace="frags/header.html">
 </th:block>
      <div class="container">
-      <form class="form-register" method="post" th:action="@{/user/Actualizar}">
+      <form class="form-register" method="post" th:action="@{/user/2/actualizar}">
         <h2 class="form-register-heading">Introduzca sus nuevos datos a continuación</h2>
         <p>
-            <input type="hidden" id="id" name="id" 
-            class="form-control" th:value="${session.u.id}"></input>
+            <select id="id">
+              <option th:value="${session.u.id}" selected></option>
+            </select>
           <label for="nombre" class="sr-only">Nombre</label>
           <input type="text" id="nombre" name="nombre" 
             class="form-control" th:value="${session.u.nombre}"></input>

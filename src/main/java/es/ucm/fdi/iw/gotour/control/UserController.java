@@ -117,32 +117,7 @@ public class UserController {
 	@ResponseStatus(
 		value=HttpStatus.FORBIDDEN, 
 		reason="No eres administrador, y éste no es tu perfil")  // 403
-	public static class NoEsTuPerfilException extends RuntimeException {}
-
-	@PostMapping("/{id}")
-	@Transactional
-	public String postUser(
-			HttpServletResponse response,
-			@PathVariable long id, 
-			@ModelAttribute User edited, 
-			@RequestParam(required=false) String pass2,
-			Model model, HttpSession session) throws IOException {
-		User target = entityManager.find(User.class, id);
-		model.addAttribute("user", target);
-		
-		User requester = (User)session.getAttribute("u");
-		if (requester.getId() != target.getId() &&
-				! requester.hasRole(Role.ADMIN)) {
-			throw new NoEsTuPerfilException();
-		}
-		
-		if (edited.getPassword() != null && edited.getPassword().equals(pass2)) {
-			// save encoded version of password
-			target.setPassword(encodePassword(edited.getPassword()));
-		}		
-		target.setUsername(edited.getUsername());
-		return "user";
-	}	
+	public static class NoEsTuPerfilException extends RuntimeException {}	
 	
 	@GetMapping(value="/{id}/photo")
 	public StreamingResponseBody getPhoto(@PathVariable long id, Model model) throws IOException {		
@@ -281,31 +256,29 @@ public class UserController {
 	    } catch (Exception e) {
 	        log.error("HA PETAO AQUI AL AUTOLOGUEAR ", e);
 	    }
-        return "index";
+        return "perfil";
 
     }
-	@PostMapping("/actualizar")
+	@PostMapping("/{id}/actualizar")
+	@Transactional
     public String actualizar(
 							@RequestParam String nombre,  
                             @RequestParam String apellidos, 
                             @RequestParam String email,
                             @RequestParam String password,
-                            @RequestParam String preguntaseguridad,
-                            @RequestParam String respuestaseguridad,
                             @RequestParam String username,
                             @RequestParam long numtelefono,
                             @RequestParam long numtarjeta,
                             @RequestParam String caducidadtarjeta,
                             @RequestParam int numsecreto,
-                            Model model, HttpServletRequest request, HttpSession session){
-        User user = (User)session.getAttribute("u");
+                            Model model, HttpSession session, @PathVariable("id") String id){
+		User user = entityManager.find(User.class, Long.parseLong(id));
+		log.info("SE HA OBTENIDO EL USUARIO {}", user);
         user.setNombre(nombre);
         user.setApellidos(apellidos);
         user.setEmail(email);
 		String encoded = encodePassword(password);
-        user.setPassword(encoded);//de momento no se cifra la contraseña porque el encode da null pointer y no soy capaz de arreglarlo.
-        user.setPreguntaseguridad(preguntaseguridad);
-        user.setRespuestaseguridad(respuestaseguridad);
+        user.setPassword(encoded);
         user.setUsername(username);
         user.setNumtelefono(numtelefono);
         user.setNumtarjeta(numtarjeta);
@@ -313,11 +286,28 @@ public class UserController {
         user.setNumsecreto(numsecreto);
         user.setRoles("USER");
         user.setEnabled(1);
-        entityManager.flush();
 		session.setAttribute("u", user);
         return "datosPrivados";
 
     }
+	@GetMapping("/{id}/perfil/")
+    public String perfil(Model model, @PathVariable("id") Long id)
+    {
+		User u = entityManager.find(User.class, id);
+		model.addAttribute("u", u);
+        return "perfil";
+    }
+
+	@GetMapping("/{id}/datosPrivados")
+    public String datosPrivados(Model model, HttpSession session, @PathVariable("id") Long id)
+    {
+        return "datosPrivados";
+    }
+	@GetMapping("/{id}/EditarDatos")
+	public String editar(Model model, HttpSession session, @PathVariable("id") Long id) {
+		return "EditarDatos";
+	}
+
 
 
 }

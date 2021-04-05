@@ -159,31 +159,6 @@ public class RootController {
         model.addAttribute("user", "");   
         return "guia";
     }
-
-    @GetMapping("/perfil")
-    public String perfil(Model model)
-    {  
-		Date membresia = new Date();
-        int id_usuario = 1;
-        int id_sesion = 1;
-        String[] tourD1 = {"Visita guiada del Coliseo", "Roma", "4 huecos disponibles"};
-        String[] tourD2 = {"Madrid del siglo XIX", "Madrid", "9 huecos disponibles"};
-        String[] tourC1 = {"Paseo cultural por Santillana del Mar", "Santillana del Mar"};
-        String[] resenya1 = {"3 estrellas", "pedro", "Visita guiada del Coliseo", "Muy buen tour. El guía es muy agradable."};
-        model.addAttribute("nombre", "Juan");
-        model.addAttribute("apellidos", "Shánchez Pisuerga");
-        if (id_usuario == id_sesion) model.addAttribute("propio", true);
-        else model.addAttribute("propio", false);
-        model.addAttribute("membresia", membresia);
-        model.addAttribute("rol", "guia");
-        model.addAttribute("tourD1",tourD1);
-        model.addAttribute("tourD2",tourD2);
-        model.addAttribute("tourC1",tourC1);
-        model.addAttribute("resenya1",resenya1);
-        model.addAttribute("estrellas", 3);
-        return "perfil";
-    }
-
     @GetMapping("/busqueda")
     public String busqueda(Model model)
     {  
@@ -206,13 +181,6 @@ public class RootController {
     public String leeme(Model model)
     {  
         return "leeme";
-    }
-
-    @GetMapping("/datosPrivados")
-    public String datosPrivados(Model model, HttpSession session)
-    {   
-        // model.addAttribute("user", entityManager.createNamedQuery("userByLogin", User.class).setParameter("loginParam", "email").getSingleResult());
-        return "datosPrivados";
     }
 }
 
