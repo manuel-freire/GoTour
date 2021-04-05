@@ -20,6 +20,11 @@ import lombok.AllArgsConstructor;
 			query="SELECT u FROM TourOfertado u "
 					+ "WHERE u.id = :id ")
 })
+@NamedNativeQueries({
+	@NamedNativeQuery(name="TourOfertado.getEtiquetas",
+	query="SELECT ETIQUETAS FROM TOUR_OFERTADO_ETIQUETAS WHERE TOUR_OFERTADO_ID = :id")
+})
+
 public class TourOfertado {
 
 	@Id

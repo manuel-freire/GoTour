@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ArrayList;
@@ -89,69 +90,21 @@ public class RootController {
 
     @GetMapping(value="tour/{id}")
 	public String tourOfertado(@PathVariable long id, Model model) {
-        TourOfertado u = entityManager.createNamedQuery("TourOfertado.getTour", TourOfertado.class)
+        Tour u = entityManager.createNamedQuery("Tour.getTour", Tour.class)
 		        .setParameter("id", id)
 		        .getSingleResult();
+        List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
+                .setParameter("id", id)
+                .getResultList();
+        long id_guia = u.getDatos().getGuia().getId();
+        List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
+                .setParameter("user_id", id_guia)
+                .getResultList();
         model.addAttribute("tour",u);
+        model.addAttribute("etiquetas",etiquetas);
+        model.addAttribute("idiomas",idiomas);
 		return "tour";
 	}
-
-	public class Tour{
-        private String fecha;
-        private String lugar;
-        private int personas;
-        private int precio;
-        //private Guia guia;
-
-        public Tour(String fecha,String lugar,int personas,int precio){
-            this.fecha=fecha;
-            this.lugar=lugar;
-            this.personas=personas;
-            this.precio=precio;
-            //this.guia=guia;
-        }
-
-        public String getFecha() {
-            return this.fecha;
-        }
-
-        public void setFecha(String fecha) {
-            this.fecha = fecha;
-        }
-
-        public String getLugar() {
-            return this.lugar;
-        }
-
-        public void setLugar(String lugar) {
-            this.lugar = lugar;
-        }
-
-        public int getPersonas() {
-            return this.personas;
-        }
-
-        public void setPersonas(int personas) {
-            this.personas = personas;
-        }
-
-        public int getPrecio() {
-            return this.precio;
-        }
-
-        public void setPrecio(int precio) {
-            this.precio = precio;
-        }
-
-        /*public Guia getGuia() {
-            return this.guia;
-        }
-        public void setGuia(Guia guia) {
-            this.guia = guia;
-        }     */  
-
-    }
-    
 
     @GetMapping("/")            // <-- en qué URL se expone, y por qué métodos (GET)        
     public String index(        // <-- da igual, sólo para desarrolladores

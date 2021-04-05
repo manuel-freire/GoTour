@@ -77,8 +77,9 @@ p {
 .datos_tour{
       display: inline-block;
 }
-.etquitetas_tour{
+.etiquetas_tour{
       margin-top: 10px;
+      display: flex;
 }
 .bloque1{
       display: flex;
