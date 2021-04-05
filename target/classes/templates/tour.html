@@ -24,8 +24,8 @@
             <div class="datos_tour_mid">
                 <div class="bloque1">
                     <div class="info_tour">
-                        <div class="info_tour_int"><p>Inicio: </p><p th:text="${tour.getDatos().getFechaIni()}"></p></div>
-                        <div class="info_tour_int"><p>Fin: </p><p th:text="${tour.getDatos().getFechaFin()}"></p></div>
+                        <div class="info_tour_int"><p>Inicio: </p><p th:text="${tour.getFechaIni()}"></p></div>
+                        <div class="info_tour_int"><p>Fin: </p><p th:text="${tour.getFechaFin()}"></p></div>
                         <div class="info_tour_int"><p>Ciudad: </p><p th:text="${tour.getDatos().getCiudad()}"></p></div>
                         <div class="info_tour_int"><p>Lugar: </p><p th:text="${tour.getDatos().getLugar()}"></p></div>
                         <div class="info_tour_int"><p>Turistas: </p><p th:text="${tour.getActTuristas()}+'/'+${tour.getDatos().getMaxTuristas()}"></p></div>

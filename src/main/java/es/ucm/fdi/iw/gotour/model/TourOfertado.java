@@ -43,12 +43,6 @@ public class TourOfertado {
 	private String titulo;
 
 	private String lugar;
-
-	@NotNull
-	private LocalDateTime fechaIni;
-
-	@NotNull
-	private LocalDateTime fechaFin;
     
 	@NotNull
 	private String pais;

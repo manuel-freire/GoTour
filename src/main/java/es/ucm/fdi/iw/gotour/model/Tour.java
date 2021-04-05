@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -41,10 +41,10 @@ public class Tour {
 	 private TourOfertado datos;
 
 	 @NotNull
-	private LocalDate fechaIni;
+	private LocalDateTime fechaIni;
 
 	@NotNull
-	private LocalDate fechaFin;
+	private LocalDateTime fechaFin;
 
 	@NotNull
 	private int actTuristas;

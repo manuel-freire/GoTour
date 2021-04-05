@@ -63,12 +63,9 @@ import lombok.AllArgsConstructor;
 	@NamedNativeQuery(name="User.getToursOfrecidos",
 		query="SELECT * from Tour WHERE guia_id = :guia_id"),
 	@NamedNativeQuery(name="User.getReviewsRecibidas",
-		query="SELECT * FROM Review WHERE destinatario_id = :dest")
-})
-
-@NamedNativeQueries({
-		@NamedNativeQuery(name="User.haslanguajes",
-		query="SELECT idiomashablados from user_idiomashablados WHERE user_idiomashablados.user_id = :user_id")
+		query="SELECT * FROM Review WHERE destinatario_id = :dest"),
+	@NamedNativeQuery(name="User.haslanguajes",
+	query="SELECT idiomashablados from user_idiomashablados WHERE user_idiomashablados.user_id = :user_id")
 })
 public class User implements Transferable<User.Transfer> {
 
