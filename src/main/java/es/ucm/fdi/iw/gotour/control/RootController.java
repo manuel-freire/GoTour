@@ -74,10 +74,6 @@ public class RootController {
 	public String registro(Model model) {
 		return "registro";
 	}
-    @GetMapping("/EditarDatos")
-	public String editar(Model model, HttpSession session) {
-		return "EditarDatos";
-	}
 
 	public class Tour{
         private String fecha;
