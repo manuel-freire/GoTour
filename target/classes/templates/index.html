@@ -22,22 +22,6 @@
     <input type="button" class="filtro" name="ordhuecos" value="Huecos libres" />
     <input type="button" class="filtro" name="ordduracion" value="Duracion" />
     <input type="button" class="filtro" name="ordvaloracion" value="Valoracion" />
-    <a th:href="@{/tour}">
-        <div class="tour" th:each="tour: ${tours}">
-            <div class="fotoguia"><img th:src="@{img/guia1.jpg}" width="60" /></div>
-            <div class="infoguia">
-                <div class="nombre">Guia 1</div>
-                <div class="estrellas"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>
-                <div class="idiomas">Español, Ingles</div>
-            </div>
-            <div class="infotour">
-                <div class="fecha" th:text="${tour.getFecha()}"></div>
-                <div class="lugar" th:text="${tour.getLugar()}"></div>
-                <div class="personas" th:text="${tour.getPersonas()}"></div>
-                <div class="precio" th:text="${tour.getPrecio()}"></div>
-            </div>
-        </div>
-    </a>
     <!--<p>
         Personas:
             <table>

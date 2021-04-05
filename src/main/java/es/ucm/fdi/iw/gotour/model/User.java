@@ -15,6 +15,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.ElementCollection;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -51,6 +53,9 @@ import lombok.AllArgsConstructor;
 		@NamedQuery(name="User.byId",
 				query="SELECT u FROM User u "
 						+ "WHERE u.id = :id AND u.enabled = 1"),
+		/*@NamedQuery(name="User.getToursOfrecidos",
+				query="SELECT t FROM Tour t "
+				+ "WHERE t.guia = :guia_id"),*/
         @NamedQuery(name="User.hasUsername",
                 query="SELECT COUNT(u) "
                         + "FROM User u "
@@ -58,6 +63,12 @@ import lombok.AllArgsConstructor;
 		@NamedQuery(name="userByLogin",
 				query="select u from User u where u.email = :loginParam")
 })
+
+@NamedNativeQueries({
+	@NamedNativeQuery(name="User.getToursOfrecidos",
+		query="SELECT * from Tour WHERE guia_id = :guia_id")
+})
+
 public class User implements Transferable<User.Transfer> {
 
 

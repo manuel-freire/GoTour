@@ -45,6 +45,9 @@ public class TourOfertado {
 	@ElementCollection
 	private List<String>  tags = new ArrayList<>();
 
+	@OneToMany (mappedBy="datos")
+	private List<Tour>  instancias = new ArrayList<>();
+
 	@NotNull
 	@ManyToOne
 	private User guia;
