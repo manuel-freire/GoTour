@@ -38,7 +38,7 @@
         </li>
 
     </ul>
-    <button type="button"> <a id= "linkboton" th:href="@{/EditarDatos}">
+    <button type="button"> <a id= "linkboton" th:href="@{/user/{id}/EditarDatos(id=${session.u.id})}">
      Editar mis datos</a></button>
     
 </body>

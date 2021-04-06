@@ -259,7 +259,7 @@ public class UserController {
     }
 	@PostMapping("/{id}/actualizar")
 	@Transactional
-    public String actualizar(
+    public String actualizar(@PathVariable("id") Long id,
 							@RequestParam String nombre,  
                             @RequestParam String apellidos, 
                             @RequestParam String email,
@@ -269,8 +269,8 @@ public class UserController {
                             @RequestParam long numtarjeta,
                             @RequestParam String caducidadtarjeta,
                             @RequestParam int numsecreto,
-                            Model model, HttpSession session, @PathVariable("id") String id){
-		User user = entityManager.find(User.class, Long.parseLong(id));
+                            Model model, HttpSession session){
+		User user = entityManager.find(User.class, id);
 		log.info("SE HA OBTENIDO EL USUARIO {}", user);
         user.setNombre(nombre);
         user.setApellidos(apellidos);
