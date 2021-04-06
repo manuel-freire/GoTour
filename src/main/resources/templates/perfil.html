@@ -13,8 +13,8 @@
         <div class="informacion">
             <div th:if="${propio}">
                 <p th:text="${user.getUsername()}">Nombre usuario</p>
-                <a th:href="@{/perfil}">Editar</a>
-                <a th:href="@{/perfil}">Nuevo tour</a>
+                <a th:href="@{${user.getId()} + '/perfil'}">Editar</a>
+                <a th:href="@{${user.getId()} + '/perfil'}">Nuevo tour</a>
                 <a th:href="@{/datosPrivados}">Mi cuenta</a>
             </div>
             <p th:text="${user.getNombre()} + ' ' + ${user.getApellidos()}">Nombre usuario</p>

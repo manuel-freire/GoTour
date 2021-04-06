@@ -64,7 +64,7 @@ import lombok.AllArgsConstructor;
 
 @NamedNativeQueries({
 	@NamedNativeQuery(name="User.getToursOfrecidos",
-		query="SELECT * from Tour WHERE guia_id = :guia_id"),
+		query="SELECT * from tour_ofertado WHERE guia_id = :guia_id"),
 	@NamedNativeQuery(name="User.getReviewsRecibidas",
 		query="SELECT * FROM Review WHERE destinatario_id = :dest"),
 	@NamedNativeQuery(name="User.haslanguajes",
