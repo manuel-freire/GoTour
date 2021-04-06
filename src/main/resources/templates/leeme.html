@@ -53,7 +53,7 @@
     <h2>WebSockets</h2>
     <p>Se usarán WebSockets para  varias funcionalidades de la web, como el chat entre el turista y el guía, y el sistema de notificaciones.</p>
 
-    <h2>Vistas</h2>
+    <h2>Vistas, para poder acceder a la mayoría de las vistas pedirá iniciar sesión, los usuarios de la BD tienen todos contraseña aa y sus username son SPACEMARINE, SONIA y vicky</h2>
     <ul>
         <li><a th:href="@{/}">Home:</a> es la primera pagina que ve el usuario al entrar en la aplicacion. Aqui se encuentra el buscador de toures y el resultado de la busqueda.</li>
         <li><a th:href="@{/tour/1}">Tour:</a> aqui se ven todos los datos relativos a un tour concreto, seleccionado por el usuario. EL enlace dirige al tour 1.</li>
@@ -61,7 +61,11 @@
         <li><a th:href="@{${session.u.id}+'/datosPrivados'}">DatosPrivados:</a>Contiene los datos personales del usuario.</li>
         <h1>No funcionan</h1>
         <li><a th:href="@{${session.u.id}+'/perfil'}">Perfil: </a> aqui se ven todos los datos relativos al usuario, su informacion personal y toures realizados o por realizar.</li>
-        <li><a th:href="@{/admin}">Admin:</a> aqui se muestra un grafico con estadisticas de la aplicacion y un panel de mandos para el administrador.</li>
+        <li><a th:href="@{/admin/}">Admin:</a> aqui se muestra un grafico con estadisticas de la aplicacion y un panel de mandos para el administrador.</li>
+        <li><a th:href="@{/admin/reportes-usuarios}">Reportes usuarios:</a> Aqui se muestran las incidencias de los guías y los usuarios</li>
+        <li><a th:href="@{/admin/consulta-graficos-visitas}">Graficos Visitas:</a> Se muestran varios gráficos con información sobre el número de visitas, tours contratados, reseñas...</li>
+        <li><a th:href="@{/admin/gestion-usuarios}">Desactivar Usuario:</a> Deshabilita un usuario para no borrarlo de la BD</li>
+        
     </ul>
     <h2>Diagrama de clases</h2>
     <img th:src="@{/img/diagrama.png}" alt="Diagrama de clases" ></span>
