@@ -36,8 +36,10 @@
         <li>
             Respuesta: <span th:text="${session.u.respuestaseguridad}">JoseLuis</span> 
         </li>
+
     </ul>
-    <button type="button">Editar mis datos</button>
+    <button type="button"> <a id= "linkboton" th:href="@{/user/{id}/EditarDatos(id=${session.u.id})}">
+     Editar mis datos</a></button>
     
 </body>
 </html>

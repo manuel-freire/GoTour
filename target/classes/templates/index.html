@@ -9,7 +9,7 @@
 <body>
     <th:block th:replace="frags/header.html">
     </th:block>
-    <form>
+    <form method="post" th:action="@{/}">
         <input type="text" name="pais" placeholder="Pais">
         <input type="text" name="ciudad" placeholder="Ciudad">
         <input type="text" name="lugar" placeholder="Lugar">
@@ -17,29 +17,46 @@
         <input type="date" name="fechafin" placeholder="Fecha de fin" />
         <input type="submit" value="Buscar guias turisticos" />
     </form>
+    <div class="tour" th:each="tour: ${busqueda}">
+        <div class="fotoguia"><img th:src="@{${tour.getDatos().getGuia().getFoto()}}" width="60" /></div>
+        <div class="infoguia">
+            <div class="nombre" th:text="${tour.getDatos().getGuia().getNombre()}"></div>
+            <div class="estrellas"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>
+            <!--<div class="idiomas"><span th:each="idioma:${tour.getDatos().getGuia().getIdiomashablados()}" ></span></div>-->
+        </div>
+        <div class="infotour">
+            <div class="titulo"><a th:href="@{/tour}" th:text="${tour.getDatos().getTitulo()}"></a></div>
+            <div class="fecha" th:text="'Inicio: '+${tour.getFechaIni()}"></div>
+            <div class="fecha" th:text="'Fin: '+${tour.getFechaFin()}"></div>
+            <div class="lugar" th:text="${tour.getDatos().getCiudad()}+', '+${tour.getDatos().getPais()}"></div>
+            <div class="lugar" th:text="${tour.getDatos().getLugar()}"></div>
+            <div class="precio" th:text="${tour.getDatos().getPrecio}+'€'"></div>
+            <div class="personas" th:text="${tour.getActTuristas()}+'/'+${tour.getDatos().getMaxTuristas()}+' turistas'"></div>
+        </div>
+    </div>
     <div>Filtrar por:</div>
     <input type="button" class="filtro" name="ordprecio" value="Precio" />
     <input type="button" class="filtro" name="ordhuecos" value="Huecos libres" />
     <input type="button" class="filtro" name="ordduracion" value="Duracion" />
     <input type="button" class="filtro" name="ordvaloracion" value="Valoracion" />
-    <!--<p>
-        Personas:
-            <table>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                </tr>
-                <tr th:each="p: ${ps}">
-                    <td th:text="${p.nombre}">X</td>
-                    <td th:text="${p.apellido}">Y</td>
-                </tr>
-            </table>
-        </p>
-        Con text <p th:text="${welcome}">Bienvenue a l'Karmomètre!</p>
-        Con utext <p th:utext="${welcome}">Bienvenue a l'Karmomètre!</p>
-        <img src="../static/img/logo.png" th:src="@{/img/logo.png}" alt="un logotipo"/> <!-- usad siempre la @ -->
-    <!--Y ahora, mal
-        <img src="../img/logo.png" alt="un logotipo"/>-->
+    <h2>EXPLORA</h2>
+    <div class="tour" th:each="tour: ${tours}">
+        <div class="fotoguia"><img th:src="@{${tour.getDatos().getGuia().getFoto()}}" width="60" /></div>
+        <div class="infoguia">
+            <div class="nombre" th:text="${tour.getDatos().getGuia().getNombre()}"></div>
+            <div class="estrellas"><img th:src="@{img/star.png}" width="30" /><img th:src="@{img/star.png}" width="30" /></div>
+            <!--<div class="idiomas"><span th:each="idioma:${tour.getDatos().getGuia().getIdiomashablados()}" ></span></div>-->
+        </div>
+        <div class="infotour">
+            <div class="titulo"><a th:href="@{'/tour/'+${tour.getId()}}" th:text="${tour.getDatos().getTitulo()}"></a></div>
+            <div class="fecha" th:text="'Inicio: '+${tour.getFechaIni()}"></div>
+            <div class="fecha" th:text="'Fin: '+${tour.getFechaFin()}"></div>
+            <div class="lugar" th:text="${tour.getDatos().getCiudad()}+', '+${tour.getDatos().getPais()}"></div>
+            <div class="lugar" th:text="${tour.getDatos().getLugar()}"></div>
+            <div class="precio" th:text="${tour.getDatos().getPrecio}+'€'"></div>
+            <div class="personas" th:text="${tour.getActTuristas()}+'/'+${tour.getDatos().getMaxTuristas()}+' turistas'"></div>
+        </div>
+    </div>
 </body>
 
 </html>

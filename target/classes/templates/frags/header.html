@@ -4,10 +4,11 @@
                  <div class="topnav-right">
                    <a>buscar</a>
                    <a th:if="${session.u==null}" th:href="@{/login}">login</a>
+                   <a th:if="${session.u==null}" th:href="@{/registro}">Registro</a>
                      <div class="dropdown" th:if="${session.u != null}">
                          <button class="dropbtn">usuario</button>
                          <div class="dropdown-content">
-                           <a th:href="@{/perfil}">Mi perfil</a>
+                           <a th:href="@{'user/'+ ${session.u.id}+'/perfil'}">Mi perfil</a>
                            <a th:href="@{/}">Notificaciones</a>
                            <a th:href="@{/user/logout}">Salir</a>
                          </div>

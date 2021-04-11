@@ -59,15 +59,17 @@ import lombok.AllArgsConstructor;
                         + "WHERE u.username = :username"),
 		@NamedQuery(name="userByLogin",
 				query="select u from User u where u.email = :loginParam")
+		
 })
 
 @NamedNativeQueries({
 	@NamedNativeQuery(name="User.getToursOfrecidos",
-		query="SELECT * from Tour WHERE guia_id = :guia_id"),
+		query="SELECT * from tour_ofertado WHERE guia_id = :guia_id"),
 	@NamedNativeQuery(name="User.getReviewsRecibidas",
-		query="SELECT * FROM Review WHERE destinatario_id = :dest")
+		query="SELECT * FROM Review WHERE destinatario_id = :dest"),
+	@NamedNativeQuery(name="User.haslanguajes",
+	query="SELECT idiomashablados from user_idiomashablados WHERE user_idiomashablados.user_id = :user_id")
 })
-
 public class User implements Transferable<User.Transfer> {
 
 
@@ -110,7 +112,7 @@ public class User implements Transferable<User.Transfer> {
 	private String apellidos;
 	
 	private String email;
-
+	private String foto;
 	@NotNull
 	@Size(max=244)
     private long numtarjeta;
@@ -133,7 +135,6 @@ public class User implements Transferable<User.Transfer> {
 	private int puntuacion;
 
 	@OneToMany(targetEntity=Tour.class)
-	@JoinColumn(name="guia_id")
 	private List<Tour> tourofrecidos=new ArrayList<>();
 
 	@ManyToMany(targetEntity=Tour.class)
@@ -150,7 +151,6 @@ public class User implements Transferable<User.Transfer> {
 	@OneToMany(targetEntity=Review.class)
 	@JoinColumn(name="destinatario_id")
 	private List<Review> reviewsrecibidas=new ArrayList<>();
-
 	@ElementCollection
 	private List<String> idiomashablados=new ArrayList<>();
 	

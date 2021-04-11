@@ -1,8 +1,6 @@
 package es.ucm.fdi.iw.gotour.control;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -12,36 +10,34 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-
 import org.springframework.beans.PropertyAccessor;
 import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import es.ucm.fdi.iw.gotour.model.Mensajes;
-import es.ucm.fdi.iw.gotour.model.Tour;
-import es.ucm.fdi.iw.gotour.model.TourOfertado;
-import es.ucm.fdi.iw.gotour.model.User;
+import es.ucm.fdi.iw.gotour.model.*;
 
 /**
  * Landing-page controller
@@ -75,12 +71,53 @@ public class RootController {
 	public String registro(Model model) {
 		return "registro";
 	}
-    
+
+    @PostMapping("/")
+    public String searchTours(Model model,@RequestParam String pais
+                                        ,@RequestParam String ciudad
+                                        ,@RequestParam String lugar
+                                        ,@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechaini
+                                        ,@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechafin){
+        List<Tour> busqueda = entityManager.createNamedQuery("ToursBySearch")
+            .setParameter("paisParam", pais)
+            .setParameter("ciudadParam", ciudad)
+            .setParameter("lugarParam", lugar)
+            .setParameter("fechaIniParam", fechaini)
+            .setParameter("fechaFinParam", fechafin).getResultList();      	
+        model.addAttribute("busqueda", busqueda);	
+        return index(model);
+    }
+
+    @GetMapping(value="tour/{id}")
+	public String tourOfertado(@PathVariable long id, Model model) {
+        Tour u = entityManager.createNamedQuery("Tour.getTour", Tour.class)
+		        .setParameter("id", id)
+		        .getSingleResult();
+        List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
+                .setParameter("id", id)
+                .getResultList();
+        long id_guia = u.getDatos().getGuia().getId();
+        List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
+                .setParameter("user_id", id_guia)
+                .getResultList();
+        model.addAttribute("tour",u);
+        model.addAttribute("etiquetas",etiquetas);
+        model.addAttribute("idiomas",idiomas);
+		return "tour";
+	}
 
     @GetMapping("/")            // <-- en qué URL se expone, y por qué métodos (GET)        
     public String index(        // <-- da igual, sólo para desarrolladores
             Model model)        // <-- hay muchos, muchos parámetros opcionales
     {
+        List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();        
+        // dumps them via log
+        log.info("Dumping table {}", "tour");
+        for (Object o : tours) {
+            log.info("\t{}", o);
+        }        
+        // adds them to model
+        model.addAttribute("tours", tours);			
         return "index";
     }
 
@@ -92,27 +129,6 @@ public class RootController {
     {
         model.addAttribute("user", "");   
         return "guia";
-    }
-
-    @GetMapping("/perfil")
-    public String perfil(Model model, HttpSession session)
-    {
-        User requester = (User)session.getAttribute("u");
-        User user = (User)entityManager.createNamedQuery("User.byId")
-            .setParameter("id", requester.getId()).getSingleResult();
-        user.setTourofrecidos(entityManager.createNamedQuery("User.getToursOfrecidos")
-            .setParameter("guia_id", requester.getId()).getResultList());
-        user.setReviewsrecibidas(entityManager.createNamedQuery("User.getReviewsRecibidas")
-            .setParameter("dest", requester.getId()).getResultList());
-        /*for (int i=0; i<user.getTourofrecidos().size(); i++){
-            int datos_id = (int)entityManager.createNamedQuery("Tour.byId")
-                .setParameter("id", user.getTourofrecidos().get(i).getId()).getSingleResult();
-            user.getTourofrecidos().get(i).setDatos((TourOfertado)entityManager.createNamedQuery("TourOfrecido.byId")
-                .setParameter("id", datos_id).getSingleResult());
-        }*/
-        model.addAttribute("user", user); 
-        model.addAttribute("propio", true);
-        return "perfil";
     }
 
     /*
@@ -151,22 +167,9 @@ public class RootController {
         return "tour";
     }
 
-    @GetMapping("/administracion")
-    public String administracion(Model model)
-    {  
-        return "administracion";
-    }
-
     @GetMapping("/leeme")
-    public String leeme(Model model)
+    public String leeme(Model model, HttpSession session )
     {  
         return "leeme";
-    }
-
-    @GetMapping("/datosPrivados")
-    public String datosPrivados(Model model, HttpSession session)
-    {   
-        // model.addAttribute("user", entityManager.createNamedQuery("userByLogin", User.class).setParameter("loginParam", "email").getSingleResult());
-        return "datosPrivados";
     }
 }

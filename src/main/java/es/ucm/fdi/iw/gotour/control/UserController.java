@@ -117,32 +117,7 @@ public class UserController {
 	@ResponseStatus(
 		value=HttpStatus.FORBIDDEN, 
 		reason="No eres administrador, y éste no es tu perfil")  // 403
-	public static class NoEsTuPerfilException extends RuntimeException {}
-
-	@PostMapping("/{id}")
-	@Transactional
-	public String postUser(
-			HttpServletResponse response,
-			@PathVariable long id, 
-			@ModelAttribute User edited, 
-			@RequestParam(required=false) String pass2,
-			Model model, HttpSession session) throws IOException {
-		User target = entityManager.find(User.class, id);
-		model.addAttribute("user", target);
-		
-		User requester = (User)session.getAttribute("u");
-		if (requester.getId() != target.getId() &&
-				! requester.hasRole(Role.ADMIN)) {
-			throw new NoEsTuPerfilException();
-		}
-		
-		if (edited.getPassword() != null && edited.getPassword().equals(pass2)) {
-			// save encoded version of password
-			target.setPassword(encodePassword(edited.getPassword()));
-		}		
-		target.setUsername(edited.getUsername());
-		return "user";
-	}	
+	public static class NoEsTuPerfilException extends RuntimeException {}	
 	
 	@GetMapping(value="/{id}/photo")
 	public StreamingResponseBody getPhoto(@PathVariable long id, Model model) throws IOException {		
@@ -262,7 +237,7 @@ public class UserController {
         user.setApellidos(apellidos);
         user.setEmail(email);
 		String encoded = encodePassword(password);
-        user.setPassword(encoded);//de momento no se cifra la contraseña porque el encode da null pointer y no soy capaz de arreglarlo.
+        user.setPassword(encoded);
         user.setPreguntaseguridad(preguntaseguridad);
         user.setRespuestaseguridad(respuestaseguridad);
         user.setUsername(username);
@@ -274,14 +249,78 @@ public class UserController {
         user.setEnabled(1);
         entityManager.persist(user);
         entityManager.flush();
-        try {//Creo que no funciona por lo mismo que el encode no funciona al crear usuario
+        try {
 	        request.login(username, password);
 			session.setAttribute("u", user);
-            log.info("Deberia haber funcionado");
 	    } catch (Exception e) {
-	        log.error("HA PETAO AQUI AL AUTOLOGUEAR ", e);
 	    }
         return "index";
 
     }
+	@PostMapping("/{id}/actualizar")
+	@Transactional
+    public String actualizar(@PathVariable("id") Long id,
+							@RequestParam String nombre,  
+                            @RequestParam String apellidos, 
+                            @RequestParam String email,
+                            @RequestParam String password,
+                            @RequestParam String username,
+                            @RequestParam long numtelefono,
+                            @RequestParam long numtarjeta,
+                            @RequestParam String caducidadtarjeta,
+                            @RequestParam int numsecreto,
+                            Model model, HttpSession session){
+		User user = entityManager.find(User.class, id);
+		log.info("SE HA OBTENIDO EL USUARIO {}", user);
+        user.setNombre(nombre);
+        user.setApellidos(apellidos);
+        user.setEmail(email);
+		String encoded = encodePassword(password);
+        user.setPassword(encoded);
+        user.setUsername(username);
+        user.setNumtelefono(numtelefono);
+        user.setNumtarjeta(numtarjeta);
+        user.setCaducidadtarjeta(caducidadtarjeta);
+        user.setNumsecreto(numsecreto);
+        user.setRoles("USER");
+        user.setEnabled(1);
+		session.setAttribute("u", user);
+        return "datosPrivados";
+
+    }
+	@GetMapping("/{id}/perfil")
+    public String perfil(Model model, @PathVariable("id") Long id, HttpSession session)
+    {
+		//User u = entityManager.find(User.class, id);
+		//model.addAttribute("u", u);
+		User requester = (User)session.getAttribute("u");
+        User user = (User)entityManager.createNamedQuery("User.byId")
+            .setParameter("id", requester.getId()).getSingleResult();
+        user.setTourofrecidos(entityManager.createNamedQuery("User.getToursOfrecidos")
+            .setParameter("guia_id", requester.getId()).getResultList());
+        user.setReviewsrecibidas(entityManager.createNamedQuery("User.getReviewsRecibidas")
+            .setParameter("dest", requester.getId()).getResultList());
+        /*for (int i=0; i<user.getTourofrecidos().size(); i++){
+            int datos_id = (int)entityManager.createNamedQuery("Tour.byId")
+                .setParameter("id", user.getTourofrecidos().get(i).getId()).getSingleResult();
+            user.getTourofrecidos().get(i).setDatos((TourOfertado)entityManager.createNamedQuery("TourOfrecido.byId")
+                .setParameter("id", datos_id).getSingleResult());
+        }*/
+        model.addAttribute("user", user); 
+        model.addAttribute("propio", true);
+        return "perfil";
+    }
+
+	@GetMapping("/{id}/datosPrivados")
+    public String datosPrivados(Model model, HttpSession session, @PathVariable("id") Long id)
+    {
+        return "datosPrivados";
+    }
+	@GetMapping("/{id}/EditarDatos")
+	public String editar(Model model, HttpSession session, @PathVariable("id") Long id) {
+		return "EditarDatos";
+	}
+
+
+
 }
