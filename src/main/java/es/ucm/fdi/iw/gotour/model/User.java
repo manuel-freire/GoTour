@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -151,7 +152,7 @@ public class User implements Transferable<User.Transfer> {
 	@OneToMany(targetEntity=Review.class)
 	@JoinColumn(name="destinatario_id")
 	private List<Review> reviewsrecibidas=new ArrayList<>();
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	private List<String> idiomashablados=new ArrayList<>();
 	
 
