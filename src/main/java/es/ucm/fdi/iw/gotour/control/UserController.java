@@ -288,26 +288,24 @@ public class UserController {
         return "datosPrivados";
 
     }
+
 	@GetMapping("/{id}/perfil")
-    public String perfil(Model model, @PathVariable("id") Long id, HttpSession session)
+    public String perfil(Model model, HttpSession session, @PathVariable("id") long id)
     {
-		//User u = entityManager.find(User.class, id);
-		//model.addAttribute("u", u);
-		User requester = (User)session.getAttribute("u");
-        User user = (User)entityManager.createNamedQuery("User.byId")
-            .setParameter("id", requester.getId()).getSingleResult();
+		User user = entityManager.find(User.class, id);
         user.setTourofrecidos(entityManager.createNamedQuery("User.getToursOfrecidos")
-            .setParameter("guia_id", requester.getId()).getResultList());
+            .setParameter("guia_id", id).getResultList());
         user.setReviewsrecibidas(entityManager.createNamedQuery("User.getReviewsRecibidas")
-            .setParameter("dest", requester.getId()).getResultList());
+            .setParameter("dest", id).getResultList());
         /*for (int i=0; i<user.getTourofrecidos().size(); i++){
             int datos_id = (int)entityManager.createNamedQuery("Tour.byId")
                 .setParameter("id", user.getTourofrecidos().get(i).getId()).getSingleResult();
             user.getTourofrecidos().get(i).setDatos((TourOfertado)entityManager.createNamedQuery("TourOfrecido.byId")
                 .setParameter("id", datos_id).getSingleResult());
         }*/
-        model.addAttribute("user", user); 
-        model.addAttribute("propio", true);
+        model.addAttribute("user", user);
+        if(id == ((User)session.getAttribute("u")).getId()) model.addAttribute("propio", true);
+		else model.addAttribute("propio", false);
         return "perfil";
     }
 
@@ -316,6 +314,7 @@ public class UserController {
     {
         return "datosPrivados";
     }
+
 	@GetMapping("/{id}/EditarDatos")
 	public String editar(Model model, HttpSession session, @PathVariable("id") Long id) {
 		return "EditarDatos";
