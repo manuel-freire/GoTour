@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+    <th:block th:replace="frags/header.html">
+    </th:block>
+    <div class="main">
+        <div class="foto_tour">
+            <img class="imagen-tour1" th:src="@{${tour.getDatos().getPortada()}}" alt="Imágen del tour"></span>
+        </div>
+        <div class="datos_tour">
+            <div class="datos_tour_sup">
+                <p class="tour_name" th:text="${tour.getDatos().getTitulo()}"></p>
+                <button class="tour_inscribirse">Inscribirse</button>
+            </div>
+            <div class="datos_tour_mid">
+                <div class="bloque1">
+                    <div class="info_tour">
+                        <div class="info_tour_int"><p>Inicio: </p><p th:text="${tour.getFechaIni()}"></p></div>
+                        <div class="info_tour_int"><p>Fin: </p><p th:text="${tour.getFechaFin()}"></p></div>
+                        <div class="info_tour_int"><p>Ciudad: </p><p th:text="${tour.getDatos().getCiudad()}"></p></div>
+                        <div class="info_tour_int"><p>Lugar: </p><p th:text="${tour.getDatos().getLugar()}"></p></div>
+                        <div class="info_tour_int"><p>Turistas: </p><p th:text="${tour.getActTuristas()}+'/'+${tour.getDatos().getMaxTuristas()}"></p></div>
+                        <div class="info_tour_int"><p>Precio: </p><p th:text="${tour.getDatos().getPrecio()}+' €'"></p></div>
+                    </div>
+                    <img class="mapa" th:src="@{${tour.getDatos().getMapa()}}" alt="La imagen del mapa"></span>
+                </div>
+                <div class="guia_tour">
+                    <div class="guia_tour_izq">
+                        <img class="guia_tour_foto" th:src="@{${tour.getDatos().getGuia().getFoto()}}" alt="La imagen del guia"></span>
+                        <img class="estrellas" th:src="@{/img/5estrellas.png}" alt="Estrellas de valoración"></span>
+                    </div>
+                    <div class="guia_tour_der">
+                        <p class="guia_tour_nombre" th:text="${tour.getDatos().getGuia().getNombre()}">Rodrigo Gonzales</p>
+                        <div class="guia_tour_idiomas">
+                            <div th:each="idioma: ${idiomas}">
+                                <p th:text="${idioma}">Ingles</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="datos_tour_inf">
+                <div class="descripcion_tour">
+                    <span th:text="${tour.getDatos().getDescripcion()}">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                        been the industry's standard dummy text.</span>
+                </div>
+                <div class="etiquetas_tour">
+                    <div th:each="e: ${etiquetas}">
+                        <button th:text="${e}">museo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
