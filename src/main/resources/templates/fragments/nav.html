@@ -12,7 +12,7 @@
         <div class="container py-1">
           <div class="row align-items-center">
             <div class="col-8 col-md-8 col-lg-4">
-              <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0"><strong>GoTour<span class="text-danger">.</span></strong></a></h1>
+              <h1 class="mb-0"><a th:href="@{/}" class="text-white h2 mb-0"><strong>GoTour<span class="text-danger">.</span></strong></a></h1>
             </div>
             <div class="col-4 col-md-4 col-lg-8">
               <nav class="site-navigation text-right text-md-right" role="navigation">
@@ -21,10 +21,10 @@
 
                 <ul class="site-menu js-clone-nav d-none d-lg-block">
                   <li class="active">
-                    <a href="index.html">Home</a>
+                    <a th:href="@{/}">Home</a>
                   </li>
-                  <li><a href="buy.html">Tours</a></li>
-                  <li><a href="registro.html">Registrate</a></li>
+                  <li><a th:href="@{/tours}">Tours</a></li>
+                  <li><a th:href="@{/registro}">Registrate</a></li>
                   <li class="has-children" th:if="${session.u}">
                     <a href="mi-perfil.html">Mi perfil</a>
                     <ul class="dropdown arrow-top">
