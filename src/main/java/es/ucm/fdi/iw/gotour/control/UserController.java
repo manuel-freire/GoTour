@@ -7,7 +7,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.persistence.EntityManager;
@@ -44,6 +49,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import es.ucm.fdi.iw.gotour.LocalData;
 import es.ucm.fdi.iw.gotour.model.Message;
 import es.ucm.fdi.iw.gotour.model.User;
+import es.ucm.fdi.iw.gotour.model.Tour;
+import es.ucm.fdi.iw.gotour.model.TourOfertado;
 import es.ucm.fdi.iw.gotour.model.User.Role;
 
 /**
@@ -290,11 +297,39 @@ public class UserController {
     }
 
 	@GetMapping("/{id}/perfil")
+	@Transactional
     public String perfil(Model model, HttpSession session, @PathVariable("id") long id)
     {
 		User user = entityManager.find(User.class, id);
-        user.setTourofrecidos(entityManager.createNamedQuery("User.getToursOfrecidos")
-            .setParameter("guia_id", id).getResultList());
+		log.info("SE VA A LEER LOS TOURS OFRECIDOS");
+		List<BigInteger> ofertados = entityManager.createNamedQuery("User.getIdToursOfrecidos", )
+            .setParameter("guia_id", id).getResultList();
+		log.info("SE VA A INTENTAR TRANSFORMAR EN LOS TOURS DE VERDAD {}", ofertados);
+		List<Tour> Tours = new ArrayList<Tour>();
+		ArrayList<BigInteger> aux = new ArrayList<BigInteger>();
+		log.info("INTENTAMOS LEER EL LIST");
+			for(int i = 0; i < ofertados.size(); i++){
+				//TourOfertado aux2 = ofertados.get(i);
+				log.info("ofertados[i] VALE {}", ofertados.get(i));
+				if(aux.contains(ofertados.get(i))){
+					log.info("NO SE INSERTA NA");
+				}
+				else{
+					log.info("INSERTAMOS EL ID EN CUESTION");
+					aux.add(ofertados.get(i));
+					log.info("SE HA INSTERTADO CON EXITO");
+
+				}
+			}
+			log.info("AUX CONTIENE {}", aux);
+			for(BigInteger i : aux){
+				log.info("I VALE {}", i);
+				Tours.addAll(entityManager.createNamedQuery("User.getToursConcretos")
+				    .setParameter("datos_id", i).getResultList());
+			}
+
+        user.setTourofrecidos(Tours);
+		log.info("LOS TOURS OFRECIDOS POR EL USUARIO SON {}", user.getTourofrecidos());
         user.setReviewsrecibidas(entityManager.createNamedQuery("User.getReviewsRecibidas")
             .setParameter("dest", id).getResultList());
         /*for (int i=0; i<user.getTourofrecidos().size(); i++){

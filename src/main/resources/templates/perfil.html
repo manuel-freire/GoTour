@@ -24,7 +24,8 @@
         <div th:each="i: ${#numbers.sequence(1, user.getPuntuacion())}"><img th:src="@{/img/star.png}" width="30" /></div>
         <div>
             <h3>-------------Tours disponibles---------------</h3>
-            <div class="tour" th:each="tour: ${user.getTourofrecidos()}">
+            <div class="tour" th:each="tour: ${user.tourofrecidos}">
+                <p th:text="${tour.datos.titulo}">patata</p>
                 <!--<div th:if="${tour.getDatos().getDisponible()}">
                     <img id="user" th:src="@{/img/coliseo.jpg}" alt="Coliseo" >
                     <div class="titulo"><a th:href="@{/tour}" th:text="${tour.getDatos().getTitulo()}"></a></div>

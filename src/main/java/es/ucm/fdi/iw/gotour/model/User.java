@@ -65,6 +65,10 @@ import lombok.AllArgsConstructor;
 @NamedNativeQueries({
 	@NamedNativeQuery(name="User.getToursOfrecidos",
 		query="SELECT * from tour_ofertado WHERE guia_id = :guia_id"),
+		@NamedNativeQuery(name="User.getIdToursOfrecidos",
+		query="SELECT Id from tour_ofertado WHERE guia_id = :guia_id"),
+	@NamedNativeQuery(name="User.getToursConcretos",
+		query="SELECT * from tour WHERE datos_id = :datos_id"),
 	@NamedNativeQuery(name="User.getReviewsRecibidas",
 		query="SELECT * FROM Review WHERE destinatario_id = :dest"),
 	@NamedNativeQuery(name="User.haslanguajes",
@@ -180,14 +184,24 @@ public class User implements Transferable<User.Transfer> {
     @AllArgsConstructor
     public static class Transfer {
 		private long id;
+		private String apellidos;
+		private String nombre;
         private String username;
-		private int totalReceived;
-		private int totalSent;
+		private long numtelefono;
+		private int puntuacion;
+		private List<Tour> tourofrecidos;
+		private List<Tour> toursasistidos;
+		private List<Review> reviewshechas;
+		private List<Message> sent;
+		private List<Message> received;
+		private List<Review> reviewsrecibidas;
+		private List<String> idiomashablados;
+
     }
 
 	@Override
     public Transfer toTransfer() {
-		return new Transfer(id,	username, received.size(), sent.size());
+		return new Transfer(id, apellidos, nombre,	username, numtelefono, puntuacion, tourofrecidos, toursasistidos, reviewshechas, sent,  received, reviewsrecibidas, idiomashablados);
     }
 
 	@Override
