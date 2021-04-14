@@ -139,7 +139,8 @@ public class User implements Transferable<User.Transfer> {
 	private int puntuacion;
 
 	@OneToMany(targetEntity=Tour.class)
-	private List<Tour> tourofrecidos=new ArrayList<>();
+	@JoinColumn(name="creador_id")
+	private List<Tour> tourofertados=new ArrayList<>();
 
 	@ManyToMany(targetEntity=Tour.class)
 	private List<Tour> toursasistidos=new ArrayList<>(); 
@@ -201,7 +202,7 @@ public class User implements Transferable<User.Transfer> {
 
 	@Override
     public Transfer toTransfer() {
-		return new Transfer(id, apellidos, nombre,	username, numtelefono, puntuacion, tourofrecidos, toursasistidos, reviewshechas, sent,  received, reviewsrecibidas, idiomashablados);
+		return new Transfer(id, apellidos, nombre,	username, numtelefono, puntuacion, tourofertados, toursasistidos, reviewshechas, sent,  received, reviewsrecibidas, idiomashablados);
     }
 
 	@Override

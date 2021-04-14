@@ -11,7 +11,7 @@
     <th:block th:replace="frags/header.html"></th:block>
     <div class="contenedor">
         <div class="informacion">
-            <div th:if="${propio}">
+            <div th:if="${session.u.id == user.id}">
                 <p th:text="${user.getUsername()}">Nombre usuario</p>
                 <a th:href="@{/user/{id}/perfil(id=${user.getId()})}">Editar</a>
                 <a th:href="@{/user/{id}/perfil(id=${user.getId()})}">Nuevo tour</a>
@@ -24,22 +24,21 @@
         <div th:each="i: ${#numbers.sequence(1, user.getPuntuacion())}"><img th:src="@{/img/star.png}" width="30" /></div>
         <div>
             <h3>-------------Tours disponibles---------------</h3>
-            <div class="tour" th:each="tour: ${user.tourofrecidos}">
-                <p th:text="${tour.datos.titulo}">patata</p>
-                <!--<div th:if="${tour.getDatos().getDisponible()}">
+            <div class="tour" th:each="tour: ${user.tourofertados}">
+                <div th:if="${tour.datos.disponible}">
                     <img id="user" th:src="@{/img/coliseo.jpg}" alt="Coliseo" >
-                    <div class="titulo"><a th:href="@{/tour}" th:text="${tour.getDatos().getTitulo()}"></a></div>
-                    <div class="fecha" th:text="'Inicio: '+${tour.getFechaIni()}"></div>
-                    <div class="fecha" th:text="'Fin: '+${tour.getFechaFin()}"></div>
-                    <div class="lugar" th:text="${tour.getDatos().getCiudad()}+', '+${tour.getDatos().getPais()}"></div>
-                    <div class="lugar" th:text="${tour.getDatos().getLugar()}"></div>
-                    <div class="precio" th:text="${tour.getDatos().getPrecio}+'€'"></div>
-                    <div class="personas" th:text="${tour.getActTuristas()}+'/'+${tour.getDatos().getMaxTuristas()}+' turistas'"></div>
+                    <div class="titulo"><a th:href="@{/tour}" th:text="${tour.datos.titulo}"></a></div>
+                    <div class="fecha" th:text="'Inicio: '+${tour.fechaIni}"></div>
+                    <div class="fecha" th:text="'Fin: '+${tour.fechaFin}"></div>
+                    <div class="lugar" th:text="${tour.datos.ciudad}+', '+${tour.datos.pais}"></div>
+                    <div class="lugar" th:text="${tour.datos.lugar}"></div>
+                    <div class="precio" th:text="${tour.datos.precio}+'€'"></div>
+                    <div class="personas" th:text="${tour.actTuristas}+'/'+${tour.datos.maxTuristas}+' turistas'"></div>
                     <p>-----------------------------------------------</p>
-                </div>-->
+                </div>
             </div>      
             <h3>-------------Reseñas--------------------------</h3>
-           <div class="resenya" th:each="review: ${user.getReviewsrecibidas()}">
+           <!-- <div class="resenya" th:each="review: ${user.getReviewsrecibidas()}"> -->
                 <!--<img id="user" th:src="@{/img/defaultuser.jpg}" alt="user" >
                 <div class="creador"><a th:href="@{/perfil}" th:text="${review.getCreador().getId()}"></a></div>
                 <div th:each="i: ${#numbers.sequence(1, user.getPuntuacion())}"><img th:src="@{/img/star.png}" width="30" /></div>

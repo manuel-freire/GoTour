@@ -24,7 +24,6 @@ import lombok.AllArgsConstructor;
 	@NamedNativeQuery(name="TourOfertado.getEtiquetas",
 	query="SELECT ETIQUETAS FROM TOUR_OFERTADO_ETIQUETAS WHERE TOUR_OFERTADO_ID = :id")
 })
-
 public class TourOfertado {
 
 	@Id

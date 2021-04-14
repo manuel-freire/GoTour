@@ -296,42 +296,25 @@ public class UserController {
 
     }
 
+
+
 	@GetMapping("/{id}/perfil")
 	@Transactional
     public String perfil(Model model, HttpSession session, @PathVariable("id") long id)
     {
 		User user = entityManager.find(User.class, id);
-		log.info("SE VA A LEER LOS TOURS OFRECIDOS");
-		List<BigInteger> ofertados = entityManager.createNamedQuery("User.getIdToursOfrecidos", )
-            .setParameter("guia_id", id).getResultList();
-		log.info("SE VA A INTENTAR TRANSFORMAR EN LOS TOURS DE VERDAD {}", ofertados);
-		List<Tour> Tours = new ArrayList<Tour>();
-		ArrayList<BigInteger> aux = new ArrayList<BigInteger>();
-		log.info("INTENTAMOS LEER EL LIST");
-			for(int i = 0; i < ofertados.size(); i++){
-				//TourOfertado aux2 = ofertados.get(i);
-				log.info("ofertados[i] VALE {}", ofertados.get(i));
-				if(aux.contains(ofertados.get(i))){
-					log.info("NO SE INSERTA NA");
-				}
-				else{
-					log.info("INSERTAMOS EL ID EN CUESTION");
-					aux.add(ofertados.get(i));
-					log.info("SE HA INSTERTADO CON EXITO");
+		log.info("EL USUARIO CONTIENE LO SIGUIENTE {}", user);
 
-				}
-			}
-			log.info("AUX CONTIENE {}", aux);
-			for(BigInteger i : aux){
-				log.info("I VALE {}", i);
-				Tours.addAll(entityManager.createNamedQuery("User.getToursConcretos")
-				    .setParameter("datos_id", i).getResultList());
-			}
-
-        user.setTourofrecidos(Tours);
-		log.info("LOS TOURS OFRECIDOS POR EL USUARIO SON {}", user.getTourofrecidos());
-        user.setReviewsrecibidas(entityManager.createNamedQuery("User.getReviewsRecibidas")
-            .setParameter("dest", id).getResultList());
+		// si tiene que recorrer una relación no-eager, usas @Transactional y haces una copia
+		List<Tour> ofertados =  new ArrayList<>(user.getTourofertados());
+		model.addAttribute("ofertados", ofertados);
+		// si tienes que recorrer otra relación interna, sencilamente recórrela
+		for (Tour t : ofertados) {
+			t.getDatos(); // arggs, mis ojos!
+		}
+		// log.info("LOS TOURS OFRECIDOS POR EL USUARIO SON {}", ofertados);
+        // user.setReviewsrecibidas(entityManager.createNamedQuery("User.getReviewsRecibidas")
+        //     .setParameter("dest", id).getResultList());
         /*for (int i=0; i<user.getTourofrecidos().size(); i++){
             int datos_id = (int)entityManager.createNamedQuery("Tour.byId")
                 .setParameter("id", user.getTourofrecidos().get(i).getId()).getSingleResult();
