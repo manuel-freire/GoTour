@@ -58,6 +58,7 @@
                         <button th:text="${e}">museo</button>
                     </div>
                 </div>
+                <a th:unless="${session.u.id} eq ${tour.datos.guia.id}" th:href="@{/tour/{id}/apuntarse(id = ${tour.id})}"><button> ¡Apuntate al Tour!</button></a>
             </div>
         </div>
     </div>
