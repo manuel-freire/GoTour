@@ -7,7 +7,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.persistence.EntityManager;
@@ -43,7 +48,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import es.ucm.fdi.iw.gotour.LocalData;
 import es.ucm.fdi.iw.gotour.model.Message;
+import es.ucm.fdi.iw.gotour.model.Review;
 import es.ucm.fdi.iw.gotour.model.User;
+import es.ucm.fdi.iw.gotour.model.Tour;
+import es.ucm.fdi.iw.gotour.model.TourOfertado;
 import es.ucm.fdi.iw.gotour.model.User.Role;
 
 /**
@@ -288,26 +296,28 @@ public class UserController {
         return "datosPrivados";
 
     }
+
+
+
 	@GetMapping("/{id}/perfil")
-    public String perfil(Model model, @PathVariable("id") Long id, HttpSession session)
+	@Transactional
+    public String perfil(Model model, HttpSession session, @PathVariable("id") long id)
     {
-		//User u = entityManager.find(User.class, id);
-		//model.addAttribute("u", u);
-		User requester = (User)session.getAttribute("u");
-        User user = (User)entityManager.createNamedQuery("User.byId")
-            .setParameter("id", requester.getId()).getSingleResult();
-        user.setTourofrecidos(entityManager.createNamedQuery("User.getToursOfrecidos")
-            .setParameter("guia_id", requester.getId()).getResultList());
-        user.setReviewsrecibidas(entityManager.createNamedQuery("User.getReviewsRecibidas")
-            .setParameter("dest", requester.getId()).getResultList());
-        /*for (int i=0; i<user.getTourofrecidos().size(); i++){
-            int datos_id = (int)entityManager.createNamedQuery("Tour.byId")
-                .setParameter("id", user.getTourofrecidos().get(i).getId()).getSingleResult();
-            user.getTourofrecidos().get(i).setDatos((TourOfertado)entityManager.createNamedQuery("TourOfrecido.byId")
-                .setParameter("id", datos_id).getSingleResult());
-        }*/
-        model.addAttribute("user", user); 
-        model.addAttribute("propio", true);
+		User user = entityManager.find(User.class, id);
+		log.info("EL USUARIO CONTIENE LO SIGUIENTE {}", user);
+
+		// si tiene que recorrer una relación no-eager, usas @Transactional y haces una copia
+		List<Tour> ofertados =  new ArrayList<>(user.getTourofertados());
+		model.addAttribute("ofertados", ofertados);
+		// si tienes que recorrer otra relación interna, sencilamente recórrela
+		for (Tour t : ofertados) {
+			t.getDatos(); // arggs, mis ojos!
+		}
+
+		List<Review> recibidas =  new ArrayList<>(user.getReviewsrecibidas());
+		model.addAttribute("recibidas", recibidas);
+		
+        model.addAttribute("user", user);
         return "perfil";
     }
 
@@ -316,6 +326,7 @@ public class UserController {
     {
         return "datosPrivados";
     }
+
 	@GetMapping("/{id}/EditarDatos")
 	public String editar(Model model, HttpSession session, @PathVariable("id") Long id) {
 		return "EditarDatos";
