@@ -13,21 +13,21 @@
         <div class="informacion">
             <div th:if="${session.u.id == user.id}">
                 <p th:text="${user.getUsername()}">Nombre usuario</p>
-                <a th:href="@{/user/{id}/perfil(id=${user.getId()})}">Editar</a>
-                <a th:href="@{/user/{id}/perfil(id=${user.getId()})}">Nuevo tour</a>
-                <a th:href="@{/user/{id}/datosPrivados(id=${user.getId()})}">Mi cuenta</a>
+                <a th:href="@{/user/{id}/perfil(id=${user.id})}">Editar</a>
+                <a th:href="@{/user/{id}/perfil(id=${user.id})}">Nuevo tour</a>
+                <a th:href="@{/user/{id}/datosPrivados(id=${user.id})}">Mi cuenta</a>
             </div>
-            <p th:text="${user.getNombre()} + ' ' + ${user.getApellidos()}">Nombre usuario</p>
+            <p th:text="${user.nombre} + ' ' + ${user.apellidos}">Nombre usuario</p>
         </div>
         <img id="user" th:src="@{/img/perro.jpg}" alt="La imagen del usuario" >
 
-        <div th:each="i: ${#numbers.sequence(1, user.getPuntuacion())}"><img th:src="@{/img/star.png}" width="30" /></div>
+        <div th:each="i: ${#numbers.sequence(1, user.puntuacion)}"><img th:src="@{/img/star.png}" width="30" /></div>
         <div>
             <h3>-------------Tours disponibles---------------</h3>
             <div class="tour" th:each="tour: ${user.tourofertados}">
                 <div th:if="${tour.datos.disponible}">
                     <img id="user" th:src="@{/img/coliseo.jpg}" alt="Coliseo" >
-                    <div class="titulo"><a th:href="@{/tour}" th:text="${tour.datos.titulo}"></a></div>
+                    <div class="titulo"><a th:href="@{/tour/{id}(id=${tour.id})}" th:text="${tour.datos.titulo}"></a></div>
                     <div class="fecha" th:text="'Inicio: '+${tour.fechaIni}"></div>
                     <div class="fecha" th:text="'Fin: '+${tour.fechaFin}"></div>
                     <div class="lugar" th:text="${tour.datos.ciudad}+', '+${tour.datos.pais}"></div>
@@ -38,12 +38,12 @@
                 </div>
             </div>      
             <h3>-------------Reseñas--------------------------</h3>
-           <!-- <div class="resenya" th:each="review: ${user.getReviewsrecibidas()}"> -->
-                <!--<img id="user" th:src="@{/img/defaultuser.jpg}" alt="user" >
-                <div class="creador"><a th:href="@{/perfil}" th:text="${review.getCreador().getId()}"></a></div>
-                <div th:each="i: ${#numbers.sequence(1, user.getPuntuacion())}"><img th:src="@{/img/star.png}" width="30" /></div>
-                <div class="textoReview" th:text="${tour.getTexto()}"></div>
-                <p>-----------------------------------------------</p>-->
+            <div class="resenya" th:each="review: ${user.reviewsrecibidas}">
+                <img id="user" th:src="@{/img/defaultuser.png}" alt="user" >
+                <div class="creador"><a th:href="@{/user/{id}/perfil(id=${review.creador.id})}" th:text="${review.creador.username}"></a></div>
+                <div th:each="i: ${#numbers.sequence(1, user.puntuacion)}"><img th:src="@{/img/star.png}" width="30" /></div>
+                <div class="textoReview" th:text="${review.texto}"></div>
+                <p>-----------------------------------------------</p>
             </div>
         </div>
     </div>

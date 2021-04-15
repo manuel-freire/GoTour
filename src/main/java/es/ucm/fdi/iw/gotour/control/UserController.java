@@ -48,6 +48,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import es.ucm.fdi.iw.gotour.LocalData;
 import es.ucm.fdi.iw.gotour.model.Message;
+import es.ucm.fdi.iw.gotour.model.Review;
 import es.ucm.fdi.iw.gotour.model.User;
 import es.ucm.fdi.iw.gotour.model.Tour;
 import es.ucm.fdi.iw.gotour.model.TourOfertado;
@@ -312,18 +313,11 @@ public class UserController {
 		for (Tour t : ofertados) {
 			t.getDatos(); // arggs, mis ojos!
 		}
-		// log.info("LOS TOURS OFRECIDOS POR EL USUARIO SON {}", ofertados);
-        // user.setReviewsrecibidas(entityManager.createNamedQuery("User.getReviewsRecibidas")
-        //     .setParameter("dest", id).getResultList());
-        /*for (int i=0; i<user.getTourofrecidos().size(); i++){
-            int datos_id = (int)entityManager.createNamedQuery("Tour.byId")
-                .setParameter("id", user.getTourofrecidos().get(i).getId()).getSingleResult();
-            user.getTourofrecidos().get(i).setDatos((TourOfertado)entityManager.createNamedQuery("TourOfrecido.byId")
-                .setParameter("id", datos_id).getSingleResult());
-        }*/
+
+		List<Review> recibidas =  new ArrayList<>(user.getReviewsrecibidas());
+		model.addAttribute("recibidas", recibidas);
+		
         model.addAttribute("user", user);
-        if(id == ((User)session.getAttribute("u")).getId()) model.addAttribute("propio", true);
-		else model.addAttribute("propio", false);
         return "perfil";
     }
 
