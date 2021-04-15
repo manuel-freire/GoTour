@@ -152,7 +152,7 @@
         <div class="row mb-5">
           <div class="col-md-6 col-lg-4 mb-4" th:each="tour: ${tours}">
             <div class="property-entry h-100">
-              <a href="property-details.html" class="property-thumbnail">
+              <a th:href="@{'/tour/'+${tour.getId()}}" class="property-thumbnail">
                 <div class="offer-type-wrap">
                   <span class="offer-type bg-danger">Sale</span>
                   <span class="offer-type bg-success">Rent</span>
