@@ -106,6 +106,38 @@ public class RootController {
 		return "tour";
 	}
 
+    @GetMapping(value="tour/{id}/apuntarse")
+    public String apuntarse(@PathVariable("id") Long id, Model model, HttpSession session){
+        Tour t = entityManager.createNamedQuery("Tour.getTour", Tour.class)
+                .setParameter("id", id)
+                .getSingleResult();
+                List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
+                .setParameter("id", id)
+                .getResultList();
+        long id_guia = t.getDatos().getGuia().getId();
+        List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
+                .setParameter("user_id", id_guia)
+                .getResultList();
+        model.addAttribute("tour",t);
+        model.addAttribute("etiquetas",etiquetas);
+        model.addAttribute("idiomas",idiomas);
+
+        return "apuntarse";
+    }
+    @PostMapping(value="tour/{id_tour}/apuntarse")
+    @Transactional
+    public String apuntado(@PathVariable("id_tour") Long id_tour, Model model, HttpSession session, @RequestParam int asistentes){
+        Tour t = entityManager.createNamedQuery("Tour.getTour", Tour.class)
+                .setParameter("id", id_tour)
+                .getSingleResult();
+        User u = (User)session.getAttribute("u");
+        t.setActTuristas(t.getActTuristas() + asistentes);
+        List<User> turistas = t.getTuristas();
+        turistas.add(u);
+        t.setTuristas(turistas);
+        return "tour/" + id_tour;
+    }
+
     @GetMapping("/")            // <-- en qué URL se expone, y por qué métodos (GET)        
     public String index(        // <-- da igual, sólo para desarrolladores
             Model model)        // <-- hay muchos, muchos parámetros opcionales
