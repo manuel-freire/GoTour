@@ -12,7 +12,7 @@
     <div class="contenedor">
         <div class="informacion">
             <div th:if="${session.u.id == user.id}">
-                <p th:text="${user.getUsername()}">Nombre usuario</p>
+                <p th:text="${user.username}">Nombre usuario</p>
                 <a th:href="@{/user/{id}/perfil(id=${user.id})}">Editar</a>
                 <a th:href="@{/user/{id}/perfil(id=${user.id})}">Nuevo tour</a>
                 <a th:href="@{/user/{id}/datosPrivados(id=${user.id})}">Mi cuenta</a>
