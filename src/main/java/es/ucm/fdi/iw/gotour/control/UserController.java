@@ -303,19 +303,14 @@ public class UserController {
 	@Transactional
     public String perfil(Model model, HttpSession session, @PathVariable("id") long id)
     {
-		User user = entityManager.find(User.class, id);
-		log.info("EL USUARIO CONTIENE LO SIGUIENTE {}", user);
+	User user = entityManager.find(User.class, id);
+	log.info("EL USUARIO CONTIENE LO SIGUIENTE {}", user);
 
-		// si tiene que recorrer una relación no-eager, usas @Transactional y haces una copia
-		List<Tour> ofertados =  new ArrayList<>(user.getTourofertados());
-		model.addAttribute("ofertados", ofertados);
-		// si tienes que recorrer otra relación interna, sencilamente recórrela
-		for (Tour t : ofertados) {
-			t.getDatos(); // arggs, mis ojos!
-		}
-
-		List<Review> recibidas =  new ArrayList<>(user.getReviewsrecibidas());
-		model.addAttribute("recibidas", recibidas);
+	List<Tour> ofertados =  new ArrayList<>(user.getTourofertados());
+	List<Review> recibidas =  new ArrayList<>(user.getReviewsrecibidas());
+	for (Tour t : ofertados) {
+		t.getDatos(); // arggs, mis ojos!
+	}
 		
         model.addAttribute("user", user);
         return "perfil";
