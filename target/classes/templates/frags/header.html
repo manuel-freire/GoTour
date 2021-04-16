@@ -8,7 +8,7 @@
                      <div class="dropdown" th:if="${session.u != null}">
                          <button class="dropbtn">usuario</button>
                          <div class="dropdown-content">
-                           <a th:href="@{'user/'+ ${session.u.id}+'/perfil'}">Mi perfil</a>
+                           <a th:href="@{'/user/'+ ${session.u.id}+'/perfil'}">Mi perfil</a>
                            <a th:href="@{/}">Notificaciones</a>
                            <a th:href="@{/user/logout}">Salir</a>
                          </div>

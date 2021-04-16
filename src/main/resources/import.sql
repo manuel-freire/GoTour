@@ -14,7 +14,7 @@
 -- -- Otro usuario de ejemplo con username = b y contraseña = aa  
 INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,nombre,numSecreto,numtarjeta,numtelefono,password,preguntaseguridad,respuestaseguridad,puntuacion,roles,username) VALUES (
 	2,'Sanchez Granado','22/03','email', 1,'Jesus',12,87,333, 
-	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u','Pregunta','Respuesta',5,
+	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u','Pregunta','Respuesta',4,
 	'USER',
 	'SPACEMARINE');
 INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,nombre,numSecreto,numtarjeta,numtelefono,password,preguntaseguridad,respuestaseguridad,puntuacion,roles,username) VALUES (
@@ -33,7 +33,7 @@ INSERT INTO TOUR_OFERTADO_ETIQUETAS  VALUES(1, 'monumento');
 INSERT INTO TOUR_OFERTADO_ETIQUETAS  VALUES(1, 'familia');
 INSERT INTO TOUR_OFERTADO_ETIQUETAS  VALUES(1, 'historia');
 --INSERT INTO TOUR_OFERTADO VALUES (2,'Madrid','Una visita por el centro de Madrid',TRUE,'2021-12-12 20:00:00', '2021-12-12 20:00:00','Centro','/img/mapa1.jpg',50,'España','/img/tour1.jpg',25,'Descubriendo Madrid',2);
-INSERT INTO TOUR VALUES(1,0,'2021-12-12 20:00:00', '2021-12-12 20:00:00',1);
+INSERT INTO TOUR VALUES(1,0,'2021-12-12 20:00:00', '2021-12-12 20:00:00',1, 2);
 INSERT INTO USER_IDIOMASHABLADOS VALUES (2, 'Ingles');
 INSERT INTO USER_IDIOMASHABLADOS VALUES (2, 'Frances');
 INSERT INTO USER_IDIOMASHABLADOS VALUES (2, 'Aleman');
