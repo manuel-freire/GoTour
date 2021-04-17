@@ -565,3 +565,760 @@ userDrop failed because of: org.hibernate.hql.internal.ast.QuerySyntaxException:
 	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
 	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
 	... 87 common frames omitted
+13:59:17.170 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+13:59:22.415 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - [print] <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <title>Login a la plantilla</title>
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+                
+                <div id="topnav">
+                 <a href="/"><img id="logo" src="/img/icon.jpg" alt="El logo de gotour" ></a>
+                 <div class="topnav-right">
+                   <a>buscar</a>
+                   <a href="/login">login</a>
+                   <a href="/registro">Registro</a>
+                     
+                     <!-- <a id="dropdown" th:href="@{/perfil}"><img id="iconouser" th:src="@{/img/usuario.png}" alt="La imagen del usuario" ></a>  -->
+                 </div>
+                </div>
+                 
+             
+     <div class="container">
+      <form class="form-signin" method="post" action="/login"><input type="hidden" name="_csrf" value="50e3a4e5-9092-47df-839e-573005fbb756"/>
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <p>
+          <label for="username" class="sr-only">Username</label>
+          <input type="text" id="username" name="username" 
+            class="form-control" placeholder="Username" required="required"></input>
+        </p>
+        <p>
+          <label for="password" class="sr-only">Password</label>
+          <input type="password" id="password" name="password" 
+            class="form-control" placeholder="Password" required="required"></input>
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+</div>
+</body></html> 
+13:59:22.445 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - [print] {
+  "JSESSIONID": {
+    "path": null,
+    "domain": "localhost",
+    "name": "JSESSIONID",
+    "max-age": -9223372036854775808,
+    "httponly": false,
+    "secure": false,
+    "value": "88A287C9C7B90EB5B64B4E7A0ACE7D9E",
+    "wrap": false
+  }
+}
+ 
+13:59:22.498 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - [print] 50e3a4e5-9092-47df-839e-573005fbb756 
+13:59:23.953 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - [print] <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+                
+                <div id="topnav">
+                 <a href="/"><img id="logo" src="/img/icon.jpg" alt="El logo de gotour" ></a>
+                 <div class="topnav-right">
+                   <a>buscar</a>
+                   
+                   
+                     <div class="dropdown">
+                         <button class="dropbtn">usuario</button>
+                         <div class="dropdown-content">
+                           <a href="/user/2/perfil">Mi perfil</a>
+                           <a href="/">Notificaciones</a>
+                           <a href="/user/logout">Salir</a>
+                         </div>
+                       </div>
+                     <!-- <a id="dropdown" th:href="@{/perfil}"><img id="iconouser" th:src="@{/img/usuario.png}" alt="La imagen del usuario" ></a>  -->
+                 </div>
+                </div>
+                 
+             
+    <div class="contenedor">
+        <div class="informacion">
+            <div>
+                <p>SPACEMARINE</p>
+                <a href="/user/2/perfil">Editar</a>
+                <a href="/user/2/perfil">Nuevo tour</a>
+                <a href="/user/2/datosPrivados">Mi cuenta</a>
+            </div>
+            <p>Jesus Sanchez Granado</p>
+        </div>
+        <img id="user" src="/img/perro.jpg" alt="La imagen del usuario" >
+
+        <div><img src="/img/star.png" width="30" /></div>
+
+        <div><img src="/img/star.png" width="30" /></div>
+
+        <div><img src="/img/star.png" width="30" /></div>
+
+        <div><img src="/img/star.png" width="30" /></div>
+        <div>
+            <h3>-------------Tours disponibles---------------</h3>
+            <div class="tour">
+                <div>
+                    <img id="user" src="/img/coliseo.jpg" alt="Coliseo" >
+                    <div class="titulo"><a href="/tour/1">Tour1</a></div>
+                    <div class="fecha">Inicio: 2021-12-12T20:00</div>
+                    <div class="fecha">Fin: 2021-12-12T20:00</div>
+                    <div class="lugar">Alcala, adas</div>
+                    <div class="lugar">tour1</div>
+                    <div class="precio">8.0€</div>
+                    <div class="personas">0/2 turistas</div>
+                    <p>-----------------------------------------------</p>
+                </div>
+            </div>      
+            <h3>-------------Reseñas--------------------------</h3>
+            <div class="resenya">
+                <img id="user" src="/img/defaultuser.png" alt="user" >
+                <div class="creador"><a href="/user/3/perfil">SONIA</a></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div class="textoReview">Buen tour</div>
+                <p>-----------------------------------------------</p>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+ 
+13:59:23.982 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - [print] {
+  "JSESSIONID": {
+    "path": null,
+    "domain": "localhost",
+    "name": "JSESSIONID",
+    "max-age": -9223372036854775808,
+    "httponly": false,
+    "secure": false,
+    "value": "65EE6A586F4B09F6DEAA7BF2DEF87EDE",
+    "wrap": false
+  }
+}
+ 
+13:59:24.239 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - [print] No Matches for 'h4' in '<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+                
+                <div id="topnav">
+                 <a href="/"><img id="logo" src="/img/icon.jpg" alt="El logo de gotour" ></a>
+                 <div class="topnav-right">
+                   <a>buscar</a>
+                   
+                   
+                     <div class="dropdown">
+                         <button class="dropbtn">usuario</button>
+                         <div class="dropdown-content">
+                           <a href="/user/2/perfil">Mi perfil</a>
+                           <a href="/">Notificaciones</a>
+                           <a href="/user/logout">Salir</a>
+                         </div>
+                       </div>
+                     <!-- <a id="dropdown" th:href="@{/perfil}"><img id="iconouser" th:src="@{/img/usuario.png}" alt="La imagen del usuario" ></a>  -->
+                 </div>
+                </div>
+                 
+             
+    <div class="contenedor">
+        <div class="informacion">
+            <div>
+                <p>SPACEMARINE</p>
+                <a href="/user/2/perfil">Editar</a>
+                <a href="/user/2/perfil">Nuevo tour</a>
+                <a href="/user/2/datosPrivados">Mi cuenta</a>
+            </div>
+            <p>Jesus Sanchez Granado</p>
+        </div>
+        <img id="user" src="/img/perro.jpg" alt="La imagen del usuario" >
+
+        <div><img src="/img/star.png" width="30" /></div>
+
+        <div><img src="/img/star.png" width="30" /></div>
+
+        <div><img src="/img/star.png" width="30" /></div>
+
+        <div><img src="/img/star.png" width="30" /></div>
+        <div>
+            <h3>-------------Tours disponibles---------------</h3>
+            <div class="tour">
+                <div>
+                    <img id="user" src="/img/coliseo.jpg" alt="Coliseo" >
+                    <div class="titulo"><a href="/tour/1">Tour1</a></div>
+                    <div class="fecha">Inicio: 2021-12-12T20:00</div>
+                    <div class="fecha">Fin: 2021-12-12T20:00</div>
+                    <div class="lugar">Alcala, adas</div>
+                    <div class="lugar">tour1</div>
+                    <div class="precio">8.0€</div>
+                    <div class="personas">0/2 turistas</div>
+                    <p>-----------------------------------------------</p>
+                </div>
+            </div>      
+            <h3>-------------Reseñas--------------------------</h3>
+            <div class="resenya">
+                <img id="user" src="/img/defaultuser.png" alt="user" >
+                <div class="creador"><a href="/user/3/perfil">SONIA</a></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div class="textoReview">Buen tour</div>
+                <p>-----------------------------------------------</p>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+' 
+13:59:24.271 [com.intuit.karate.cli.Main.main()] ERROR com.intuit.karate - src/test/karate-ui/login.feature:57
+* match h4s contains 'Usuarios'
+match failed: CONTAINS
+  $ | actual does not contain expected (STRING:STRING)
+  'No Matches for 'h4' in '<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+                
+                <div id="topnav">
+                 <a href="/"><img id="logo" src="/img/icon.jpg" alt="El logo de gotour" ></a>
+                 <div class="topnav-right">
+                   <a>buscar</a>
+                   
+                   
+                     <div class="dropdown">
+                         <button class="dropbtn">usuario</button>
+                         <div class="dropdown-content">
+                           <a href="/user/2/perfil">Mi perfil</a>
+                           <a href="/">Notificaciones</a>
+                           <a href="/user/logout">Salir</a>
+                         </div>
+                       </div>
+                     <!-- <a id="dropdown" th:href="@{/perfil}"><img id="iconouser" th:src="@{/img/usuario.png}" alt="La imagen del usuario" ></a>  -->
+                 </div>
+                </div>
+                 
+             
+    <div class="contenedor">
+        <div class="informacion">
+            <div>
+                <p>SPACEMARINE</p>
+                <a href="/user/2/perfil">Editar</a>
+                <a href="/user/2/perfil">Nuevo tour</a>
+                <a href="/user/2/datosPrivados">Mi cuenta</a>
+            </div>
+            <p>Jesus Sanchez Granado</p>
+        </div>
+        <img id="user" src="/img/perro.jpg" alt="La imagen del usuario" >
+
+        <div><img src="/img/star.png" width="30" /></div>
+
+        <div><img src="/img/star.png" width="30" /></div>
+
+        <div><img src="/img/star.png" width="30" /></div>
+
+        <div><img src="/img/star.png" width="30" /></div>
+        <div>
+            <h3>-------------Tours disponibles---------------</h3>
+            <div class="tour">
+                <div>
+                    <img id="user" src="/img/coliseo.jpg" alt="Coliseo" >
+                    <div class="titulo"><a href="/tour/1">Tour1</a></div>
+                    <div class="fecha">Inicio: 2021-12-12T20:00</div>
+                    <div class="fecha">Fin: 2021-12-12T20:00</div>
+                    <div class="lugar">Alcala, adas</div>
+                    <div class="lugar">tour1</div>
+                    <div class="precio">8.0€</div>
+                    <div class="personas">0/2 turistas</div>
+                    <p>-----------------------------------------------</p>
+                </div>
+            </div>      
+            <h3>-------------Reseñas--------------------------</h3>
+            <div class="resenya">
+                <img id="user" src="/img/defaultuser.png" alt="user" >
+                <div class="creador"><a href="/user/3/perfil">SONIA</a></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div class="textoReview">Buen tour</div>
+                <p>-----------------------------------------------</p>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+''
+  'Usuarios'
+
+src/test/karate-ui/login.feature:57
+13:59:26.826 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<fail>> feature 1 of 1 (0 remaining) src/test/karate-ui/login.feature
+14:02:15.716 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+14:02:16.257 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618660936248
+14:02:19.682 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - [print] <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <title>Login a la plantilla</title>
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+                
+                <div id="topnav">
+                 <a href="/"><img id="logo" src="/img/icon.jpg" alt="El logo de gotour" ></a>
+                 <div class="topnav-right">
+                   <a>buscar</a>
+                   <a href="/login">login</a>
+                   <a href="/registro">Registro</a>
+                     
+                     <!-- <a id="dropdown" th:href="@{/perfil}"><img id="iconouser" th:src="@{/img/usuario.png}" alt="La imagen del usuario" ></a>  -->
+                 </div>
+                </div>
+                 
+             
+     <div class="container">
+      <form class="form-signin" method="post" action="/login"><input type="hidden" name="_csrf" value="5da6969d-9751-4efa-af2d-2ddc93d8000b"/>
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <p>
+          <label for="username" class="sr-only">Username</label>
+          <input type="text" id="username" name="username" 
+            class="form-control" placeholder="Username" required="required"></input>
+        </p>
+        <p>
+          <label for="password" class="sr-only">Password</label>
+          <input type="password" id="password" name="password" 
+            class="form-control" placeholder="Password" required="required"></input>
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+</div>
+</body></html> 
+14:02:19.709 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - [print] {
+  "JSESSIONID": {
+    "path": null,
+    "domain": "localhost",
+    "name": "JSESSIONID",
+    "max-age": -9223372036854775808,
+    "httponly": false,
+    "secure": false,
+    "value": "347374876C178DE45A9707C6239873A5",
+    "wrap": false
+  }
+}
+ 
+14:02:19.747 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - [print] 5da6969d-9751-4efa-af2d-2ddc93d8000b 
+14:02:20.365 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - [print] <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+                
+                <div id="topnav">
+                 <a href="/"><img id="logo" src="/img/icon.jpg" alt="El logo de gotour" ></a>
+                 <div class="topnav-right">
+                   <a>buscar</a>
+                   
+                   
+                     <div class="dropdown">
+                         <button class="dropbtn">usuario</button>
+                         <div class="dropdown-content">
+                           <a href="/user/2/perfil">Mi perfil</a>
+                           <a href="/">Notificaciones</a>
+                           <a href="/user/logout">Salir</a>
+                         </div>
+                       </div>
+                     <!-- <a id="dropdown" th:href="@{/perfil}"><img id="iconouser" th:src="@{/img/usuario.png}" alt="La imagen del usuario" ></a>  -->
+                 </div>
+                </div>
+                 
+             
+    <div class="contenedor">
+        <div class="informacion">
+            <div>
+                <p>SPACEMARINE</p>
+                <a href="/user/2/perfil">Editar</a>
+                <a href="/user/2/perfil">Nuevo tour</a>
+                <a href="/user/2/datosPrivados">Mi cuenta</a>
+            </div>
+            <p>Jesus Sanchez Granado</p>
+        </div>
+        <img id="user" src="/img/perro.jpg" alt="La imagen del usuario" >
+
+        <div><img src="/img/star.png" width="30" /></div>
+
+        <div><img src="/img/star.png" width="30" /></div>
+
+        <div><img src="/img/star.png" width="30" /></div>
+
+        <div><img src="/img/star.png" width="30" /></div>
+        <div>
+            <h3>-------------Tours disponibles---------------</h3>
+            <div class="tour">
+                <div>
+                    <img id="user" src="/img/coliseo.jpg" alt="Coliseo" >
+                    <div class="titulo"><a href="/tour/1">Tour1</a></div>
+                    <div class="fecha">Inicio: 2021-12-12T20:00</div>
+                    <div class="fecha">Fin: 2021-12-12T20:00</div>
+                    <div class="lugar">Alcala, adas</div>
+                    <div class="lugar">tour1</div>
+                    <div class="precio">8.0€</div>
+                    <div class="personas">0/2 turistas</div>
+                    <p>-----------------------------------------------</p>
+                </div>
+            </div>      
+            <h3>-------------Reseñas--------------------------</h3>
+            <div class="resenya">
+                <img id="user" src="/img/defaultuser.png" alt="user" >
+                <div class="creador"><a href="/user/3/perfil">SONIA</a></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div><img src="/img/star.png" width="30" /></div>
+                <div class="textoReview">Buen tour</div>
+                <p>-----------------------------------------------</p>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+ 
+14:02:20.372 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - [print] {
+  "JSESSIONID": {
+    "path": null,
+    "domain": "localhost",
+    "name": "JSESSIONID",
+    "max-age": -9223372036854775808,
+    "httponly": false,
+    "secure": false,
+    "value": "F5B6EE307ECDB19D740B8C514ADC12C8",
+    "wrap": false
+  }
+}
+ 
+14:02:20.745 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - [print] Perfil 
+14:02:20.870 [com.intuit.karate.cli.Main.main()] ERROR com.intuit.karate - src/test/karate-ui/login.feature:58
+* driver.screenshot()
+>>>> js failed:
+01: driver.screenshot()
+<<<<
+org.graalvm.polyglot.PolyglotException: ReferenceError: "driver" is not defined
+- <js>.:program(Unnamed:1)
+
+src/test/karate-ui/login.feature:58
+14:02:23.301 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<fail>> feature 1 of 1 (0 remaining) src/test/karate-ui/login.feature
+14:06:54.941 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+14:06:55.432 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618661215431
+14:06:57.698 [chrome_1618661217671] ERROR com.intuit.karate.shell.Command - command error: [/usr/bin/chromium-browser, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618661217671, --disable-popup-blocking] - Cannot run program "/usr/bin/chromium-browser" (in directory "target/chrome_1618661217671"): error=2, No existe el archivo o el directorio
+14:07:03.098 [com.intuit.karate.cli.Main.main()] ERROR com.intuit.karate - driver config / start failed: start failed, options: {type=chrome, executable=/usr/bin/chromium-browser, showDriverLog=true, target=null}
+com.intuit.karate.KarateException: start failed
+	at com.intuit.karate.driver.DriverOptions.startProcess(DriverOptions.java:268)
+	at com.intuit.karate.driver.DriverOptions.startProcess(DriverOptions.java:243)
+	at com.intuit.karate.driver.chrome.Chrome.start(Chrome.java:64)
+	at com.intuit.karate.driver.DriverOptions.start(DriverOptions.java:291)
+	at com.intuit.karate.core.ScenarioEngine.driver(ScenarioEngine.java:856)
+	at com.intuit.karate.ScenarioActions.driver(ScenarioActions.java:400)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at com.intuit.karate.core.StepRuntime.execute(StepRuntime.java:280)
+	at com.intuit.karate.core.ScenarioRuntime.execute(ScenarioRuntime.java:461)
+	at com.intuit.karate.core.ScenarioRuntime.run(ScenarioRuntime.java:395)
+	at com.intuit.karate.core.FeatureRuntime.processScenario(FeatureRuntime.java:181)
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
+	at com.intuit.karate.core.FeatureRuntime.run(FeatureRuntime.java:164)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at com.intuit.karate.core.SyncExecutorService.execute(SyncExecutorService.java:70)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:118)
+	at com.intuit.karate.Suite.run(Suite.java:226)
+	at com.intuit.karate.Runner$Builder.parallel(Runner.java:516)
+	at com.intuit.karate.Main.call(Main.java:339)
+	at com.intuit.karate.Main.call(Main.java:57)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1933)
+	at picocli.CommandLine.access$1200(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2332)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2326)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2291)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2159)
+	at picocli.CommandLine.execute(CommandLine.java:2058)
+	at com.intuit.karate.Main.main(Main.java:294)
+	at com.intuit.karate.cli.Main.main(Main.java:33)
+	at org.codehaus.mojo.exec.ExecJavaMojo$1.run(ExecJavaMojo.java:254)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.io.IOException: Cannot run program "/usr/bin/chromium-browser" (in directory "target/chrome_1618661217671"): error=2, No existe el archivo o el directorio
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1128)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1071)
+	at com.intuit.karate.shell.Command.run(Command.java:348)
+Caused by: java.io.IOException: error=2, No existe el archivo o el directorio
+	at java.base/java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:340)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:271)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1107)
+	... 2 common frames omitted
+14:07:03.113 [com.intuit.karate.cli.Main.main()] ERROR com.intuit.karate - src/test/karate-ui/login.feature:38
+Given driver 'http://localhost:8080/login'
+driver config / start failed: start failed, options: {type=chrome, executable=/usr/bin/chromium-browser, showDriverLog=true, target=null}
+src/test/karate-ui/login.feature:38
+14:07:05.308 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<fail>> feature 1 of 1 (0 remaining) src/test/karate-ui/login.feature
+14:11:06.103 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+14:11:06.713 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618661466713
+14:11:09.061 [chrome_1618661469041] ERROR com.intuit.karate.shell.Command - command error: [/usr/bin/chromium-browser, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618661469041, --disable-popup-blocking] - Cannot run program "/usr/bin/chromium-browser" (in directory "target/chrome_1618661469041"): error=2, No existe el archivo o el directorio
+14:11:14.412 [com.intuit.karate.cli.Main.main()] ERROR com.intuit.karate - driver config / start failed: start failed, options: {type=chrome, executable=/usr/bin/chromium-browser, showDriverLog=true, target=null}
+com.intuit.karate.KarateException: start failed
+	at com.intuit.karate.driver.DriverOptions.startProcess(DriverOptions.java:268)
+	at com.intuit.karate.driver.DriverOptions.startProcess(DriverOptions.java:243)
+	at com.intuit.karate.driver.chrome.Chrome.start(Chrome.java:64)
+	at com.intuit.karate.driver.DriverOptions.start(DriverOptions.java:291)
+	at com.intuit.karate.core.ScenarioEngine.driver(ScenarioEngine.java:856)
+	at com.intuit.karate.ScenarioActions.driver(ScenarioActions.java:400)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at com.intuit.karate.core.StepRuntime.execute(StepRuntime.java:280)
+	at com.intuit.karate.core.ScenarioRuntime.execute(ScenarioRuntime.java:461)
+	at com.intuit.karate.core.ScenarioRuntime.run(ScenarioRuntime.java:395)
+	at com.intuit.karate.core.FeatureRuntime.processScenario(FeatureRuntime.java:181)
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
+	at com.intuit.karate.core.FeatureRuntime.run(FeatureRuntime.java:164)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at com.intuit.karate.core.SyncExecutorService.execute(SyncExecutorService.java:70)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:118)
+	at com.intuit.karate.Suite.run(Suite.java:226)
+	at com.intuit.karate.Runner$Builder.parallel(Runner.java:516)
+	at com.intuit.karate.Main.call(Main.java:339)
+	at com.intuit.karate.Main.call(Main.java:57)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1933)
+	at picocli.CommandLine.access$1200(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2332)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2326)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2291)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2159)
+	at picocli.CommandLine.execute(CommandLine.java:2058)
+	at com.intuit.karate.Main.main(Main.java:294)
+	at com.intuit.karate.cli.Main.main(Main.java:33)
+	at org.codehaus.mojo.exec.ExecJavaMojo$1.run(ExecJavaMojo.java:254)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.io.IOException: Cannot run program "/usr/bin/chromium-browser" (in directory "target/chrome_1618661469041"): error=2, No existe el archivo o el directorio
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1128)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1071)
+	at com.intuit.karate.shell.Command.run(Command.java:348)
+Caused by: java.io.IOException: error=2, No existe el archivo o el directorio
+	at java.base/java.lang.ProcessImpl.forkAndExec(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:340)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:271)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1107)
+	... 2 common frames omitted
+14:11:14.429 [com.intuit.karate.cli.Main.main()] ERROR com.intuit.karate - src/test/karate-ui/login.feature:38
+Given driver 'http://localhost:8080/login'
+driver config / start failed: start failed, options: {type=chrome, executable=/usr/bin/chromium-browser, showDriverLog=true, target=null}
+src/test/karate-ui/login.feature:38
+14:11:16.739 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<fail>> feature 1 of 1 (0 remaining) src/test/karate-ui/login.feature
+14:22:48.373 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+14:22:48.961 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618662168950
+14:23:00.410 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: S
+14:23:00.543 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: P
+14:23:00.579 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+14:23:00.613 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: C
+14:23:00.635 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+14:23:00.650 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: M
+14:23:00.677 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+14:23:00.689 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: R
+14:23:00.697 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: I
+14:23:00.713 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: N
+14:23:00.733 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+14:23:02.604 [chrome_1618662171465] WARN  com.intuit.karate.shell.Command - exit code was non-zero: 137 - [/opt/google/chrome/google-chrome, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618662171465, --disable-popup-blocking] working dir: target/chrome_1618662171465
+14:23:05.971 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<pass>> feature 1 of 1 (0 remaining) src/test/karate-ui/login.feature
+14:32:23.545 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+14:32:24.297 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618662744296
+14:32:35.243 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: S
+14:32:35.266 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: P
+14:32:35.295 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+14:32:35.311 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: C
+14:32:35.330 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+14:32:35.347 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: M
+14:32:35.358 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+14:32:35.368 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: R
+14:32:35.376 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: I
+14:32:35.400 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: N
+14:32:35.420 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+14:32:36.694 [chrome_1618662748261] WARN  com.intuit.karate.shell.Command - exit code was non-zero: 137 - [/opt/google/chrome/google-chrome, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618662748261, --disable-popup-blocking] working dir: target/chrome_1618662748261
+14:32:40.556 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<pass>> feature 1 of 1 (0 remaining) src/test/karate-ui/login.feature
+14:34:32.946 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+14:34:33.531 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618662873530
+14:34:42.332 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: S
+14:34:42.363 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: P
+14:34:42.393 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+14:34:42.413 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: C
+14:34:42.438 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+14:34:42.466 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: M
+14:34:42.488 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+14:34:42.517 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: R
+14:34:42.544 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: I
+14:34:42.572 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: N
+14:34:42.595 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+14:34:43.941 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 29, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'click' of null
+    at <anonymous>:1:40, objectId={"injectedScriptId":2,"id":1}}]]
+14:34:43.949 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("[id=logo_box]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:40","objectId":"{\"injectedScriptId\":2,\"id\":1}"}
+14:34:46.960 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 30, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'click' of null
+    at <anonymous>:1:40, objectId={"injectedScriptId":2,"id":3}}]]
+14:34:46.977 [com.intuit.karate.cli.Main.main()] ERROR c.intuit.karate.driver.DriverOptions - js eval failed twice:document.querySelector("[id=logo_box]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:40","objectId":"{\"injectedScriptId\":2,\"id\":3}"}
+14:34:47.073 [com.intuit.karate.cli.Main.main()] ERROR com.intuit.karate - src/test/karate-ui/principal.feature:17
+* click("[id=logo_box]")
+>>>> js failed:
+01: click("[id=logo_box]")
+<<<<
+org.graalvm.polyglot.PolyglotException: js eval failed twice:document.querySelector("[id=logo_box]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:40","objectId":"{\"injectedScriptId\":2,\"id\":3}"}
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:271)
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:256)
+- com.intuit.karate.driver.DevToolsDriver.click(DevToolsDriver.java:477)
+- <js>.:anonymous(Unnamed:1)
+
+src/test/karate-ui/principal.feature:17
+14:34:47.761 [chrome_1618662876693] WARN  com.intuit.karate.shell.Command - exit code was non-zero: 137 - [/opt/google/chrome/google-chrome, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618662876693, --disable-popup-blocking] working dir: target/chrome_1618662876693
+14:34:51.012 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<fail>> feature 1 of 1 (0 remaining) src/test/karate-ui/principal.feature
+14:35:39.158 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+14:35:39.717 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618662939716
+14:35:47.931 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: S
+14:35:47.994 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: P
+14:35:48.018 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+14:35:48.065 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: C
+14:35:48.085 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+14:35:48.127 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: M
+14:35:48.146 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+14:35:48.171 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: R
+14:35:48.206 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: I
+14:35:48.225 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: N
+14:35:48.245 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+14:35:49.527 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 29, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'click' of null
+    at <anonymous>:1:41, objectId={"injectedScriptId":2,"id":1}}]]
+14:35:49.542 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("a[id=logo_box]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:41","objectId":"{\"injectedScriptId\":2,\"id\":1}"}
+14:35:52.592 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 30, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'click' of null
+    at <anonymous>:1:41, objectId={"injectedScriptId":2,"id":3}}]]
+14:35:52.602 [com.intuit.karate.cli.Main.main()] ERROR c.intuit.karate.driver.DriverOptions - js eval failed twice:document.querySelector("a[id=logo_box]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:41","objectId":"{\"injectedScriptId\":2,\"id\":3}"}
+14:35:52.663 [com.intuit.karate.cli.Main.main()] ERROR com.intuit.karate - src/test/karate-ui/principal.feature:17
+* click("a[id=logo_box]")
+>>>> js failed:
+01: click("a[id=logo_box]")
+<<<<
+org.graalvm.polyglot.PolyglotException: js eval failed twice:document.querySelector("a[id=logo_box]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:41","objectId":"{\"injectedScriptId\":2,\"id\":3}"}
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:271)
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:256)
+- com.intuit.karate.driver.DevToolsDriver.click(DevToolsDriver.java:477)
+- <js>.:anonymous(Unnamed:1)
+
+src/test/karate-ui/principal.feature:17
+14:35:53.085 [chrome_1618662942557] WARN  com.intuit.karate.shell.Command - exit code was non-zero: 137 - [/opt/google/chrome/google-chrome, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618662942557, --disable-popup-blocking] working dir: target/chrome_1618662942557
+14:35:56.349 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<fail>> feature 1 of 1 (0 remaining) src/test/karate-ui/principal.feature
+14:39:12.138 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+14:39:12.722 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618663152722
+14:39:23.251 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: S
+14:39:23.277 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: P
+14:39:23.299 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+14:39:23.316 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: C
+14:39:23.329 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+14:39:23.354 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: M
+14:39:23.384 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+14:39:23.401 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: R
+14:39:23.418 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: I
+14:39:23.440 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: N
+14:39:23.458 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+14:39:25.931 [chrome_1618663155527-out] ERROR c.i.k.driver.chrome_1618663155527 - console reader error: Stream closed
+14:39:25.931 [chrome_1618663155527] WARN  com.intuit.karate.shell.Command - exit code was non-zero: 137 - [/opt/google/chrome/google-chrome, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618663155527, --disable-popup-blocking] working dir: target/chrome_1618663155527
+14:39:29.433 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<pass>> feature 1 of 1 (0 remaining) src/test/karate-ui/principal.feature
+14:41:18.045 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+14:41:18.533 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618663278533
+14:41:27.942 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: S
+14:41:27.994 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: P
+14:41:28.045 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+14:41:28.079 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: C
+14:41:28.101 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+14:41:28.141 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: M
+14:41:28.159 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+14:41:28.172 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: R
+14:41:28.188 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: I
+14:41:28.219 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: N
+14:41:28.243 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+14:41:29.924 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 30, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'outerHTML' of null
+    at <anonymous>:1:32, objectId={"injectedScriptId":3,"id":1}}]]
+14:41:29.941 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("title")['outerHTML'], error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'outerHTML' of null\n    at <anonymous>:1:32","objectId":"{\"injectedScriptId\":3,\"id\":1}"}
+14:41:43.158 [chrome_1618663281502] WARN  com.intuit.karate.shell.Command - exit code was non-zero: 137 - [/opt/google/chrome/google-chrome, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618663281502, --disable-popup-blocking] working dir: target/chrome_1618663281502
+14:41:49.442 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<pass>> feature 1 of 1 (0 remaining) src/test/karate-ui/principal.feature
+16:27:53.058 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+16:27:53.670 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618669673670
+16:28:08.092 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: S
+16:28:08.122 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: P
+16:28:08.152 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+16:28:08.189 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: C
+16:28:08.220 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+16:28:08.281 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: M
+16:28:08.298 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+16:28:08.363 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: R
+16:28:08.378 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: I
+16:28:08.395 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: N
+16:28:08.411 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+16:28:09.756 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 29, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'outerHTML' of null
+    at <anonymous>:1:32, objectId={"injectedScriptId":3,"id":1}}]]
+16:28:09.759 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("title")['outerHTML'], error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'outerHTML' of null\n    at <anonymous>:1:32","objectId":"{\"injectedScriptId\":3,\"id\":1}"}
+16:28:15.784 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 33, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'outerHTML' of null
+    at <anonymous>:1:32, objectId={"injectedScriptId":4,"id":1}}]]
+16:28:15.807 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("title")['outerHTML'], error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'outerHTML' of null\n    at <anonymous>:1:32","objectId":"{\"injectedScriptId\":4,\"id\":1}"}
+16:28:18.859 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 35, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'click' of null
+    at <anonymous>:1:49, objectId={"injectedScriptId":4,"id":3}}]]
+16:28:18.869 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("a[id=tour_inscribirse]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:49","objectId":"{\"injectedScriptId\":4,\"id\":3}"}
+16:28:21.884 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 36, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'click' of null
+    at <anonymous>:1:49, objectId={"injectedScriptId":4,"id":5}}]]
+16:28:21.894 [com.intuit.karate.cli.Main.main()] ERROR c.intuit.karate.driver.DriverOptions - js eval failed twice:document.querySelector("a[id=tour_inscribirse]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:49","objectId":"{\"injectedScriptId\":4,\"id\":5}"}
+16:28:22.016 [com.intuit.karate.cli.Main.main()] ERROR com.intuit.karate - src/test/karate-ui/principal.feature:21
+* click("a[id=tour_inscribirse]")
+>>>> js failed:
+01: click("a[id=tour_inscribirse]")
+<<<<
+org.graalvm.polyglot.PolyglotException: js eval failed twice:document.querySelector("a[id=tour_inscribirse]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:49","objectId":"{\"injectedScriptId\":4,\"id\":5}"}
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:271)
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:256)
+- com.intuit.karate.driver.DevToolsDriver.click(DevToolsDriver.java:477)
+- <js>.:anonymous(Unnamed:1)
+
+src/test/karate-ui/principal.feature:21
+16:28:22.868 [chrome_1618669678221] WARN  com.intuit.karate.shell.Command - exit code was non-zero: 137 - [/opt/google/chrome/google-chrome, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618669678221, --disable-popup-blocking] working dir: target/chrome_1618669678221
+16:28:27.546 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<fail>> feature 1 of 1 (0 remaining) src/test/karate-ui/principal.feature

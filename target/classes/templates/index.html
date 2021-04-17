@@ -106,10 +106,14 @@
                     <a href="index.html">Home</a>
                   </li>
                   <li><a href="buy.html">Tours</a></li>
+                  <li><a href="blog.html">Blog</a></li>
+                  <li><a href="buy.html">Pagina Ejemplo</a></li>
+                  <li><a href="nosotros.html">Nosotros</a></li>
+                  <li><a href="contacto.html">Contacto</a></li>
                   <li class="has-children">
-                    <a href="properties.html">Mi perfil</a>
+                    <a th:href="@{/user/{id}/perfil(id=${session.u.id})}" th:text="${session.u.nombre}" >Usuario</a>
                     <ul class="dropdown arrow-top">
-                      <li><a href="#">Log out</a></li>
+                      <li><a th:href="@{/user/crearTour}">Crear tour</a></li>
                       <li><a href="#">Mis tours reservados</a></li>
                       <li><a href="#">Mis tours ofertados</a></li>
                       <li class="has-children">
@@ -120,12 +124,9 @@
                           <li><a href="#">Menu Three</a></li>
                         </ul>
                       </li>
+                      <li><a th:href="@{/user/logout}">Log out</a></li>
                     </ul>
                   </li>
-                  <li><a href="blog.html">Blog</a></li>
-                  <li><a href="buy.html">Pagina Ejemplo</a></li>
-                  <li><a href="nosotros.html">Nosotros</a></li>
-                  <li><a href="contacto.html">Contacto</a></li>
                 </ul>
               </nav>
             </div>
@@ -265,7 +266,7 @@
               </a>
               <div class="p-4 property-body">
                 <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-                <h2 class="property-title"><a th:href="@{'/tour/'+${tour.getId()}}" th:text="${tour.getDatos().getTitulo()}"></a></h2>
+                <h2 class="property-title"><a th:href="@{'/tour/'+${tour.getId()}}" th:text="${tour.getDatos().getTitulo()}" id="tour_ref"></a></h2>
                 <span class="property-location d-block mb-3" ><span class="property-icon icon-room"></span><span th:text="${tour.getDatos().getCiudad()}+', '+${tour.getDatos().getPais()}"></span></span>
                 <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.getDatos().getPrecio}+'€/persona'"></strong>
                 <ul class="property-specs-wrap mb-3 mb-lg-0">

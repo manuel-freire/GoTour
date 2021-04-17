@@ -1,6 +1,6 @@
             <th:block id="supercabecera"th:fragment="head">
                 <div id="topnav">
-                 <a th:href="@{/}"><img id="logo" th:src="@{/img/icon.jpg}" alt="El logo de gotour" ></a>
+                 <a th:href="@{/}" id=logo_box><img id="logo" th:src="@{/img/icon.jpg}" alt="El logo de gotour" ></a>
                  <div class="topnav-right">
                    <a>buscar</a>
                    <a th:if="${session.u==null}" th:href="@{/login}">login</a>

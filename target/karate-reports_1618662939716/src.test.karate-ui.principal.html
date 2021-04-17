@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="res/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="res/karate-report.css" type="text/css"/>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <script type="text/javascript" src="res/jquery.min.js"></script>
+    <script type="text/javascript" src="res/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="res/bootstrap.min.js"></script>
+    <script type="text/javascript" src="res/karate-report.js"></script>
+    <title>src.test.karate-ui.principal</title>  
+  </head>
+  <body>   
+    <div id="root-container">
+      <div id="leftnav">
+                
+        <div>
+  <div class="nav-logo">
+    <a href="karate-summary.html">
+      <img src="karate-logo.svg" alt="Karate"/>
+    </a>
+    <div class="nav-count">
+      <div id="nav-pass" class="bg-success">0</div>
+      <div id="nav-fail" class="bg-danger">1</div>
+    </div>
+  </div>
+  <div id="nav-type">
+    <div>Scenarios</div>
+  </div>         
+  <div id="nav-date">
+    <div>2021-04-17 02:34:47 p. m.</div>
+  </div>        
+</div>
+
+        <div class="nav-container">
+          <div class="nav-item failed">
+            <a href="#[1:10]"><span>[1:10]</span> <span>logear, elegir un tour e inscribirse al tour</span></a>
+          </div>
+        </div>
+      </div>
+      <div id="content">
+        <div class="page-heading alert alert-primary">
+          <a href="karate-summary.html">Summary</a><span class="feature-label">|</span>
+          <a href="karate-tags.html">Tags</a><span class="feature-label">|</span>
+          <span class="feature-label">Feature:</span>
+          <span class="feature-path">src/test/karate-ui/principal.feature</span><span class="feature-label">|</span>
+          <span class="feature-name">browser automation 1</span>
+          <span class="feature-description"></span>
+        </div>
+        <div class="scenario">
+          <div class="scenario-heading" id="[1:10]">
+            <div class="heading-container">
+              <div class="scenario-tags">
+                
+              </div>
+              <div class="scenario-keyword">
+                Scenario: <span>[1:10]</span>
+                <span class="scenario-name">logear, elegir un tour e inscribirse al tour</span>
+                <span></span>
+              </div>
+            </div>
+            <div class="scenario-time failed">
+              <span>ms:</span>&nbsp;<span>10582</span>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="step-container" id="[1:10]bg">
+              <div class="step-ref bg-step">&gt;&gt;</div>
+              <div class="step-cell passed">Background:</div>
+            </div>
+            <div class="time-cell passed"></div>
+          </div>
+          <div data-parent="[1:10]bg"><div>
+  
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># chromium bajo linux;</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container">
+      <div class="step-ref passed"></div>
+      
+      <div class="step-cell comment"># si usas google-chrome, puedes quitar toda la parte de executable</div>
+    </div>
+    <div class="time-cell comment"></div>            
+  </div>
+
+  <div class="step-row">
+    <div class="step-container" id="0.6">
+      <div class="step-ref bg-step">6</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>configure driver = { type: &#39;chrome&#39;, executable: &#39;/opt/google/chrome/google-chrome&#39;, showDriverLog: true }</span>
+      </div>
+    </div>
+    <div class="time-cell passed">143</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[1:10]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.7">
+      <div class="step-ref bg-step">7</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>url baseUrl</span>
+      </div>
+    </div>
+    <div class="time-cell passed">0</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div data-parent="[1:10]bg"><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.8">
+      <div class="step-ref bg-step">8</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>def util = Java.type(&#39;karate.KarateTests&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">50</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.11">
+      <div class="step-ref passed">11</div>
+      
+      <div class="step-cell passed">
+        <span>Given</span>&nbsp;<span>driver &#39;http://localhost:8080/login&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">5353</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.12">
+      <div class="step-ref passed">12</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>input(&#39;#username&#39;, &#39;SPACEMARINE&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">591</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.12">14:34:42.334 unknown character / key code: S
+14:34:42.363 unknown character / key code: P
+14:34:42.393 unknown character / key code: A
+14:34:42.413 unknown character / key code: C
+14:34:42.438 unknown character / key code: E
+14:34:42.466 unknown character / key code: M
+14:34:42.488 unknown character / key code: A
+14:34:42.518 unknown character / key code: R
+14:34:42.545 unknown character / key code: I
+14:34:42.573 unknown character / key code: N
+14:34:42.595 unknown character / key code: E
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.13">
+      <div class="step-ref passed">13</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>input(&#39;#password&#39;, &#39;aa&#39;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">134</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.14">
+      <div class="step-ref passed">14</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>submit().click(&quot;button[type=submit]&quot;)</span>
+      </div>
+    </div>
+    <div class="time-cell passed">441</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.15">
+      <div class="step-ref passed">15</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>match html(&#39;title&#39;) contains &#39;Perfil&#39;</span>
+      </div>
+    </div>
+    <div class="time-cell passed">109</div>
+  </div>
+
+   
+  
+  
+
+  
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.16">
+      <div class="step-ref passed">16</div>
+      
+      <div class="step-cell passed">
+        <span>*</span>&nbsp;<span>driver.screenshot()</span>
+      </div>
+    </div>
+    <div class="time-cell passed">615</div>
+  </div>
+
+   
+  
+  
+
+  <div class="embed" data-parent="0.16"><img src="src.test.karate-ui.principal_1_1618662883916.png"/></div>
+
+     
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.17">
+      <div class="step-ref failed">17</div>
+      
+      <div class="step-cell failed">
+        <span>*</span>&nbsp;<span>click(&quot;[id=logo_box]&quot;)</span>
+      </div>
+    </div>
+    <div class="time-cell failed">3144</div>
+  </div>
+
+   
+  
+  
+
+  
+
+  <div class="preformatted" data-parent="0.17">14:34:43.946 devtools error: [id: 29, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property &#39;click&#39; of null
+    at &lt;anonymous&gt;:1:40, objectId={&quot;injectedScriptId&quot;:2,&quot;id&quot;:1}}]]
+14:34:43.950 js eval failed once:document.querySelector(&quot;[id=logo_box]&quot;).click(), error: {&quot;type&quot;:&quot;object&quot;,&quot;subtype&quot;:&quot;error&quot;,&quot;className&quot;:&quot;TypeError&quot;,&quot;description&quot;:&quot;TypeError: Cannot read property &#39;click&#39; of null\n    at &lt;anonymous&gt;:1:40&quot;,&quot;objectId&quot;:&quot;{\&quot;injectedScriptId\&quot;:2,\&quot;id\&quot;:1}&quot;}
+14:34:46.961 devtools error: [id: 30, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property &#39;click&#39; of null
+    at &lt;anonymous&gt;:1:40, objectId={&quot;injectedScriptId&quot;:2,&quot;id&quot;:3}}]]
+14:34:46.978 js eval failed twice:document.querySelector(&quot;[id=logo_box]&quot;).click(), error: {&quot;type&quot;:&quot;object&quot;,&quot;subtype&quot;:&quot;error&quot;,&quot;className&quot;:&quot;TypeError&quot;,&quot;description&quot;:&quot;TypeError: Cannot read property &#39;click&#39; of null\n    at &lt;anonymous&gt;:1:40&quot;,&quot;objectId&quot;:&quot;{\&quot;injectedScriptId\&quot;:2,\&quot;id\&quot;:3}&quot;}
+14:34:47.079 src/test/karate-ui/principal.feature:17
+* click(&quot;[id=logo_box]&quot;)
+&gt;&gt;&gt;&gt; js failed:
+01: click(&quot;[id=logo_box]&quot;)
+&lt;&lt;&lt;&lt;
+org.graalvm.polyglot.PolyglotException: js eval failed twice:document.querySelector(&quot;[id=logo_box]&quot;).click(), error: {&quot;type&quot;:&quot;object&quot;,&quot;subtype&quot;:&quot;error&quot;,&quot;className&quot;:&quot;TypeError&quot;,&quot;description&quot;:&quot;TypeError: Cannot read property &#39;click&#39; of null\n    at &lt;anonymous&gt;:1:40&quot;,&quot;objectId&quot;:&quot;{\&quot;injectedScriptId\&quot;:2,\&quot;id\&quot;:3}&quot;}
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:271)
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:256)
+- com.intuit.karate.driver.DevToolsDriver.click(DevToolsDriver.java:477)
+- &lt;js&gt;.:anonymous(Unnamed:1)
+
+src/test/karate-ui/principal.feature:17
+</div>   
+
+  
+
+</div>
+</div>
+          <div><div>
+  
+
+  
+
+  <div class="step-row">
+    <div class="step-container" id="0.18">
+      <div class="step-ref skipped">18</div>
+      
+      <div class="step-cell skipped">
+        <span>*</span>&nbsp;<span>driver.screenshot()</span>
+      </div>
+    </div>
+    <div class="time-cell skipped">0</div>
+  </div>
+
+   
+  
+  
+
+  <div class="embed" data-parent="0.18"><img src="src.test.karate-ui.principal_1_1618662887550.png"/></div>
+
+     
+
+  
+
+</div>
+</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
