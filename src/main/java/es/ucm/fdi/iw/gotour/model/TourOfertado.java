@@ -18,7 +18,7 @@ import lombok.AllArgsConstructor;
 @NamedQueries({
 	@NamedQuery(name="TourOfertado.getTour",
 			query="SELECT u FROM TourOfertado u "
-					+ "WHERE u.id = :id ")
+					+ "WHERE u.Id = :id ")
 })
 @NamedNativeQueries({
 	@NamedNativeQuery(name="TourOfertado.getEtiquetas",
@@ -28,43 +28,43 @@ public class TourOfertado {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long Id;
 
 	@NotNull
-	private String descripcion;
+	private String Descripcion;
 
-	private String portada;
-
-	@NotNull
-	private String ciudad;
+	private String Portada;
 
 	@NotNull
-	private String titulo;
+	private String Ciudad;
 
-	private String lugar;
+	@NotNull
+	private String Titulo;
+
+	private String Lugar;
     
 	@NotNull
-	private String pais;
+	private String Pais;
 
-	private String mapa;
+	private String Mapa;
 
-	private boolean disponible;
+	private boolean Disponible;
 	
 	@NotNull
-	private double precio;
+	private double Precio;
 
 	@NotNull
-	private int maxTuristas;
+	private int MaxTuristas;
 
-	@OneToMany (mappedBy="datos")
-	private List<Tour>  instancias = new ArrayList<>();
+	@OneToMany (mappedBy="Datos")
+	private List<Tour>  Instancias = new ArrayList<>();
 	@NotNull
 	@ManyToOne
-	private User guia;
+	private User Guia;
 	
 	@ElementCollection
-	@CollectionTable(joinColumns = @JoinColumn(name="tourOfertado_id"))
-	private List<String>  etiquetas = new ArrayList<String>();
+	@CollectionTable(joinColumns = @JoinColumn(name="TourOfertado_id"))
+	private List<String> Etiquetas = new ArrayList<String>();
 
 	@Override
 	public String toString() {

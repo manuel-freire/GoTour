@@ -15,19 +15,19 @@ public class Review {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long Id;
 
 	private String texto;
-	private int puntuacion;
+	private int Puntuacion;
 	
 	@NotNull
 	@ManyToOne(targetEntity=User.class)
-	private User creador;
+	private User Creador;
 
 	@ManyToOne(targetEntity=User.class)
-	private User destinatario;
+	private User Destinatario;
 
 	@ManyToOne(targetEntity=Tour.class)
-	private Tour tourvalorado;
+	private Tour TourValorado;
 
 }

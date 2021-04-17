@@ -50,30 +50,30 @@ import lombok.AllArgsConstructor;
 @NamedQueries({
         @NamedQuery(name="User.byUsername",
                 query="SELECT u FROM User u "
-                        + "WHERE u.username = :username AND u.enabled = 1"),
+                        + "WHERE u.Username = :username AND u.Enabled = 1"),
 		@NamedQuery(name="User.byId",
 				query="SELECT u FROM User u "
-						+ "WHERE u.id = :id AND u.enabled = 1"),
+						+ "WHERE u.Id = :id AND u.Enabled = 1"),
         @NamedQuery(name="User.hasUsername",
                 query="SELECT COUNT(u) "
                         + "FROM User u "
-                        + "WHERE u.username = :username"),
+                        + "WHERE u.Username = :username"),
 		@NamedQuery(name="userByLogin",
-				query="select u from User u where u.email = :loginParam")
+				query="select u from User u where u.Email = :loginParam")
 		
 })
 
 @NamedNativeQueries({
 	@NamedNativeQuery(name="User.getToursOfrecidos",
-		query="SELECT * from tour_ofertado WHERE guia_id = :guia_id"),
+		query="SELECT * from tour_ofertado WHERE Guia_id = :guia_id"),
 		@NamedNativeQuery(name="User.getIdToursOfrecidos",
-		query="SELECT Id from tour_ofertado WHERE guia_id = :guia_id"),
+		query="SELECT Id from tour_ofertado WHERE Guia_id = :guia_id"),
 	@NamedNativeQuery(name="User.getToursConcretos",
-		query="SELECT * from tour WHERE datos_id = :datos_id"),
+		query="SELECT * from tour WHERE Datos_id = :datos_id"),
 	@NamedNativeQuery(name="User.getReviewsRecibidas",
-		query="SELECT * FROM Review WHERE destinatario_id = :dest"),
+		query="SELECT * FROM Review WHERE Destinatario_id = :dest"),
 	@NamedNativeQuery(name="User.haslanguajes",
-	query="SELECT idiomashablados from user_idiomashablados WHERE user_idiomashablados.user_id = :user_id")
+	query="SELECT idiomas_hablados from user_idiomas_hablados WHERE user_idiomas_hablados.User_id = :user_id")
 })
 public class User implements Transferable<User.Transfer> {
 
@@ -96,77 +96,77 @@ public class User implements Transferable<User.Transfer> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long Id;
 	/** username for login purposes; must be unique */
 	@Column(nullable = false, unique = true)
-	private String username;
+	private String Username;
 	/** encoded password; use setPassword(SecurityConfig.encode(plaintextPassword)) to encode it  */
 	@Column(nullable = false)
-	private String password;
+	private String Password;
 	@Column(nullable = false)
-	private String roles; // split by ',' to separate roles
-	private int enabled;
+	private String Roles; // split by ',' to separate roles
+	private int Enabled;
 
 	// application-specific fields
 	@NotNull
 	@Size(max=244)
-	private String nombre;
+	private String Nombre;
 
 	@NotNull
 	@Size(max=244)
-	private String apellidos;
+	private String Apellidos;
 	
-	private String email;
-	private String foto;
+	private String Email;
+	private String Foto;
 	@NotNull
 	@Size(max=244)
-    private long numtarjeta;
-	private String caducidadtarjeta;
-	private int numsecreto;
+    private long NumTarjeta;
+	private String CaducidadTarjeta;
+	private int NumSecreto;
 
 	@NotNull
-	private long numtelefono;
+	private long NumTelefono;
 
 	@NotNull
 	@Size(max=100)
-	private String preguntaseguridad;
+	private String PreguntaSeguridad;
 
 	@NotNull
 	@Size(max=100)
 	
-	private String respuestaseguridad;
+	private String RespuestaSeguridad;
 
 	@NotNull
-	private int puntuacion;
+	private int Puntuacion;
 
 	@OneToMany(targetEntity=Tour.class)
 	@JoinColumn(name="creador_id")
-	private List<Tour> tourofertados=new ArrayList<>();
+	private List<Tour> TourOfertados=new ArrayList<>();
 
 	@ManyToMany(targetEntity=Tour.class)
-	private List<Tour> toursasistidos=new ArrayList<>(); 
+	private List<Tour> ToursAsistidos=new ArrayList<>(); 
 
 	@OneToMany(targetEntity=Review.class)
-	@JoinColumn(name="creador_id")
-	private List<Review> reviewshechas=new ArrayList<>();
+	@JoinColumn(name="Creador_id")
+	private List<Review> ReviewsHechas=new ArrayList<>();
 
 	@OneToMany
-	@JoinColumn(name="creador_id")
-	private List<Mensajes> mensajes = new ArrayList<>();
+	@JoinColumn(name="Creador_id")
+	private List<Mensajes> Mensajes = new ArrayList<>();
 	
 	@OneToMany(targetEntity=Review.class)
-	@JoinColumn(name="destinatario_id")
-	private List<Review> reviewsrecibidas=new ArrayList<>();
+	@JoinColumn(name="Destinatario_id")
+	private List<Review> ReviewsRecibidas=new ArrayList<>();
 	@ElementCollection(fetch=FetchType.EAGER)
-	private List<String> idiomashablados=new ArrayList<>();
+	private List<String> IdiomasHablados=new ArrayList<>();
 	
 
 	@OneToMany
-	@JoinColumn(name = "sender_id")
-	private List<Message> sent = new ArrayList<>();
+	@JoinColumn(name = "Sender_id")
+	private List<Message> Sent = new ArrayList<>();
 	@OneToMany
-	@JoinColumn(name = "recipient_id")	
-	private List<Message> received = new ArrayList<>();	
+	@JoinColumn(name = "Recipient_id")	
+	private List<Message> Received = new ArrayList<>();	
 	
 	// utility methods
 	
@@ -175,9 +175,9 @@ public class User implements Transferable<User.Transfer> {
 	 * @param role to check
 	 * @return true iff this user has that role.
 	 */
-	public boolean hasRole(Role role) {
-		String roleName = role.name();
-		return Arrays.stream(roles.split(","))
+	public boolean hasRole(Role Role) {
+		String roleName = Role.name();
+		return Arrays.stream(Roles.split(","))
 				.anyMatch(r -> r.equals(roleName));
 	}
 	
@@ -185,25 +185,25 @@ public class User implements Transferable<User.Transfer> {
     @Getter
     @AllArgsConstructor
     public static class Transfer {
-		private long id;
-		private String apellidos;
-		private String nombre;
-        private String username;
-		private long numtelefono;
-		private int puntuacion;
-		private List<Tour> tourofrecidos;
-		private List<Tour> toursasistidos;
-		private List<Review> reviewshechas;
-		private List<Message> sent;
-		private List<Message> received;
-		private List<Review> reviewsrecibidas;
-		private List<String> idiomashablados;
+		private long Id;
+		private String Apellidos;
+		private String Nombre;
+        private String Username;
+		private long Numtelefono;
+		private int Puntuacion;
+		private List<Tour> TourOfrecidos;
+		private List<Tour> ToursAsistidos;
+		private List<Review> ReviewsHechas;
+		private List<Message> Sent;
+		private List<Message> Received;
+		private List<Review> ReviewsRecibidas;
+		private List<String> IdiomasHablados;
 
     }
 
 	@Override
     public Transfer toTransfer() {
-		return new Transfer(id, apellidos, nombre,	username, numtelefono, puntuacion, tourofertados, toursasistidos, reviewshechas, sent,  received, reviewsrecibidas, idiomashablados);
+		return new Transfer(Id, Apellidos, Nombre,	Username, NumTelefono, Puntuacion, TourOfertados, ToursAsistidos, ReviewsHechas, Sent,  Received, ReviewsRecibidas, IdiomasHablados);
     }
 
 	@Override

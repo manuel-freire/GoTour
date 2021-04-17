@@ -57,7 +57,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		List<String> idiomas= entityManager.createNamedQuery("User.haslanguajes")
 			.setParameter("user_id", u.getId()).getResultList();
 		log.info("LA LISTA DE IDIOMAS OBTENIDOS ES {}", idiomas);
-		u.setIdiomashablados(idiomas);		
+		u.setIdiomasHablados(idiomas);		
 		session.setAttribute("u", u);
 		
 		long unread = entityManager.createNamedQuery("Message.countUnread", Long.class)

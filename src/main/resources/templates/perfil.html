@@ -11,38 +11,38 @@
     <th:block th:replace="frags/header.html"></th:block>
     <div class="contenedor">
         <div class="informacion">
-            <div th:if="${session.u.id == user.id}">
-                <p th:text="${user.getUsername()}">Nombre usuario</p>
-                <a th:href="@{/user/{id}/perfil(id=${user.id})}">Editar</a>
-                <a th:href="@{/user/{id}/perfil(id=${user.id})}">Nuevo tour</a>
-                <a th:href="@{/user/{id}/datosPrivados(id=${user.id})}">Mi cuenta</a>
+            <div th:if="${session.u.Id == user.Id}">
+                <p th:text="${user.Username}">Nombre usuario</p>
+                <a th:href="@{/user/{id}/perfil(id=${user.Id})}">Editar</a>
+                <a th:href="@{/user/{id}/perfil(id=${user.Id})}">Nuevo tour</a>
+                <a th:href="@{/user/{id}/datosPrivados(id=${user.Id})}">Mi cuenta</a>
             </div>
-            <p th:text="${user.nombre} + ' ' + ${user.apellidos}">Nombre usuario</p>
+            <p th:text="${user.Nombre} + ' ' + ${user.Apellidos}">Nombre usuario</p>
         </div>
         <img id="user" th:src="@{/img/perro.jpg}" alt="La imagen del usuario" >
 
-        <div th:each="i: ${#numbers.sequence(1, user.puntuacion)}"><img th:src="@{/img/star.png}" width="30" /></div>
+        <div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}"><img th:src="@{/img/star.png}" width="30" /></div>
         <div>
             <h3>-------------Tours disponibles---------------</h3>
-            <div class="tour" th:each="tour: ${user.tourofertados}">
-                <div th:if="${tour.datos.disponible}">
+            <div class="tour" th:each="tour: ${user.TourOfertados}">
+                <div th:if="${tour.Datos.Disponible}">
                     <img id="user" th:src="@{/img/coliseo.jpg}" alt="Coliseo" >
-                    <div class="titulo"><a th:href="@{/tour/{id}(id=${tour.id})}" th:text="${tour.datos.titulo}"></a></div>
-                    <div class="fecha" th:text="'Inicio: '+${tour.fechaIni}"></div>
-                    <div class="fecha" th:text="'Fin: '+${tour.fechaFin}"></div>
-                    <div class="lugar" th:text="${tour.datos.ciudad}+', '+${tour.datos.pais}"></div>
-                    <div class="lugar" th:text="${tour.datos.lugar}"></div>
-                    <div class="precio" th:text="${tour.datos.precio}+'€'"></div>
-                    <div class="personas" th:text="${tour.actTuristas}+'/'+${tour.datos.maxTuristas}+' turistas'"></div>
+                    <div class="titulo"><a th:href="@{/tour/{id}(id=${tour.Id})}" th:text="${tour.Datos.Titulo}"></a></div>
+                    <div class="fecha" th:text="'Inicio: '+${tour.FechaIni}"></div>
+                    <div class="fecha" th:text="'Fin: '+${tour.FechaFin}"></div>
+                    <div class="lugar" th:text="${tour.Datos.Ciudad}+', '+${tour.Datos.Pais}"></div>
+                    <div class="lugar" th:text="${tour.Datos.Lugar}"></div>
+                    <div class="precio" th:text="${tour.Datos.Precio}+'€'"></div>
+                    <div class="personas" th:text="${tour.ActTuristas}+'/'+${tour.Datos.MaxTuristas}+' turistas'"></div>
                     <p>-----------------------------------------------</p>
                 </div>
             </div>      
             <h3>-------------Reseñas--------------------------</h3>
-            <div class="resenya" th:each="review: ${user.reviewsrecibidas}">
-                <img id="user" th:src="@{/img/defaultuser.png}" alt="user" >
-                <div class="creador"><a th:href="@{/user/{id}/perfil(id=${review.creador.id})}" th:text="${review.creador.username}"></a></div>
-                <div th:each="i: ${#numbers.sequence(1, user.puntuacion)}"><img th:src="@{/img/star.png}" width="30" /></div>
-                <div class="textoReview" th:text="${review.texto}"></div>
+            <div class="resenya" th:each="review: ${user.ReviewsRecibidas}">
+                <img id="user" th:src="@{~/img/defaultuser.png}" alt="user" >
+                <div class="creador"><a th:href="@{/user/{id}/perfil(id=${review.Creador.Id})}" th:text="${review.Creador.Username}"></a></div>
+                <div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}"><img th:src="@{/img/star.png}" width="30" /></div>
+                <div class="textoReview" th:text="${review.Texto}"></div>
                 <p>-----------------------------------------------</p>
             </div>
         </div>

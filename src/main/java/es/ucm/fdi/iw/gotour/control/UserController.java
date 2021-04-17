@@ -246,13 +246,13 @@ public class UserController {
         user.setEmail(email);
 		String encoded = encodePassword(password);
         user.setPassword(encoded);
-        user.setPreguntaseguridad(preguntaseguridad);
-        user.setRespuestaseguridad(respuestaseguridad);
+        user.setPreguntaSeguridad(preguntaseguridad);
+        user.setRespuestaSeguridad(respuestaseguridad);
         user.setUsername(username);
-        user.setNumtelefono(numtelefono);
-        user.setNumtarjeta(numtarjeta);
-        user.setCaducidadtarjeta(caducidadtarjeta);
-        user.setNumsecreto(numsecreto);
+        user.setNumTelefono(numtelefono);
+        user.setNumTarjeta(numtarjeta);
+        user.setCaducidadTarjeta(caducidadtarjeta);
+        user.setNumSecreto(numsecreto);
         user.setRoles("USER");
         user.setEnabled(1);
         entityManager.persist(user);
@@ -286,10 +286,10 @@ public class UserController {
 		String encoded = encodePassword(password);
         user.setPassword(encoded);
         user.setUsername(username);
-        user.setNumtelefono(numtelefono);
-        user.setNumtarjeta(numtarjeta);
-        user.setCaducidadtarjeta(caducidadtarjeta);
-        user.setNumsecreto(numsecreto);
+        user.setNumTelefono(numtelefono);
+        user.setNumTarjeta(numtarjeta);
+        user.setCaducidadTarjeta(caducidadtarjeta);
+        user.setNumSecreto(numsecreto);
         user.setRoles("USER");
         user.setEnabled(1);
 		session.setAttribute("u", user);
@@ -307,14 +307,14 @@ public class UserController {
 		log.info("EL USUARIO CONTIENE LO SIGUIENTE {}", user);
 
 		// si tiene que recorrer una relación no-eager, usas @Transactional y haces una copia
-		List<Tour> ofertados =  new ArrayList<>(user.getTourofertados());
+		List<Tour> ofertados =  new ArrayList<>(user.getTourOfertados());
 		model.addAttribute("ofertados", ofertados);
 		// si tienes que recorrer otra relación interna, sencilamente recórrela
 		for (Tour t : ofertados) {
 			t.getDatos(); // arggs, mis ojos!
 		}
 
-		List<Review> recibidas =  new ArrayList<>(user.getReviewsrecibidas());
+		List<Review> recibidas =  new ArrayList<>(user.getReviewsRecibidas());
 		model.addAttribute("recibidas", recibidas);
 		
         model.addAttribute("user", user);

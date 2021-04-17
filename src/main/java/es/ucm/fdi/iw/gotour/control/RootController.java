@@ -135,7 +135,10 @@ public class RootController {
         List<User> turistas = t.getTuristas();
         turistas.add(u);
         t.setTuristas(turistas);
-        return "tour/" + id_tour;
+        // entityManager.persist(u);
+        entityManager.persist(t);
+        entityManager.flush();
+        return "tour";
     }
 
     @GetMapping("/")            // <-- en qué URL se expone, y por qué métodos (GET)        

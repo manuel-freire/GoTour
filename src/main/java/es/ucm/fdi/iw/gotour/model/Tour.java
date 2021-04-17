@@ -20,40 +20,40 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @NamedQueries({
 	@NamedQuery(name="AllTours", query="Select t from Tour t"),
-	@NamedQuery(name="ToursBySearch", query="Select t from Tour t where t.datos.pais=:paisParam and "+
-																		"t.datos.ciudad=:ciudadParam and "+
-																		"t.datos.lugar=:lugarParam and "+
-																		"t.fechaIni=:fechaIniParam and "+
-																		"t.fechaFin=:fechaFinParam"),
+	@NamedQuery(name="ToursBySearch", query="Select t from Tour t where t.Datos.Pais=:paisParam and "+
+																		"t.Datos.Ciudad=:ciudadParam and "+
+																		"t.Datos.Lugar=:lugarParam and "+
+																		"t.FechaIni=:fechaIniParam and "+
+																		"t.FechaFin=:fechaFinParam"),
 	@NamedQuery(name="Tour.getTour",
 		query="SELECT u FROM Tour u "
-				+ "WHERE u.id = :id ")
+				+ "WHERE u.Id = :id ")
 })
 
 public class Tour {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long Id;
 
 	 @NotNull
 	 @ManyToOne (targetEntity=TourOfertado.class)
-	 private TourOfertado datos;
+	 private TourOfertado Datos;
 
 	 @NotNull
-	private LocalDateTime fechaIni;
+	private LocalDateTime FechaIni;
 
 	@NotNull
-	private LocalDateTime fechaFin;
+	private LocalDateTime FechaFin;
 
 	@NotNull
-	private int actTuristas;
+	private int ActTuristas;
 	
-	@ManyToMany (mappedBy="toursasistidos")
-	private List<User>  turistas = new ArrayList<>();
+	@ManyToMany (mappedBy="ToursAsistidos")
+	private List<User>  Turistas = new ArrayList<>();
     
-	@OneToMany (mappedBy="tourvalorado")
-	private List<Review>  reviews = new ArrayList<>();
+	@OneToMany (mappedBy="TourValorado")
+	private List<Review>  Reviews = new ArrayList<>();
 
 
 	@Override

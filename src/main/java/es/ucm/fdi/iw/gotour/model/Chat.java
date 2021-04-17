@@ -25,12 +25,12 @@ public class Chat {
 
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long Id;
     @ManyToMany 
-	private List<User> users = new ArrayList<>();
+	private List<User> Users = new ArrayList<>();
 	@OneToMany
 	@JoinColumn(name="id_chat")
-	private List<Mensajes> mensajes = new ArrayList<>();
+	private List<Mensajes> Mensajes = new ArrayList<>();
 
 	@OneToOne
 	private Tour Tour;
@@ -38,6 +38,6 @@ public class Chat {
 
     @Override
 	public String toString() {
-		return "Chat #" + id;
+		return "Chat #" + Id;
 	}
 }

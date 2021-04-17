@@ -21,8 +21,8 @@ public class Mensajes {
 
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private long Id;
 
     private String contenido;
-    private Date fecha;
+    private Date Fecha;
 }
