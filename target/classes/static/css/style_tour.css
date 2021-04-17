@@ -1,0 +1,24 @@
+.etiquetas_tour{
+    margin-top: 10px;
+    display: flex;
+}
+.guia_tour_foto{
+    width: 100%;
+}
+.estrellas{
+    width: 70%;
+    height: 20%;
+    margin: 5%;
+}
+.card_guia{
+    text-align: center;
+
+}
+
+.idiomas{
+    font-size: 20px;
+    font-weight: lighter;
+}
+.box_idiomas{
+    border: 1px solid rgb(192, 192, 192);
+}

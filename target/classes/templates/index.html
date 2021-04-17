@@ -257,12 +257,12 @@
 
           <div class="col-md-6 col-lg-4 mb-4" th:each="tour: ${tours}">
             <div class="property-entry h-100">
-              <a href="property-details.html" class="property-thumbnail">
+              <a th:href="@{'/tour/'+${tour.getId()}}" class="property-thumbnail">
                 <div class="offer-type-wrap">
                   <span class="offer-type bg-danger">LLeno</span>
                   <span class="offer-type bg-success">Vacio</span>
                 </div>
-                <img th:src="@{img/img_1.jpg}" alt="Image" class="img-fluid">
+                <img th:href="@{'/tour/'+${tour.getId()}}" th:src="@{${tour.getDatos().getPortada()}}" alt="Image" class="img-fluid">
               </a>
               <div class="p-4 property-body">
                 <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
@@ -273,7 +273,7 @@
 
                   <li>
                     <span class="property-specs">Inicio</span>
-                    <span class="property-specs-number" th:text="'Inicio: '+${tour.getFechaIni()}"></span>
+                    <span class="property-specs-number" th:text="${tour.getFechaIni()}"></span>
                     
                   </li>
                   <li>
@@ -284,7 +284,7 @@
                   
                   <li>
                     <span class="property-specs">Fin</span>
-                    <span class="property-specs-number" th:text="'Fin: '+${tour.getFechaFin()}"></span>
+                    <span class="property-specs-number" th:text="${tour.getFechaFin()}"></span>
                     
                   </li>
                 </ul>

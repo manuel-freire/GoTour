@@ -1322,3 +1322,195 @@ org.graalvm.polyglot.PolyglotException: js eval failed twice:document.querySelec
 src/test/karate-ui/principal.feature:21
 16:28:22.868 [chrome_1618669678221] WARN  com.intuit.karate.shell.Command - exit code was non-zero: 137 - [/opt/google/chrome/google-chrome, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618669678221, --disable-popup-blocking] working dir: target/chrome_1618669678221
 16:28:27.546 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<fail>> feature 1 of 1 (0 remaining) src/test/karate-ui/principal.feature
+20:19:59.504 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+20:20:00.269 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618683600253
+20:20:17.534 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: S
+20:20:17.609 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: P
+20:20:17.636 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+20:20:17.665 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: C
+20:20:17.702 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+20:20:17.735 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: M
+20:20:17.754 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+20:20:17.795 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: R
+20:20:17.843 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: I
+20:20:17.864 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: N
+20:20:17.884 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+20:20:21.448 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 29, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'outerHTML' of null
+    at <anonymous>:1:32, objectId={"injectedScriptId":3,"id":1}}]]
+20:20:21.608 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("title")['outerHTML'], error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'outerHTML' of null\n    at <anonymous>:1:32","objectId":"{\"injectedScriptId\":3,\"id\":1}"}
+20:20:26.602 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 33, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'outerHTML' of null
+    at <anonymous>:1:32, objectId={"injectedScriptId":4,"id":1}}]]
+20:20:26.606 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("title")['outerHTML'], error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'outerHTML' of null\n    at <anonymous>:1:32","objectId":"{\"injectedScriptId\":4,\"id\":1}"}
+20:20:29.839 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 36, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'click' of null
+    at <anonymous>:1:42, objectId={"injectedScriptId":4,"id":3}}]]
+20:20:29.843 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("[id=ver_perfil]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:42","objectId":"{\"injectedScriptId\":4,\"id\":3}"}
+20:20:32.858 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 37, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'click' of null
+    at <anonymous>:1:42, objectId={"injectedScriptId":4,"id":5}}]]
+20:20:32.859 [com.intuit.karate.cli.Main.main()] ERROR c.intuit.karate.driver.DriverOptions - js eval failed twice:document.querySelector("[id=ver_perfil]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:42","objectId":"{\"injectedScriptId\":4,\"id\":5}"}
+20:20:32.930 [com.intuit.karate.cli.Main.main()] ERROR com.intuit.karate - src/test/karate-ui/principal.feature:23
+* click("[id=ver_perfil]")
+>>>> js failed:
+01: click("[id=ver_perfil]")
+<<<<
+org.graalvm.polyglot.PolyglotException: js eval failed twice:document.querySelector("[id=ver_perfil]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:42","objectId":"{\"injectedScriptId\":4,\"id\":5}"}
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:271)
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:256)
+- com.intuit.karate.driver.DevToolsDriver.click(DevToolsDriver.java:477)
+- <js>.:anonymous(Unnamed:1)
+
+src/test/karate-ui/principal.feature:23
+20:20:33.465 [chrome_1618683604635] WARN  com.intuit.karate.shell.Command - exit code was non-zero: 137 - [/opt/google/chrome/google-chrome, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618683604635, --disable-popup-blocking] working dir: target/chrome_1618683604635
+20:20:38.601 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<fail>> feature 1 of 1 (0 remaining) src/test/karate-ui/principal.feature
+20:23:30.456 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+20:23:31.060 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618683811059
+20:23:43.202 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: S
+20:23:43.270 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: P
+20:23:43.318 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+20:23:43.361 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: C
+20:23:43.409 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+20:23:43.433 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: M
+20:23:43.455 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+20:23:43.472 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: R
+20:23:43.489 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: I
+20:23:43.509 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: N
+20:23:43.524 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+20:23:45.052 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 29, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'outerHTML' of null
+    at <anonymous>:1:32, objectId={"injectedScriptId":3,"id":1}}]]
+20:23:45.114 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("title")['outerHTML'], error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'outerHTML' of null\n    at <anonymous>:1:32","objectId":"{\"injectedScriptId\":3,\"id\":1}"}
+20:24:04.415 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 33, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'outerHTML' of null
+    at <anonymous>:1:32, objectId={"injectedScriptId":4,"id":1}}]]
+20:24:04.646 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("title")['outerHTML'], error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'outerHTML' of null\n    at <anonymous>:1:32","objectId":"{\"injectedScriptId\":4,\"id\":1}"}
+20:24:10.236 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 36, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'click' of null
+    at <anonymous>:1:42, objectId={"injectedScriptId":4,"id":3}}]]
+20:24:10.248 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("[id=ver_perfil]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:42","objectId":"{\"injectedScriptId\":4,\"id\":3}"}
+20:24:13.254 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 37, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'click' of null
+    at <anonymous>:1:42, objectId={"injectedScriptId":4,"id":5}}]]
+20:24:13.296 [com.intuit.karate.cli.Main.main()] ERROR c.intuit.karate.driver.DriverOptions - js eval failed twice:document.querySelector("[id=ver_perfil]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:42","objectId":"{\"injectedScriptId\":4,\"id\":5}"}
+20:24:13.717 [com.intuit.karate.cli.Main.main()] ERROR com.intuit.karate - src/test/karate-ui/principal.feature:23
+* click("[id=ver_perfil]")
+>>>> js failed:
+01: click("[id=ver_perfil]")
+<<<<
+org.graalvm.polyglot.PolyglotException: js eval failed twice:document.querySelector("[id=ver_perfil]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:42","objectId":"{\"injectedScriptId\":4,\"id\":5}"}
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:271)
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:256)
+- com.intuit.karate.driver.DevToolsDriver.click(DevToolsDriver.java:477)
+- <js>.:anonymous(Unnamed:1)
+
+src/test/karate-ui/principal.feature:23
+20:24:14.386 [chrome_1618683814624] WARN  com.intuit.karate.shell.Command - exit code was non-zero: 137 - [/opt/google/chrome/google-chrome, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618683814624, --disable-popup-blocking] working dir: target/chrome_1618683814624
+20:24:21.671 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<fail>> feature 1 of 1 (0 remaining) src/test/karate-ui/principal.feature
+20:29:02.322 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+20:29:02.999 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618684142998
+20:29:21.396 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: S
+20:29:21.460 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: P
+20:29:21.495 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+20:29:21.520 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: C
+20:29:21.553 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+20:29:21.610 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: M
+20:29:21.670 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+20:29:21.707 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: R
+20:29:21.733 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: I
+20:29:21.757 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: N
+20:29:21.790 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+20:29:24.641 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 29, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'outerHTML' of null
+    at <anonymous>:1:32, objectId={"injectedScriptId":3,"id":1}}]]
+20:29:24.644 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("title")['outerHTML'], error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'outerHTML' of null\n    at <anonymous>:1:32","objectId":"{\"injectedScriptId\":3,\"id\":1}"}
+20:29:32.968 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 33, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'outerHTML' of null
+    at <anonymous>:1:32, objectId={"injectedScriptId":4,"id":1}}]]
+20:29:33.023 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("title")['outerHTML'], error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'outerHTML' of null\n    at <anonymous>:1:32","objectId":"{\"injectedScriptId\":4,\"id\":1}"}
+20:29:36.231 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 36, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'click' of null
+    at <anonymous>:1:42, objectId={"injectedScriptId":4,"id":3}}]]
+20:29:36.235 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("[id=ver_perfil]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:42","objectId":"{\"injectedScriptId\":4,\"id\":3}"}
+20:29:39.250 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 37, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'click' of null
+    at <anonymous>:1:42, objectId={"injectedScriptId":4,"id":5}}]]
+20:29:39.257 [com.intuit.karate.cli.Main.main()] ERROR c.intuit.karate.driver.DriverOptions - js eval failed twice:document.querySelector("[id=ver_perfil]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:42","objectId":"{\"injectedScriptId\":4,\"id\":5}"}
+20:29:39.355 [com.intuit.karate.cli.Main.main()] ERROR com.intuit.karate - src/test/karate-ui/principal.feature:23
+* click("[id=ver_perfil]")
+>>>> js failed:
+01: click("[id=ver_perfil]")
+<<<<
+org.graalvm.polyglot.PolyglotException: js eval failed twice:document.querySelector("[id=ver_perfil]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:42","objectId":"{\"injectedScriptId\":4,\"id\":5}"}
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:271)
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:256)
+- com.intuit.karate.driver.DevToolsDriver.click(DevToolsDriver.java:477)
+- <js>.:anonymous(Unnamed:1)
+
+src/test/karate-ui/principal.feature:23
+20:29:39.823 [chrome_1618684147934] WARN  com.intuit.karate.shell.Command - exit code was non-zero: 137 - [/opt/google/chrome/google-chrome, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618684147934, --disable-popup-blocking] working dir: target/chrome_1618684147934
+20:29:44.699 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<fail>> feature 1 of 1 (0 remaining) src/test/karate-ui/principal.feature
+20:35:15.430 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+20:35:16.086 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618684516086
+20:35:29.738 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: S
+20:35:29.767 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: P
+20:35:29.815 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+20:35:29.887 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: C
+20:35:29.904 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+20:35:29.952 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: M
+20:35:29.969 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+20:35:29.993 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: R
+20:35:30.023 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: I
+20:35:30.039 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: N
+20:35:30.065 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+20:35:31.957 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 29, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'outerHTML' of null
+    at <anonymous>:1:32, objectId={"injectedScriptId":3,"id":1}}]]
+20:35:31.991 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("title")['outerHTML'], error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'outerHTML' of null\n    at <anonymous>:1:32","objectId":"{\"injectedScriptId\":3,\"id\":1}"}
+20:35:42.794 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 35, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'click' of null
+    at <anonymous>:1:42, objectId={"injectedScriptId":4,"id":1}}]]
+20:35:42.796 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("[id=ver_perfil]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:42","objectId":"{\"injectedScriptId\":4,\"id\":1}"}
+20:35:45.825 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 36, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'click' of null
+    at <anonymous>:1:42, objectId={"injectedScriptId":4,"id":3}}]]
+20:35:45.839 [com.intuit.karate.cli.Main.main()] ERROR c.intuit.karate.driver.DriverOptions - js eval failed twice:document.querySelector("[id=ver_perfil]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:42","objectId":"{\"injectedScriptId\":4,\"id\":3}"}
+20:35:45.898 [com.intuit.karate.cli.Main.main()] ERROR com.intuit.karate - src/test/karate-ui/principal.feature:23
+* click("[id=ver_perfil]")
+>>>> js failed:
+01: click("[id=ver_perfil]")
+<<<<
+org.graalvm.polyglot.PolyglotException: js eval failed twice:document.querySelector("[id=ver_perfil]").click(), error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'click' of null\n    at <anonymous>:1:42","objectId":"{\"injectedScriptId\":4,\"id\":3}"}
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:271)
+- com.intuit.karate.driver.DevToolsDriver.eval(DevToolsDriver.java:256)
+- com.intuit.karate.driver.DevToolsDriver.click(DevToolsDriver.java:477)
+- <js>.:anonymous(Unnamed:1)
+
+src/test/karate-ui/principal.feature:23
+20:35:46.426 [chrome_1618684520427] WARN  com.intuit.karate.shell.Command - exit code was non-zero: 137 - [/opt/google/chrome/google-chrome, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618684520427, --disable-popup-blocking] working dir: target/chrome_1618684520427
+20:35:50.208 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<fail>> feature 1 of 1 (0 remaining) src/test/karate-ui/principal.feature
+20:39:41.881 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+20:39:42.644 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618684782644
+20:39:55.734 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: S
+20:39:55.776 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: P
+20:39:55.798 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+20:39:55.821 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: C
+20:39:55.862 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+20:39:55.902 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: M
+20:39:55.932 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+20:39:55.973 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: R
+20:39:56.022 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: I
+20:39:56.085 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: N
+20:39:56.102 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+20:40:04.377 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 32, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'outerHTML' of null
+    at <anonymous>:1:32, objectId={"injectedScriptId":4,"id":1}}]]
+20:40:04.391 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("title")['outerHTML'], error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'outerHTML' of null\n    at <anonymous>:1:32","objectId":"{\"injectedScriptId\":4,\"id\":1}"}
+20:40:07.844 [chrome_1618684785732] WARN  com.intuit.karate.shell.Command - exit code was non-zero: 137 - [/opt/google/chrome/google-chrome, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618684785732, --disable-popup-blocking] working dir: target/chrome_1618684785732
+20:40:11.572 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<pass>> feature 1 of 1 (0 remaining) src/test/karate-ui/principal.feature
+20:41:17.494 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate - Karate version: 1.0.1
+20:41:18.108 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - backed up existing 'target/karate-reports' dir to: target/karate-reports_1618684878108
+20:41:31.094 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: S
+20:41:31.159 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: P
+20:41:31.187 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+20:41:31.244 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: C
+20:41:31.293 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+20:41:31.331 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: M
+20:41:31.359 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: A
+20:41:31.382 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: R
+20:41:31.409 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: I
+20:41:31.445 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: N
+20:41:31.476 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - unknown character / key code: E
+20:41:32.722 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 29, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'outerHTML' of null
+    at <anonymous>:1:32, objectId={"injectedScriptId":3,"id":1}}]]
+20:41:32.770 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("title")['outerHTML'], error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'outerHTML' of null\n    at <anonymous>:1:32","objectId":"{\"injectedScriptId\":3,\"id\":1}"}
+20:41:39.468 [nioEventLoopGroup-2-1] WARN  c.intuit.karate.driver.DriverOptions - devtools error: [id: 33, result: [type: MAP, value: {type=object, subtype=error, className=TypeError, description=TypeError: Cannot read property 'outerHTML' of null
+    at <anonymous>:1:32, objectId={"injectedScriptId":4,"id":1}}]]
+20:41:39.477 [com.intuit.karate.cli.Main.main()] WARN  c.intuit.karate.driver.DriverOptions - js eval failed once:document.querySelector("title")['outerHTML'], error: {"type":"object","subtype":"error","className":"TypeError","description":"TypeError: Cannot read property 'outerHTML' of null\n    at <anonymous>:1:32","objectId":"{\"injectedScriptId\":4,\"id\":1}"}
+20:41:44.122 [chrome_1618684881654] WARN  com.intuit.karate.shell.Command - exit code was non-zero: 137 - [/opt/google/chrome/google-chrome, --remote-debugging-port=9222, --no-first-run, --user-data-dir=/home/alumno/Escritorio/IW/GoTour/target/chrome_1618684881654, --disable-popup-blocking] working dir: target/chrome_1618684881654
+20:41:47.322 [com.intuit.karate.cli.Main.main()] INFO  com.intuit.karate.Suite - <<pass>> feature 1 of 1 (0 remaining) src/test/karate-ui/principal.feature

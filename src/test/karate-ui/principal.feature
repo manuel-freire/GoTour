@@ -18,9 +18,11 @@ Scenario: logear, elegir un tour e inscribirse al tour
   * driver.screenshot()
   * click("a[id=tour_ref]")
   * match html('title') contains 'Tour'
-  * click("a[id=tour_inscribirse]")
+  #* click("[id=contratar]")
+  * driver.screenshot()
+  * click("[id=ver_perfil]")
   * driver.screenshot()
   #Supongo que habra un cuadro de texto, se le mete el numero de personas que van a asistir y se presiona un boton para confirmar
-  #* input('#miembros', 2)
-  #* click("a[id=confirmar_inscripcion]")
+  #* input('#num_personas', 2)
+  #* click("a[id=contratar]")
   #* driver.screenshot()

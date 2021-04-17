@@ -1,67 +1,433 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
     <title>Tour</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
-</head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<body>
-    <th:block th:replace="frags/header.html">
-    </th:block>
-    <div class="main">
-        <div class="foto_tour">
-            <img class="imagen-tour1" th:src="@{${tour.getDatos().getPortada()}}" alt="Imágen del tour"></span>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
+    <link rel="stylesheet" th:href="@{/fonts/icomoon/style.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
+    <link rel="stylesheet" th:href="@{/css/mediaelementplayer.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" th:href="@{/fonts/flaticon/font/flaticon.css}">
+    <link rel="stylesheet" th:href="@{/css/fl-bigmug-line.css}">
+    <link rel="stylesheet" th:href="@{/css/aos.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style_tour.css}">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  
+  </head>
+  <body>
+  
+    <div class="site-loader"></div>
+  
+    <div class="site-wrap">
+  
+        <div class="site-mobile-menu">
+        <div class="site-mobile-menu-header">
+          <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+          </div>
         </div>
-        <div class="datos_tour">
-            <div class="datos_tour_sup">
-                <p class="tour_name" th:text="${tour.getDatos().getTitulo()}"></p>
-                <button class="tour_inscribirse" id="tour_inscribirse" >Inscribirse</button>
+        <div class="site-mobile-menu-body"></div>
+      </div> <!-- .site-mobile-menu -->
+  
+  <div class="site-navbar mt-4">
+          <div class="container py-1">
+            <div class="row align-items-center">
+              <div class="col-8 col-md-8 col-lg-4">
+                <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0"><strong>GoTour<span class="text-danger">.</span></strong></a></h1>
+              </div>
+              <div class="col-4 col-md-4 col-lg-8">
+                <nav class="site-navigation text-right text-md-right" role="navigation">
+  
+                  <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+  
+                  <ul class="site-menu js-clone-nav d-none d-lg-block">
+                    <li class="active">
+                      <a href="index.html">Home</a>
+                    </li>
+                    <li><a href="buy.html">Tours</a></li>
+                    <li class="has-children">
+                      <a href="properties.html">Mi perfil</a>
+                      <ul class="dropdown arrow-top">
+                        <li><a href="#">Log out</a></li>
+                        <li><a href="#">Mis tours reservados</a></li>
+                        <li><a href="#">Mis tours ofertados</a></li>
+                        <li class="has-children">
+                          <a href="#">Sub Menu</a>
+                          <ul class="dropdown">
+                            <li><a href="#">Menu One</a></li>
+                            <li><a href="#">Menu Two</a></li>
+                            <li><a href="#">Menu Three</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="buy.html">Pagina Ejemplo</a></li>
+  
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                  </ul>
+                </nav>
+              </div>
+             
+  
             </div>
-            <div class="datos_tour_mid">
-                <div class="bloque1">
-                    <div class="info_tour">
-                        <div class="info_tour_int"><p>Inicio: </p><p th:text="${tour.getFechaIni()}"></p></div>
-                        <div class="info_tour_int"><p>Fin: </p><p th:text="${tour.getFechaFin()}"></p></div>
-                        <div class="info_tour_int"><p>Ciudad: </p><p th:text="${tour.getDatos().getCiudad()}"></p></div>
-                        <div class="info_tour_int"><p>Lugar: </p><p th:text="${tour.getDatos().getLugar()}"></p></div>
-                        <div class="info_tour_int"><p>Turistas: </p><p th:text="${tour.getActTuristas()}+'/'+${tour.getDatos().getMaxTuristas()}"></p></div>
-                        <div class="info_tour_int"><p>Precio: </p><p th:text="${tour.getDatos().getPrecio()}+' €'"></p></div>
-                    </div>
-                    <img class="mapa" th:src="@{${tour.getDatos().getMapa()}}" alt="La imagen del mapa"></span>
-                </div>
-                <div class="guia_tour">
-                    <div class="guia_tour_izq">
-                        <img class="guia_tour_foto" th:src="@{${tour.getDatos().getGuia().getFoto()}}" alt="La imagen del guia"></span>
-                        <img class="estrellas" th:src="@{/img/5estrellas.png}" alt="Estrellas de valoración"></span>
-                    </div>
-                    <div class="guia_tour_der">
-                        <p class="guia_tour_nombre" th:text="${tour.getDatos().getGuia().getNombre()}">Rodrigo Gonzales</p>
-                        <div class="guia_tour_idiomas">
-                            <div th:each="idioma: ${idiomas}">
-                                <p th:text="${idioma}">Ingles</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+        </div>
+      </div>
+  
+       <div class="slide-one-item home-slider owl-carousel">
+  
+        <div class="site-blocks-cover overlay" style="background-image: url(img/hero_bg_2.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+          <div class="container">
+            <div class="row align-items-center justify-content-center text-center">
+              <div class="col-md-10">
+                <span class="d-inline-block bg-success text-white px-3 mb-3 property-offer-type rounded">Tour Cosmopolita</span>
+                <h1 class="mb-2">Opera de Sidney</h1>
+                <p class="mb-5"><strong class="h2 text-success font-weight-bold">Sidney, Australia</strong></p>
+                <p><a href="login.html" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">Login</a></p>
+              </div>
             </div>
-            <div class="datos_tour_inf">
-                <div class="descripcion_tour">
-                    <span th:text="${tour.getDatos().getDescripcion()}">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                        been the industry's standard dummy text.</span>
+          </div>
+        </div>  
+  
+        <div class="site-blocks-cover overlay" style="background-image: url(img/hero_bg_1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+          <div class="container">
+            <div class="row align-items-center justify-content-center text-center">
+              <div class="col-md-10">
+                <span class="d-inline-block bg-danger text-white px-3 mb-3 property-offer-type rounded">Tour Natural</span>
+                <h1 class="mb-2">Playa de Cielo Blanco</h1>
+                <p class="mb-5"><strong class="h2 text-success font-weight-bold">Gold Coast, Australia</strong></p>
+                <p><a href="registro.html" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">Registrate</a></p>
+              </div>
+            </div>
+          </div>
+        </div>  
+  
+      </div>
+  
+      <div class="site-section site-section-sm">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8">
+              <div>
+                <div class="slide-one-item home-slider owl-carousel">
+                  <div><img th:src="@{${tour.getDatos().getPortada()}}" alt="Imágen del tour" class="img-fluid"></div>
+                  <div><img th:src="@{${tour.getDatos().getMapa()}}" alt="La imagen del mapa" class="img-fluid"></div>
                 </div>
-                <div class="etiquetas_tour">
+              </div>
+              <div class="bg-white property-body border-bottom border-left border-right">
+                <div class="row mb-5">
+                  <div class="col-md-6">
+                    <strong class="text-success h1 mb-3" th:text="${tour.getDatos().getTitulo()}"></strong>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="property-specs-wrap mb-3 mb-lg-0  float-lg-right">
+                    <li>
+                      <span class="property-specs">Libre</span>
+                      <span class="property-specs-number" th:text="${tour.getDatos().getMaxTuristas()-tour.getActTuristas()}"></span>
+                      
+                    </li>
+                    <li>
+                      <span class="property-specs">Maximo</span>
+                      <span class="property-specs-number" th:text="${tour.getDatos().getMaxTuristas()}"></span>
+                      
+                    </li>
+                    <li>
+          
+                      <span class="property-specs">Precio</span>
+                      <span class="property-specs-number" th:text="${tour.getDatos().getPrecio()}+' €'"></span>
+                      
+                    </li>
+                  </ul>
+                  </div>
+                </div>
+  
+                <div class="row mb-5">
+                  <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
+                    <span class="d-inline-block text-black mb-0 caption-text" >Inicio</span>
+                    <strong class="d-block" th:text="${tour.getFechaIni()}">Condo</strong>
+                    <span class="d-inline-block text-black mb-0 caption-text" >Fin</span>
+                    <strong class="d-block" th:text="${tour.getFechaFin()}">2018</strong>
+                  </div>
+                
+                  <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
+                    <span class="d-inline-block text-black mb-0 caption-text" >Ciudad</span>
+                    <strong class="d-block" th:text="${tour.getDatos().getCiudad()}">$520</strong>
+                  </div>
+                  <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
+                    <span class="d-inline-block text-black mb-0 caption-text">Lugar</span>
+                    <strong class="d-block" th:text="${tour.getDatos().getLugar()}">$520</strong>
+                  </div>
+                </div>
+                <h2 class="h4 text-black">Descripcion</h2>
+                <p th:text="${tour.getDatos().getDescripcion()}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aperiam perferendis deleniti vitae asperiores accusamus tempora facilis sapiente, quas! Quos asperiores alias fugiat sunt tempora molestias quo deserunt similique sequi.</p>
+                
+                <div class="row no-gutters mt-5">
+                  <div class="col-12">
+                    <h2 class="h4 text-black mb-3">Etiquetas</h2>
+                  </div>
+                  <div class="etiquetas_tour">
                     <div th:each="e: ${etiquetas}">
                         <button th:text="${e}">museo</button>
                     </div>
+                  </div>
                 </div>
-                <a th:unless="${session.u.id} eq ${tour.datos.guia.id}" th:href="@{/tour/{id}/apuntarse(id = ${tour.id})}"><button> ¡Apuntate al Tour!</button></a>
+              </div>
             </div>
-        </div>
-    </div>
-</body>
+            <div class="col-lg-4">
+  
+              <div class="bg-white widget border rounded">
+  
+                <h3 class="h4 text-black widget-title mb-3">Contratar tour</h3>
+                <form action="" class="form-contact-agent">
+                  <div class="form-group">
+                    <label for="phone">Numero de personas que van a asistir</label>
+                    <input type="text" id="num_personas" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" id="contratar" class="btn btn-primary" value="Contratar">
+                  </div>
+                </form>
+              </div>
 
+              <div class="bg-white widget border rounded">
+                <div class="card_guia">
+                    <div class="card-avatar">
+                      <a href="javascript:;">
+                        <img class="img guia_tour_foto" th:src="@{${tour.getDatos().getGuia().getFoto()}}" alt="La imagen del guia" >
+                      </a>
+                    </div>
+                      <img class="estrellas card-category" th:src="@{/img/5estrellas.png}" alt="Estrellas de valoración">
+                      <h4 class="card-title" th:text="${tour.getDatos().getGuia().getNombre()}">Alec Thompson</h4>
+                      <div class="box_idiomas">
+                        <h5 th:text="Idiomas"></h5>
+                          <div th:each="idioma: ${idiomas}">
+                            <p class="idiomas" th:text="${idioma}">Ingles</p>
+                          </div>
+                      </div>
+                      <!--th:href="@{'perfil/'+${tour.getDatos().getGuia().getId()}}"-->
+                      <a th:href="@{/perfil/}" class="btn btn-primary btn-round" id="ver_perfil">Ver perfil</a>
+                    </div>
+                </div>
+  
+            </div>
+            
+          </div>
+        </div>
+      </div>
+  
+      <div class="site-section site-section-sm bg-light">
+        <div class="container">
+  
+          <div class="row">
+            <div class="col-12">
+              <div class="site-section-title mb-5">
+                <h2>Tours en el mismo Pais/</h2>
+              </div>
+            </div>
+          </div>
+        
+          <div class="row mb-5">
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="property-entry h-100">
+                <a href="property-details.html" class="property-thumbnail">
+                  <div class="offer-type-wrap">
+                    <span class="offer-type bg-danger">Sale</span>
+                    <span class="offer-type bg-success">Rent</span>
+                  </div>
+                  <img src="img/img_1.jpg" alt="Image" class="img-fluid">
+                </a>
+                <div class="p-4 property-body">
+                  <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                  <h2 class="property-title"><a href="property-details.html">625 S. Berendo St</a></h2>
+                  <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 625 S. Berendo St Unit 607 Los Angeles, CA 90005</span>
+                  <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
+                  <ul class="property-specs-wrap mb-3 mb-lg-0">
+                    <li>
+                      <span class="property-specs">Beds</span>
+                      <span class="property-specs-number">2 <sup>+</sup></span>
+                      
+                    </li>
+                    <li>
+                      <span class="property-specs">Baths</span>
+                      <span class="property-specs-number">2</span>
+                      
+                    </li>
+                    <li>
+                      <span class="property-specs">SQ FT</span>
+                      <span class="property-specs-number">7,000</span>
+                      
+                    </li>
+                  </ul>
+  
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="property-entry h-100">
+                <a href="property-details.html" class="property-thumbnail">
+                  <div class="offer-type-wrap">
+                    <span class="offer-type bg-danger">Sale</span>
+                    <span class="offer-type bg-success">Rent</span>
+                  </div>
+                  <img src="img/img_2.jpg" alt="Image" class="img-fluid">
+                </a>
+                <div class="p-4 property-body">
+                  <a href="#" class="property-favorite active"><span class="icon-heart-o"></span></a>
+                  <h2 class="property-title"><a href="property-details.html">871 Crenshaw Blvd</a></h2>
+                  <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 1 New York Ave, Warners Bay, NSW 2282</span>
+                  <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
+                  <ul class="property-specs-wrap mb-3 mb-lg-0">
+                    <li>
+                      <span class="property-specs">Beds</span>
+                      <span class="property-specs-number">2 <sup>+</sup></span>
+                      
+                    </li>
+                    <li>
+                      <span class="property-specs">Baths</span>
+                      <span class="property-specs-number">2</span>
+                      
+                    </li>
+                    <li>
+                      <span class="property-specs">SQ FT</span>
+                      <span class="property-specs-number">1,620</span>
+                      
+                    </li>
+                  </ul>
+  
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="property-entry h-100">
+                <a href="property-details.html" class="property-thumbnail">
+                  <div class="offer-type-wrap">
+                    <span class="offer-type bg-info">Lease</span>
+                  </div>
+                  <img src="img/img_3.jpg" alt="Image" class="img-fluid">
+                </a>
+                <div class="p-4 property-body">
+                  <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                  <h2 class="property-title"><a href="property-details.html">853 S Lucerne Blvd</a></h2>
+                  <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne Blvd Unit 101 Los Angeles, CA 90005</span>
+                  <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
+                  <ul class="property-specs-wrap mb-3 mb-lg-0">
+                    <li>
+                      <span class="property-specs">Beds</span>
+                      <span class="property-specs-number">2 <sup>+</sup></span>
+                      
+                    </li>
+                    <li>
+                      <span class="property-specs">Baths</span>
+                      <span class="property-specs-number">2</span>
+                      
+                    </li>
+                    <li>
+                      <span class="property-specs">SQ FT</span>
+                      <span class="property-specs-number">5,500</span>
+                      
+                    </li>
+                  </ul>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="mb-5">
+                <h3 class="footer-heading mb-4">About Homeland</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione, et non dignissimos culpa? Ut veritatis, quos illum totam quis blanditiis, minima minus odio!</p>
+              </div>
+            </div>
+            <div class="col-lg-4 mb-5 mb-lg-0">
+              <div class="row mb-5">
+                <div class="col-md-12">
+                  <h3 class="footer-heading mb-4">Navigations</h3>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                  <ul class="list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Buy</a></li>
+                    <li><a href="#">Rent</a></li>
+                    <li><a href="#">Properties</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                  <ul class="list-unstyled">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Terms</a></li>
+                  </ul>
+                </div>
+              </div>
+  
+  
+            </div>
+  
+            <div class="col-lg-4 mb-5 mb-lg-0">
+              <h3 class="footer-heading mb-4">Follow Us</h3>
+  
+                  <div>
+                    <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+                    <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                    <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                    <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+                  </div>
+  
+              
+  
+            </div>
+            
+          </div>
+          <div class="row pt-5 mt-5 text-center">
+            <div class="col-md-12">
+              <p>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              </p>
+            </div>
+            
+          </div>
+        </div>
+      </footer>
+  
+    </div>
+  
+
+  <script th:src="@{~/js/jquery-migrate-3.0.1.min.js}"></script>
+  <script th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+  <script th:src="@{~/js/popper.min.js}"></script>
+  <script th:src="@{~/js/jquery-ui.js}"></script>
+  <script th:src="@{~/js/owl.carousel.min.js}"></script>
+  <script th:src="@{~/js/bootstrap.min.js}"></script>
+  <script th:src="@{~/js/jquery.stellar.min.js}"></script>
+  <script th:src="@{~/js/mediaelement-and-player.min.js}"></script>
+  <script th:src="@{~/js/jquery.magnific-popup.min.js}"></script>
+  <script th:src="@{~/js/jquery.countdown.min.js}"></script>
+  <script th:src="@{~/js/aos.js}"></script>
+  <script th:src="@{~/js/bootstrap-datepicker.min.js}"></script>
+  <script th:src="@{~/js/circleaudioplayer.js}"></script>
+  <script th:src="@{~/js/main.js}"></script>
+  </body>
 </html>
