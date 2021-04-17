@@ -88,23 +88,7 @@ public class RootController {
         return index(model);
     }
 
-    @GetMapping(value="tour/{id}")
-	public String tourOfertado(@PathVariable long id, Model model) {
-        Tour u = entityManager.createNamedQuery("Tour.getTour", Tour.class)
-		        .setParameter("id", id)
-		        .getSingleResult();
-        List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
-                .setParameter("id", id)
-                .getResultList();
-        long id_guia = u.getDatos().getGuia().getId();
-        List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
-                .setParameter("user_id", id_guia)
-                .getResultList();
-        model.addAttribute("tour",u);
-        model.addAttribute("etiquetas",etiquetas);
-        model.addAttribute("idiomas",idiomas);
-		return "tour";
-	}
+    
 
     @GetMapping("/")            // <-- en qué URL se expone, y por qué métodos (GET)        
     public String index(        // <-- da igual, sólo para desarrolladores

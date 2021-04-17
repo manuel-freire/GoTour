@@ -19,7 +19,11 @@
         <div class="datos_tour">
             <div class="datos_tour_sup">
                 <p class="tour_name" th:text="${tour.getDatos().getTitulo()}"></p>
-                <button class="tour_inscribirse">Inscribirse</button>
+                <!--<form method="post" th:action="@{/tour/{id}/inscribirse}(id=${tour.id})">-->
+                <form method="post" th:action="@{/tour/{id}/inscribirse(id=${tour.id})}">
+                    Turistas<input name="turistas" type="number"/>
+                    <input type="submit" class="tour_inscribirse">Inscribirse</button>
+                </form>
             </div>
             <div class="datos_tour_mid">
                 <div class="bloque1">

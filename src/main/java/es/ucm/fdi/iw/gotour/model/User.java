@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -137,7 +138,7 @@ public class User implements Transferable<User.Transfer> {
 	@OneToMany(targetEntity=Tour.class)
 	private List<Tour> tourofrecidos=new ArrayList<>();
 
-	@ManyToMany(targetEntity=Tour.class)
+	@ManyToMany(targetEntity=Tour.class,fetch = FetchType.EAGER)
 	private List<Tour> toursasistidos=new ArrayList<>(); 
 
 	@OneToMany(targetEntity=Review.class)
@@ -175,6 +176,9 @@ public class User implements Transferable<User.Transfer> {
 				.anyMatch(r -> r.equals(roleName));
 	}
 	
+	public void addTour(Tour t){
+		this.toursasistidos.add(t);
+	}
 
     @Getter
     @AllArgsConstructor
