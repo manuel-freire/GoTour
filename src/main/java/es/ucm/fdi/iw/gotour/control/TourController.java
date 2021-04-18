@@ -68,7 +68,7 @@ public class TourController {
         .getSingleResult();
         User u=(User)session.getAttribute("u");
         t.addTurista(u, turistas);
-        u.addTour(t);
+        //u.addTour(t);
 		/*entityManager.persist(t);
 		entityManager.flush();*/
 		return tourOfertado(id,model);

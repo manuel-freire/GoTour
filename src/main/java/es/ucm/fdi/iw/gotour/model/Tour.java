@@ -59,6 +59,7 @@ public class Tour {
 		if(datos.getMaxTuristas()>=actTuristas+numero){
 			turistas.add(u);
 			actTuristas+=numero;
+			u.addTour(this);
 		}
 	}
 
