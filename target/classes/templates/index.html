@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Go Tour</title>
+    <title>GoTour</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -157,14 +157,16 @@
                   <span class="offer-type bg-danger">Sale</span>
                   <span class="offer-type bg-success">Rent</span>
                 </div>
-                
-                <img th:src="' + @{${tour.Datos.Guia.Foto}} + '" alt="Image" class="img-fluid">
+                <img th:href="@{'/tour/'+${tour.getId()}}" th:src="@{${tour.getDatos().getPortada()}}" alt="Image" class="img-fluid">
               </a>
               <div class="p-4 property-body">
                 <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
                 <h2 class="property-title"  th:text="${tour.Datos.Guia.Nombre}"><a href="property-details.html"></a></h2>
                 <span class="property-location d-block mb-3"  th:text="${tour.Datos.Titulo}"><span class="property-icon icon-room"></span> Sidney, Australia</span>
                 <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.Datos.Precio}+'€'"></strong>
+                <h2 class="property-title"><a th:href="@{'/tour/'+${tour.getId()}}" th:text="${tour.getDatos().getTitulo()}" id="tour_ref"></a></h2>
+                <span class="property-location d-block mb-3" ><span class="property-icon icon-room"></span><span th:text="${tour.getDatos().getCiudad()}+', '+${tour.getDatos().getPais()}"></span></span>
+                <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.getDatos().getPrecio}+'€/persona'"></strong>
                 <ul class="property-specs-wrap mb-3 mb-lg-0">
 
                   <li>

@@ -144,7 +144,7 @@ public class User implements Transferable<User.Transfer> {
 	private List<Tour> TourOfertados=new ArrayList<>();
 
 	@ManyToMany(targetEntity=Tour.class, fetch=FetchType.EAGER)
-	private List<Tour> toursasistidos=new ArrayList<>(); 
+	private List<Tour> ToursAsistidos=new ArrayList<>(); 
 
 	@OneToMany(targetEntity=Review.class)
 	@JoinColumn(name="Creador_id")
@@ -156,9 +156,9 @@ public class User implements Transferable<User.Transfer> {
 	
 	@OneToMany(targetEntity=Review.class)
 	@JoinColumn(name="destinatario_id")
-	private List<Review> reviewsrecibidas=new ArrayList<>();
+	private List<Review> ReviewsRecibidas=new ArrayList<>();
 	@ElementCollection
-	private List<String> idiomashablados=new ArrayList<>();
+	private List<String> IdiomasHablados=new ArrayList<>();
 	
 
 	@OneToMany
@@ -182,7 +182,7 @@ public class User implements Transferable<User.Transfer> {
 	}
 	
 	public void addTour(Tour t){
-		this.toursasistidos.add(t);
+		this.ToursAsistidos.add(t);
 	}
 
     @Getter

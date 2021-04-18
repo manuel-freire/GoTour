@@ -990,3 +990,8 @@ a {
   cursor: -webkit-zoom-in;
   cursor: zoom-in;
   opacity: .5; }
+
+.custom1{
+  width:  100px;
+  height: 100px;
+}
