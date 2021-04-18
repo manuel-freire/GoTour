@@ -106,10 +106,13 @@
                     <a href="index.html">Home</a>
                   </li>
                   <li><a href="buy.html">Tours</a></li>
-                  <li class="has-children">
-                    <a href="properties.html">Mi perfil</a>
+                  <li><a href="nosotros.html">Nosotros</a></li>
+                  <li><a href="contacto.html">Contacto</a></li>
+                  <li th:if="${session.isEmpty()}"><a th:href="@{/login}">Log in</a></li>
+                  <li th:unless="${session.isEmpty()}" class="has-children">
+                    <a th:href="@{/user/{id}/perfil(id=${session.u.id})}" th:text="${session.u.nombre}" >Usuario</a>
                     <ul class="dropdown arrow-top">
-                      <li><a href="#">Log out</a></li>
+                      <li><span class="fa-times-circle"></span><a th:href="@{/crearTour}">Crear tour</a></li>
                       <li><a href="#">Mis tours reservados</a></li>
                       <li><a href="#">Mis tours ofertados</a></li>
                       <li class="has-children">
@@ -120,12 +123,9 @@
                           <li><a href="#">Menu Three</a></li>
                         </ul>
                       </li>
+                      <li><a th:href="@{/user/logout}">Log out</a></li>
                     </ul>
                   </li>
-                  <li><a href="blog.html">Blog</a></li>
-                  <li><a href="buy.html">Pagina Ejemplo</a></li>
-                  <li><a href="nosotros.html">Nosotros</a></li>
-                  <li><a href="contacto.html">Contacto</a></li>
                 </ul>
               </nav>
             </div>

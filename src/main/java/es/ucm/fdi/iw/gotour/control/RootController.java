@@ -11,6 +11,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
@@ -73,7 +74,7 @@ public class RootController {
 	}
 
     @PostMapping("/")
-    public String searchTours(Model model,@RequestParam String pais
+    public String searchTours(Model model, HttpSession session,@RequestParam String pais
                                         ,@RequestParam String ciudad
                                         ,@RequestParam String lugar
                                         ,@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechaini
@@ -85,7 +86,7 @@ public class RootController {
             .setParameter("fechaIniParam", fechaini)
             .setParameter("fechaFinParam", fechafin).getResultList();      	
         model.addAttribute("busqueda", busqueda);	
-        return index(model);
+        return index(model, session);
     }
 
     @GetMapping(value="tour/{id}")
@@ -96,6 +97,7 @@ public class RootController {
         List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
                 .setParameter("id", id)
                 .getResultList();
+        log.info("EL TOUR lucia CONTIENE LO SIGUIENTE {}", u);
         long id_guia = u.getDatos().getGuia().getId();
         List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
                 .setParameter("user_id", id_guia)
@@ -140,7 +142,7 @@ public class RootController {
 
     @GetMapping("/")            // <-- en qué URL se expone, y por qué métodos (GET)        
     public String index(        // <-- da igual, sólo para desarrolladores
-            Model model)        // <-- hay muchos, muchos parámetros opcionales
+            Model model, HttpSession session)        // <-- hay muchos, muchos parámetros opcionales
     {
         List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();        
         // dumps them via log
@@ -153,6 +155,50 @@ public class RootController {
         return "index";
     }
 
+    
+	@PostMapping("/tour")
+	@Transactional
+    public String nuevoTour(@RequestParam String pais,
+                            @RequestParam String ciudad,
+                            @RequestParam String lugar,
+                            @RequestParam String titulo,
+                            @RequestParam String descripcion,
+                            /*@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") String fechaIni,
+                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") String fechaFin,*/
+                            @RequestParam int maxTuristas,
+                            @RequestParam double precio,
+                            Model model){
+
+        TourOfertado tourO = new TourOfertado();
+        Tour tour = new Tour();
+
+        tourO.setPais(pais);
+        tourO.setCiudad(ciudad);
+        tourO.setLugar(lugar);
+        tourO.setTitulo(titulo);
+        tourO.setDescripcion(descripcion);
+        tourO.setMaxTuristas(maxTuristas);
+        tourO.setPrecio(precio);
+
+        /*tour.setFechaIni(fechaIni);
+        tour.setFechaFin(fechaFin);*/
+        tour.setActTuristas(0);
+        tour.setDatos(tourO);
+        tourO.getInstancias().add(tour);
+
+        entityManager.persist(tour);
+        entityManager.persist(tourO);
+        entityManager.flush();
+        long id = tour.getId();
+
+        return tourOfertado(id, model);
+    }
+
+	@GetMapping("/crearTour")
+    public String crearTour(Model model, HttpSession session)
+    {
+        return "crearTour";
+    }
 
     // Un getMapping por vista que queramos en el proyecto. Y un template por vista
 
