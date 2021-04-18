@@ -6,23 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
-    <link rel="stylesheet" th:href="@{fonts/icomoon/style.css}">
+    <link rel="stylesheet" th:href="@{~/fonts/icomoon/style.css}">
 
-    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{css/magnific-popup.css}">
-    <link rel="stylesheet" th:href="@{css/jquery-ui.css}">
-    <link rel="stylesheet" th:href="@{css/owl.carousel.min.css}">
-    <link rel="stylesheet" th:href="@{css/owl.theme.default.min.css}">
-    <link rel="stylesheet" th:href="@{css/bootstrap-datepicker.css}">
-    <link rel="stylesheet" th:href="@{css/mediaelementplayer.css}">
-    <link rel="stylesheet" th:href="@{css/animate.css}">
-    <link rel="stylesheet" th:href="@{fonts/flaticon/font/flaticon.css}">
-    <link rel="stylesheet" th:href="@{css/fl-bigmug-line.css}">
+    <link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{~/css/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{~/css/jquery-ui.css}">
+    <link rel="stylesheet" th:href="@{~/css/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{~/css/owl.theme.default.min.css}">
+    <link rel="stylesheet" th:href="@{~/css/bootstrap-datepicker.css}">
+    <link rel="stylesheet" th:href="@{~/css/mediaelementplayer.css}">
+    <link rel="stylesheet" th:href="@{~/css/animate.css}">
+    <link rel="stylesheet" th:href="@{~/fonts/flaticon/font/flaticon.css}">
+    <link rel="stylesheet" th:href="@{~/css/fl-bigmug-line.css}">
     
   
-    <link rel="stylesheet" th:href="@{css/aos.css}">
+    <link rel="stylesheet" th:href="@{~/css/aos.css}">
 
-    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{~/css/style.css}">
     
   </head>
   <body>
@@ -119,7 +119,7 @@
           <div class="col-md-12">
             <div class="view-options bg-white py-3 px-3 d-md-flex align-items-center">
               <div class="mr-auto">
-                <a href="index.html" class="icon-view view-module active"><span class="icon-view_module"></span></a>
+                <a th:href="@{index.html}" class="icon-view view-module active"><span class="icon-view_module"></span></a>
                 <a href="view-list.html" class="icon-view view-list"><span class="icon-view_list"></span></a>
                 
               </div>
@@ -238,7 +238,7 @@
         </div>
         <div class="row">
           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="100">
-            <a href="#"><img src="images/img_4.jpg" alt="Image" class="img-fluid"></a>
+            <a href="#"><img th:src="@{images/img_4.jpg}" alt="Image" class="img-fluid"></a>
             <div class="p-4 bg-white">
               <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
               <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
@@ -246,7 +246,7 @@
             </div>
           </div>
           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="200">
-            <a href="#"><img src="images/img_2.jpg" alt="Image" class="img-fluid"></a>
+            <a href="#"><img th:src="@{images/img_2.jpg}" alt="Image" class="img-fluid"></a>
             <div class="p-4 bg-white">
               <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
               <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
@@ -254,7 +254,7 @@
             </div>
           </div>
           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="300">
-            <a href="#"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
+            <a href="#"><img th:src="@{images/img_3.jpg}" alt="Image" class="img-fluid"></a>
             <div class="p-4 bg-white">
               <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
               <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
@@ -282,7 +282,7 @@
           <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
             <div class="team-member">
 
-              <img src="images/person_1.jpg" alt="Image" class="img-fluid rounded mb-4">
+              <img th:src="@{images/person_1.jpg}" alt="Image" class="img-fluid rounded mb-4">
 
               <div class="text">
 
@@ -302,7 +302,7 @@
           <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
             <div class="team-member">
 
-              <img src="images/person_2.jpg" alt="Image" class="img-fluid rounded mb-4">
+              <img th:src="@{images/person_2.jpg}" alt="Image" class="img-fluid rounded mb-4">
 
               <div class="text">
 
@@ -322,7 +322,7 @@
           <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
             <div class="team-member">
 
-              <img src="images/person_3.jpg" alt="Image" class="img-fluid rounded mb-4">
+              <img th:src="@{images/person_3.jpg}" alt="Image" class="img-fluid rounded mb-4">
 
               <div class="text">
 
@@ -352,20 +352,20 @@
 
   </div>
 
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/mediaelement-and-player.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/jquery.countdown.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/bootstrap-datepicker.min.js"></script>
-  <script src="js/aos.js"></script>
+  <script th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+  <script th:src="@{~/js/jquery-migrate-3.0.1.min.js}"></script>
+  <script th:src="@{~/js/jquery-ui.js}"></script>
+  <script th:src="@{~/js/popper.min.js}"></script>
+  <script th:src="@{~/js/bootstrap.min.js}"></script>
+  <script th:src="@{~/js/owl.carousel.min.js}"></script>
+  <script th:src="@{~/js/mediaelement-and-player.min.js}"></script>
+  <script th:src="@{~/js/jquery.stellar.min.js}"></script>
+  <script th:src="@{~/js/jquery.countdown.min.js}"></script>
+  <script th:src="@{~/js/jquery.magnific-popup.min.js}"></script>
+  <script th:src="@{~/js/bootstrap-datepicker.min.js}"></script>
+  <script th:src="@{~/js/aos.js}"></script>
 
-  <script src="js/main.js"></script>
+  <script th:src="@{~/js/main.js}"></script>
     
   </body>
 </html>
