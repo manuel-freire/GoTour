@@ -12,7 +12,7 @@ Scenario: user page
     * print response
     * status 200
     * def userName = util.selectHtml(response, "h4>span")
-    * assert userName == 'a'
+    * assert userName == 'SPACEMARINE'
 
 Scenario: logout
     * path 'logout'

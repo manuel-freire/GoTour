@@ -223,7 +223,7 @@ public class UserController {
 		catch(Exception e){
 			log.error("Fallo al hacer logout", e);
 		}
-		return "index";
+		return "/";
 	}
 
 	@PostMapping("/registro2")
@@ -303,8 +303,8 @@ public class UserController {
 	@Transactional
     public String perfil(Model model, HttpSession session, @PathVariable("id") long id)
     {
-		User user = entityManager.find(User.class, id);
-		log.info("EL USUARIO CONTIENE LO SIGUIENTE {}", user);
+	User user = entityManager.find(User.class, id);
+	log.info("EL USUARIO CONTIENE LO SIGUIENTE {}", user);
 
 		// si tiene que recorrer una relación no-eager, usas @Transactional y haces una copia
 		List<Tour> ofertados =  new ArrayList<>(user.getTourOfertados());

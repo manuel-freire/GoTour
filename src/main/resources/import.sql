@@ -12,8 +12,8 @@
 -- );
 
 -- -- Otro usuario de ejemplo con username = b y contraseña = aa  
-INSERT INTO USER(Id,Apellidos,Caducidad_Tarjeta, Email,Enabled,Nombre,Num_Secreto,Num_Tarjeta,Num_Telefono,Password,Pregunta_Seguridad,Respuesta_Seguridad,Puntuacion,Roles,Username) VALUES (
-	2,'Sanchez Granado','22/03','email', 1,'Jesus',12,87,333, 
+INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,foto,nombre,numSecreto,numtarjeta,numtelefono,password,preguntaseguridad,respuestaseguridad,puntuacion,roles,username) VALUES (
+	2,'Sanchez Granado','22/03','email', 1,'/img/guia1.jpg','Jesus',12,87,333, 
 	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u','Pregunta','Respuesta',4,
 	'USER',
 	'SPACEMARINE');
@@ -27,6 +27,11 @@ INSERT INTO USER(Id,Apellidos,Caducidad_Tarjeta, Email,Enabled,Nombre,Num_Secret
 	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u','Pregunta','Respuesta',4,
 	'ADMIN',
 	'vicky');
+INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,nombre,numSecreto,numtarjeta,numtelefono,password,preguntaseguridad,respuestaseguridad,puntuacion,roles,username) VALUES (
+	1,'Lopez','22/03','email',1,'Dani',12,87,333, 
+	'{bcrypt}$2a$10$WgFuGq2clY4rgSw5pyxEX.7ZT7t6UdGzDAetQsfNiqE2RzmlNUhoS','Pregunta','Respuesta',4,
+	'ADMIN',
+	'dani');
 INSERT INTO TOUR_OFERTADO VALUES (1, 'Alcala', 'Esta es la descripcion del tour numero 1', 1, 'tour1', '/img/mapa1.jpg', 2, 'adas', '/img/tour1.jpg', 8, 'Tour1', 2);
 INSERT INTO TOUR_OFERTADO_ETIQUETAS  VALUES(1, 'museo');
 INSERT INTO TOUR_OFERTADO_ETIQUETAS  VALUES(1, 'monumento');

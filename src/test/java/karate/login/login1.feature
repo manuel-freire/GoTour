@@ -15,7 +15,7 @@ Scenario: get login page, capture csrf, send login
     * print csrf
 
     * path 'login'
-    * form field username = 'a'
+    * form field username = 'SPACEMARINE'
     * form field password = 'aa'
     * form field _csrf = csrf
     * method post    

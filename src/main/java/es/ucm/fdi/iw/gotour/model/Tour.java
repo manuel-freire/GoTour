@@ -55,6 +55,13 @@ public class Tour {
 	@OneToMany (mappedBy="TourValorado")
 	private List<Review>  Reviews = new ArrayList<>();
 
+	public void addTurista(User u,int numero){
+		if(datos.getMaxTuristas() >= (actTuristas+numero)){
+			turistas.add(u);
+			actTuristas+=numero;
+			u.addTour(this);
+		}
+	}
 
 	@Override
 	public String toString() {
