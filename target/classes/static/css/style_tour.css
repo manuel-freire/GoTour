@@ -18,7 +18,10 @@
 .idiomas{
     font-size: 20px;
     font-weight: lighter;
+    margin: 0;
 }
 .box_idiomas{
-    border: 1px solid rgb(192, 192, 192);
+    border: 1px solid lightgray;
+    border-radius: 05px;
+    margin: 20px;
 }

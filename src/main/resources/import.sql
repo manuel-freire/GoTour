@@ -12,7 +12,7 @@
 -- );
 
 -- -- Otro usuario de ejemplo con username = b y contraseña = aa  
-INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,foto,nombre,numSecreto,numtarjeta,numtelefono,password,preguntaseguridad,respuestaseguridad,puntuacion,roles,username) VALUES (
+INSERT INTO USER(Id,Apellidos,Caducidad_Tarjeta, Email,Enabled,Foto,Nombre,Num_Secreto,Num_Tarjeta,Num_Telefono,Password,Pregunta_Seguridad,Respuesta_Seguridad,Puntuacion,Roles,Username) VALUES (
 	2,'Sanchez Granado','22/03','email', 1,'/img/guia1.jpg','Jesus',12,87,333, 
 	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u','Pregunta','Respuesta',4,
 	'USER',
@@ -27,8 +27,8 @@ INSERT INTO USER(Id,Apellidos,Caducidad_Tarjeta, Email,Enabled,Nombre,Num_Secret
 	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u','Pregunta','Respuesta',4,
 	'ADMIN',
 	'vicky');
-INSERT INTO user(id,apellidos,caducidadTarjeta, email,enabled,nombre,numSecreto,numtarjeta,numtelefono,password,preguntaseguridad,respuestaseguridad,puntuacion,roles,username) VALUES (
-	1,'Lopez','22/03','email',1,'Dani',12,87,333, 
+INSERT INTO USER(Id,Apellidos,Caducidad_Tarjeta, Email,Enabled,Nombre,Num_Secreto,Num_Tarjeta,Num_Telefono,Password,Pregunta_Seguridad,Respuesta_Seguridad,Puntuacion,Roles,Username) VALUES (
+	4,'Lopez','22/03','email',1,'Dani',12,87,333, 
 	'{bcrypt}$2a$10$WgFuGq2clY4rgSw5pyxEX.7ZT7t6UdGzDAetQsfNiqE2RzmlNUhoS','Pregunta','Respuesta',4,
 	'ADMIN',
 	'dani');
