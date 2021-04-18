@@ -143,7 +143,7 @@ public class User implements Transferable<User.Transfer> {
 	@JoinColumn(name="creador_id")
 	private List<Tour> tourofertados=new ArrayList<>();
 
-	@ManyToMany(targetEntity=Tour.class)
+	@ManyToMany(targetEntity=Tour.class,fetch = FetchType.EAGER)
 	private List<Tour> toursasistidos=new ArrayList<>(); 
 
 	@OneToMany(targetEntity=Review.class)
@@ -181,6 +181,9 @@ public class User implements Transferable<User.Transfer> {
 				.anyMatch(r -> r.equals(roleName));
 	}
 	
+	public void addTour(Tour t){
+		this.toursasistidos.add(t);
+	}
 
     @Getter
     @AllArgsConstructor
