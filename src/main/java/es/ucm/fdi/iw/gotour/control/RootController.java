@@ -183,6 +183,7 @@ public class RootController {
         tourO.setDescripcion(descripcion);
         tourO.setMaxTuristas(maxTuristas);
         tourO.setPrecio(precio);
+        tourO.setDisponible(true);
 
         tour.setFechaIni(fechaIni);
         tour.setFechaFin(fechaFin);
