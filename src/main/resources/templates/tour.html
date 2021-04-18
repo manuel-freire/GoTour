@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -80,20 +79,6 @@
                   </ul>
                 </nav>
               </div>
-             
-  
-        <div class="datos_tour">
-            <div class="datos_tour_sup">
-                <p class="tour_name" th:text="${tour.getDatos().getTitulo()}"></p>
-                <!--<form method="post" th:action="@{/tour/{id}/inscribirse}(id=${tour.id})">-->
-                <form method="post" th:action="@{/tour/{id}/inscribirse(id=${tour.id})}">
-                    Turistas<input name="turistas" type="number"/>
-                    <input type="submit" class="tour_inscribirse">Inscribirse</button>
-                </form>
-            </div>
-          </div>
-        </div>
-      </div>
   
        <div class="slide-one-item home-slider owl-carousel">
   
@@ -144,7 +129,7 @@
                     <ul class="property-specs-wrap mb-3 mb-lg-0  float-lg-right">
                     <li>
                       <span class="property-specs">Libre</span>
-                      <span class="property-specs-number" th:text="${tour.getDatos().getMaxTuristas()-tour.getActTuristas()}"></span>
+                      <span class="property-specs-number" id="libre" th:text="${tour.getDatos().getMaxTuristas()-tour.getActTuristas()}"></span>
                       
                     </li>
                     <li>
@@ -199,12 +184,12 @@
               <div class="bg-white widget border rounded">
   
                 <h3 class="h4 text-black widget-title mb-3">Contratar tour</h3>
-                <form action="" class="form-contact-agent">
+                <form method="post" class="form-contact-agent" th:action="@{/tour/{id}/inscribirse(id=${tour.id})}">
                   <div class="form-group">
                     <label for="phone">Numero de personas que van a asistir</label>
-                    <input type="text" id="num_personas" class="form-control">
+                    <input name="turistas" id="turistas" type="number" class="form-control" value="1">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" >
                     <input type="submit" id="contratar" class="btn btn-primary" value="Contratar">
                   </div>
                 </form>

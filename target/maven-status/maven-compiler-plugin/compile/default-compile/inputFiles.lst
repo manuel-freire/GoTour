@@ -16,6 +16,7 @@
 /home/alumno/Escritorio/IW/GoTour/src/main/java/es/ucm/fdi/iw/gotour/model/Transferable.java
 /home/alumno/Escritorio/IW/GoTour/src/main/java/es/ucm/fdi/iw/gotour/model/Chat.java
 /home/alumno/Escritorio/IW/GoTour/src/main/java/es/ucm/fdi/iw/gotour/IwUserDetailsService.java
+/home/alumno/Escritorio/IW/GoTour/src/main/java/es/ucm/fdi/iw/gotour/control/TourController.java
 /home/alumno/Escritorio/IW/GoTour/src/main/java/es/ucm/fdi/iw/gotour/model/TourOfertado.java
 /home/alumno/Escritorio/IW/GoTour/src/main/java/es/ucm/fdi/iw/gotour/model/Mensajes.java
 /home/alumno/Escritorio/IW/GoTour/src/main/java/es/ucm/fdi/iw/gotour/control/AdminController.java

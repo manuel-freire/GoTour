@@ -66,6 +66,8 @@ public class TourController {
         Tour t= entityManager.createNamedQuery("Tour.getTour", Tour.class)
         .setParameter("id", id)
         .getSingleResult();
+        System.out.println("Id: " + id);
+        System.out.println(t);
         User u=(User)session.getAttribute("u");
         t.addTurista(u, turistas);
         //u.addTour(t);

@@ -18,11 +18,11 @@ Scenario: logear, elegir un tour e inscribirse al tour
   * driver.screenshot()
   * click("a[id=tour_ref]")
   * match html('title') contains 'Tour'
-  #* click("[id=contratar]")
-  * driver.screenshot()
-  * click("[id=ver_perfil]")
-  * driver.screenshot()
-  #Supongo que habra un cuadro de texto, se le mete el numero de personas que van a asistir y se presiona un boton para confirmar
-  #* input('#num_personas', 2)
-  #* click("a[id=contratar]")
+  #* input('#turistas', "1")
+  * submit().click("button[type=submit]")
+  * delay(5000) 
+  * match html('#libre') contains '1'
   #* driver.screenshot()
+  #* click("[id=ver_perfil]")
+  #* driver.screenshot()
+

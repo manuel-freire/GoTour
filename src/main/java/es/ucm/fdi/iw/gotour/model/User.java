@@ -143,7 +143,7 @@ public class User implements Transferable<User.Transfer> {
 	@JoinColumn(name="creador_id")
 	private List<Tour> tourofertados=new ArrayList<>();
 
-	@ManyToMany(targetEntity=Tour.class,fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity=Tour.class, fetch=FetchType.EAGER)
 	private List<Tour> toursasistidos=new ArrayList<>(); 
 
 	@OneToMany(targetEntity=Review.class)
@@ -157,7 +157,7 @@ public class User implements Transferable<User.Transfer> {
 	@OneToMany(targetEntity=Review.class)
 	@JoinColumn(name="destinatario_id")
 	private List<Review> reviewsrecibidas=new ArrayList<>();
-	@ElementCollection(fetch=FetchType.EAGER)
+	@ElementCollection
 	private List<String> idiomashablados=new ArrayList<>();
 	
 

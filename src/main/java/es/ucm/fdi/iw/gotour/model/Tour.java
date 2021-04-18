@@ -56,7 +56,7 @@ public class Tour {
 	private List<Review>  reviews = new ArrayList<>();
 
 	public void addTurista(User u,int numero){
-		if(datos.getMaxTuristas()>=actTuristas+numero){
+		if(datos.getMaxTuristas() >= (actTuristas+numero)){
 			turistas.add(u);
 			actTuristas+=numero;
 			u.addTour(this);
