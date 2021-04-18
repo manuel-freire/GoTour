@@ -111,7 +111,7 @@
                   <li><a href="nosotros.html">Nosotros</a></li>
                   <li><a href="contacto.html">Contacto</a></li>
                   <li class="has-children">
-                    <a th:href="@{/user/{id}/perfil(id=${session.u.id})}" th:text="${session.u.nombre}" >Usuario</a>
+                    <!--<a th:href="@{/user/{id}/perfil(id=${session.u.id})}" th:text="${session.u.nombre}" >Usuario</a>-->
                     <ul class="dropdown arrow-top">
                       <li><a th:href="@{/user/crearTour}">Crear tour</a></li>
                       <li><a href="#">Mis tours reservados</a></li>

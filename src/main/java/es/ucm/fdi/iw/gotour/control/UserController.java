@@ -223,7 +223,7 @@ public class UserController {
 		catch(Exception e){
 			log.error("Fallo al hacer logout", e);
 		}
-		return "index";
+		return "/";
 	}
 
 	@PostMapping("/registro2")
