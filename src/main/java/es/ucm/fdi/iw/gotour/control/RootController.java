@@ -12,6 +12,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +27,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.beans.PropertyAccessor;
@@ -163,11 +167,11 @@ public class RootController {
                             @RequestParam String lugar,
                             @RequestParam String titulo,
                             @RequestParam String descripcion,
-                            /*@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") String fechaIni,
-                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") String fechaFin,*/
+                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") String fechaIni,
+                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") String fechaFin,
                             @RequestParam int maxTuristas,
                             @RequestParam double precio,
-                            Model model){
+                            Model model, HttpSession session){
 
         TourOfertado tourO = new TourOfertado();
         Tour tour = new Tour();
@@ -180,18 +184,23 @@ public class RootController {
         tourO.setMaxTuristas(maxTuristas);
         tourO.setPrecio(precio);
 
-        /*tour.setFechaIni(fechaIni);
-        tour.setFechaFin(fechaFin);*/
+        tour.setFechaIni(fechaIni);
+        tour.setFechaFin(fechaFin);
         tour.setActTuristas(0);
-        tour.setDatos(tourO);
-        tourO.getInstancias().add(tour);
 
-        entityManager.persist(tour);
+        User guia = entityManager.find(User.class, ((User)session.getAttribute("u")).getId());
+        guia.getTourofertados().add(tour);
+        tourO.setGuia(guia);
+        tourO.getInstancias().add(tour);
+        tour.setDatos(tourO);
+        
+
         entityManager.persist(tourO);
         entityManager.flush();
-        long id = tour.getId();
+        long idTour = tourO.getInstancias().get(0).getId();
 
-        return tourOfertado(id, model);
+        //return tourOfertado(idTour, model);
+        return "redirect:/tour/" + idTour;
     }
 
 	@GetMapping("/crearTour")
