@@ -223,7 +223,17 @@ public class UserController {
 		catch(Exception e){
 			log.error("Fallo al hacer logout", e);
 		}
-		return "index";
+		{
+			List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();        
+			// dumps them via log
+			log.info("Dumping table {}", "tour");
+			for (Object o : tours) {
+				log.info("\t{}", o);
+			}        
+			// adds them to model
+			model.addAttribute("tours", tours);			
+			return "index";
+		}
 	}
 
 	@PostMapping("/registro2")
