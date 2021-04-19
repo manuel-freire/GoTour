@@ -45,6 +45,13 @@ public class Tour {
 
 	@NotNull
 	private String FechaFin;
+<<<<<<< Updated upstream
+=======
+
+	@NotNull
+	private String fechaFin;
+    // lucia2
+>>>>>>> Stashed changes
 
 	@NotNull
 	private int ActTuristas;

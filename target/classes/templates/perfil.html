@@ -52,8 +52,14 @@
             <div th:if="${session.u.Id == user.Id}">
                 <p th:text="${user.Username}">Nombre usuario</p>
                 <a th:href="@{/user/{id}/perfil(id=${user.Id})}">Editar</a>
+                <a th:href="@{/user/{id}/perfil(id=${user.Id})}">Nuevo tour</a>
                 <a th:href="@{/user/{id}/datosPrivados(id=${user.Id})}">Mi cuenta</a>
+=======
+            <div th:if="${session.u.id == user.id}">
+                <p th:text="${user.username}">Nombre usuario</p>
                 <a th:href="@{/crearTour}">Nuevo tour</a>
+                <a th:href="@{/user/{id}/datosPrivados(id=${user.id})}">Mi cuenta</a>
+>>>>>>> lucia2
             </div>
             <p th:text="${user.Nombre} + ' ' + ${user.Apellidos}">Nombre usuario</p>
         </div>
