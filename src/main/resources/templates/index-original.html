@@ -53,7 +53,7 @@
             <div class="fecha" th:text="'Fin: '+${tour.getFechaFin()}"></div>
             <div class="lugar" th:text="${tour.getDatos().getCiudad()}+', '+${tour.getDatos().getPais()}"></div>
             <div class="lugar" th:text="${tour.getDatos().getLugar()}"></div>
-            <div class="precio" th:text="${tour.getDatos().getPrecio}+'€'"></div>
+            <div class="precio" th:text="${tour.datos.precio}+'€'"></div>
             <div class="personas" th:text="${tour.getActTuristas()}+'/'+${tour.getDatos().getMaxTuristas()}+' turistas'"></div>
         </div>
     </div>

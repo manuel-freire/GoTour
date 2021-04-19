@@ -71,19 +71,20 @@ public class RootController {
 	public String registro(Model model) {
 		return "registro";
 	}
-
     @PostMapping("/")
     public String searchTours(Model model,@RequestParam String pais
                                         ,@RequestParam String ciudad
                                         ,@RequestParam String lugar
-                                        ,@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechaini
-                                        ,@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechafin){
+                                        ,@RequestParam String fechaini
+                                        ,@RequestParam String fechafin){
+        LocalDate fechaini2=LocalDate.parse(fechaini);
+        LocalDate fechafin2=LocalDate.parse(fechafin);
         List<Tour> busqueda = entityManager.createNamedQuery("ToursBySearch")
             .setParameter("paisParam", pais)
             .setParameter("ciudadParam", ciudad)
             .setParameter("lugarParam", lugar)
-            .setParameter("fechaIniParam", fechaini)
-            .setParameter("fechaFinParam", fechafin).getResultList();      	
+            .setParameter("fechaIniParam", fechaini2)
+            .setParameter("fechaFinParam", fechafin2).getResultList();      	
         model.addAttribute("busqueda", busqueda);	
         return index(model);
     }
