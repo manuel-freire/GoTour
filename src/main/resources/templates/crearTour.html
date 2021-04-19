@@ -13,31 +13,31 @@
       <form class="form-tour" method="post" th:action="@{/tour}">
 
         <label for="pais" class="sr-only">País</label>
-        <input type="text" name="pais" placeholder="P. ej. España">
+        <input type="text" id="pais" name="pais" placeholder="P. ej. España">
 
         <label for="ciudad" class="sr-only">Ciudad</label>
-        <input type="text" name="ciudad" placeholder="P. ej. Madrid">
+        <input type="text" id="ciudad" name="ciudad" placeholder="P. ej. Madrid">
 
         <label for="lugar" class="sr-only">Lugar</label>
-        <input type="text" name="lugar" placeholder="P. ej. Madrid">
+        <input type="text" id="lugar" name="lugar" placeholder="P. ej. Madrid">
 
         <label for="titulo" class="sr-only">Título</label>
-        <input type="text" name="titulo" placeholder="P. ej. EL Madrid del sigo XIX">
+        <input type="text" id="titulo" name="titulo" placeholder="P. ej. EL Madrid del sigo XIX">
 
         <label for="descripcion" class="sr-only">Descripción</label>
-        <input type="text" name="descripcion" placeholder="P. ej. Tour por eL Madrid del sigo XIX.">
+        <input type="text" id="descripcion" name="descripcion" placeholder="P. ej. Tour por eL Madrid del sigo XIX.">
 
         <label for="fechaIni" class="sr-only">Fecha de inicio</label>
-        <input type="date" name="fechaIni" placeholder="Fecha de inicio" />
+        <input type="date" id="fechaIni" name="fechaIni" placeholder="Fecha de inicio" />
 
         <label for="fechaFin" class="sr-only">Fecha de fin</label>
-        <input type="date" name="fechaFin" placeholder="Fecha de fin" />
+        <input type="date" id="fechaFin" name="fechaFin" placeholder="Fecha de fin" />
 
-        <label for="maxTuristas" class="sr-only">Número de turistas</label>
-        <input type="number" name="maxTuristas" value="1" min="1">
+        <label for="maxTuristas" class="sr-only">Número máximo de turistas</label>
+        <input type="number" id="maxTuristas" name="maxTuristas" value="1" min="1">
 
         <label for="precio" class="sr-only">Precio</label>
-        <input type="number" name="precio" value="5.0" step="0.01" min="0">
+        <input type="number" id="precio" name="precio" value="5.0" step="0.01" min="0">
         
         <button class="btn btn-lg btn-primary btn-block" type="submit">Crear</button>
       </form>

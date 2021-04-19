@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Homeland &mdash; Colorlib Website Template</title>
+    <title>Datos Privados</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -87,7 +87,7 @@
               <p class="mb-0 font-weight-bold">Respuesta de seguridad</p>
               <p class="mb-0"th:text="${session.u.RespuestaSeguridad}">respuesta</p>
 
-              <p><a th:href="@{/user/{id}/EditarDatos(id=${session.u.Id})}" class="btn btn-success text-white btn-block rounded-0">Editar mis datos</a></p>
+              <p><a th:href="@{/user/{id}/EditarDatos(id=${session.u.Id})}" class="btn btn-success text-white btn-block rounded-0" id="editarPriv">Editar mis datos</a></p>
 
             </div>
             
