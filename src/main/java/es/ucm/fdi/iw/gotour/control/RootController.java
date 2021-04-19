@@ -11,6 +11,8 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +27,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.beans.PropertyAccessor;
@@ -73,7 +78,7 @@ public class RootController {
 	}
 
     @PostMapping("/")
-    public String searchTours(Model model,@RequestParam String pais
+    public String searchTours(Model model, HttpSession session,@RequestParam String pais
                                         ,@RequestParam String ciudad
                                         ,@RequestParam String lugar
                                         ,@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechaini
@@ -85,7 +90,7 @@ public class RootController {
             .setParameter("fechaIniParam", fechaini)
             .setParameter("fechaFinParam", fechafin).getResultList();      	
         model.addAttribute("busqueda", busqueda);	
-        return index(model);
+        return index(model, session);
     }
 
     
@@ -127,7 +132,7 @@ public class RootController {
 
     @GetMapping("/")            // <-- en qué URL se expone, y por qué métodos (GET)        
     public String index(        // <-- da igual, sólo para desarrolladores
-            Model model)        // <-- hay muchos, muchos parámetros opcionales
+            Model model, HttpSession session)        // <-- hay muchos, muchos parámetros opcionales
     {
         List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();        
         // dumps them via log
@@ -140,6 +145,56 @@ public class RootController {
         return "index";
     }
 
+    
+	@PostMapping("/tour")
+	@Transactional
+    public String nuevoTour(@RequestParam String pais,
+                            @RequestParam String ciudad,
+                            @RequestParam String lugar,
+                            @RequestParam String titulo,
+                            @RequestParam String descripcion,
+                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") String fechaIni,
+                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") String fechaFin,
+                            @RequestParam int maxTuristas,
+                            @RequestParam double precio,
+                            Model model, HttpSession session){
+
+        TourOfertado tourO = new TourOfertado();
+        Tour tour = new Tour();
+
+        tourO.setPais(pais);
+        tourO.setCiudad(ciudad);
+        tourO.setLugar(lugar);
+        tourO.setTitulo(titulo);
+        tourO.setDescripcion(descripcion);
+        tourO.setMaxTuristas(maxTuristas);
+        tourO.setPrecio(precio);
+        tourO.setDisponible(true);
+
+        tour.setFechaIni(fechaIni);
+        tour.setFechaFin(fechaFin);
+        tour.setActTuristas(0);
+
+        User guia = entityManager.find(User.class, ((User)session.getAttribute("u")).getId());
+        guia.getTourOfertados().add(tour);
+        tourO.setGuia(guia);
+        tourO.getInstancias().add(tour);
+        tour.setDatos(tourO);
+        
+
+        entityManager.persist(tourO);
+        entityManager.flush();
+        long idTour = tourO.getInstancias().get(0).getId();
+
+        //return tourOfertado(idTour, model);
+        return "redirect:/tour/" + idTour;
+    }
+
+	@GetMapping("/crearTour")
+    public String crearTour(Model model, HttpSession session)
+    {
+        return "crearTour";
+    }
 
     // Un getMapping por vista que queramos en el proyecto. Y un template por vista
 

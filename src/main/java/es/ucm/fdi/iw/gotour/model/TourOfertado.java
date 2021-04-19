@@ -56,8 +56,9 @@ public class TourOfertado {
 	@NotNull
 	private int MaxTuristas;
 
-	@OneToMany (mappedBy="Datos")
-	private List<Tour>  Instancias = new ArrayList<>();
+	@OneToMany (mappedBy="Datos", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Tour> Instancias = new ArrayList<>();
+	
 	@NotNull
 	@ManyToOne
 	private User Guia;

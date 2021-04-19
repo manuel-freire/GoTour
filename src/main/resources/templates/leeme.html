@@ -59,16 +59,27 @@
         <li><a th:href="@{/tour/1}">Tour:</a> aqui se ven todos los datos relativos a un tour concreto, seleccionado por el usuario. EL enlace dirige al tour 1.</li>
         <li><a th:href="@{${session.u.id}+'/EditarDatos'}">EditarDatos:</a>Permite editar los datos personales del usuario.</li>
         <li><a th:href="@{${session.u.id}+'/datosPrivados'}">DatosPrivados:</a>Contiene los datos personales del usuario.</li>
-        <h1>No funcionan</h1>
         <li><a th:href="@{${session.u.id}+'/perfil'}">Perfil: </a> aqui se ven todos los datos relativos al usuario, su informacion personal y toures realizados o por realizar.</li>
+        <h1>No funcionan</h1>
         <li><a th:href="@{/admin/}">Admin:</a> aqui se muestra un grafico con estadisticas de la aplicacion y un panel de mandos para el administrador.</li>
         <li><a th:href="@{/admin/reportes-usuarios}">Reportes usuarios:</a> Aqui se muestran las incidencias de los guías y los usuarios</li>
         <li><a th:href="@{/admin/consulta-graficos-visitas}">Graficos Visitas:</a> Se muestran varios gráficos con información sobre el número de visitas, tours contratados, reseñas...</li>
         <li><a th:href="@{/admin/gestion-usuarios}">Desactivar Usuario:</a> Deshabilita un usuario para no borrarlo de la BD</li>
-        
+        <h1>Por terminar</h1>
+        <li><a th:href="@{/crearTour/}">crearTour:</a> aqui se muestra un formulario para que el usuario pueda crear un tour.</li>
     </ul>
-    <h2>Diagrama de clases</h2>
+
+    <h2>Pruebas</h2>
+    <p>principal.feature: prueba el proceso de apuntarse a un tour por parte de un usuario. Empieza haciendo login, despues selecciona un tour y se inscribe en él</p>
+    <h2>Diagrama de clases(desactualizado)</h2>
     <img th:src="@{/img/diagrama.png}" alt="Diagrama de clases" ></span>
+
+    <h2>Cambios respecto de la última entrega</h2>
+    <li>Comienzo de adaptacion a bootstrap</li>
+    <li>Añadido la funcionalidad de inscribirse a un tour</li>
+    <li>Adaptado a CamelCase y en los html en lugar de objeto.getAtributo() ahora es objeto.atributo</li>
+    <li>Comienzo de la funcionalidad de crearTour</li>
+    <li>Prueba de funcionalidad principal</li>
 
     <h2>Recursos</h2>
     Todas las imagenes usadas que no son nuestras se han buscado utilizando la herramienta de google para buscar por licencia creative commons

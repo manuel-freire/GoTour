@@ -223,7 +223,17 @@ public class UserController {
 		catch(Exception e){
 			log.error("Fallo al hacer logout", e);
 		}
-		return "index";
+		{
+			List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();        
+			// dumps them via log
+			log.info("Dumping table {}", "tour");
+			for (Object o : tours) {
+				log.info("\t{}", o);
+			}        
+			// adds them to model
+			model.addAttribute("tours", tours);			
+			return "index";
+		}
 	}
 
 	@PostMapping("/registro2")
@@ -265,6 +275,7 @@ public class UserController {
         return "index";
 
     }
+
 	@PostMapping("/{id}/actualizar")
 	@Transactional
     public String actualizar(@PathVariable("id") Long id,
@@ -306,20 +317,16 @@ public class UserController {
 	User user = entityManager.find(User.class, id);
 	log.info("EL USUARIO CONTIENE LO SIGUIENTE {}", user);
 
-		// si tiene que recorrer una relación no-eager, usas @Transactional y haces una copia
 		List<Tour> ofertados =  new ArrayList<>(user.getTourOfertados());
-		model.addAttribute("ofertados", ofertados);
-		// si tienes que recorrer otra relación interna, sencilamente recórrela
+		List<Review> recibidas =  new ArrayList<>(user.getReviewsRecibidas());
 		for (Tour t : ofertados) {
 			t.getDatos(); // arggs, mis ojos!
 		}
-
-		List<Review> recibidas =  new ArrayList<>(user.getReviewsRecibidas());
-		model.addAttribute("recibidas", recibidas);
 		
         model.addAttribute("user", user);
         return "perfil";
     }
+
 
 	@GetMapping("/{id}/datosPrivados")
     public String datosPrivados(Model model, HttpSession session, @PathVariable("id") Long id)
