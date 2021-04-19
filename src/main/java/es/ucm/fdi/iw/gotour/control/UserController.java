@@ -307,8 +307,8 @@ public class UserController {
 	User user = entityManager.find(User.class, id);
 	log.info("EL USUARIO CONTIENE LO SIGUIENTE {}", user);
 
-		List<Tour> ofertados =  new ArrayList<>(user.getTourofertados());
-		List<Review> recibidas =  new ArrayList<>(user.getReviewsrecibidas());
+		List<Tour> ofertados =  new ArrayList<>(user.getTourOfertados());
+		List<Review> recibidas =  new ArrayList<>(user.getReviewsRecibidas());
 		for (Tour t : ofertados) {
 			t.getDatos(); // arggs, mis ojos!
 		}

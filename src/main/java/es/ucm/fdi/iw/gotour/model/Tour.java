@@ -41,10 +41,10 @@ public class Tour {
 	 private TourOfertado Datos;
 
 	 @NotNull
-	private LocalDateTime FechaIni;
+	private String FechaIni;
 
 	@NotNull
-	private LocalDateTime FechaFin;
+	private String FechaFin;
 
 	@NotNull
 	private int ActTuristas;

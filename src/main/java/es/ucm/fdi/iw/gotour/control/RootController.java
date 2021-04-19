@@ -176,7 +176,7 @@ public class RootController {
         tour.setActTuristas(0);
 
         User guia = entityManager.find(User.class, ((User)session.getAttribute("u")).getId());
-        guia.getTourofertados().add(tour);
+        guia.getTourOfertados().add(tour);
         tourO.setGuia(guia);
         tourO.getInstancias().add(tour);
         tour.setDatos(tourO);
