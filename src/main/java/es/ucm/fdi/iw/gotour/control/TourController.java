@@ -63,16 +63,10 @@ public class TourController {
 	@PostMapping("/{id}/inscribirse")
     @Transactional
 	public String inscribirse(@PathVariable("id") long id,Model model,@RequestParam int turistas,HttpSession session) {
-        Tour t= entityManager.createNamedQuery("Tour.getTour", Tour.class)
-        .setParameter("id", id)
-        .getSingleResult();
-        System.out.println("Id: " + id);
-        System.out.println(t);
-        User u=(User)session.getAttribute("u");
+        Tour t = entityManager.find(Tour.class, id); // mejor que PreparedQueries que sólo buscan por ID
+        User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
+            ((User)session.getAttribute("u")).getId());
         t.addTurista(u, turistas);
-        //u.addTour(t);
-		/*entityManager.persist(t);
-		entityManager.flush();*/
 		return tourOfertado(id,model);
 	}
 
