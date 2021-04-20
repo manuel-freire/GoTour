@@ -246,9 +246,6 @@ public class UserController {
                             @RequestParam String respuestaseguridad,
                             @RequestParam String username,
                             @RequestParam long numtelefono,
-                            @RequestParam long numtarjeta,
-                            @RequestParam String caducidadtarjeta,
-                            @RequestParam int numsecreto,
                             Model model, HttpServletRequest request, HttpSession session){
         User user = new User();
         user.setNombre(nombre);
@@ -260,9 +257,6 @@ public class UserController {
         user.setRespuestaSeguridad(respuestaseguridad);
         user.setUsername(username);
         user.setNumTelefono(numtelefono);
-        user.setNumTarjeta(numtarjeta);
-        user.setCaducidadTarjeta(caducidadtarjeta);
-        user.setNumSecreto(numsecreto);
         user.setRoles("USER");
         user.setEnabled(1);
         entityManager.persist(user);
@@ -285,9 +279,6 @@ public class UserController {
                             @RequestParam String password,
                             @RequestParam String username,
                             @RequestParam long numtelefono,
-                            @RequestParam long numtarjeta,
-                            @RequestParam String caducidadtarjeta,
-                            @RequestParam int numsecreto,
                             Model model, HttpSession session){
 		User user = entityManager.find(User.class, id);
 		log.info("SE HA OBTENIDO EL USUARIO {}", user);
@@ -298,9 +289,6 @@ public class UserController {
         user.setPassword(encoded);
         user.setUsername(username);
         user.setNumTelefono(numtelefono);
-        user.setNumTarjeta(numtarjeta);
-        user.setCaducidadTarjeta(caducidadtarjeta);
-        user.setNumSecreto(numsecreto);
         user.setRoles("USER");
         user.setEnabled(1);
 		session.setAttribute("u", user);
