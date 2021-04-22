@@ -48,7 +48,8 @@ public class AdminController {
 		model.addAttribute("users", entityManager.createQuery(
 				"SELECT u FROM User u").getResultList());
 		
-		return "admin";
+		return "admin/index";
+
 	}
 
 	
@@ -70,6 +71,34 @@ public class AdminController {
 		}
 		return index(model);
 	}
+
+
+	@GetMapping("/users")
+	public String users(Model model) {
+		return "admin/users";
+	}
+
+	@GetMapping("/notificaciones")
+	public String notificaciones(Model model) {
+		return "admin/notificaciones";
+	}
+
+	@GetMapping("/reportes-usuarios")
+	public String reportes(Model model) {
+		return "admin/reportes-usuarios";
+	}
+
+	@GetMapping("/reporte-usuario")
+	public String reporteUsuario(Model model) {
+		return "admin/reporte-usuario";
+	}
+
+	@GetMapping("/configuracion")
+	public String reporteUsuario(Model model) {
+		return "admin/configuracion";
+	}
+
+
 
 
 	

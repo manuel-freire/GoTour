@@ -1,11 +1,20 @@
 package es.ucm.fdi.iw.gotour.control;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+<<<<<<< HEAD
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
@@ -39,10 +48,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+=======
+import org.springframework.web.bind.annotation.PathVariable;
+>>>>>>> fernando
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PathVariable;
-import es.ucm.fdi.iw.gotour.model.*;
+
+import es.ucm.fdi.iw.gotour.model.Tour;
 
 /**
  * Landing-page controller
@@ -76,13 +88,12 @@ public class RootController {
 	public String registro(Model model) {
 		return "registro";
 	}
-
     @PostMapping("/")
     public String searchTours(Model model, HttpSession session,@RequestParam String pais
                                         ,@RequestParam String ciudad
                                         ,@RequestParam String lugar
-                                        ,@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechaini
-                                        ,@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fechafin){
+                                        ,@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaini
+                                        ,@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechafin){
         List<Tour> busqueda = entityManager.createNamedQuery("ToursBySearch")
             .setParameter("paisParam", pais)
             .setParameter("ciudadParam", ciudad)
