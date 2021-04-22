@@ -22,6 +22,7 @@ import java.util.List;
 import es.ucm.fdi.iw.gotour.LocalData;
 import es.ucm.fdi.iw.gotour.model.Tour;
 import es.ucm.fdi.iw.gotour.model.User;
+import es.ucm.fdi.iw.gotour.model.Review;
 
 /**
  * Admin-only controller
@@ -60,6 +61,22 @@ public class TourController {
 		return "tour";
 	}
 
+    @GetMapping(value="/{id}/pago")
+	public String pago(@PathVariable long id, Model model) {
+        Tour t = entityManager.find(Tour.class, id);
+        List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
+        .setParameter("id", id)
+        .getResultList();
+        long id_guia = t.getDatos().getGuia().getId();
+        List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
+        .setParameter("user_id", id_guia)
+        .getResultList();
+        model.addAttribute("tour",t);
+        model.addAttribute("idiomas",idiomas);
+		return "pago";
+	}
+
+
 	@PostMapping("/{id}/inscribirse")
     @Transactional
 	public String inscribirse(@PathVariable("id") long id,Model model,@RequestParam int turistas,HttpSession session) {
@@ -68,6 +85,27 @@ public class TourController {
             ((User)session.getAttribute("u")).getId());
         t.addTurista(u, turistas);
 		return tourOfertado(id,model);
+	}
+
+    @PostMapping("/{id}/pagar")
+    @Transactional
+	public String pagar(@PathVariable("id") long id,Model model,@RequestParam int numTarjeta, @RequestParam String caducidadTarjeta,
+                        @RequestParam int numSecreto, @RequestParam int review, @RequestParam String reviewText,HttpSession session) {
+                            //Aunque le pido los datos de tarjeta en el formulario realmente no hago nada con ellos
+        Tour t = entityManager.find(Tour.class, id);
+        User u = entityManager.find(User.class,
+            ((User)session.getAttribute("u")).getId());
+        Review r = new Review();
+        log.info("SE PROCEDE A CREAR LA REVIEW");
+        r.setCreador(u);
+        r.setDestinatario(t.getDatos().getGuia());
+        r.setPuntuacion(review);
+        r.setTexto(reviewText);
+        r.setTourValorado(t);
+        log.info("La review actual es {}", r);
+        entityManager.persist(r);
+        entityManager.flush();
+		return "index";
 	}
 
 }

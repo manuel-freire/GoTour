@@ -118,9 +118,8 @@ public class User implements Transferable<User.Transfer> {
 	
 	private String Email;
 	private String Foto;
-	@NotNull
-	@Size(max=244)
-    private long NumTarjeta;
+	@Size(max=4)
+    private int NumTarjeta;
 	private String CaducidadTarjeta;
 	private int NumSecreto;
 
@@ -133,10 +132,8 @@ public class User implements Transferable<User.Transfer> {
 
 	@NotNull
 	@Size(max=100)
-	
 	private String RespuestaSeguridad;
 
-	@NotNull
 	private int Puntuacion;
 
 	@OneToMany(targetEntity=Tour.class)
