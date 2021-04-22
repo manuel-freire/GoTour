@@ -48,63 +48,48 @@
     <div th:replace="fragments/imagenes-principales.html :: images-principales">
      
     </div>
-
-   
-
-
+    
 
     <div class="site-section site-section-sm pb-0">
       <div class="container">
         <div class="row">
-          <form class="form-search col-md-12" style="margin-top: -100px;">
+          <form class="form-search col-md-12" style="margin-top: -100px;" method="post" th:action="@{/}">
             <div class="row  align-items-end">
               <div class="col-md-2">
-                <label for="list-types">Pais</label>
+                <label for="pais">Pais</label>
                 <div class="select-wrap">
                   <span class="icon icon-arrow_drop_down"></span>
-                  <select name="list-types" id="list-types" class="form-control d-block rounded-0">
-                    <option value="">España</option>
-                    <option value="">Francia</option>
-                  
-                  </select>
+                  <input type="text" class="form-control d-block rounded-0" name="pais" placeholder="Pais">
                 </div>
               </div>
               <div class="col-md-2">
-                <label for="offer-types">Ciudad</label>
+                <label for="ciudad">Ciudad</label>
                 <div class="select-wrap">
                   <span class="icon icon-arrow_drop_down"></span>
-                  <select name="offer-types" id="offer-types" class="form-control d-block rounded-0">
-                    <option value="">Madrid</option>
-                    <option value="">Barcelona</option>
-                    <option value="">Paris</option>
-                  </select>
+                  <input type="text" class="form-control d-block rounded-0" name="ciudad" placeholder="Ciudad">
                 </div>
               </div>
               <div class="col-md-2">
-                <label for="select-city">Lugar</label>
+                <label for="lugar">Lugar</label>
                 <div class="select-wrap">
                   <span class="icon icon-arrow_drop_down"></span>
-                  <select name="select-city" id="select-city" class="form-control d-block rounded-0">
-                    <option value="">Sagrada Familia</option>
-                    <option value="">Museo Reina Sofía</option>
-                    
-                  </select>
+                  <input type="text" class="form-control d-block rounded-0" name="lugar" placeholder="Lugar">
                 </div>
               </div>
 
                <div class="col-md-2">
-                <label for="select-city">Fecha Inicio</label>
+                <label for="fechaini">Fecha Inicio</label>
                 <div class="select-wrap">
                   <span class="icon icon-arrow_drop_down"></span>
-                  <input type="date" name="fechafin" placeholder="Fecha de fin" />
+                  <input type="datetime-local" class="form-control d-block rounded-0" name="fechaini" />
                   
                 </div>
               </div>
                <div class="col-md-2">
-                <label for="select-city">Fecha Fin</label>
+                <label for="fechafin">Fecha Fin</label>
                 <div class="select-wrap">
                   <span class="icon icon-arrow_drop_down"></span>
-                  <input type="date" name="fechafin" placeholder="Fecha de fin" />
+                  <input type="datetime-local" class="form-control d-block rounded-0" name="fechafin" />
                   
                 </div>
               </div>
@@ -114,6 +99,53 @@
             </div>
           </form>
         </div>  
+
+
+        <div class="site-section site-section-sm bg-light" th:each="tour: ${busqueda}">
+          <div class="container">
+          
+            <div class="row mb-5">
+              <div class="col-md-6 col-lg-4 mb-4" th:each="tour: ${tours}">
+                <div class="property-entry h-100">
+                  <a href="property-details.html" class="property-thumbnail">
+                    <div class="offer-type-wrap">
+                      <span class="offer-type bg-danger">Sale</span>
+                      <span class="offer-type bg-success">Rent</span>
+                    </div>
+                    
+                    <img th:src="@{${tour.datos.guia.foto}}" alt="Image" class="img-fluid">
+                  </a>
+                  <div class="p-4 property-body">
+                    <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                    <h2 class="property-title"  th:text="${tour.datos.guia.nombre}"><a href="property-details.html"></a></h2>
+                    <span class="property-location d-block mb-3"  th:text="${tour.datos.titulo}"><span class="property-icon icon-room"></span> Sidney, Australia</span>
+                    <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.datos.precio}+'€'"></strong>
+                    <ul class="property-specs-wrap mb-3 mb-lg-0">
+    
+                      <li>
+                        <span class="property-specs">Inicio</span>
+                        <span class="property-specs-number"  th:text="'Inicio: '+${tour.getFechaIniString()}"></span>
+                        
+                      </li>
+                      <li>
+                        <span class="property-specs">Turistas</span>
+                        <span class="property-specs-number" th:text="${tour.actTuristas}+'/'+${tour.datos.maxTuristas}+' turistas'"></span>
+                        
+                      </li>
+                      
+                      <li>
+                        <span class="property-specs">Fin</span>
+                        <span class="property-specs-number" th:text="'Fin: '+${tour.getFechaFinString()}"></span>
+                        
+                      </li>
+                    </ul>
+    
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            </div>
 
         <div class="row">
           <div class="col-md-12">
@@ -147,6 +179,9 @@
     </div>
 
     <div class="site-section site-section-sm bg-light">
+      <div class="site-section-title text-center">
+        <h2>Explora Tours</h2>
+      </div>      
       <div class="container">
       
         <div class="row mb-5">
@@ -157,6 +192,7 @@
                   <span class="offer-type bg-danger">Sale</span>
                   <span class="offer-type bg-success">Rent</span>
                 </div>
+<<<<<<< HEAD
                 <img th:href="@{'/tour/'+${tour.Id}}" th:src="@{${tour.Datos.Portada}}" alt="Image" class="img-fluid">
               </a>
               <div class="p-4 property-body">
@@ -167,22 +203,44 @@
                 <h2 class="property-title"><a th:href="@{'/tour/'+${tour.Id}}" th:text="${tour.Datos.Titulo}" id="tour_ref"></a></h2>
                 <span class="property-location d-block mb-3" ><span class="property-icon icon-room"></span><span th:text="${tour.Datos.Ciudad}+', '+${tour.Datos.Pais}"></span></span>
                 <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.Datos.Precio}+'€/persona'"></strong>
+=======
+                
+                <img th:src="@{${tour.datos.guia.foto}}" alt="Image" class="img-fluid">
+              </a>
+              <div class="p-4 property-body">
+                <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                <h2 class="property-title"  th:text="${tour.datos.guia.nombre}"><a href="property-details.html"></a></h2>
+                <span class="property-location d-block mb-3"  th:text="${tour.datos.titulo}"><span class="property-icon icon-room"></span> Sidney, Australia</span>
+                <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.datos.precio}+'€'"></strong>
+>>>>>>> fernando
                 <ul class="property-specs-wrap mb-3 mb-lg-0">
 
                   <li>
                     <span class="property-specs">Inicio</span>
+<<<<<<< HEAD
                     <span class="property-specs-number"  th:text="'Inicio: '+${tour.FechaIni}"></span>
+=======
+                    <span class="property-specs-number"  th:text="'Inicio: '+${tour.getFechaIniString()}"></span>
+>>>>>>> fernando
                     
                   </li>
                   <li>
                     <span class="property-specs">Turistas</span>
+<<<<<<< HEAD
                     <span class="property-specs-number" th:text="${tour.ActTuristas}+'/'+${tour.Datos.MaxTuristas}+' turistas'"></span>
+=======
+                    <span class="property-specs-number" th:text="${tour.actTuristas}+'/'+${tour.datos.maxTuristas}+' turistas'"></span>
+>>>>>>> fernando
                     
                   </li>
                   
                   <li>
                     <span class="property-specs">Fin</span>
+<<<<<<< HEAD
                     <span class="property-specs-number" th:text="'Fin: '+${tour.FechaFin}"></span>
+=======
+                    <span class="property-specs-number" th:text="'Fin: '+${tour.getFechaFinString()}"></span>
+>>>>>>> fernando
                     
                   </li>
                 </ul>

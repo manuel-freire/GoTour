@@ -1,18 +1,22 @@
 package es.ucm.fdi.iw.gotour.model;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import org.springframework.format.annotation.DateTimeFormat;
-import javax.validation.constraints.Size;
-import javax.persistence.JoinColumn;
-import lombok.AccessLevel;
+
 import lombok.Data;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -55,6 +59,7 @@ public class Tour {
 	@OneToMany (mappedBy="TourValorado")
 	private List<Review>  Reviews = new ArrayList<>();
 
+<<<<<<< HEAD
 	public void addTurista(User u,int numero){
 		if(Datos.getMaxTuristas() >= (ActTuristas+numero)){
 			Turistas.add(u);
@@ -63,6 +68,14 @@ public class Tour {
 		}
 	}
 
+=======
+	public String getFechaIniString(){
+		return fechaIni.toString().replace('T', ' ');
+	}
+	public String getFechaFinString(){
+		return fechaFin.toString().replace('T', ' ');
+	}
+>>>>>>> fernando
 	@Override
 	public String toString() {
 		return "";
