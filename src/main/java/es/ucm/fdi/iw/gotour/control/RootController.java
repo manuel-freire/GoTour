@@ -14,7 +14,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-<<<<<<< HEAD
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
@@ -48,13 +47,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-=======
 import org.springframework.web.bind.annotation.PathVariable;
->>>>>>> fernando
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.ucm.fdi.iw.gotour.model.Tour;
+import es.ucm.fdi.iw.gotour.model.TourOfertado;
+import es.ucm.fdi.iw.gotour.model.User;
 
 /**
  * Landing-page controller

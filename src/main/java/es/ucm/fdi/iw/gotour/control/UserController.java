@@ -285,8 +285,6 @@ public class UserController {
         user.setNombre(nombre);
         user.setApellidos(apellidos);
         user.setEmail(email);
-		String encoded = encodePassword(password);
-        user.setPassword(encoded);
         user.setUsername(username);
         user.setNumTelefono(numtelefono);
         user.setRoles("USER");

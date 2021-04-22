@@ -59,7 +59,7 @@ public class Tour {
 	@OneToMany (mappedBy="TourValorado")
 	private List<Review>  Reviews = new ArrayList<>();
 
-<<<<<<< HEAD
+
 	public void addTurista(User u,int numero){
 		if(Datos.getMaxTuristas() >= (ActTuristas+numero)){
 			Turistas.add(u);
@@ -67,15 +67,12 @@ public class Tour {
 			u.addTour(this);
 		}
 	}
-
-=======
 	public String getFechaIniString(){
-		return fechaIni.toString().replace('T', ' ');
+		return FechaIni.toString().replace('T', ' ');
 	}
 	public String getFechaFinString(){
-		return fechaFin.toString().replace('T', ' ');
+		return FechaFin.toString().replace('T', ' ');
 	}
->>>>>>> fernando
 	@Override
 	public String toString() {
 		return "";

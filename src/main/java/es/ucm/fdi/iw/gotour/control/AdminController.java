@@ -93,10 +93,10 @@ public class AdminController {
 		return "admin/reporte-usuario";
 	}
 
-	@GetMapping("/configuracion")
-	public String reporteUsuario(Model model) {
-		return "admin/configuracion";
-	}
+	// @GetMapping("/configuracion")
+	// public String reporteUsuario(Model model) {
+	// 	return "admin/configuracion";
+	// }
 
 
 
