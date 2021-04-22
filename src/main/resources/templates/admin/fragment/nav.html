@@ -1,0 +1,60 @@
+
+  <!DOCTYPE html>
+  <html 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+      <title>Nav fragment - rest intentionally left empty</title>
+  </head>
+  <body>
+  
+  
+    <div th:fragment="menu" class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item active ">
+            <a class="nav-link" th:href="@{/admin/}">
+              <i class="material-icons">dashboard</i>
+              <p>Administracion</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" th:href="@{/admin/users}">
+              <i class="material-icons">person</i>
+              <p>Usuarios</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" th:href="@{/admin/reportes-usuarios}">
+              <i class="material-icons">content_paste</i>
+              <p>Reportes Usuarios</p>
+            </a>
+          </li>
+
+
+        
+          <li class="nav-item ">
+            <a class="nav-link" th:href="@{/admin/notificaciones}">
+              <i class="material-icons">notifications</i>
+              <p>Notificaciones</p>
+            </a>
+          </li>
+
+
+          <li class="nav-item ">
+            <a class="nav-link" th:href="@{/admin/Configuracion}">
+              <i class="material-icons">settings</i>
+              <p>Configuracion</p>
+            </a>
+          </li>
+
+          <li class="nav-item ">
+            <a class="nav-link" th:href="@{/}">
+              <i class="material-icons">language</i>
+              <p>Index Go Tour</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+  
+  </body>
+  </html>
