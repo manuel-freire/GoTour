@@ -206,10 +206,11 @@ public class RootController {
         
         guia.getTourOfertados().add(tour);
         tourO.getInstancias().add(tour);
-        
-        long idTour = entityManager.find(TourOfertado.class, idTourO).getInstancias().get(0).getId();
 
-        log.info("EL ID CONTIENE con luci {}", idTour);
+        entityManager.persist(tour);
+        entityManager.flush();
+        
+        long idTour = tour.getId();
 
         return "redirect:/tour/" + idTour;
     }
