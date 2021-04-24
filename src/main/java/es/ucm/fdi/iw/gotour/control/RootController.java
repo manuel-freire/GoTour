@@ -164,14 +164,11 @@ public class RootController {
                             @RequestParam String lugar,
                             @RequestParam String titulo,
                             @RequestParam String descripcion,
-                            @RequestParam LocalDateTime fechaIni,
-                            @RequestParam LocalDateTime fechaFin,
                             @RequestParam int maxTuristas,
                             @RequestParam double precio,
                             Model model, HttpSession session){
 
         TourOfertado tourO = new TourOfertado();
-        Tour tour = new Tour();
 
         tourO.setPais(pais);
         tourO.setCiudad(ciudad);
@@ -182,22 +179,38 @@ public class RootController {
         tourO.setPrecio(precio);
         tourO.setDisponible(true);
 
-        tour.setFechaIni(fechaIni);
-        tour.setFechaFin(fechaFin);
-        tour.setActTuristas(0);
-
         User guia = entityManager.find(User.class, ((User)session.getAttribute("u")).getId());
-        guia.getTourOfertados().add(tour);
         tourO.setGuia(guia);
-        tourO.getInstancias().add(tour);
-        tour.setDatos(tourO);
-        
 
         entityManager.persist(tourO);
         entityManager.flush();
-        long idTour = tourO.getInstancias().get(0).getId();
 
-        //return tourOfertado(idTour, model);
+        return crearInstancia(tourO, model, session);
+    }
+
+    @PostMapping("/instancia")
+	@Transactional
+    public String nuevoTour(@RequestParam long idTourO,
+                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaIni,
+                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaFin,
+                            Model model, HttpSession session){
+
+        TourOfertado tourO = entityManager.find(TourOfertado.class, idTourO);
+        User guia = entityManager.find(User.class, tourO.getGuia().getId());
+        Tour tour = new Tour();
+
+        tour.setFechaIni(fechaIni);
+        tour.setFechaFin(fechaFin);
+        tour.setActTuristas(0);
+        tour.setDatos(tourO);
+        
+        guia.getTourOfertados().add(tour);
+        tourO.getInstancias().add(tour);
+        
+        long idTour = entityManager.find(TourOfertado.class, idTourO).getInstancias().get(0).getId();
+
+        log.info("EL ID CONTIENE con luci {}", idTour);
+
         return "redirect:/tour/" + idTour;
     }
 
@@ -205,6 +218,13 @@ public class RootController {
     public String crearTour(Model model, HttpSession session)
     {
         return "crearTour";
+    }
+
+    @GetMapping("/crearInstancia")
+    public String crearInstancia(TourOfertado tour, Model model, HttpSession session)
+    {
+        model.addAttribute("tour", tour);
+        return "crearInstancia";
     }
 
     // Un getMapping por vista que queramos en el proyecto. Y un template por vista

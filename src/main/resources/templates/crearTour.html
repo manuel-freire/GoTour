@@ -10,6 +10,7 @@
     <th:block th:replace="frags/header.html">
 </th:block>
      <div class="container">
+       <h3>Empieza creando una plantilla del tour con los datos generales.</h3>
       <form class="form-tour" method="post" th:action="@{/tour}">
 
         <label for="pais" class="sr-only">País</label>
@@ -26,12 +27,6 @@
 
         <label for="descripcion" class="sr-only">Descripción</label>
         <input type="text" id="descripcion" name="descripcion" placeholder="P. ej. Tour por eL Madrid del sigo XIX.">
-
-        <label for="fechaIni" class="sr-only">Fecha de inicio</label>
-        <input type="date" id="fechaIni" name="fechaIni" placeholder="Fecha de inicio" />
-
-        <label for="fechaFin" class="sr-only">Fecha de fin</label>
-        <input type="date" id="fechaFin" name="fechaFin" placeholder="Fecha de fin" />
 
         <label for="maxTuristas" class="sr-only">Número máximo de turistas</label>
         <input type="number" id="maxTuristas" name="maxTuristas" value="1" min="1">
