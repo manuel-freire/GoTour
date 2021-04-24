@@ -164,8 +164,8 @@ public class RootController {
                             @RequestParam String lugar,
                             @RequestParam String titulo,
                             @RequestParam String descripcion,
-                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") String fechaIni,
-                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") String fechaFin,
+                            @RequestParam LocalDateTime fechaIni,
+                            @RequestParam LocalDateTime fechaFin,
                             @RequestParam int maxTuristas,
                             @RequestParam double precio,
                             Model model, HttpSession session){
