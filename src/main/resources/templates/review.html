@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Pago por el tour</title>
+    <title>Valoracion del tour</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -62,18 +62,6 @@
                   <div class="col-md-6">
                     <strong class="text-success h1 mb-3" th:text="${tour.Datos.Titulo}"></strong>
                   </div>
-                  <div class="col-md-6">
-                    <ul class="property-specs-wrap mb-3 mb-lg-0  float-lg-right">
-                    <li>
-                      <span class="property-specs-number" id="totalPagar">El precio a pagar es: </span>
-                      
-                    </li>
-                    <li>
-                      <span class="property-specs-number" th:text="${tour.Datos.Precio} * ${asistentes} + ' €'"></span>
-                      
-                    </li>
-                  </ul>
-                  </div>
                 </div>
   
                 <div class="row mb-5">
@@ -93,20 +81,15 @@
                     <strong class="d-block" th:text="${tour.Datos.Lugar}">$520</strong>
                   </div>
                 </div>
-                <h2 class="h4 text-black"th:if="${session.u.NumTarjeta == 0}">Introduzca sus datos de pago para completar la transacción</h2>
-                <form method="post" class="form-contact-agent" th:action="@{/tour/{id}/pagar(id=${tour.id})}">
+                <h2 class="h4 text-black">Indique a continuacion su valoracion respecto al tour y los motivos de dicha valoracion</h2>
+                <form method="post" class="form-contact-agent" th:action="@{/tour/{id}/valorar(id=${tour.id})}">
                     
                     <div class="form-group">
-                        <label for="numTarjeta" th:if="${session.u.NumTarjeta == 0}">Numero de tarjeta</label>
-                        <input th:if="${session.u.NumTarjeta == 0}" name="numTarjeta" id="numTarjeta" type="number" class="form-control" th:value="0">
-                        <input th:unless="${session.u.NumTarjeta == 0}" name="numTarjeta" id="numTarjeta" type="hidden" class="form-control" th:value="${session.u.NumTarjeta}">
-                        <label for="caducidadTarjeta" th:if="${session.u.NumTarjeta == 0}">Fecha de caducidad de la tarjeta</label>
-                        <input th:if="${session.u.NumTarjeta == 0}" name="caducidadTarjeta" id="caducidadTarjeta" type="text" class="form-control" th:value="">
-                        <input th:unless="${session.u.NumTarjeta == 0}" name="caducidadTarjeta" id="caducidadTarjeta" type="hidden" class="form-control" th:value="${session.u.CaducidadTarjeta}">
-                        <label th:if="${session.u.NumTarjeta == 0}" for="numSecreto">Numero secreto</label>
-                        <input th:if="${session.u.NumTarjeta == 0}"name="numSecreto" id="numSecreto" type="number" class="form-control" th:value="0">
-                        <input th:unless="${session.u.NumTarjeta == 0}"name="numSecreto" id="numSecreto" type="hidden" class="form-control" th:value="${session.u.NumSecreto}">
-                        <input type="submit" id="enviarReview" class="btn btn-primary" value="Enviar">
+                        <label for="valoracion">Valoracion</label>
+                        <input th:if="${session.u.NumTarjeta == 0}" name="valoracion" id="valoracion" type="number" class="form-control" th:value="0" th:min=0 th:max=5>
+                        <label for="textoReview" th:if="${session.u.NumTarjeta == 0}">Explique aqui los motivos de su valoracion</label>
+                        <input th:if="${session.u.NumTarjeta == 0}" name="textoReview" id="textoReview" type="text" class="form-control" th:value="">
+                          <input type="submit" id="enviarReview" class="btn btn-primary" value="Enviar">
                       </form>
                       </div>
 

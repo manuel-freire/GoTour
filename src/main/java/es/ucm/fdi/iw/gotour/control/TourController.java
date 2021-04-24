@@ -75,6 +75,20 @@ public class TourController {
         model.addAttribute("idiomas",idiomas);
 		return "pago";
 	}
+    @GetMapping(value="/{id}/review")
+	public String review(@PathVariable long id, Model model) {
+        Tour t = entityManager.find(Tour.class, id);
+        List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
+        .setParameter("id", id)
+        .getResultList();
+        long id_guia = t.getDatos().getGuia().getId();
+        List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
+        .setParameter("user_id", id_guia)
+        .getResultList();
+        model.addAttribute("tour",t);
+        model.addAttribute("idiomas",idiomas);
+		return "review";
+	}
 
 
 	@PostMapping("/{id}/inscribirse")
@@ -83,9 +97,31 @@ public class TourController {
         Tour t = entityManager.find(Tour.class, id); // mejor que PreparedQueries que sólo buscan por ID
         User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
             ((User)session.getAttribute("u")).getId());
+        model.addAttribute("asistentes", turistas);
         t.addTurista(u, turistas);
-		return tourOfertado(id,model);
+        tourOfertado(id, model);
+		return "pago";
 	}
+
+    @PostMapping("/{id}/valorar")
+    @Transactional
+    public String valorar(@PathVariable("id") long id, Model model, @RequestParam int valoracion, @RequestParam String textoReview, HttpSession session){
+        Tour t = entityManager.find(Tour.class, id); // mejor que PreparedQueries que sólo buscan por ID
+        User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
+            ((User)session.getAttribute("u")).getId());
+        Review r = new Review();
+        log.info("SE PROCEDE A CREAR LA REVIEW");
+        r.setCreador(u);
+        r.setDestinatario(t.getDatos().getGuia());
+        r.setPuntuacion(valoracion);
+        r.setTexto(textoReview);
+        r.setTourValorado(t);
+        log.info("La review actual es {}", r);
+        entityManager.persist(r);
+        entityManager.flush();
+        tourOfertado(id, model);
+        return "tour";
+    }
 
     @PostMapping("/{id}/pagar")
     @Transactional
@@ -95,16 +131,14 @@ public class TourController {
         Tour t = entityManager.find(Tour.class, id);
         User u = entityManager.find(User.class,
             ((User)session.getAttribute("u")).getId());
-        Review r = new Review();
-        log.info("SE PROCEDE A CREAR LA REVIEW");
-        r.setCreador(u);
-        r.setDestinatario(t.getDatos().getGuia());
-        r.setPuntuacion(review);
-        r.setTexto(reviewText);
-        r.setTourValorado(t);
-        log.info("La review actual es {}", r);
-        entityManager.persist(r);
-        entityManager.flush();
+        List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();        
+        // dumps them via log
+        log.info("Dumping table {}", "tour");
+        for (Object o : tours) {
+            log.info("\t{}", o);
+        }        
+        // adds them to model
+        model.addAttribute("tours", tours);	
 		return "index";
 	}
 
