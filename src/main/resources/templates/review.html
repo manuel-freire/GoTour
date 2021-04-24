@@ -86,9 +86,9 @@
                     
                     <div class="form-group">
                         <label for="valoracion">Valoracion</label>
-                        <input th:if="${session.u.NumTarjeta == 0}" name="valoracion" id="valoracion" type="number" class="form-control" th:value="0" th:min=0 th:max=5>
-                        <label for="textoReview" th:if="${session.u.NumTarjeta == 0}">Explique aqui los motivos de su valoracion</label>
-                        <input th:if="${session.u.NumTarjeta == 0}" name="textoReview" id="textoReview" type="text" class="form-control" th:value="">
+                        <input name="valoracion" id="valoracion" type="number" class="form-control" th:value="0" th:min=0 th:max=5>
+                        <label for="textoReview">Explique aqui los motivos de su valoracion</label>
+                        <input name="textoReview" id="textoReview" type="text" class="form-control">
                           <input type="submit" id="enviarReview" class="btn btn-primary" value="Enviar">
                       </form>
                       </div>

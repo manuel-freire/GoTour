@@ -126,11 +126,16 @@ public class TourController {
     @PostMapping("/{id}/pagar")
     @Transactional
 	public String pagar(@PathVariable("id") long id,Model model,@RequestParam int numTarjeta, @RequestParam String caducidadTarjeta,
-                        @RequestParam int numSecreto, @RequestParam int review, @RequestParam String reviewText,HttpSession session) {
+                        @RequestParam int numSecreto,HttpSession session) {
                             //Aunque le pido los datos de tarjeta en el formulario realmente no hago nada con ellos
         Tour t = entityManager.find(Tour.class, id);
         User u = entityManager.find(User.class,
             ((User)session.getAttribute("u")).getId());
+        if(numTarjeta!= u.getNumTarjeta()){
+            u.setNumTarjeta(numTarjeta);
+            u.setCaducidadTarjeta(caducidadTarjeta);
+            u.setNumSecreto(numSecreto);
+        }
         List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();        
         // dumps them via log
         log.info("Dumping table {}", "tour");
