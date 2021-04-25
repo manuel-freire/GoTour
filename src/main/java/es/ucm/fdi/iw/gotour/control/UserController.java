@@ -308,7 +308,10 @@ public class UserController {
 		for (Tour t : ofertados) {
 			t.getDatos(); // arggs, mis ojos!
 		}
-		
+        List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
+                .setParameter("user_id", user.getId())
+                .getResultList();
+        model.addAttribute("idiomas",idiomas);
         model.addAttribute("user", user);
         return "perfil";
     }
