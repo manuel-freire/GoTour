@@ -50,7 +50,6 @@
         <div class="informacion">
             <div th:if="${session.u.Id == user.Id}">
                 <p th:text="${user.Username}">Nombre usuario</p>
-                <a th:href="@{/user/{id}/perfil(id=${user.Id})}">Editar</a>
                 <a th:href="@{/user/{id}/datosPrivados(id=${user.Id})}" id="datosPrivados">Mi cuenta</a>
                 <a th:href="@{/crearTour}" id="crearTour">Nuevo tour</a>
             </div>

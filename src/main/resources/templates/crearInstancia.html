@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <title>Crear instancia</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+  </head>
+  <body>
+    <th:block th:replace="frags/header.html">
+</th:block>
+     <div class="container">
+        <img id="user" th:src="@{${tour.Portada}}" alt="Coliseo" class="custom1">
+        <p class="titulo" th:text="${tour.Titulo}">Título</p>
+        <p class="ciudad" th:text="${tour.Ciudad}+', '+${tour.Pais}">Ciudad y país</p>
+        <p  class="lugar" th:text="${tour.Lugar}">Lugar</p>
+        <p class="precio" th:text="${tour.Precio}+'€'">Precio</p>
+        <p class="personas" th:text="'Turistas permitidos: ' + ${tour.MaxTuristas}">Turistas</p>
+
+        <h3>Rellena para cuándo quieres organizar la primera instancia del tour</h3>
+
+        <form class="form-tour" method="post" th:action="@{/instancia}">
+
+            <input type="hidden" id="idTourO" name="idTourO" th:value="${tour.id}" />
+
+            <label for="fechaIni" class="sr-only">Fecha y hora de inicio</label>
+            <input type="datetime-local" id="fechaIni" name="fechaIni" placeholder="Fecha de inicio" />
+
+            <label for="fechaFin" class="sr-only">Fecha y hora de fin</label>
+            <input type="datetime-local" id="fechaFin" name="fechaFin" placeholder="Fecha de fin" />
+            
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Crear</button>
+        </form>
+</div>
+</body></html>
