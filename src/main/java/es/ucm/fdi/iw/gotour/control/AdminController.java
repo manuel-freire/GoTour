@@ -70,9 +70,9 @@ public class AdminController {
 
 
 	
-	@PostMapping("{id}/toggleuser")
+	@PostMapping("/toggleuser")
 	@Transactional
-	public String delUser(@PathVariable("id") long id,Model model) {
+	public String delUser(Model model, @RequestParam long id) {
 		User target = entityManager.find(User.class, id);
 		if (target.getEnabled() == 1) {
 			// remove profile photo

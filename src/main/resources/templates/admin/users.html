@@ -122,7 +122,13 @@ The above copyright notice and this permission notice shall be included in all c
                          
                           </td> 
                           <td>
-                            <a th:href="@{toggleuser(id=${user.Id})}">Deshabilitar Usuario</a>
+                            <form method="post" th:action="@{/togleuser(id=${user.Id})}">
+        
+        
+                              <button type="submit" class="btn btn-primary" >Deshabilitar</button>
+                              
+                            </form>
+                            
                           </td>
                           
                         </tr>
@@ -135,6 +141,8 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
 
       <footer th:replace="admin/fragment/footer.html :: footer"></footer>
+
+      
     </div>
   </div>
   <div class="fixed-plugin">
