@@ -20,17 +20,17 @@
                 <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
                 <ul class="site-menu js-clone-nav d-none d-lg-block">
-                  <li class="active">
+                  <li th:class="${classActiveHome}">
                     <a th:href="@{/}">Home</a>
                   </li>
-                  <li><a th:if ="${session.u == null}" th:href="@{/registro}">Registrate</a></li>
-                  <li><a th:if ="${session.u == null}" th:href="@{/login}">Login</a></li>
+                  <li th:class="${classActiveRegistro}"><a th:if ="${session.u == null}" th:href="@{/registro}">Registrate</a></li>
+                  <li th:class="${classActiveLogin}"><a th:if ="${session.u == null}" th:href="@{/login}">Login</a></li>
                   <li class="has-children" th:if="${session.u}">
                     <a th:href="@{'/user/'+ ${session.u.id}+'/perfil'}" id="perfil_ref">Mi perfil  </a>
                     <ul class="dropdown arrow-top">
                       <li><a th:href="@{/user/logout}">Log out</a></li>
-                      <li><a href="#">Mis tours reservados</li>
-                      <li><a href="#">Mis tours ofertados</a></li>
+                      <li th:class="${classActiveToursReservados}"><a href="#">Mis tours reservados</li>
+                      <li th:class="${classActiveToursOfertados}"><a href="#">Mis tours ofertados</a></li>
                     </ul>
                   </li>
                 </ul>

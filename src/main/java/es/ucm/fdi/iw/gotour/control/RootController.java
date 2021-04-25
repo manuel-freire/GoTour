@@ -81,11 +81,13 @@ public class RootController {
 	
 	@GetMapping("/login")
 	public String login(Model model) {
+        model.addAttribute("classActiveLogin","active");
 		return "login";
 	}
 
     @GetMapping("/registro")
 	public String registro(Model model) {
+        model.addAttribute("classActiveRegistro","active");
 		return "registro";
 	}
     @PostMapping("/")
@@ -152,7 +154,8 @@ public class RootController {
             log.info("\t{}", o);
         }        
         // adds them to model
-        model.addAttribute("tours", tours);			
+        model.addAttribute("tours", tours);	
+        model.addAttribute("classActiveHome","active");		
         return "index";
     }
 
