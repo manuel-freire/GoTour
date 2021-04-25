@@ -81,10 +81,10 @@ public class AdminController {
 				f.delete();
 			}
 			// disable user
-			target.setEnabled((byte)0); 
+			target.setEnabled(0); 
 		} else {
 			// enable user
-			target.setEnabled((byte)1);
+			target.setEnabled(1);
 		}
 		return index(model);
 	}
