@@ -59,7 +59,8 @@ import lombok.AllArgsConstructor;
                         + "FROM User u "
                         + "WHERE u.Username = :username"),
 		@NamedQuery(name="userByLogin",
-				query="select u from User u where u.Email = :loginParam")
+				query="select u from User u where u.Email = :loginParam"),
+		@NamedQuery(name="AllUsers", query="Select u from User u")
 		
 })
 

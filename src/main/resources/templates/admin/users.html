@@ -29,6 +29,8 @@ The above copyright notice and this permission notice shall be included in all c
     <link th:href="@{/admin/assets/css/material-dashboard.css?v=2.1.2}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link th:href="@{/admin/assets/demo/demo.css}" rel="stylesheet}" />
+
+  
   </head>
 <body class="">
   <div class="wrapper ">
@@ -38,9 +40,7 @@ The above copyright notice and this permission notice shall be included in all c
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
-        </a></div>
+    
         <div th:replace="admin/fragment/nav.html :: menu">
      
         </div>
@@ -106,22 +106,28 @@ The above copyright notice and this permission notice shall be included in all c
                           Email
                         </th>
                         <th>
-                          Tours asistidos
+                          Deshabilitar Usuario
                         </th>
 
                       </thead>
                       <tbody>
                         <tr th:each="user: ${users}">
-                          <td  th:text="${user.iD}">
-                            
+                          <td  th:text="${user.Id}">
+                            Hola
                           </td>
                           <td th:text="${user.Username}">
                             
                           </td>
                           <td th:text="${user.Email}">
                          
-                          </td>
-                          <td th:text="${user.ToursAsistidos.length}">
+                          </td> 
+                          <td>
+                            <form method="post" th:action="@{/togleuser(id=${user.Id})}">
+        
+        
+                              <button type="submit" class="btn btn-primary" >Deshabilitar</button>
+                              
+                            </form>
                             
                           </td>
                           
@@ -135,6 +141,8 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
 
       <footer th:replace="admin/fragment/footer.html :: footer"></footer>
+
+      
     </div>
   </div>
   <div class="fixed-plugin">
@@ -248,6 +256,8 @@ The above copyright notice and this permission notice shall be included in all c
   <script th:src="@{/admin/assets/js/material-dashboard.js?v=2.1.2}" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script th:src="@{/admin/assets/demo/demo.js}"></script>
+
+
   <script>
     $(document).ready(function() {
       $().ready(function() {
