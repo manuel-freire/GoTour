@@ -27,8 +27,10 @@ import lombok.NoArgsConstructor;
 	@NamedQuery(name="ToursBySearch", query="Select t from Tour t where t.Datos.Pais=:paisParam and "+
 																		"t.Datos.Ciudad=:ciudadParam and "+
 																		"t.Datos.Lugar=:lugarParam and "+
-																		"t.FechaIni=:fechaIniParam and "+
-																		"t.FechaFin=:fechaFinParam"),
+																		"(t.FechaIni<:fechaIniParam or "+
+																		"t.FechaIni=:fechaIniParam) and "+
+																		"(t.FechaFin>:fechaFinParam or "+
+																		"t.FechaFin=:fechaFinParam)"),
 	@NamedQuery(name="Tour.getTour",
 		query="SELECT u FROM Tour u "
 				+ "WHERE u.Id = :id ")
