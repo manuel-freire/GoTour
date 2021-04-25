@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
 import java.util.List;
 import es.ucm.fdi.iw.gotour.LocalData;
 import es.ucm.fdi.iw.gotour.model.Tour;
+import es.ucm.fdi.iw.gotour.model.TourOfertado;
 import es.ucm.fdi.iw.gotour.model.User;
 import es.ucm.fdi.iw.gotour.model.Review;
 
@@ -44,18 +47,19 @@ public class TourController {
 	private Environment env;
 	
     @GetMapping(value="/{id}")
+    @Transactional
 	public String tourOfertado(@PathVariable long id, Model model) {
-        Tour u = entityManager.createNamedQuery("Tour.getTour", Tour.class)
-		        .setParameter("id", id)
-		        .getSingleResult();
+        TourOfertado tour = entityManager.find(TourOfertado.class, id);
+        List<Tour> instancias =  new ArrayList<>(tour.getInstancias());
+
         List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
                 .setParameter("id", id)
                 .getResultList();
-        long id_guia = u.getDatos().getGuia().getId();
+        long id_guia = tour.getGuia().getId();
         List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
                 .setParameter("user_id", id_guia)
                 .getResultList();
-        model.addAttribute("tour",u);
+        model.addAttribute("tour",tour);
         model.addAttribute("etiquetas",etiquetas);
         model.addAttribute("idiomas",idiomas);
 		return "tour";
@@ -106,13 +110,13 @@ public class TourController {
     @PostMapping("/{id}/valorar")
     @Transactional
     public String valorar(@PathVariable("id") long id, Model model, @RequestParam int valoracion, @RequestParam String textoReview, HttpSession session){
-        Tour t = entityManager.find(Tour.class, id); // mejor que PreparedQueries que sólo buscan por ID
+        TourOfertado t = entityManager.find(TourOfertado.class, id); // mejor que PreparedQueries que sólo buscan por ID
         User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
             ((User)session.getAttribute("u")).getId());
         Review r = new Review();
         log.info("SE PROCEDE A CREAR LA REVIEW");
         r.setCreador(u);
-        r.setDestinatario(t.getDatos().getGuia());
+        r.setDestinatario(t.getGuia());
         r.setPuntuacion(valoracion);
         r.setTexto(textoReview);
         r.setTourValorado(t);
@@ -146,5 +150,16 @@ public class TourController {
         model.addAttribute("tours", tours);	
 		return "index";
 	}
+
+    
+    @GetMapping("/{id}/crearInstancia")
+    @Transactional
+    public String crearInstancia(@PathVariable("id") long id, Model model, HttpSession session)
+    {
+        TourOfertado tour = entityManager.find(TourOfertado.class, id);
+        model.addAttribute("tour", tour);
+        model.addAttribute("inicial", false);
+        return "crearInstancia";
+    }
 
 }

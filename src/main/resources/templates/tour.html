@@ -22,7 +22,8 @@
     <link rel="stylesheet" th:href="@{/css/style_tour.css}">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  
+    <script type="text/javascript" th:src="@{/js/tour.js}"></script>
+
   </head>
   <body>
     <div class="site-loader"></div>
@@ -53,56 +54,46 @@
             <div class="col-lg-8">
               <div>
                 <div class="slide-one-item home-slider owl-carousel">
-                  <div><img th:src="@{${tour.Datos.Portada}}" alt="Imágen del tour" class="img-fluid"></div>
-                  <div><img th:src="@{${tour.Datos.Mapa}}" alt="La imagen del mapa" class="img-fluid"></div>
+                  <div><img th:src="@{${tour.Portada}}" alt="Imágen del tour" class="img-fluid"></div>
+                  <div><img th:src="@{${tour.Mapa}}" alt="La imagen del mapa" class="img-fluid"></div>
                 </div>
               </div>
               <div class="bg-white property-body border-bottom border-left border-right">
                 <div class="row mb-5">
                   <div class="col-md-6">
-                    <strong class="text-success h1 mb-3" th:text="${tour.Datos.Titulo}"></strong>
+                    <strong class="text-success h1 mb-3" th:text="${tour.Titulo}"></strong>
                   </div>
                   <div class="col-md-6">
                     <ul class="property-specs-wrap mb-3 mb-lg-0  float-lg-right">
                     <li>
-                      <span class="property-specs">Libre</span>
-                      <span class="property-specs-number" id="libre" th:text="${tour.Datos.MaxTuristas-tour.ActTuristas}"></span>
-                      
-                    </li>
-                    <li>
                       <span class="property-specs">Maximo</span>
-                      <span class="property-specs-number" th:text="${tour.Datos.MaxTuristas}"></span>
+                      <span class="property-specs-number" th:text="${tour.MaxTuristas}"></span>
                       
                     </li>
                     <li>
           
                       <span class="property-specs">Precio</span>
-                      <span class="property-specs-number" th:text="${tour.Datos.Precio}+' €'"></span>
+                      <span class="property-specs-number" th:text="${tour.Precio}+' €'"></span>
                       
                     </li>
                   </ul>
                   </div>
                 </div>
   
-                <div class="row mb-5">
-                  <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
-                    <span class="d-inline-block text-black mb-0 caption-text" >Inicio</span>
-                    <strong class="d-block" th:text="${tour.FechaIni}">Condo</strong>
-                    <span class="d-inline-block text-black mb-0 caption-text" >Fin</span>
-                    <strong class="d-block" th:text="${tour.FechaFin}">2018</strong>
-                  </div>
-                
+                <div class="row mb-5">                
                   <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
                     <span class="d-inline-block text-black mb-0 caption-text" >Ciudad</span>
-                    <strong class="d-block" th:text="${tour.Datos.Ciudad}">$520</strong>
+                    <strong class="d-block" th:text="${tour.Ciudad}">$520</strong>
                   </div>
+
                   <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
                     <span class="d-inline-block text-black mb-0 caption-text">Lugar</span>
-                    <strong class="d-block" th:text="${tour.Datos.Lugar}">$520</strong>
+                    <strong class="d-block" th:text="${tour.Lugar}">$520</strong>
                   </div>
                 </div>
+
                 <h2 class="h4 text-black">Descripcion</h2>
-                <p th:text="${tour.Datos.Descripcion}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aperiam perferendis deleniti vitae asperiores accusamus tempora facilis sapiente, quas! Quos asperiores alias fugiat sunt tempora molestias quo deserunt similique sequi.</p>
+                <p th:text="${tour.Descripcion}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aperiam perferendis deleniti vitae asperiores accusamus tempora facilis sapiente, quas! Quos asperiores alias fugiat sunt tempora molestias quo deserunt similique sequi.</p>
                 
                 <div class="row no-gutters mt-5">
                   <div class="col-12">
@@ -119,40 +110,73 @@
                 </div>
               </div>
             </div>
+
             <div class="col-lg-4">
-  
-              <div class="bg-white widget border rounded" th:unless="${session.u.Id == tour.Datos.Guia.Id}">
-  
-                <h3 class="h4 text-black widget-title mb-3" th:unless="${session.u.Id == tour.Datos.Guia.Id}">Contratar tour</h3>
-                <form method="post" class="form-contact-agent" th:action="@{/tour/{id}/inscribirse(id=${tour.id})}" th:unless="${session.u.Id == tour.Datos.Guia.Id}">
-                  <div class="form-group" th:unless="${session.u.Id == tour.Datos.Guia.Id}">
-                    <label for="phone" th:unless="${session.u.Id == tour.Datos.Guia.Id}">Numero de personas que van a asistir</label>
-                    <input name="turistas" id="turistas" type="number" class="form-control" value="1" th:unless="${session.u.Id == tour.Datos.Guia}">
-                  </div>
-                  <div class="form-group" th:unless="${session.u.Id == tour.Datos.Guia.Id}">
-                    <input type="submit" id="contratar" class="btn btn-primary" value="Contratar"th:unless="${session.u.Id == tour.Datos.Guia.Id}">
-                  </div>
-                </form>
-              </div>
 
               <div class="bg-white widget border rounded">
                 <div class="card_guia">
                     <div class="card-avatar">
                       <a href="javascript:;">
-                        <img class="img guia_tour_foto" th:src="@{${tour.Datos.Guia.Foto}}" alt="La imagen del guia" >
+                        <img class="img guia_tour_foto" th:src="@{${tour.Guia.Foto}}" alt="La imagen del guia" >
                       </a>
                     </div>
                       <img class="estrellas card-category" th:src="@{/img/5estrellas.png}" alt="Estrellas de valoración">
-                      <h4 class="card-title" th:text="${tour.Datos.Guia.Nombre}">Alec Thompson</h4>
+                      <h4 class="card-title" th:text="${tour.Guia.Nombre}">Alec Thompson</h4>
                       <div class="box_idiomas">
                         <h5 th:text="Idiomas"></h5>
                           <div th:each="idioma: ${idiomas}">
                             <p class="idiomas" th:text="${idioma}">Ingles</p>
                           </div>
                       </div>
-                      <!--th:href="@{'perfil/'+${tour.getDatos().getGuia().getId()}}"-->
-                      <a th:href="@{'/user/'+${tour.Datos.Guia.Id}+'/perfil/'}" class="btn btn-primary btn-round" id="ver_perfil">Ver perfil</a>
+                      <a th:href="@{'/user/'+${tour.Guia.Id}+'/perfil/'}" class="btn btn-primary btn-round" id="ver_perfil">Ver perfil</a>
                     </div>
+                </div>
+
+                <div class="bg-white widget border rounded">
+
+                  <h3 class="h4 text-black widget-title mb-3">Fechas disponibles</h3>
+
+                  <div class="text-center py-3 droppy">
+                    <button class="droppybtn">Seleccione una fecha
+                      <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="droppydown-content">
+                      <a th:each="t: ${tour.Instancias}" th:text="${t.FechaIni}" th:onclick="'muestraInstancia(\'' + ${t.Id} + '\', \'' + ${tour.Instancias.size} + '\');'">Fecha</a>
+                    </div>
+                  </div> 
+
+                  <div class="contratacion" th:each="t: ${tour.Instancias}" th:id="'instancia' + ${t.Id}">
+
+                    <div class="row mb-5">
+                      <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
+                        <span class="d-inline-block text-black mb-0 caption-text" >Inicio</span>
+                        <strong id="fechaIni" class="d-block" th:text="${t.FechaIni}">Fecha ini</strong>
+                      </div>
+                      <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
+                        <span class="d-inline-block text-black mb-0 caption-text" >Fin</span>
+                        <strong id="fechaFin" class="d-block" th:text="${t.FechaFin}">Fecha fin</strong>
+                      </div>
+                      <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
+                        <span class="d-inline-block text-black mb-0 caption-text" >Libre</span>
+                        <strong id="libres" class="d-block" th:text="${tour.MaxTuristas - t.ActTuristas}">Libres</strong>
+                      </div>
+                    </div>
+    
+                    <h3 class="h4 text-black widget-title mb-3" th:unless="${session.u.Id == tour.Guia.Id}">Contratar tour</h3>
+                    <form method="post" class="form-contact-agent" th:action="@{/tour/{id}/inscribirse(id=${t.id})}" th:unless="${session.u.Id == tour.Guia.Id}">
+                      <div class="form-group">
+                        <label for="phone">Numero de personas que van a asistir</label>
+                        <input name="turistas" id="turistas" type="number" class="form-control" value="1"  min="1" th:max="${tour.MaxTuristas - t.ActTuristas}">
+                      </div>
+                      <div class="form-group" >
+                        <input type="submit" id="contratar" class="btn btn-primary" value="Contratar">
+                      </div>
+                    </form>
+
+                  </div>
+
+                  <a th:if="${session.u.Id == tour.Guia.Id}" th:href="@{'/tour/'+${tour.Id}+'/crearInstancia'}" class="btn btn-primary btn-round">Añadir nueva convocatoria</a>
+
                 </div>
   
             </div>
@@ -164,7 +188,6 @@
         Nav goes here
       </nav>
   
-
   <script th:src="@{~/js/jquery-migrate-3.0.1.min.js}"></script>
   <script th:src="@{~/js/jquery-3.3.1.min.js}"></script>
   <script th:src="@{~/js/popper.min.js}"></script>
