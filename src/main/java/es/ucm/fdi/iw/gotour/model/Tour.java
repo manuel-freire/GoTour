@@ -55,10 +55,6 @@ public class Tour {
 	
 	@ManyToMany (mappedBy="ToursAsistidos")
 	private List<User>  Turistas = new ArrayList<>();
-    
-	@OneToMany (mappedBy="TourValorado")
-	private List<Review>  Reviews = new ArrayList<>();
-
 
 	public void addTurista(User u,int numero){
 		if(Datos.getMaxTuristas() >= (ActTuristas+numero)){

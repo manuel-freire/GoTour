@@ -17,7 +17,8 @@
         <p class="precio" th:text="${tour.Precio}+'€'">Precio</p>
         <p class="personas" th:text="'Turistas permitidos: ' + ${tour.MaxTuristas}">Turistas</p>
 
-        <h3>Rellena para cuándo quieres organizar la primera instancia del tour</h3>
+        <h3 th:if="${inicial}">Rellena para cuándo quieres organizar la primera convocatoria del tour</h3>
+        <h3 th:unless="${inicial}">Rellena para crear una nueva convocatoria del tour</h3>
 
         <form class="form-tour" method="post" th:action="@{/instancia}">
 
@@ -31,5 +32,7 @@
             
             <button class="btn btn-lg btn-primary btn-block" type="submit">Crear</button>
         </form>
+
+        <a th:if="${inicial}" th:href="@{/tour/{id}(id=${tour.Id})}" >Saltarse este paso</a>
 </div>
 </body></html>

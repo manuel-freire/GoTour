@@ -59,6 +59,9 @@ public class TourOfertado {
 	@OneToMany (mappedBy="Datos", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Tour> Instancias = new ArrayList<>();
 	
+	@OneToMany (mappedBy="TourValorado")
+	private List<Review>  Reviews = new ArrayList<>();
+
 	@NotNull
 	@ManyToOne
 	private User Guia;

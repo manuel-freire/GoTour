@@ -209,10 +209,8 @@ public class RootController {
 
         entityManager.persist(tour);
         entityManager.flush();
-        
-        long idTour = tour.getId();
 
-        return "redirect:/tour/" + idTour;
+        return "redirect:/tour/" + idTourO;
     }
 
 	@GetMapping("/crearTour")
@@ -225,6 +223,7 @@ public class RootController {
     public String crearInstancia(TourOfertado tour, Model model, HttpSession session)
     {
         model.addAttribute("tour", tour);
+        model.addAttribute("inicial", true);
         return "crearInstancia";
     }
 
