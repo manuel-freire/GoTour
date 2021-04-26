@@ -106,7 +106,8 @@
                   </div>
                 </div>
                 <div class="row no-gutters mt-5">
-                  <a th:href="@{'/tour/'+${tour.Id}+'/review/'}" class="btn btn-primary btn-round" id="hacer_review">Valorar el tour</a>
+                  <a th:href="@{'/tour/'+${tour.Id}+'/review/'}" class="btn btn-primary btn-round" id="hacer_review" th:unless="${session.u.Id == tour.Guia.Id}">Valorar el tour</a>
+                  <a th:href="@{'/tour/'+${tour.Id}+'/reviewUser/'}" class="btn btn-primary btn-round" id="hacer_review" th:if="${session.u.Id == tour.Guia.Id}">Valorar asistente del tour</a>
                 </div>
               </div>
             </div>
