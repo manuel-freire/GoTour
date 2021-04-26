@@ -1,221 +1,198 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Tour</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
-    <link rel="stylesheet" th:href="@{/fonts/icomoon/style.css}">
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
-    <link rel="stylesheet" th:href="@{/css/jquery-ui.css}">
-    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
-    <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
-    <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
-    <link rel="stylesheet" th:href="@{/css/mediaelementplayer.css}">
-    <link rel="stylesheet" th:href="@{/css/animate.css}">
-    <link rel="stylesheet" th:href="@{/fonts/flaticon/font/flaticon.css}">
-    <link rel="stylesheet" th:href="@{/css/fl-bigmug-line.css}">
-    <link rel="stylesheet" th:href="@{/css/aos.css}">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/style_tour.css}">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  
-  </head>
-  <body>
-    <div class="site-loader"></div>
-  
-    <div class="site-wrap">
-  
+   <head>
+      <title>Tour</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500">
+      <link rel="stylesheet" th:href="@{/fonts/icomoon/style.css}">
+      <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+      <link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
+      <link rel="stylesheet" th:href="@{/css/jquery-ui.css}">
+      <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+      <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
+      <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
+      <link rel="stylesheet" th:href="@{/css/mediaelementplayer.css}">
+      <link rel="stylesheet" th:href="@{/css/animate.css}">
+      <link rel="stylesheet" th:href="@{/fonts/flaticon/font/flaticon.css}">
+      <link rel="stylesheet" th:href="@{/css/fl-bigmug-line.css}">
+      <link rel="stylesheet" th:href="@{/css/aos.css}">
+      <link rel="stylesheet" th:href="@{/css/style.css}">
+      <link rel="stylesheet" th:href="@{/css/style_tour.css}">
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+   </head>
+   <body>
+      <div class="site-loader"></div>
+      <div class="site-wrap">
       <div class="site-mobile-menu">
-        <div class="site-mobile-menu-header">
-          <div class="site-mobile-menu-close mt-3">
-            <span class="icon-close2 js-menu-toggle"></span>
-          </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-      </div> <!-- .site-mobile-menu -->
-  
-      <nav th:replace="fragments/nav.html :: nav">
-        Nav goes here
-      </nav>
-
-      <div th:replace="fragments/imagenes-principales.html :: images-principales">
-     
+         <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+               <span class="icon-close2 js-menu-toggle"></span>
+            </div>
+         </div>
+         <div class="site-mobile-menu-body"></div>
       </div>
-  
-  
+      <!-- .site-mobile-menu -->
+      <nav th:replace="fragments/nav.html :: nav">
+         Nav goes here
+      </nav>
+      <div th:replace="fragments/imagenes-principales.html :: images-principales">
+      </div>
       <div class="site-section site-section-sm">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8">
-              <div class="bg-white property-body border rounded">
-                <h2 class="card-title" th:text="${user.Nombre}+' '+${user.Apellidos}"></h2>
-                <div class="row">
-                  <div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}"><img class="card-category img-fluid ml-3" th:src="@{/img/estrellas.png}" width="60"/></div>
-                </div>
-              
-                
-              </div>              
-            </div>
-            <div class="col-lg-4">
-  
-
-              <div class="bg-white widget border rounded">
-                <div class="card_guia">
-                    <div class="card-avatar">
-                      <a href="javascript:;">
-                        <img class="img guia_tour_foto" th:src="@{${user.Foto}}" alt="La imagen del guia" >
-                      </a>
-                    </div>
-                      
-                      <div class="box_idiomas">
-                        <h5 th:text="Idiomas"></h5>
-                          <div th:each="idioma: ${idiomas}">
-                            <p class="idiomas" th:text="${idioma}">Ingles</p>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-  
-            </div>
-            
-          </div>
-          <div th:if="${user.TourOfertados.size()>0}" class="row">
-            <div class="col-lg-8">
-              <div class="bg-white widget border rounded">
-                <div><h2 class="h2 text-black widget-title mb-3">Tours disponibles</h2></div>
-              <div class="col-md-6 col-lg-6 mb-4" th:each="tour: ${user.TourOfertados}">
-                <div th:if="${tour.Datos.Disponible}" class="property-entry h-100">
-                  <a th:href="@{'/tour/'+${tour.Id}}" class="property-thumbnail">
-                    <div class="offer-type-wrap">
-                      <span class="offer-type bg-danger">Sale</span>
-                      <span class="offer-type bg-success">Rent</span>
-                    </div>
-    
-                    <img th:href="@{'/tour/'+${tour.Id}}" th:src="@{${tour.Datos.Portada}}" alt="Image" class="img-fluid">
-                  </a>
-                  <div class="p-4 property-body">
-                    <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-                    <h2 class="property-title"  th:text="${tour.Datos.Guia.Nombre}"><a th:href="@{'/user/' +tour.Datos.Guia.Id+ '/perfil'}"></a></h2>
-                    <span class="property-location d-block mb-3"  th:text="${tour.Datos.Titulo}"><span class="property-icon icon-room"></span> Sidney, Australia</span>
-                    <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.Datos.Precio}+'€'"></strong>
-                    <h2 class="property-title"><a th:href="@{'/tour/'+${tour.Id}}" th:text="${tour.Datos.Titulo}" id="tour_ref"></a></h2>
-                    <span class="property-location d-block mb-3" ><span class="property-icon icon-room"></span><span th:text="${tour.Datos.Ciudad}+', '+${tour.Datos.Pais}"></span></span>
-                    <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.Datos.Precio}+'€/persona'"></strong>
-                    <ul class="property-specs-wrap mb-3 mb-lg-0">
-    
-                      <li>
-                        <span class="property-specs">Inicio</span>
-                        <span class="property-specs-number"  th:text="'Inicio: '+${tour.FechaIni}"></span>
-                        
-                      </li>
-                      <li>
-                        <span class="property-specs">Turistas</span>
-                        <span class="property-specs-number" th:text="${tour.ActTuristas}+'/'+${tour.Datos.MaxTuristas}+' turistas'"></span>
-                        
-                      </li>
-                      
-                      <li>
-                        <span class="property-specs">Fin</span>
-                        <span class="property-specs-number" th:text="'Fin: '+${tour.FechaFin}"></span>
-                        
-                      </li>
-                    </ul>
-    
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-8">
+                  <div class="bg-white property-body border rounded">
+                     <h2 class="card-title" th:text="${user.Nombre}+' '+${user.Apellidos}"></h2>
+                     <div class="row">
+                        <div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}"><img class="card-category img-fluid ml-3" th:src="@{/img/estrellas.png}" width="60"/></div>
+                     </div>
                   </div>
-                </div>
-              </div>
-              </div>              
-            </div>
-            
-          </div>
-          <div th:if="${user.ToursAsistidos.size()>0}" class="row">
-            <div class="col-lg-8">
-            <div class="bg-white widget border rounded">
-              <div><h2 class="h2 text-black widget-title mb-3">Tours asistidos</h2></div>
-              <div class="col-md-6 col-lg-6 mb-4" th:each="tour: ${user.ToursAsistidos}">
-                <div class="property-entry h-100">
-                  <a th:href="@{'/tour/'+${tour.Id}}" class="property-thumbnail">
-                    <div class="offer-type-wrap">
-                      <span class="offer-type bg-danger">Sale</span>
-                      <span class="offer-type bg-success">Rent</span>
-                    </div>
-    
-                    <img th:href="@{'/tour/'+${tour.Id}}" th:src="@{${tour.Datos.Portada}}" alt="Image" class="img-fluid">
-                  </a>
-                  <div class="p-4 property-body">
-                    <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-                    <h2 class="property-title"  th:text="${tour.Datos.Guia.Nombre}"><a th:href="@{'/user/' +tour.Datos.Guia.Id+ '/perfil'}"></a></h2>
-                    <span class="property-location d-block mb-3"  th:text="${tour.Datos.Titulo}"><span class="property-icon icon-room"></span> Sidney, Australia</span>
-                    <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.Datos.Precio}+'€'"></strong>
-                    <h2 class="property-title"><a th:href="@{'/tour/'+${tour.Id}}" th:text="${tour.Datos.Titulo}" id="tour_ref"></a></h2>
-                    <span class="property-location d-block mb-3" ><span class="property-icon icon-room"></span><span th:text="${tour.Datos.Ciudad}+', '+${tour.Datos.Pais}"></span></span>
-                    <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.Datos.Precio}+'€/persona'"></strong>
-                    <ul class="property-specs-wrap mb-3 mb-lg-0">
-    
-                      <li>
-                        <span class="property-specs">Inicio</span>
-                        <span class="property-specs-number"  th:text="'Inicio: '+${tour.FechaIni}"></span>
-                        
-                      </li>
-                      <li>
-                        <span class="property-specs">Turistas</span>
-                        <span class="property-specs-number" th:text="${tour.ActTuristas}+'/'+${tour.Datos.MaxTuristas}+' turistas'"></span>
-                        
-                      </li>
-                      
-                      <li>
-                        <span class="property-specs">Fin</span>
-                        <span class="property-specs-number" th:text="'Fin: '+${tour.FechaFin}"></span>
-                        
-                      </li>
-                    </ul>
-    
+               </div>
+               <div class="col-lg-4">
+                  <div class="bg-white widget border rounded">
+                     <div class="card_guia">
+                        <div class="card-avatar">
+                           <a href="javascript:;">
+                           <img class="img guia_tour_foto" th:src="@{${user.Foto}}" alt="La imagen del guia" >
+                           </a>
+                        </div>
+                        <div class="box_idiomas">
+                           <h5 th:text="Idiomas"></h5>
+                           <div th:each="idioma: ${idiomas}">
+                              <p class="idiomas" th:text="${idioma}">Ingles</p>
+                           </div>
+                        </div>
+                     </div>
                   </div>
-                </div>
-              </div>
+               </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="bg-white widget border rounded">
-              <div><h2 class="h2 text-black widget-title mb-3">Reviews</h2></div>
-              
-              <div class="card resenya" th:each="review: ${user.ReviewsRecibidas}">
-                <img class="card-img-top" id="user" th:src="@{~/img/defaultuser.png}" alt="user">
-                <div class="card-body">
-                  <h5 class="card-title creador"><a th:href="@{/user/{id}/perfil(id=${review.Creador.Id})}" th:text="${review.Creador.Username}"></a></h5>
-                  <h5 class="card-title tour"><a th:href="@{/tour/{id}(id=${review.TourValorado.Id})}" th:text="${review.TourValorado.Datos.Titulo}"></a></h5>
-                  <div class="row"><div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}" class="col-lg-1"><img th:src="@{/img/star.png}" width="30" /></div></div>
-                  <p class="card-text textoReview" th:text="${review.Texto}"></p>
-                </div>
-              </div>
+            <div class="row">
+               <div class="col-lg-8" th:if="${user.TourOfertados.size()>0}">
+                  <div class="bg-white widget border rounded">
+                     <div>
+                        <h2 class="h2 text-black widget-title mb-3">Tours disponibles</h2>
+                     </div>
+                     <div class="col-md-6 col-lg-6 mb-4" th:each="tour: ${user.ToursAsistidos}">
+                        <div th:if="${tour.Datos.Disponible}" class="property-entry h-100">
+                           <a th:href="@{'/tour/'+${tour.Id}}" class="property-thumbnail">
+                              <div class="offer-type-wrap">
+                                 <span class="offer-type bg-danger">Sale</span>
+                                 <span class="offer-type bg-success">Rent</span>
+                              </div>
+                              <img th:href="@{'/tour/'+${tour.Id}}" th:src="@{${tour.Datos.Portada}}" alt="Image" class="img-fluid">
+                           </a>
+                           <div class="p-4 property-body">
+                              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                              <h2 class="property-title"  th:text="${tour.Datos.Guia.Nombre}"><a th:href="@{'/user/' +tour.Datos.Guia.Id+ '/perfil'}"></a></h2>
+                              <span class="property-location d-block mb-3"  th:text="${tour.Datos.Titulo}"><span class="property-icon icon-room"></span> Sidney, Australia</span>
+                              <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.Datos.Precio}+'€'"></strong>
+                              <h2 class="property-title"><a th:href="@{'/tour/'+${tour.Id}}" th:text="${tour.Datos.Titulo}" id="tour_ref"></a></h2>
+                              <span class="property-location d-block mb-3" ><span class="property-icon icon-room"></span><span th:text="${tour.Datos.Ciudad}+', '+${tour.Datos.Pais}"></span></span>
+                              <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.Datos.Precio}+'€/persona'"></strong>
+                              <ul class="property-specs-wrap mb-3 mb-lg-0">
+                                 <li>
+                                    <span class="property-specs">Inicio</span>
+                                    <span class="property-specs-number"  th:text="'Inicio: '+${tour.FechaIni}"></span>
+                                 </li>
+                                 <li>
+                                    <span class="property-specs">Turistas</span>
+                                    <span class="property-specs-number" th:text="${tour.ActTuristas}+'/'+${tour.Datos.MaxTuristas}+' turistas'"></span>
+                                 </li>
+                                 <li>
+                                    <span class="property-specs">Fin</span>
+                                    <span class="property-specs-number" th:text="'Fin: '+${tour.FechaFin}"></span>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-8">
+                  <div class="bg-white widget border rounded">
+                     <div>
+                        <h2 class="h2 text-black widget-title mb-3">Tours asistidos</h2>
+                     </div>
+                     <div th:if="${user.ToursAsistidos.size()>0}">
+                        <div class="col-md-6 col-lg-6 mb-4" th:each="tour: ${user.ToursAsistidos}">
+                           <div class="property-entry h-100">
+                              <a th:href="@{'/tour/'+${tour.Id}}" class="property-thumbnail">
+                                 <div class="offer-type-wrap">
+                                    <span class="offer-type bg-danger">Sale</span>
+                                    <span class="offer-type bg-success">Rent</span>
+                                 </div>
+                                 <img th:href="@{'/tour/'+${tour.Id}}" th:src="@{${tour.Datos.Portada}}" alt="Image" class="img-fluid">
+                              </a>
+                              <div class="p-4 property-body">
+                                 <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                                 <h2 class="property-title"  th:text="${tour.Datos.Guia.Nombre}"><a th:href="@{'/user/' +tour.Datos.Guia.Id+ '/perfil'}"></a></h2>
+                                 <span class="property-location d-block mb-3"  th:text="${tour.Datos.Titulo}"><span class="property-icon icon-room"></span> Sidney, Australia</span>
+                                 <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.Datos.Precio}+'€'"></strong>
+                                 <h2 class="property-title"><a th:href="@{'/tour/'+${tour.Id}}" th:text="${tour.Datos.Titulo}" id="tour_ref"></a></h2>
+                                 <span class="property-location d-block mb-3" ><span class="property-icon icon-room"></span><span th:text="${tour.Datos.Ciudad}+', '+${tour.Datos.Pais}"></span></span>
+                                 <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.Datos.Precio}+'€/persona'"></strong>
+                                 <ul class="property-specs-wrap mb-3 mb-lg-0">
+                                    <li>
+                                       <span class="property-specs">Inicio</span>
+                                       <span class="property-specs-number"  th:text="'Inicio: '+${tour.FechaIni}"></span>
+                                    </li>
+                                    <li>
+                                       <span class="property-specs">Turistas</span>
+                                       <span class="property-specs-number" th:text="${tour.ActTuristas}+'/'+${tour.Datos.MaxTuristas}+' turistas'"></span>
+                                    </li>
+                                    <li>
+                                       <span class="property-specs">Fin</span>
+                                       <span class="property-specs-number" th:text="'Fin: '+${tour.FechaFin}"></span>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-4">
+                  <div class="bg-white widget border rounded">
+                     <div>
+                        <h2 class="h2 text-black widget-title mb-3">Reviews</h2>
+                     </div>
+                     <div class="card resenya" th:each="review: ${user.ReviewsRecibidas}">
+                        <img class="card-img-top" id="user" th:src="@{~/img/defaultuser.png}" alt="user">
+                        <div class="card-body">
+                           <h5 class="card-title creador"><a th:href="@{/user/{id}/perfil(id=${review.Creador.Id})}" th:text="${review.Creador.Username}"></a></h5>
+                           <h5 class="card-title tour"><a th:href="@{/tour/{id}(id=${review.TourValorado.Id})}" th:text="${review.TourValorado.Datos.Titulo}"></a></h5>
+                           <div class="row">
+                              <div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}" class="col-lg-1"><img th:src="@{/img/star.png}" width="30" /></div>
+                           </div>
+                           <p class="card-text textoReview" th:text="${review.Texto}"></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-          </div>
-          </div>
-          
-        </div>
+         </div>
       </div>
       <nav th:replace="fragments/footer.html :: footer">
-        Nav goes here
+         Nav goes here
       </nav>
-  
-
-  <script th:src="@{~/js/jquery-migrate-3.0.1.min.js}"></script>
-  <script th:src="@{~/js/jquery-3.3.1.min.js}"></script>
-  <script th:src="@{~/js/popper.min.js}"></script>
-  <script th:src="@{~/js/jquery-ui.js}"></script>
-  <script th:src="@{~/js/owl.carousel.min.js}"></script>
-  <script th:src="@{~/js/bootstrap.min.js}"></script>
-  <script th:src="@{~/js/jquery.stellar.min.js}"></script>
-  <script th:src="@{~/js/mediaelement-and-player.min.js}"></script>
-  <script th:src="@{~/js/jquery.magnific-popup.min.js}"></script>
-  <script th:src="@{~/js/jquery.countdown.min.js}"></script>
-  <script th:src="@{~/js/aos.js}"></script>
-  <script th:src="@{~/js/bootstrap-datepicker.min.js}"></script>
-  <script th:src="@{~/js/circleaudioplayer.js}"></script>
-  <script th:src="@{~/js/main.js}"></script>
-  </body>
+      <script th:src="@{~/js/jquery-migrate-3.0.1.min.js}"></script>
+      <script th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+      <script th:src="@{~/js/popper.min.js}"></script>
+      <script th:src="@{~/js/jquery-ui.js}"></script>
+      <script th:src="@{~/js/owl.carousel.min.js}"></script>
+      <script th:src="@{~/js/bootstrap.min.js}"></script>
+      <script th:src="@{~/js/jquery.stellar.min.js}"></script>
+      <script th:src="@{~/js/mediaelement-and-player.min.js}"></script>
+      <script th:src="@{~/js/jquery.magnific-popup.min.js}"></script>
+      <script th:src="@{~/js/jquery.countdown.min.js}"></script>
+      <script th:src="@{~/js/aos.js}"></script>
+      <script th:src="@{~/js/bootstrap-datepicker.min.js}"></script>
+      <script th:src="@{~/js/circleaudioplayer.js}"></script>
+      <script th:src="@{~/js/main.js}"></script>
+   </body>
 </html>
+
