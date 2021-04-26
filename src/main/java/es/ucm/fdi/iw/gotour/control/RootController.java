@@ -16,6 +16,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
@@ -51,7 +55,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import es.ucm.fdi.iw.gotour.LocalData;
 import es.ucm.fdi.iw.gotour.model.Tour;
 import es.ucm.fdi.iw.gotour.model.TourOfertado;
 import es.ucm.fdi.iw.gotour.model.User;
@@ -68,6 +74,9 @@ public class RootController {
     @Autowired 
 	private EntityManager entityManager;
     private AuthenticationManager authman;
+
+    @Autowired
+	private LocalData localData;
 
 	@GetMapping("/chat")
 	public String chat(Model model, HttpServletRequest request) {
@@ -156,75 +165,10 @@ public class RootController {
         return "index";
     }
 
-    
-	@PostMapping("/tour")
-	@Transactional
-    public String nuevoTour(@RequestParam String pais,
-                            @RequestParam String ciudad,
-                            @RequestParam String lugar,
-                            @RequestParam String titulo,
-                            @RequestParam String descripcion,
-                            @RequestParam int maxTuristas,
-                            @RequestParam double precio,
-                            Model model, HttpSession session){
-
-        TourOfertado tourO = new TourOfertado();
-
-        tourO.setPais(pais);
-        tourO.setCiudad(ciudad);
-        tourO.setLugar(lugar);
-        tourO.setTitulo(titulo);
-        tourO.setDescripcion(descripcion);
-        tourO.setMaxTuristas(maxTuristas);
-        tourO.setPrecio(precio);
-        tourO.setDisponible(true);
-
-        User guia = entityManager.find(User.class, ((User)session.getAttribute("u")).getId());
-        tourO.setGuia(guia);
-
-        entityManager.persist(tourO);
-        entityManager.flush();
-
-        return crearInstancia(tourO, model, session);
-    }
-
-    @PostMapping("/instancia")
-	@Transactional
-    public String nuevoTour(@RequestParam long idTourO,
-                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaIni,
-                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaFin,
-                            Model model, HttpSession session){
-
-        TourOfertado tourO = entityManager.find(TourOfertado.class, idTourO);
-        User guia = entityManager.find(User.class, tourO.getGuia().getId());
-        Tour tour = new Tour();
-
-        tour.setFechaIni(fechaIni);
-        tour.setFechaFin(fechaFin);
-        tour.setActTuristas(0);
-        tour.setDatos(tourO);
-        
-        guia.getTourOfertados().add(tour);
-        tourO.getInstancias().add(tour);
-
-        entityManager.persist(tour);
-        entityManager.flush();
-
-        return "redirect:/tour/" + idTourO;
-    }
-
 	@GetMapping("/crearTour")
     public String crearTour(Model model, HttpSession session)
     {
         return "crearTour";
-    }
-
-    @GetMapping("/crearInstancia")
-    public String crearInstancia(TourOfertado tour, Model model, HttpSession session)
-    {
-        model.addAttribute("tour", tour);
-        model.addAttribute("inicial", true);
-        return "crearInstancia";
     }
 
     // Un getMapping por vista que queramos en el proyecto. Y un template por vista
