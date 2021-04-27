@@ -88,7 +88,7 @@
 
                   <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
                     <span class="d-inline-block text-black mb-0 caption-text">Lugar</span>
-                    <strong class="d-block" th:text="${tour.Lugar}">$520</strong>
+                    <strong class="d-block" th:text="${tour.Instancias.size}">$520</strong>
                   </div>
                 </div>
 
@@ -104,10 +104,6 @@
                         <button th:text="${e}">museo</button>
                     </div>
                   </div>
-                </div>
-                <div class="row no-gutters mt-5">
-                  <a th:href="@{'/tour/'+${tour.Id}+'/review/'}" class="btn btn-primary btn-round" id="hacer_review" th:unless="${session.u.Id == tour.Guia.Id}">Valorar el tour</a>
-                  <a th:href="@{'/tour/'+${tour.Id}+'/reviewUser/'}" class="btn btn-primary btn-round" id="hacer_review" th:if="${session.u.Id == tour.Guia.Id}">Valorar asistente del tour</a>
                 </div>
               </div>
             </div>
@@ -160,6 +156,10 @@
                       <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
                         <span class="d-inline-block text-black mb-0 caption-text" >Libre</span>
                         <strong id="libres" class="d-block" th:text="${tour.MaxTuristas - t.ActTuristas}">Libres</strong>
+                      </div>
+                      <div class="row no-gutters mt-5">
+                        <a th:href="@{'/tour/'+${t.Id}+'/review/'}" class="btn btn-primary btn-round" id="hacer_review" th:unless="${(session.u.Id == tour.Guia.Id) && !session.u.ToursAsistidos.contains(t)}">Valorar el tour</a>
+                        <!-- <a th:href="@{'/tour/'+${t.Id}+'/reviewUser/'}" class="btn btn-primary btn-round" id="hacer_review" th:if="${session.u.Id == tour.Guia.Id}">Valorar asistente del tour</a> -->
                       </div>
                     </div>
     
