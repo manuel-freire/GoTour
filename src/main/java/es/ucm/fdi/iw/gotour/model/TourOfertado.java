@@ -56,7 +56,7 @@ public class TourOfertado {
 	@NotNull
 	private int MaxTuristas;
 
-	@OneToMany (mappedBy="Datos", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany (mappedBy="Datos", cascade = CascadeType.ALL, orphanRemoval = true, fetch=FetchType.EAGER)
 	private List<Tour> Instancias = new ArrayList<>();
 	
 	@NotNull
@@ -70,6 +70,14 @@ public class TourOfertado {
 	@Override
 	public String toString() {
 		return "";
+	}
+	private String formatDate(LocalDateTime date){
+		String fecha=date.toString();
+		String[] parts=fecha.split("-");
+		return parts[2].split("T")[0]+"/"+parts[1]+"/"+parts[0];
+	}
+	public String getFechaUltimaInstancia(){
+		return formatDate(Instancias.get(Instancias.size()-1).getFechaIni());
 	}
 	
 }

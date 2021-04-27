@@ -311,6 +311,19 @@ public class UserController {
         List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
                 .setParameter("user_id", user.getId())
                 .getResultList();
+		if(user.getTourOfertados().size()>0){
+			Tour firstTour=entityManager.createNamedQuery("Tour.getFirstTour",Tour.class)
+				.setParameter("guia_id", user.getId())
+				.setMaxResults(1)
+				.getSingleResult();				
+			List<Tour> tours=entityManager.createNamedQuery("Tour.getToursByUser",Tour.class)
+			.setParameter("guia_id", user.getId())
+			.getResultList();
+			model.addAttribute("tours", tours);
+			model.addAttribute("firstTour", firstTour);
+			
+		}
+		
         model.addAttribute("idiomas",idiomas);
         model.addAttribute("user", user);
         return "perfil";
