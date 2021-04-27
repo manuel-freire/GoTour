@@ -1,7 +1,10 @@
 package es.ucm.fdi.iw.gotour.control;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
-
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.LocalDateTime;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
@@ -11,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +22,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.yaml.snakeyaml.tokens.Token.ID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +51,8 @@ public class TourController {
 	
 	@Autowired
 	private Environment env;
+
+    RootController root;
 	
     @GetMapping(value="/{id}")
     @Transactional
@@ -158,8 +166,104 @@ public class TourController {
     {
         TourOfertado tour = entityManager.find(TourOfertado.class, id);
         model.addAttribute("tour", tour);
-        model.addAttribute("inicial", false);
+        if (!model.containsAttribute("inicial")) model.addAttribute("inicial", false);
+
         return "crearInstancia";
+    }
+
+    @PostMapping("/crearTour")
+	@Transactional
+    public String nuevoTour(@RequestParam String pais,
+                            @RequestParam String ciudad,
+                            @RequestParam String lugar,
+                            @RequestParam String titulo,
+                            @RequestParam String descripcion,
+                            @RequestParam int maxTuristas,
+                            @RequestParam double precio,
+                            Model model, HttpSession session) {
+
+        TourOfertado tourO = new TourOfertado();
+
+        tourO.setPais(pais);
+        tourO.setCiudad(ciudad);
+        tourO.setLugar(lugar);
+        tourO.setTitulo(titulo);
+        tourO.setDescripcion(descripcion);
+        tourO.setMaxTuristas(maxTuristas);
+        tourO.setPrecio(precio);
+        tourO.setDisponible(true);
+
+        User guia = entityManager.find(User.class, ((User)session.getAttribute("u")).getId());
+        tourO.setGuia(guia);
+
+        entityManager.persist(tourO);
+        entityManager.flush();
+
+        return portada(tourO.getId(), model, session);
+    }
+
+    @GetMapping("/{id}/portada")
+    @Transactional
+    public String portada(@PathVariable("id") long id, Model model, HttpSession session)
+    {
+        TourOfertado tour = entityManager.find(TourOfertado.class, id);
+        model.addAttribute("tour", tour);
+        model.addAttribute("inicial", true);
+
+        return "portada";
+    }
+
+
+    @PostMapping("/{id}/actualizarPortada")
+    @Transactional
+    public String portada(@PathVariable("id") long id, 
+                          @RequestParam("portada") MultipartFile portada,
+                          @RequestParam("mapa") MultipartFile mapa,
+                          Model model, HttpSession session) throws IOException{
+
+        log.info("Updating portada for tour {}", id);
+		File f = localData.getFile("src/main/resources/static/img/TourOfertado/Portda", String.valueOf(id)); 
+		if (portada.isEmpty()) {
+			log.info("fallo al subir la portada: archivo vacio?");
+		} else {
+			try (BufferedOutputStream stream =
+					new BufferedOutputStream(new FileOutputStream(f))) {
+				byte[] bytes = portada.getBytes();
+				stream.write(bytes);
+			} catch (Exception e) {
+				log.warn("Error uploading " + id + " ", e);
+			}
+			log.info("Successfully uploaded portada for {} into {}!", id, f.getAbsolutePath());
+		}
+
+        model.addAttribute("inicial", true);
+        return crearInstancia(id, model, session);
+    }
+
+
+    @PostMapping("{id}/instancia")
+	@Transactional
+    public String nuevoTour(@PathVariable("id") long idTourO,
+                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaIni,
+                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaFin,
+                            Model model, HttpSession session){
+
+        TourOfertado tourO = entityManager.find(TourOfertado.class, idTourO);
+        User guia = entityManager.find(User.class, tourO.getGuia().getId());
+        Tour tour = new Tour();
+
+        tour.setFechaIni(fechaIni);
+        tour.setFechaFin(fechaFin);
+        tour.setActTuristas(0);
+        tour.setDatos(tourO);
+        
+        guia.getTourOfertados().add(tour);
+        tourO.getInstancias().add(tour);
+
+        entityManager.persist(tour);
+        entityManager.flush();
+
+        return "redirect:/tour/" + idTourO;
     }
 
 }

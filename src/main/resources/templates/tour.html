@@ -145,7 +145,7 @@
                     </div>
                   </div> 
 
-                  <div class="contratacion" th:each="t: ${tour.Instancias}" th:id="'instancia' + ${t.Id}">
+                  <div th:each="t: ${tour.Instancias}" th:id="'instancia' + ${t.Id}" class="contratacion">
 
                     <div class="row mb-5">
                       <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">

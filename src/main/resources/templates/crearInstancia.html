@@ -20,9 +20,7 @@
         <h3 th:if="${inicial}">Rellena para cuándo quieres organizar la primera convocatoria del tour</h3>
         <h3 th:unless="${inicial}">Rellena para crear una nueva convocatoria del tour</h3>
 
-        <form class="form-tour" method="post" th:action="@{/instancia}">
-
-            <input type="hidden" id="idTourO" name="idTourO" th:value="${tour.id}" />
+        <form class="form-tour" method="post" th:action="@{/tour/{id}/instancia(id=${tour.Id})}">
 
             <label for="fechaIni" class="sr-only">Fecha y hora de inicio</label>
             <input type="datetime-local" id="fechaIni" name="fechaIni" placeholder="Fecha de inicio" />
