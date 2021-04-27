@@ -1,9 +1,13 @@
 package es.ucm.fdi.iw.gotour.control;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.time.LocalDateTime;
 
 import javax.persistence.EntityManager;
@@ -17,12 +21,14 @@ import org.springframework.core.env.Environment;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 import org.yaml.snakeyaml.tokens.Token.ID;
 
 import java.util.ArrayList;
@@ -160,13 +166,24 @@ public class TourController {
 	}
 
     
+    @GetMapping("/{id}/crearInstancia2")
+    @Transactional
+    public String crearInstancia2(@PathVariable("id") long id, Model model, HttpSession session)
+    {
+        TourOfertado tour = entityManager.find(TourOfertado.class, id);
+        model.addAttribute("tour", tour);
+        model.addAttribute("inicial", false);
+
+        return "crearInstancia";
+    }
+
     @GetMapping("/{id}/crearInstancia")
     @Transactional
     public String crearInstancia(@PathVariable("id") long id, Model model, HttpSession session)
     {
         TourOfertado tour = entityManager.find(TourOfertado.class, id);
         model.addAttribute("tour", tour);
-        if (!model.containsAttribute("inicial")) model.addAttribute("inicial", false);
+        model.addAttribute("inicial", true);
 
         return "crearInstancia";
     }
@@ -202,7 +219,7 @@ public class TourController {
         return portada(tourO.getId(), model, session);
     }
 
-    @GetMapping("/{id}/portada")
+    @GetMapping("/{id}/actualizarPortada")
     @Transactional
     public String portada(@PathVariable("id") long id, Model model, HttpSession session)
     {
@@ -214,7 +231,7 @@ public class TourController {
     }
 
 
-    @PostMapping("/{id}/actualizarPortada")
+    @PostMapping("/{id}/portada")
     @Transactional
     public String portada(@PathVariable("id") long id, 
                           @RequestParam("portada") MultipartFile portada,
@@ -222,7 +239,7 @@ public class TourController {
                           Model model, HttpSession session) throws IOException{
 
         log.info("Updating portada for tour {}", id);
-		File f = localData.getFile("src/main/resources/static/img/TourOfertado/Portda", String.valueOf(id)); 
+		File f = localData.getFile("tourOfertado/portada", String.valueOf(id)); 
 		if (portada.isEmpty()) {
 			log.info("fallo al subir la portada: archivo vacio?");
 		} else {
@@ -231,14 +248,64 @@ public class TourController {
 				byte[] bytes = portada.getBytes();
 				stream.write(bytes);
 			} catch (Exception e) {
-				log.warn("Error uploading " + id + " ", e);
+				log.warn("Error uploading " + id + ", portada ", e);
 			}
 			log.info("Successfully uploaded portada for {} into {}!", id, f.getAbsolutePath());
 		}
 
-        model.addAttribute("inicial", true);
+        log.info("Updating mapa for tour {}", id);
+		File map = localData.getFile("tourOfertado/mapa", String.valueOf(id)); 
+		if (mapa.isEmpty()) {
+			log.info("fallo al subir el mapa: archivo vacio?");
+		} else {
+			try (BufferedOutputStream stream =
+					new BufferedOutputStream(new FileOutputStream(map))) {
+				byte[] bytes2 = mapa.getBytes();
+				stream.write(bytes2);
+			} catch (Exception e) {
+				log.warn("Error uploading " + id + ",mapa ", e);
+			}
+			log.info("Successfully uploaded mapa for {} into {}!", id, map.getAbsolutePath());
+		}
+
         return crearInstancia(id, model, session);
     }
+
+    @GetMapping("/{id}/portada")
+	public StreamingResponseBody getPortada(@PathVariable long id, Model model) throws IOException {		
+		File f = localData.getFile("/tourOfertado/portada/", ""+id);
+		InputStream in;
+		if (f.exists()) {
+			in = new BufferedInputStream(new FileInputStream(f));
+		} else {
+			in = new BufferedInputStream(getClass().getClassLoader()
+					.getResourceAsStream("static/img/unknown-user.jpg"));
+		}
+		return new StreamingResponseBody() {
+			@Override
+			public void writeTo(OutputStream os) throws IOException {
+				FileCopyUtils.copy(in, os);
+			}
+		};
+	}
+
+    @GetMapping("/{id}/mapa")
+	public StreamingResponseBody getMapa(@PathVariable long id, Model model) throws IOException {		
+		File f = localData.getFile("/tourOfertado/mapa/", ""+id);
+		InputStream in;
+		if (f.exists()) {
+			in = new BufferedInputStream(new FileInputStream(f));
+		} else {
+			in = new BufferedInputStream(getClass().getClassLoader()
+					.getResourceAsStream("static/img/unknown-user.jpg"));
+		}
+		return new StreamingResponseBody() {
+			@Override
+			public void writeTo(OutputStream os) throws IOException {
+				FileCopyUtils.copy(in, os);
+			}
+		};
+	}
 
 
     @PostMapping("{id}/instancia")

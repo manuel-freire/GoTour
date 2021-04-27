@@ -54,8 +54,8 @@
             <div class="col-lg-8">
               <div>
                 <div class="slide-one-item home-slider owl-carousel">
-                  <div><img th:src="@{${tour.Portada}}" alt="Imágen del tour" class="img-fluid"></div>
-                  <div><img th:src="@{${tour.Mapa}}" alt="La imagen del mapa" class="img-fluid"></div>
+                  <div><img th:src="@{/tour/{id}/portada(id=${tour.Id})}" alt="Imágen del tour" class="img-fluid"></div>
+                  <div><img th:src="@{/tour/{id}/mapa(id=${tour.Id})}" alt="La imagen del mapa" class="img-fluid"></div>
                 </div>
               </div>
               <div class="bg-white property-body border-bottom border-left border-right">
@@ -175,7 +175,7 @@
 
                   </div>
 
-                  <a th:if="${session.u.Id == tour.Guia.Id}" th:href="@{'/tour/'+${tour.Id}+'/crearInstancia'}" class="btn btn-primary btn-round">Añadir nueva convocatoria</a>
+                  <a th:if="${session.u.Id == tour.Guia.Id}" th:href="@{'/tour/'+${tour.Id}+'/crearInstancia2'}" class="btn btn-primary btn-round">Añadir nueva convocatoria</a>
 
                 </div>
   
