@@ -279,7 +279,7 @@ public class TourController {
 			in = new BufferedInputStream(new FileInputStream(f));
 		} else {
 			in = new BufferedInputStream(getClass().getClassLoader()
-					.getResourceAsStream("static/img/unknown-user.jpg"));
+					.getResourceAsStream("static/img/default_tour.jpg"));
 		}
 		return new StreamingResponseBody() {
 			@Override
@@ -297,7 +297,7 @@ public class TourController {
 			in = new BufferedInputStream(new FileInputStream(f));
 		} else {
 			in = new BufferedInputStream(getClass().getClassLoader()
-					.getResourceAsStream("static/img/unknown-user.jpg"));
+					.getResourceAsStream("static/img/default_map.jpg"));
 		}
 		return new StreamingResponseBody() {
 			@Override
