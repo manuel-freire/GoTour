@@ -29,6 +29,8 @@ The above copyright notice and this permission notice shall be included in all c
     <link th:href="@{/admin/assets/css/material-dashboard.css?v=2.1.2}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link th:href="@{/admin/assets/demo/demo.css}" rel="stylesheet}" />
+
+  
   </head>
 <body class="">
   <div class="wrapper ">
@@ -38,7 +40,7 @@ The above copyright notice and this permission notice shall be included in all c
 
         Tip 2: you can also add an image using data-image tag
     -->
- 
+    
         <div th:replace="admin/fragment/nav.html :: menu">
      
         </div>
@@ -104,23 +106,27 @@ The above copyright notice and this permission notice shall be included in all c
                           Email
                         </th>
                         <th>
-                          Tours asistidos
+                          Deshabilitar Usuario
                         </th>
 
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
-                            1
+                        <tr th:each="user: ${users}">
+                          <td  th:text="${user.Id}" th:if="${user.Enabled == 1}">
+                            Hola
                           </td>
-                          <td>
-                            Dakota Rice
+                          <td th:text="${user.Username}" th:if="${user.Enabled == 1}">
+                            
                           </td>
+                          <td th:text="${user.Email}" th:if="${user.Enabled == 1}">
+                         
+                          </td> 
                           <td>
-                            Niger
-                          </td>
-                          <td>
-                            Oud-Turnhout
+                            <form method="post" th:action="@{/admin/toggleuser(id=${user.Id})}">
+                              <button type="submit" class="btn btn-primary" th:if="${user.Enabled == 1}">Deshabilitar</button>
+                              
+                            </form>
+                            
                           </td>
                           
                         </tr>
@@ -133,6 +139,8 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
 
       <footer th:replace="admin/fragment/footer.html :: footer"></footer>
+
+      
     </div>
   </div>
   <div class="fixed-plugin">
@@ -246,6 +254,8 @@ The above copyright notice and this permission notice shall be included in all c
   <script th:src="@{/admin/assets/js/material-dashboard.js?v=2.1.2}" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script th:src="@{/admin/assets/demo/demo.js}"></script>
+
+
   <script>
     $(document).ready(function() {
       $().ready(function() {
