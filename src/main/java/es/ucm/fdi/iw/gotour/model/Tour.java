@@ -34,7 +34,14 @@ import lombok.NoArgsConstructor;
 																		"t.FechaFin=:fechaFinParam)"),
 	@NamedQuery(name="Tour.getTour",
 		query="SELECT u FROM Tour u "
-				+ "WHERE u.Id = :id ")
+				+ "WHERE u.Id = :id "),
+	@NamedQuery(name="Tour.getFirstTour",
+		query="SELECT u FROM Tour u "
+			+ "WHERE u.Datos.Guia.Id = :guia_id "
+			+ "ORDER BY u.FechaIni DESC"),
+	@NamedQuery(name="Tour.getToursByUser",
+		query="SELECT u FROM Tour u "
+			+ "WHERE u.Datos.Guia.Id = :guia_id")
 })
 
 public class Tour {
@@ -78,5 +85,9 @@ public class Tour {
 	@Override
 	public String toString() {
 		return "";
+	}
+	public String getFirstTourInfo(){
+		String[] parts = FechaIni.toString().split("-");
+		return "Guía desde "+parts[1]+"/"+parts[0];
 	}
 }

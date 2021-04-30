@@ -46,9 +46,57 @@
             <div class="row">
                <div class="col-lg-8">
                   <div class="bg-white property-body border rounded">
-                     <h2 class="card-title" th:text="${user.Nombre}+' '+${user.Apellidos}"></h2>
+                     <h2 class="card-title" th:text="${user.Nombre}+' '+${user.Apellidos}"></h2> 
                      <div class="row">
                         <div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}"><img class="card-category img-fluid ml-3" th:src="@{/img/estrellas.png}" width="60"/></div>
+                     </div>
+                     <div th:if="${user.tourOfertados.size()>0}">
+                        <h5 class="mt-3" th:text="${firstTour.getFirstTourInfo()}"></h5>
+                        <h5 class="mt-3" th:text="'Ha realizado '+ ${tours.size()}+' tour(s)'"></h5>
+                     </div>
+                     <h5 class="mt-3" th:text="'Ha asistido a '+ ${user.ToursAsistidos.size()}+' tour(s)'"></h5>
+                     <div th:if="${user.tourOfertados.size()>0}">
+                        <div class="mt-3 mb-5"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#toursCerrados">Ver tours cerrados</button></div>
+                        <div class="modal fade" id="toursCerrados" tabindex="-1" role="dialog" aria-labelledby="toursCerrados" aria-hidden="true">
+                           <div class="modal-dialog" role="document">
+                             <div class="modal-content">
+                               <div class="modal-header">
+                                 <h5 class="modal-title" id="exampleModalLabel">Tours cerrados</h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                   <span aria-hidden="true">&times;</span>
+                                 </button>
+                               </div>
+                               <div class="modal-body">
+                                  <div class="row">
+                                    <div class="col-md-6 col-lg-6 mb-4" th:each="tour: ${user.TourOfertados}">
+                                    <div th:if="${!tour.Datos.Disponible}" class="property-entry h-100">
+                                       <a th:href="@{'/tour/'+${tour.Id}}" class="property-thumbnail">
+                                          <div class="offer-type-wrap">
+                                             <span class="offer-type bg-danger">Sale</span>
+                                             <span class="offer-type bg-success">Rent</span>
+                                          </div>
+                                          <img th:href="@{'/tour/'+${tour.Id}}" th:src="@{${tour.Datos.Portada}}" alt="Image" class="img-fluid">
+                                       </a>
+                                       <div class="p-4 property-body">
+                                          <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                                          <h2 class="property-title"  th:text="${tour.Datos.Guia.Nombre}"><a th:href="@{'/user/' +tour.Datos.Guia.Id+ '/perfil'}"></a></h2>
+                                          <span class="property-location d-block mb-3"  th:text="${tour.Datos.Titulo}"><span class="property-icon icon-room"></span> Sidney, Australia</span>
+                                          <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.Datos.Precio}+'€'"></strong>
+                                          <h2 class="property-title"><a th:href="@{'/tour/'+${tour.Id}}" th:text="${tour.Datos.Titulo}" id="tour_ref"></a></h2>
+                                          <span class="property-location d-block mb-3" ><span class="property-icon icon-room"></span><span th:text="${tour.Datos.Ciudad}+', '+${tour.Datos.Pais}"></span></span>
+                                          <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.Datos.Precio}+'€/persona'"></strong>
+                                          <h5 class="property-location" th:text="@{'Se ha realizado '+${tour.Datos.Instancias.size}+' veces'}"></h5>
+                                          <h5 class="property-location" th:text="@{'Última vez el '+${tour.Datos.getFechaUltimaInstancia}}"></h5>
+                                          
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                                 
+                               </div>
+                             </div>
+                           </div>
+                         </div>
                      </div>
                   </div>
                </div>
@@ -112,8 +160,7 @@
                         </div>
                      </div>
                   </div>
-               </div>
-               <div class="col-lg-8">
+               
                   <div class="bg-white widget border rounded">
                      <div>
                         <h2 class="h2 text-black widget-title mb-3">Tours asistidos</h2>
