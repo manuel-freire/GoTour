@@ -11,7 +11,7 @@
 </th:block>
      <div class="container">
         <h3>Sube </h3>
-        <form class="form-tour" method="post" th:action="@{/tour/{id}/actualizarPortada(id=${tour.Id})}" enctype="multipart/form-data">
+        <form class="form-tour" method="post" th:action="@{/tour/{id}/portada(id=${tour.Id})}" enctype="multipart/form-data">
 
             <label for="portada" class="sr-only">Imagen de portada</label>
             <input type="file" id="portada" name="portada">
