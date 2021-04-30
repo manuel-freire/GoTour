@@ -159,7 +159,7 @@
                       </div>
                       <div class="row no-gutters mt-5">
                         <a th:href="@{'/tour/'+${t.Id}+'/review/'}" class="btn btn-primary btn-round" id="hacer_review" th:unless="${(session.u.Id == tour.Guia.Id) && !session.u.ToursAsistidos.contains(t)}">Valorar el tour</a>
-                        <!-- <a th:href="@{'/tour/'+${t.Id}+'/reviewUser/'}" class="btn btn-primary btn-round" id="hacer_review" th:if="${session.u.Id == tour.Guia.Id}">Valorar asistente del tour</a> -->
+                        <a th:href="@{'/tour/'+${t.Id}+'/reviewUser/'}" class="btn btn-primary btn-round" id="hacer_review" th:if="${session.u.Id == tour.Guia.Id}">Valorar asistentes del tour</a>
                       </div>
                     </div>
     

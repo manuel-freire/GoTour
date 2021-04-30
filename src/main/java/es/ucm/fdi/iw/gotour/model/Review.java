@@ -27,7 +27,7 @@ public class Review {
 	@ManyToOne(targetEntity=User.class)
 	private User Destinatario;
 
-	@ManyToOne(targetEntity=TourOfertado.class)
-	private TourOfertado TourValorado;
+	@ManyToOne(targetEntity=Tour.class)
+	private Tour TourValorado;
 
 }

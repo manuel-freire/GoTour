@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -54,8 +55,11 @@ public class Tour {
 
 	@NotNull
 	private int ActTuristas;
+
+	@OneToMany (mappedBy="TourValorado")
+	private List<Review>  Reviews = new ArrayList<>();
 	
-	@ManyToMany (mappedBy="ToursAsistidos")
+	@ManyToMany (mappedBy="ToursAsistidos",fetch=FetchType.EAGER)
 	private List<User>  Turistas = new ArrayList<>();
 
 	public void addTurista(User u,int numero){

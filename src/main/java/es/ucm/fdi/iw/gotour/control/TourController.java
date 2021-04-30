@@ -118,13 +118,13 @@ public class TourController {
     @PostMapping("/{id}/valorar")
     @Transactional
     public String valorar(@PathVariable("id") long id, Model model, @RequestParam int valoracion, @RequestParam String textoReview, HttpSession session){
-        TourOfertado t = entityManager.find(TourOfertado.class, id); // mejor que PreparedQueries que sólo buscan por ID
+        Tour t = entityManager.find(Tour.class, id); // mejor que PreparedQueries que sólo buscan por ID
         User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
             ((User)session.getAttribute("u")).getId());
         Review r = new Review();
         log.info("SE PROCEDE A CREAR LA REVIEW");
         r.setCreador(u);
-        r.setDestinatario(t.getGuia());
+        r.setDestinatario(t.getDatos().getGuia());
         r.setPuntuacion(valoracion);
         r.setTexto(textoReview);
         r.setTourValorado(t);
@@ -135,22 +135,34 @@ public class TourController {
         return "tour";
     }
 
-    // @PostMapping("/{id}/valorarUser")
-    // @Transactional
-    // public String valorarUser(@PathVariable("id") long id, Model model, HttpSession session){
-    //     TourOfertado t = entityManager.find(TourOfertado.class, id); // mejor que PreparedQueries que sólo buscan por ID
-    //     User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
-    //         ((User)session.getAttribute("u")).getId());
-    //     log.info("SE PROCEDE A CREAR LA REVIEW");
-    //     List<Tour> instancias = t.getInstancias();
-    //     List<User> turistas = new ArrayList<>();
-    //     for(Tour tour: instancias){
-    //     List<User> asistentes = entityManager.createNamedQuery("User.ByTour").setParameter("tourParam", tour.getId()).getResultList();
-    //     turistas.addAll(asistentes);
-    //     }
-    //     model.addAttribute("turistas", turistas)
-    //     return "reviewUsuarios";
-    // }
+    @GetMapping("/{id}/reviewUser")
+    @Transactional
+    public String valorarUser(@PathVariable("id") long id, Model model, HttpSession session){
+        Tour t = entityManager.find(Tour.class, id); // mejor que PreparedQueries que sólo buscan por ID
+        model.addAttribute("tour", t);
+        return "reviewUsuarios";
+    }
+    @PostMapping("/{id}/valorarUser/{iduser}")
+    @Transactional
+    public String puntuar(@PathVariable("id") long id, @PathVariable("iduser") long iduser,Model model, @RequestParam int valoracion, @RequestParam String textoReview, HttpSession session){
+        Tour t = entityManager.find(Tour.class, id);
+        User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
+            ((User)session.getAttribute("u")).getId());
+        User objetivo = entityManager.find(User.class, iduser);
+        Review r = new Review();
+        log.info("SE PROCEDE A CREAR LA REVIEW");
+        r.setCreador(u);
+        r.setDestinatario(objetivo);
+        r.setPuntuacion(valoracion);
+        r.setTexto(textoReview);
+        r.setTourValorado(t);
+        log.info("La review actual es {}", r);
+        entityManager.persist(r);
+        entityManager.flush();
+        model.addAttribute("tour", t);
+
+        return "reviewUsuarios";
+    }
 
     @PostMapping("/{id}/pagar")
     @Transactional
