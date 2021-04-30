@@ -538,8 +538,8 @@ a {
       top: 0;
       background: rgba(0, 0, 0, 0.4); }
   .site-blocks-cover, .site-blocks-cover .row {
-    min-height: 600px;
-    height: calc(100vh); }
+    max-height: 250px;
+    height: calc(50vh); }
   .site-blocks-cover.inner-page-cover, .site-blocks-cover.inner-page-cover .row {
     min-height: 600px;
     height: calc(30vh); }
@@ -837,7 +837,7 @@ a {
   position: absolute !important;
   top: 50%;
   padding: 0px;
-  height: 50px;
+  height: 10px;
   width: 50px;
   border-radius: 0%;
   -webkit-transform: translateY(-50%);
