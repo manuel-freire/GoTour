@@ -336,9 +336,9 @@ public class UserController {
         return "datosPrivados";
     }
 
-	@GetMapping("/{id}/EditarDatos")
-	public String editar(Model model, HttpSession session, @PathVariable("id") Long id) {
-		return "EditarDatos";
+	@GetMapping("/editarDatos")
+	public String editar(Model model, HttpSession session) {
+		return "editarDatos";
 	}
 
 

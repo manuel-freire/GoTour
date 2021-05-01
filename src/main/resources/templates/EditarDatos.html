@@ -58,11 +58,12 @@
       <div class="container">
         <div class="row">
        
-          <div class="col-md-12 col-lg-8 mb-5">
+          <div class="col-md-12 col-lg-7 mb-5">
           
             
           
             <form  method="post" th:action="@{/user/{id}/actualizar(id=${session.u.Id})}" class="p-5 bg-white border">
+              <h3 class="h6 text-black mb-3 text-uppercase">Datos personales</h3>
 
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
@@ -106,8 +107,46 @@
             </form>
           </div>
 
-          <div class="col-lg-4">
-            <div class="p-4 mb-3 bg-white">
+          <div class="col-lg-5">
+            <div class="p-4 mb-3 bg-white border p-5">
+              <h3 class="h6 text-black mb-3 text-uppercase">Foto de perfil</h3>
+              <div class="card_guia">
+                <div class="card-avatar">
+                  <div class="foto col-lg-10">
+                    <img class="img guia_tour_foto" th:src="@{${session.u.Foto}}" alt="La imagen del guia" >
+                  </div>
+                </div>
+                <div class="box_form pt-3">
+                  <form class="form-foto" method="post" th:action="@{/user/{id}/actualizaFoto(id=${session.u.Id})}" enctype="multipart/form-data">
+                    <div class="row form-group">
+                      <input type="file" id="portada" class="form-control  col-lg-9" name="fotoPerfil">
+                      <button class="btn btn-primary  py-2 px-4 rounded-0 col-lg-3" type="submit">Subir</button>
+                    </div>
+                  </form>
+                </div>
+              </div>   
+            </div>
+
+            <div class="p-4 mb-3 bg-white border p-5">
+              <h3 class="h6 text-black mb-3 text-uppercase">Idiomas</h3>
+              <div class="card_guia">
+                <div class="card-avatar">
+                  <div th:each="idioma: ${session.u.IdiomasHablados}">
+                    <p class="idiomas" th:text="${idioma}">Ingles</p>
+                 </div>
+                </div>
+                <div class="box_idiomas pt-3">
+                  
+                  <form class="form-idiomas" method="post" th:action="@{/user/{id}/addLanguaje(id=${session.u.Id})}" enctype="multipart/form-data">
+                    <div class="row form-group">
+                      <input type="text" id="idioma_field" class="form-control col-lg-9" name="idioma">
+                      <button class="btn btn-primary  py-2 px-4 rounded-0 col-lg-3" type="submit">Añadir</button>
+                    </div>
+                  </form>
+                </div>
+              </div>  
+            </div>
+            <!--<div class="p-4 mb-3 bg-white form-group">
               <h3 class="h6 text-black mb-3 text-uppercase">Información de Contacto Go Tour</h3>
               <p class="mb-0 font-weight-bold">Direccion</p>
               <p class="mb-4">Avenida de la Complutense, Madrid 28003</p>
@@ -118,7 +157,7 @@
               <p class="mb-0 font-weight-bold">C</p>
               <p class="mb-0"><a href="#">info@gotour.com</a></p>
 
-            </div>
+            </div>-->
             
           </div>
         </div>
