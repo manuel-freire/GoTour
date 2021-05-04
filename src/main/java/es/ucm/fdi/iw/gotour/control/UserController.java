@@ -297,9 +297,8 @@ public class UserController {
 	@Transactional
 	public String actualizarFoto(@RequestParam("foto") MultipartFile foto,
 						Model model, HttpSession session) throws IOException {
-		/*User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
-		((User)session.getAttribute("u")).getId());
-		log.info("Updating profile photo for user {}",u.getId());
+		User u = entityManager.find(User.class,((User)session.getAttribute("u")).getId());
+		log.info("Updating profile photo for user {}",String.valueOf(u.getId()));
 		File f = localData.getFile("users", String.valueOf(u.getId()));
 		if (foto.isEmpty()) {
 			log.info("fallo al subir la foto: archivo vacio?");
