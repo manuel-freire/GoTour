@@ -74,6 +74,8 @@ import lombok.AllArgsConstructor;
 		query="SELECT * from tour WHERE Datos_id = :datos_id"),
 	@NamedNativeQuery(name="User.getReviewsRecibidas",
 		query="SELECT * FROM Review WHERE Destinatario_id = :dest"),
+	@NamedNativeQuery(name="User.getcountReview",
+		query="SELECT COUNT(Id) FROM Review WHERE Creador_id = :creador"),
 	@NamedNativeQuery(name="User.haslanguajes",
 	query="SELECT idiomas_hablados from user_idiomas_hablados WHERE user_idiomas_hablados.User_id = :user_id")
 })
@@ -145,7 +147,7 @@ public class User implements Transferable<User.Transfer> {
 	@ManyToMany(targetEntity=Tour.class, fetch=FetchType.EAGER)
 	private List<Tour> ToursAsistidos=new ArrayList<>(); 
 
-	@OneToMany(targetEntity=Review.class)
+	@OneToMany(targetEntity=Review.class, fetch=FetchType.EAGER)
 	@JoinColumn(name="Creador_id")
 	private List<Review> ReviewsHechas=new ArrayList<>();
 

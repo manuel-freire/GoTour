@@ -158,7 +158,8 @@
                         <strong id="libres" class="d-block" th:text="${tour.MaxTuristas - t.ActTuristas}">Libres</strong>
                       </div>
                       <div class="row no-gutters mt-5">
-                        <a th:href="@{'/tour/'+${t.Id}+'/review/'}" class="btn btn-primary btn-round" id="hacer_review" th:unless="${(session.u.Id == tour.Guia.Id) && !session.u.ToursAsistidos.contains(t)}">Valorar el tour</a>
+                        <a th:href="@{'/tour/'+${t.Id}+'/review/'}"class="btn btn-primary btn-round" id="hacer_review" th:if="${session.u.Id != tour.Guia.Id && session.u.ToursAsistidos.contains(t) && valorados.get(t.Id) != true}">Valorar el tour</a>
+                        <div th:if="${revisado == true}">Ya has hecho una review del tour, no puedes hacer mas</div>
                         <a th:href="@{'/tour/'+${t.Id}+'/reviewUser/'}" class="btn btn-primary btn-round" id="hacer_review" th:if="${session.u.Id == tour.Guia.Id}">Valorar asistentes del tour</a>
                       </div>
                     </div>

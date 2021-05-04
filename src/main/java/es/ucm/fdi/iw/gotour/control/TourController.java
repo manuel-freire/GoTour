@@ -32,7 +32,10 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 import org.yaml.snakeyaml.tokens.Token.ID;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import es.ucm.fdi.iw.gotour.LocalData;
 import es.ucm.fdi.iw.gotour.model.Tour;
 import es.ucm.fdi.iw.gotour.model.TourOfertado;
@@ -62,8 +65,10 @@ public class TourController {
 	
     @GetMapping(value="/{id}")
     @Transactional
-	public String tourOfertado(@PathVariable long id, Model model) {
+	public String tourOfertado(@PathVariable long id, Model model, HttpSession session) {
         TourOfertado tour = entityManager.find(TourOfertado.class, id);
+        User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
+        ((User)session.getAttribute("u")).getId());
         List<Tour> instancias =  new ArrayList<>(tour.getInstancias());
         List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
                 .setParameter("id", id)
@@ -72,9 +77,23 @@ public class TourController {
         List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
                 .setParameter("user_id", id_guia)
                 .getResultList();
+
+        
+        Map<Long, Boolean> valorados = new HashMap<Long, Boolean>();
+        for(Tour t: tour.getInstancias()){
+            for(Review r: t.getReviews()){
+                if(u.getReviewsHechas().contains(r)){
+                    valorados.put(t.getId(), true);
+                    log.info("EL VALOR DE REVISADO ES {}" ,valorados.get(tour.getId()));
+                }
+            }
+        
+        }
+        model.addAttribute("valorados", valorados);
         model.addAttribute("tour",tour);
         model.addAttribute("etiquetas",etiquetas);
         model.addAttribute("idiomas",idiomas);
+        session.setAttribute("u", u);
 		return "tour";
 	}
 
@@ -93,11 +112,10 @@ public class TourController {
 		return "pago";
 	}
     @GetMapping(value="/{id}/review")
-	public String review(@PathVariable long id, Model model) {
+	public String review(@PathVariable long id, Model model, HttpSession session) {
         Tour t = entityManager.find(Tour.class, id);
-        List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
-        .setParameter("id", id)
-        .getResultList();
+        User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
+        ((User)session.getAttribute("u")).getId());
         long id_guia = t.getDatos().getGuia().getId();
         List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
         .setParameter("user_id", id_guia)
@@ -126,6 +144,7 @@ public class TourController {
         model.addAttribute("etiquetas",etiquetas);
         model.addAttribute("idiomas",idiomas);
         t.addTurista(u, turistas);
+        session.setAttribute("u", u);
 		return "pago";
 	}
 
@@ -145,8 +164,7 @@ public class TourController {
         log.info("La review actual es {}", r);
         entityManager.persist(r);
         entityManager.flush();
-        tourOfertado(id, model);
-        return "tour";
+        return "index";
     }
 
     @GetMapping("/{id}/reviewUser")
@@ -154,6 +172,17 @@ public class TourController {
     public String valorarUser(@PathVariable("id") long id, Model model, HttpSession session){
         Tour t = entityManager.find(Tour.class, id); // mejor que PreparedQueries que sólo buscan por ID
         model.addAttribute("tour", t);
+        User guia = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
+            ((User)session.getAttribute("u")).getId());
+        Map<Long, Boolean> valoradosu = new HashMap<Long, Boolean>();
+        for(User u: t.getTuristas()){
+            for(Review r: guia.getReviewsHechas()){
+                if(r.getDestinatario() == u && r.getTourValorado() == t){  
+                    valoradosu.put(u.getId(), true);
+                }
+            }
+        }
+        model.addAttribute("valoradosu", valoradosu);
         return "reviewUsuarios";
     }
     @PostMapping("/{id}/valorarUser/{iduser}")
@@ -174,8 +203,7 @@ public class TourController {
         entityManager.persist(r);
         entityManager.flush();
         model.addAttribute("tour", t);
-
-        return "reviewUsuarios";
+        return "redirect:/tour/"+ id + "/reviewUser";
     }
 
     @PostMapping("/{id}/pagar")
