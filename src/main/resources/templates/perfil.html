@@ -55,8 +55,13 @@
                         <h5 class="mt-3" th:text="'Ha realizado '+ ${tours.size()}+' tour(s)'"></h5>
                      </div>
                      <h5 class="mt-3" th:text="'Ha asistido a '+ ${user.ToursAsistidos.size()}+' tour(s)'"></h5>
+                     <div th:if="${(session.u != null) and (session.u.Id == user.Id)} " >
+                        <div class="mt-3 mb-5"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editarPerfil"><a th:href="@{'/user/editarDatos'}">Editar perfil</a></button></div>
+                     </div>
                      <div th:if="${user.tourOfertados.size()>0}">
                         <div class="mt-3 mb-5"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#toursCerrados">Ver tours cerrados</button></div>
+
+                        
                         <div class="modal fade" id="toursCerrados" tabindex="-1" role="dialog" aria-labelledby="toursCerrados" aria-hidden="true">
                            <div class="modal-dialog" role="document">
                              <div class="modal-content">
@@ -72,8 +77,7 @@
                                     <div th:if="${!tour.Datos.Disponible}" class="property-entry h-100">
                                        <a th:href="@{'/tour/'+${tour.Id}}" class="property-thumbnail">
                                           <div class="offer-type-wrap">
-                                             <span class="offer-type bg-danger">Sale</span>
-                                             <span class="offer-type bg-success">Rent</span>
+                                             <span class="offer-type bg-danger">Cerrado</span>
                                           </div>
                                           <img th:href="@{'/tour/'+${tour.Id}}" th:src="@{${tour.Datos.Portada}}" alt="Image" class="img-fluid">
                                        </a>
@@ -129,8 +133,7 @@
                         <div th:if="${tour.Datos.Disponible}" class="property-entry h-100">
                            <a th:href="@{'/tour/'+${tour.Datos.Id}}" class="property-thumbnail">
                               <div class="offer-type-wrap">
-                                 <span class="offer-type bg-danger">Sale</span>
-                                 <span class="offer-type bg-success">Rent</span>
+                                 <span class="offer-type bg-success">Abierto</span>
                               </div>
                               <img th:href="@{'/tour/'+${tour.Datos.Id}}" th:src="@{${tour.Datos.Portada}}" alt="Image" class="img-fluid">
                            </a>
@@ -241,6 +244,7 @@
       <script th:src="@{~/js/bootstrap-datepicker.min.js}"></script>
       <script th:src="@{~/js/circleaudioplayer.js}"></script>
       <script th:src="@{~/js/main.js}"></script>
+      <script th:src="@{~/js/user.js}"></script>
    </body>
 </html>
 

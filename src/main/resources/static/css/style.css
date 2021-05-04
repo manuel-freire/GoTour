@@ -21,7 +21,13 @@ a {
   transition: .3s all ease; }
   a:hover {
     text-decoration: none; }
+  button a{
+    color:black;
+  }
 
+  .guia_tour_foto{
+    width:100%
+  }
 .text-black {
   color: #000 !important; }
 

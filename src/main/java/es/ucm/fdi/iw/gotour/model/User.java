@@ -158,6 +158,7 @@ public class User implements Transferable<User.Transfer> {
 	@OneToMany(targetEntity=Review.class)
 	@JoinColumn(name="destinatario_id")
 	private List<Review> ReviewsRecibidas=new ArrayList<>();
+
 	@ElementCollection
 	private List<String> IdiomasHablados=new ArrayList<>();
 	
@@ -184,6 +185,10 @@ public class User implements Transferable<User.Transfer> {
 	
 	public void addTour(Tour t){
 		this.ToursAsistidos.add(t);
+	}
+
+	public void addLanguaje(String idioma){
+		IdiomasHablados.add(idioma);
 	}
 
     @Getter

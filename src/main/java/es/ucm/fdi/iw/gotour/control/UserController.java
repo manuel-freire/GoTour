@@ -22,6 +22,7 @@ import javax.transaction.Transactional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -276,7 +277,6 @@ public class UserController {
 							@RequestParam String nombre,  
                             @RequestParam String apellidos, 
                             @RequestParam String email,
-                            @RequestParam String password,
                             @RequestParam String username,
                             @RequestParam long numtelefono,
                             Model model, HttpSession session){
@@ -293,7 +293,41 @@ public class UserController {
         return "datosPrivados";
 
     }
+	@PostMapping("/actualizarFoto")
+	@Transactional
+	public String actualizarFoto(@RequestParam("foto") MultipartFile foto,
+						Model model, HttpSession session) throws IOException {
+		/*User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
+		((User)session.getAttribute("u")).getId());
+		log.info("Updating profile photo for user {}",u.getId());
+		File f = localData.getFile("users", String.valueOf(u.getId()));
+		if (foto.isEmpty()) {
+			log.info("fallo al subir la foto: archivo vacio?");
+		} else {
+			try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(f))) {
+				byte[] bytes = foto.getBytes();
+				stream.write(bytes);
+			} catch (Exception e) {
+				log.warn("Error uploading " + u.getId() + ", profile photo ", e);
+			}
+			log.info("Successfully uploaded profile photo for {} into {}!", u.getId(), f.getAbsolutePath());
+		}
+		u.setFoto("users/"+u.getId());
+		session.setAttribute("u", u);
 
+		//return perfil(model,session,id);*/
+		return "datosPrivados";
+	}
+	@PostMapping("/addLanguaje")
+	@Transactional
+	public String actualizarIdiomas(@RequestParam String idioma,
+						Model model, HttpSession session) throws IOException {
+        User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
+            ((User)session.getAttribute("u")).getId());
+		u.addLanguaje(idioma);
+		session.setAttribute("u", u);
+		return "datosPrivados";
+	}
 
 
 	@GetMapping("/{id}/perfil")
@@ -336,9 +370,15 @@ public class UserController {
         return "datosPrivados";
     }
 
-	@GetMapping("/{id}/EditarDatos")
-	public String editar(Model model, HttpSession session, @PathVariable("id") Long id) {
-		return "EditarDatos";
+	@GetMapping("/editarDatos")
+	public String editar(Model model, HttpSession session) {
+		User user = entityManager.find(User.class, ((User)session.getAttribute("u")).getId());
+		List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
+                .setParameter("user_id", user.getId())
+                .getResultList();
+		model.addAttribute("idiomas",idiomas);
+        model.addAttribute("u", user);
+		return "editarDatos";
 	}
 
 
