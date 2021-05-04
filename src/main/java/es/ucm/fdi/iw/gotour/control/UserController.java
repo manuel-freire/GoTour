@@ -267,7 +267,7 @@ public class UserController {
 			session.setAttribute("u", user);
 	    } catch (Exception e) {
 	    }
-        return "index";
+        return "redirect:/";
 
     }
 

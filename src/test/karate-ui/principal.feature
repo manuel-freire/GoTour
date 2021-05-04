@@ -9,7 +9,7 @@ Background:
 
 Scenario: logear, elegir un tour e inscribirse al tour
     Given driver 'http://localhost:8080/login'
-  * input('#username', 'SPACEMARINE')
+  * input('#username', 'vicky')
   * input('#password', 'aa')
   * submit().click("[type=submit]")
   * match html('title') contains 'Perfil'
@@ -20,8 +20,8 @@ Scenario: logear, elegir un tour e inscribirse al tour
   * match html('title') contains 'Tour'
   #* input('#turistas', "1")
   * submit().click("[type=submit]")
-  * match html('#libre') contains '1'
-  #* driver.screenshot()
+  * match html('title') contains 'Pago por el tour'
+  * driver.screenshot()
   #* click("[id=ver_perfil]")
   #* driver.screenshot()
 

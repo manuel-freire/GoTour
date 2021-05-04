@@ -16,6 +16,7 @@ Scenario: Registrarse, crear un tour y editar la direccion de correo nueva
   * input('#username', 'Aragorn')
   * input('#respuestaseguridad', 'Alpargato')
   * input('#telefono', '111222333')
+  * driver.screenshot() #En este punto hemos introducido todos los datos necesarios para crear un usuario
   * submit().click("[type=submit]")
   * driver.screenshot()
   * match html('title') contains 'GoTour'
