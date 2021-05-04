@@ -56,7 +56,7 @@ public class Tour {
 	@NotNull
 	private int ActTuristas;
 
-	@OneToMany (mappedBy="TourValorado")
+	@OneToMany (mappedBy="TourValorado", fetch=FetchType.EAGER)
 	private List<Review>  Reviews = new ArrayList<>();
 	
 	@ManyToMany (mappedBy="ToursAsistidos",fetch=FetchType.EAGER)

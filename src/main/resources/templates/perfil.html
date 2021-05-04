@@ -79,12 +79,12 @@
                      </div>
                      <div class="col-md-6 col-lg-6 mb-4" th:each="tour: ${user.TourOfertados}">
                         <div th:if="${tour.Datos.Disponible}" class="property-entry h-100">
-                           <a th:href="@{'/tour/'+${tour.Id}}" class="property-thumbnail">
+                           <a th:href="@{'/tour/'+${tour.Datos.Id}}" class="property-thumbnail">
                               <div class="offer-type-wrap">
                                  <span class="offer-type bg-danger">Sale</span>
                                  <span class="offer-type bg-success">Rent</span>
                               </div>
-                              <img th:href="@{'/tour/'+${tour.Id}}" th:src="@{${tour.Datos.Portada}}" alt="Image" class="img-fluid">
+                              <img th:href="@{'/tour/'+${tour.Datos.Id}}" th:src="@{${tour.Datos.Portada}}" alt="Image" class="img-fluid">
                            </a>
                            <div class="p-4 property-body">
                               <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
@@ -165,7 +165,7 @@
                         <img class="card-img-top" id="user" th:src="@{~/img/defaultuser.png}" alt="user">
                         <div class="card-body">
                            <h5 class="card-title creador"><a th:href="@{/user/{id}/perfil(id=${review.Creador.Id})}" th:text="${review.Creador.Username}"></a></h5>
-                           <h5 class="card-title tour"><a th:href="@{/tour/{id}(id=${review.TourValorado.Id})}" th:text="${review.TourValorado.Titulo}"></a></h5>
+                           <h5 class="card-title tour"><a th:href="@{/tour/{id}(id=${review.TourValorado.Id})}" th:text="${review.TourValorado.Datos.Titulo}"></a></h5>
                            <div class="row">
                               <div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}" class="col-lg-1"><img th:src="@{/img/star.png}" width="30" /></div>
                            </div>
