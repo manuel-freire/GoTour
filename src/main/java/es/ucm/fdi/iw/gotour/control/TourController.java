@@ -160,7 +160,7 @@ public class TourController {
         log.info("La review actual es {}", r);
         entityManager.persist(r);
         entityManager.flush();
-        return "index";
+        return "redirect:/";
     }
 
     @GetMapping("/{id}/reviewUser")
