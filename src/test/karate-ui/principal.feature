@@ -39,6 +39,28 @@ Scenario: logear, elegir un tour e inscribirse al tour
   * value('#valoracion', '')
   * input('#valoracion', '3')
   * input('#textoReview', 'Un treh porque el guia era mu soso aunque el tour ha sido mu bonito')
+  * driver.screenshot()
   * submit().click("[type=submit]")
   * match html('title') contains 'GoTour'
+  * driver.screenshot()
+  * click("a[id=salir]")
+  # Nos deslogueamos y volvemos a loguear con el guia del tour
+  * click("a[id=tour_ref]")
+  * match html('title') contains 'Iniciar sesion'
+  * input('#username', 'SPACEMARINE')
+  * input('#password', 'aa')
+  * submit().click("[type=submit]")
+  * click("a[id=logo_box]")
+  * match html('title') contains 'GoTour'
+  * driver.screenshot()
+  # accedemos al tour
+  * click("a[id=tour_ref]")
+  * driver.screenshot()
+  * click("a[id=hacer_review_guia]")
+  * match html('title') contains 'Valoracion a los usuarios'
+  * value('#valoracion1', '')
+  * input('#valoracion1', '1')
+  * input('#textoReview1', 'Se ha portado fatal y ha molestado mucho')
+  * driver.screenshot()
+  * submit().click("[type=submit]")
   * driver.screenshot()

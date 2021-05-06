@@ -24,13 +24,11 @@
                     <a th:href="@{/}">Home</a>
                   </li>
                   <li th:class="${classActiveRegistro}"><a th:if ="${session.u == null}" th:href="@{/registro}">Registrate</a></li>
-                  <li th:class="${classActiveLogin}"><a th:if ="${session.u == null}" th:href="@{/login}">Login</a></li>
+                  <li th:class="${classActiveLogin}"><a th:if ="${session.u == null}" th:href="@{/login}" id="login">Login</a></li>
                   <li class="has-children" th:if="${session.u}">
                     <a th:href="@{'/user/'+ ${session.u.id}+'/perfil'}" id="perfil_ref">Mi perfil</a>
                     <ul class="dropdown arrow-top">
-                      <li><a th:href="@{/user/logout}">Log out</a></li>
-                      <li th:class="${classActiveToursReservados}"><a href="#">Mis tours reservados</li>
-                      <li th:class="${classActiveToursOfertados}"><a href="#">Mis tours ofertados</a></li>
+                      <li><a th:href="@{/user/logout}" id="salir">Log out</a></li>
                     </ul>
                   </li>
                 </ul>

@@ -131,7 +131,7 @@
                      </div>
                      <div class="col-md-6 col-lg-6 mb-4" th:each="tour: ${user.TourOfertados}">
                         <div th:if="${tour.Datos.Disponible}" class="property-entry h-100">
-                           <a th:href="@{'/tour/'+${tour.Datos.Id}}" class="property-thumbnail">
+                           <a th:href="@{'/tour/'+${tour.Datos.Id}}" class="property-thumbnail" th:id="'tour' + ${tour.Datos.Id}">
                               <div class="offer-type-wrap">
                                  <span class="offer-type bg-success">Abierto</span>
                               </div>

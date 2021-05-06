@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Tour</title>
+    <title>Valoracion a los usuarios</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -72,9 +72,9 @@
                     
                     <div class="form-group" th:if="${valoradosu.get(u.Id)!= true}">
                         <label for="valoracion" th:if="${valoradosu.get(u.Id)!= true}">Valoracion</label>
-                        <input name="valoracion" id="valoracion" type="number" class="form-control" th:value="0" th:min=0 th:max=5 th:if="${valoradosu.get(u.Id)!= true}">
+                        <input name="valoracion" th:id="'valoracion' + ${u.Id}" type="number" class="form-control" th:value="0" th:min=0 th:max=5 th:if="${valoradosu.get(u.Id)!= true}">
                         <label for="textoReview" th:if="${valoradosu.get(u.Id)!= true}">Explique aqui los motivos de su valoracion</label>
-                        <input name="textoReview" id="textoReview" type="text" class="form-control" th:if="${valoradosu.get(u.Id)!= true}">
+                        <input name="textoReview" th:id="'textoReview' + ${u.Id} " type="text" class="form-control" th:if="${valoradosu.get(u.Id)!= true}">
                           <input type="submit" id="enviarReview" class="btn btn-primary" value="Enviar" th:if="${valoradosu.get(u.Id)!= true}">
                       </form>
                     </div>

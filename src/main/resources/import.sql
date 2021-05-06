@@ -15,7 +15,7 @@
 INSERT INTO USER(Id,Apellidos,Caducidad_Tarjeta, Email,Enabled,Foto,Nombre,Num_Secreto,Num_Tarjeta,Num_Telefono,Password,Pregunta_Seguridad,Respuesta_Seguridad,Puntuacion,Roles,Username) VALUES (
 	2,'Sanchez Granado','22/03','email', 1,'/img/guia1.jpg','Jesus',12,87,333, 
 	'{bcrypt}$2a$10$xLFtBIXGtYvAbRqM95JhcOaG23fHRpDoZIJrsF2cCff9xEHTTdK1u','Pregunta','Respuesta',4,
-	'ADMIN',
+	'USER',
 	'SPACEMARINE');
 INSERT INTO USER(Id,Apellidos,Caducidad_Tarjeta, Email,Enabled,Foto,Nombre,Num_Secreto,Num_Tarjeta,Num_Telefono,Password,Pregunta_Seguridad,Respuesta_Seguridad,Puntuacion,Roles,Username) VALUES (
 	3,'Garcia Tomasulo','22/03','email',1,'/img/guia1.jpg','Sonia',12,87,333, 
