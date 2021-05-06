@@ -15,10 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import es.ucm.fdi.iw.gotour.model.Message;
+import org.springframework.web.bind.annotation.PathVariable;
+import es.ucm.fdi.iw.gotour.model.Mensaje;
 import es.ucm.fdi.iw.gotour.model.Transferable;
 import es.ucm.fdi.iw.gotour.model.User;
+import es.ucm.fdi.iw.gotour.model.Tour;
 
 /**
  * User-administration controller
@@ -26,40 +27,45 @@ import es.ucm.fdi.iw.gotour.model.User;
  * @author mfreire
  */
 @Controller()
-@RequestMapping("message")
-public class MessageController {
+@RequestMapping("mensaje")
+public class MensajeController {
 	
-	private static final Logger log = LogManager.getLogger(MessageController.class);
+	private static final Logger log = LogManager.getLogger(MensajeController.class);
 	
 	@Autowired 
 	private EntityManager entityManager;
 		
 	@GetMapping("/")
-	public String getMessages(Model model, HttpSession session) {
+	public String getMensajes(Model model, HttpSession session) {
 		model.addAttribute("users", entityManager.createQuery(
 			"SELECT u FROM User u").getResultList());
-		return "messages";
+		return "chat";
 	}
 
-	@GetMapping(path = "/received", produces = "application/json")
+	@GetMapping(path = "oferta/{id}/received", produces = "application/json")
 	@Transactional // para no recibir resultados inconsistentes
 	@ResponseBody  // para indicar que no devuelve vista, sino un objeto (jsonizado)
-	public List<Message.Transfer> retrieveMessages(HttpSession session) {
-		long userId = ((User)session.getAttribute("u")).getId();		
-		User u = entityManager.find(User.class, userId);
-		log.info("Generating message list for user {} ({} messages)", 
-				u.getUsername(), u.getReceived().size());
-		return  u.getReceived().stream().map(Transferable::toTransfer).collect(Collectors.toList());
+	public List<Mensaje.Transfer> retrieveMensajes(@PathVariable long id,HttpSession session) {
+		Tour u = entityManager.find(Tour.class, id);
+		log.info("Generating message list for tour {} ({} chat)", 
+				u.getId(), u.getMensajes().size());
+		log.info("Mensajes: {}",u.getMensajes().stream().map(Transferable::toTransfer).collect(Collectors.toList()));
+		return  u.getMensajes().stream().map(Transferable::toTransfer).collect(Collectors.toList());
+		//long userId = ((User)session.getAttribute("u")).getId();		
+		//User u = entityManager.find(User.class, userId);
+		//log.info("Generating message list for user {} ({} chat)", 
+		//		u.getUsername(), u.getReceived().size());
+		//return  u.getReceived().stream().map(Transferable::toTransfer).collect(Collectors.toList());
 	}	
 	
-	@GetMapping(path = "/unread", produces = "application/json")
+	/*@GetMapping(path = "/unread", produces = "application/json")
 	@ResponseBody
 	public String checkUnread(HttpSession session) {
 		long userId = ((User)session.getAttribute("u")).getId();		
-		long unread = entityManager.createNamedQuery("Message.countUnread", Long.class)
+		long unread = entityManager.createNamedQuery("Mensaje.countUnread", Long.class)
 			.setParameter("userId", userId)
 			.getSingleResult();
 		session.setAttribute("unread", unread);
 		return "{\"unread\": " + unread + "}";
-	}
+	}*/
 }

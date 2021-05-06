@@ -1,69 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Homeland &mdash; Colorlib Website Template</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
-    <link rel="stylesheet" th:href="@{~/fonts/icomoon/style.css}">
-
-    <link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{~/css/magnific-popup.css}">
-    <link rel="stylesheet" th:href="@{~/css/jquery-ui.css}">
-    <link rel="stylesheet" th:href="@{~/css/owl.carousel.min.css}">
-    <link rel="stylesheet" th:href="@{~/css/owl.theme.default.min.css}">
-    <link rel="stylesheet" th:href="@{~/css/bootstrap-datepicker.css}">
-    <link rel="stylesheet" th:href="@{~/css/mediaelementplayer.css}">
-    <link rel="stylesheet" th:href="@{~/css/animate.css}">
-    <link rel="stylesheet" th:href="@{~/fonts/flaticon/font/flaticon.css}">
-    <link rel="stylesheet" th:href="@{~/css/fl-bigmug-line.css}">
-    
-  
-    <link rel="stylesheet" th:href="@{~/css/aos.css}">
-
-    <link rel="stylesheet" th:href="@{~/css/style.css}">
-    
-  </head>
-  <body>
-  
-  <div class="site-loader"></div>
-  
-  <div class="site-wrap">
-
-    <div class="site-mobile-menu">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div> <!-- .site-mobile-menu -->
-
-    <nav th:replace="fragments/nav.html :: nav">
-      Nav goes here
-    </nav>
-
-
-     <div class="site-blocks-cover overlay"  th:style="'background-image:url(' + @{img/hero_bg_2.jpg} + ');'" data-aos="fade" data-stellar-background-ratio="0.5">
-        <div class="container">
-          <div class="row align-items-center justify-content-center text-center">
-            <div class="col-md-10">
-              
-          </div>
-        </div>
-      </div>
-
-
-      <h4>Error <span th:text="${status}"></span></h4>	
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head><th:block th:replace="fragments/head :: header"/>
+	<title>IW: Error</title>
+</head>
+<body>
+	<nav th:replace="fragments/nav.html :: nav">
+		Nav goes here
+	</nav>
+	
+	<div class="container">
+	<div class="main">
+		
+	<h4>Error <span th:text="${status}"></span></h4>	
 
 	<div th:unless="${application.debug}">
 		<img th:src="|https://http.cat/${status}|" alt="gato ilustrando problema"/>
-	</h5>Los administradores están informados. Puedes volver a intentar hacer
-		lo que estabas haciendo de otra forma, o esperar a que solucionen el problema.</h5>
+		<p>Los administradores están informados. Puedes volver a intentar hacer
+		lo que estabas haciendo de otra forma, o esperar a que solucionen el problema.</p>
 	</div>
 	<div th:if="${application.debug}">
-		<h5>Ha pasado algo feo. Mira el log del servidor para saber más detalles.</h5>
+		<p>Ha pasado algo feo. Mira el log del servidor para saber más detalles.</p>
 
 	<h4>Detalles del error</h4>
 	<table class="errTable">
@@ -104,27 +62,9 @@
 	
 	</div> <!-- end main div -->
 	</div> <!-- end container div -->
-    
-
-
-
-  </div>
-
-  <!-- <script th:src="@{~/js/jquery-migrate-3.0.1.min.js}"></script> -->
-  <script th:src="@{~/js/jquery-3.3.1.min.js}"></script>
-  <script th:src="@{~/js/jquery-ui.js}"></script>
-  <script th:src="@{~/js/popper.min.js}"></script>
-  <script th:src="@{~/js/bootstrap.min.js}"></script>
-  <script th:src="@{~/js/owl.carousel.min.js}"></script>
-  <script th:src="@{~/js/mediaelement-and-player.min.js}"></script>
-  <script th:src="@{~/js/jquery.stellar.min.js}"></script>
-  <script th:src="@{~/js/jquery.countdown.min.js}"></script>
-  <script th:src="@{~/js/jquery.magnific-popup.min.js}"></script>
-  <script th:src="@{~/js/bootstrap-datepicker.min.js}"></script>
-  <script th:src="@{~/js/aos.js}"></script>
-  <script th:src="@{~/js/circleaudioplayer.js}"></script>
-
-  <script th:src="@{~/js/main.js}"></script>
-    
-  </body>
+	
+	<footer th:replace="fragments/footer.html :: footer">
+		Footer goes here
+	</footer>
+</body>
 </html>

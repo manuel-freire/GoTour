@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html 
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:th="http://www.thymeleaf.org">
 <head><th:block th:replace="fragments/head :: header"/>
 	<title>Mensajes</title>
 
@@ -15,19 +14,16 @@
 	
 	<div class="container">
 	<div class="main">
-	<h1>Mensajes recibidos</h1>
+	<h1>Chat del tour</h1>
 	
 	<table class="datatable" id="datatable"></table>
 	
 	</div>
 	</div>	
-
 	<div class="sidebar">
-		<form th:action="@{/user/idOfTarget/msg}" method="POST">
-		<select id="idOfTarget">
-			<option th:each="user: ${users}" th:value="${user.id}" th:text="${user.username}">mfreire</option>
-		</select>
-		<textarea id="message" placeholder="escribe al usuario seleccionado" rows="4" cols="20"></textarea>
+		<!--<form th:action="@{/user/idOfTarget/msg}" method="POST">-->
+		<form th:action="@{/tour/1/msg}" method="POST">
+		<textarea id="message" placeholder="Escribe algo" rows="4" cols="20"></textarea>
 		<button id="sendmsg" type="submit">Enviar</button>
 		</form>
 	</div>
@@ -36,14 +32,14 @@
 	
 	function formatDate(d) {
 		// 2020-03-23T10:48:11.074 => 23/3/2020@10:48:18
-		return new Date(d).toLocaleString("es-ES").split(" ").join("@")
+		return new Date(d).toLocaleString("es-ES").split(" ").join(" ")
 	}
 
 	// mostrando una tabla dinámica con datos cargados del servidor vía AJAX
 	let dt = new simpleDatatables.DataTable(
 		'#datatable', { 
 		    ajax: {
-		        url: config.rootUrl + "message/received", // empieza siempre por config.rootUrl
+		        url: config.rootUrl + "mensaje/oferta/1/received", // empieza siempre por config.rootUrl
 		        load: function(xhr) {
 		        	let data = JSON.parse(xhr.responseText);
 		        	for (let i=0; i<data.length; i++) {
@@ -64,8 +60,9 @@
 	document.addEventListener("DOMContentLoaded", () => {
 		let b = document.getElementById("sendmsg");
 		b.onclick = (e) => {
-			let idOfTarget = document.getElementById("idOfTarget").value;
-			let url = b.parentNode.action.replace("idOfTarget", idOfTarget);
+			//let idOfTarget = document.getElementById("idOfTarget").value;
+			//let url = b.parentNode.action.replace("idOfTarget", idOfTarget);
+			let url = b.parentNode.action;
 			e.preventDefault();
 			console.log(b, b.parentNode)
 			go(url, 'POST', {message: 
@@ -78,7 +75,7 @@
 	// sobreescribid esta funcion para especificar qué sucede cuando recibes un mensaje
 	// aquí estoy metiendo el mensaje al final de la tabla
 	ws.receive = (m) => {
-		dt.rows().add([m.from, m.to, formatDate(new Date().toISOString()), "", m.text, m.id]);		
+		dt.rows().add([m.from, formatDate(new Date().toISOString()), "", m.text, m.id]);		
 	}
 	
 	</script>

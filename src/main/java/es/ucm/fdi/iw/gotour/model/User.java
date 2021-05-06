@@ -147,10 +147,6 @@ public class User implements Transferable<User.Transfer> {
 	@JoinColumn(name="Creador_id")
 	private List<Review> ReviewsHechas=new ArrayList<>();
 
-	@OneToMany
-	@JoinColumn(name="Creador_id")
-	private List<Mensajes> Mensajes = new ArrayList<>();
-	
 	@OneToMany(targetEntity=Review.class)
 	@JoinColumn(name="destinatario_id")
 	private List<Review> ReviewsRecibidas=new ArrayList<>();
@@ -160,10 +156,10 @@ public class User implements Transferable<User.Transfer> {
 
 	@OneToMany
 	@JoinColumn(name = "Sender_id")
-	private List<Message> Sent = new ArrayList<>();
+	private List<Mensaje> Sent = new ArrayList<>();
 	@OneToMany
 	@JoinColumn(name = "Recipient_id")	
-	private List<Message> Received = new ArrayList<>();	
+	private List<Mensaje> Received = new ArrayList<>();	
 	
 	// utility methods
 	
@@ -191,11 +187,11 @@ public class User implements Transferable<User.Transfer> {
         private String Username;
 		private long Numtelefono;
 		private int Puntuacion;
-		private List<Tour> TourOfrecidos;
+		private List<Tour> TourOfertados;
 		private List<Tour> ToursAsistidos;
 		private List<Review> ReviewsHechas;
-		private List<Message> Sent;
-		private List<Message> Received;
+		private List<Mensaje> Sent;
+		private List<Mensaje> Received;
 		private List<Review> ReviewsRecibidas;
 		private List<String> IdiomasHablados;
 

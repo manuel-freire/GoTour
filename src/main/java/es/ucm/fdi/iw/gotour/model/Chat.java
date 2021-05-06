@@ -26,15 +26,12 @@ public class Chat {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long Id;
+
     @ManyToMany 
 	private List<User> Users = new ArrayList<>();
-	@OneToMany
-	@JoinColumn(name="id_chat")
-	private List<Mensajes> Mensajes = new ArrayList<>();
 
-	@OneToOne
-	private Tour Tour;
-
+	@OneToMany (targetEntity=Mensaje.class)
+	private List<Mensaje> Mensajes = new ArrayList<>();
 
     @Override
 	public String toString() {

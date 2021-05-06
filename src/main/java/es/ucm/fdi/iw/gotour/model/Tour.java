@@ -8,10 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -53,6 +55,12 @@ public class Tour {
 	@NotNull
 	private int ActTuristas;
 	
+	//@OneToOne
+	//private Chat chat;
+
+	@OneToMany (mappedBy="tour", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Mensaje> mensajes = new ArrayList<>();
+
 	@ManyToMany (mappedBy="ToursAsistidos")
 	private List<User>  Turistas = new ArrayList<>();
     
