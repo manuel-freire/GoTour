@@ -97,20 +97,20 @@ public class TourController {
 		return "tour";
 	}
 
-    @GetMapping(value="/{id}/pago")
-	public String pago(@PathVariable long id, Model model) {
-        Tour t = entityManager.find(Tour.class, id);
-        List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
-        .setParameter("id", id)
-        .getResultList();
-        long id_guia = t.getDatos().getGuia().getId();
-        List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
-        .setParameter("user_id", id_guia)
-        .getResultList();
-        model.addAttribute("tour",t);
-        model.addAttribute("idiomas",idiomas);
-		return "pago";
-	}
+    // @GetMapping(value="/{id}/pago")
+	// public String pago(@PathVariable long id, Model model) {
+    //     Tour t = entityManager.find(Tour.class, id);
+    //     List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
+    //     .setParameter("id", id)
+    //     .getResultList();
+    //     long id_guia = t.getDatos().getGuia().getId();
+    //     List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
+    //     .setParameter("user_id", id_guia)
+    //     .getResultList();
+    //     model.addAttribute("tour",t);
+    //     model.addAttribute("idiomas",idiomas);
+	// 	return "pago";
+	// }
     @GetMapping(value="/{id}/review")
 	public String review(@PathVariable long id, Model model, HttpSession session) {
         Tour t = entityManager.find(Tour.class, id);
@@ -130,9 +130,6 @@ public class TourController {
     @Transactional
 	public String inscribirse(@PathVariable("id") long id,Model model,@RequestParam int turistas,HttpSession session) {
         Tour t = entityManager.find(Tour.class, id); // mejor que PreparedQueries que sólo buscan por ID
-        User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
-            ((User)session.getAttribute("u")).getId());
-        model.addAttribute("asistentes", turistas);
         List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
                 .setParameter("id", id)
                 .getResultList();
@@ -140,11 +137,10 @@ public class TourController {
         List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
                 .setParameter("user_id", id_guia)
                 .getResultList();
+        model.addAttribute("asistentes", turistas);
         model.addAttribute("tour",t);
         model.addAttribute("etiquetas",etiquetas);
         model.addAttribute("idiomas",idiomas);
-        t.addTurista(u, turistas);
-        session.setAttribute("u", u);
 		return "pago";
 	}
 
@@ -206,13 +202,13 @@ public class TourController {
         return "redirect:/tour/"+ id + "/reviewUser";
     }
 
-    @PostMapping("/{id}/pagar")
+    @PostMapping("/{id}/pagar/{asistentes}")
     @Transactional
-	public String pagar(@PathVariable("id") long id,Model model,@RequestParam int numTarjeta, @RequestParam String caducidadTarjeta,
+	public String pagar(@PathVariable("id") long id, @PathVariable("asistentes") Integer asistentes, Model model,@RequestParam int numTarjeta, @RequestParam String caducidadTarjeta,
                         @RequestParam int numSecreto,HttpSession session) {
                             //Aunque le pido los datos de tarjeta en el formulario realmente no hago nada con ellos
         Tour t = entityManager.find(Tour.class, id);
-        User u = entityManager.find(User.class,
+        User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
             ((User)session.getAttribute("u")).getId());
         if(numTarjeta!= u.getNumTarjeta()){
             u.setNumTarjeta(numTarjeta);
@@ -226,7 +222,10 @@ public class TourController {
             log.info("\t{}", o);
         }        
         // adds them to model
-        model.addAttribute("tours", tours);	
+        log.info("LOS TURISTAS SON {}", asistentes);
+        t.addTurista(u, asistentes);
+        model.addAttribute("tours", tours);
+        session.setAttribute("u", u);	
 		return "index";
 	}
 

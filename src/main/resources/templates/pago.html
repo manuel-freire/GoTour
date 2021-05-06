@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Pago por el tour</title>
+    <title>Pago</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -94,7 +94,7 @@
                   </div>
                 </div>
                 <h2 class="h4 text-black"th:if="${session.u.NumTarjeta == 0}">Introduzca sus datos de pago para completar la transacción</h2>
-                <form method="post" class="form-contact-agent" th:action="@{/tour/{id}/pagar(id=${tour.id})}">
+                <form method="post" class="form-contact-agent" th:action="@{/tour/{id}/pagar/{asistentes}(id=${tour.id}, asistentes=${asistentes})}">
                     
                     <div class="form-group">
                         <label for="numTarjeta" th:if="${session.u.NumTarjeta == 0}">Numero de tarjeta</label>
@@ -106,7 +106,7 @@
                         <label th:if="${session.u.NumTarjeta == 0}" for="numSecreto">Numero secreto</label>
                         <input th:if="${session.u.NumTarjeta == 0}"name="numSecreto" id="numSecreto" type="number" class="form-control" th:value="0">
                         <input th:unless="${session.u.NumTarjeta == 0}"name="numSecreto" id="numSecreto" type="hidden" class="form-control" th:value="${session.u.NumSecreto}">
-                        <input type="submit" id="enviarReview" class="btn btn-primary" value="Enviar">
+                        <input type="submit" id="enviarPago" class="btn btn-primary" value="Enviar">
                       </form>
                       </div>
 
