@@ -32,41 +32,41 @@ public class TourOfertado {
 	private long Id;
 
 	@NotNull
-	private String Descripcion;
+	private String descripcion;
 
-	private String Portada;
-
-	@NotNull
-	private String Ciudad;
+	private String portada;
 
 	@NotNull
-	private String Titulo;
+	private String ciudad;
 
-	private String Lugar;
+	@NotNull
+	private String titulo;
+
+	private String lugar;
     
 	@NotNull
-	private String Pais;
+	private String pais;
 
-	private String Mapa;
+	private String mapa;
 
-	private boolean Disponible;
+	private boolean disponible;
 	
 	@NotNull
-	private double Precio;
+	private double precio;
 
 	@NotNull
-	private int MaxTuristas;
+	private int maxTuristas;
 
-	@OneToMany (mappedBy="Datos", cascade = CascadeType.ALL, orphanRemoval = true, fetch=FetchType.EAGER)
-	private List<Tour> Instancias = new ArrayList<>();
+	@OneToMany (mappedBy="datos", cascade = CascadeType.ALL, orphanRemoval = true, fetch=FetchType.EAGER)
+	private List<Tour> instancias = new ArrayList<>();
 
 	@NotNull
 	@ManyToOne
-	private User Guia;
+	private User guia;
 	
 	@ElementCollection
 	@CollectionTable(joinColumns = @JoinColumn(name="TourOfertado_id"))
-	private List<String> Etiquetas = new ArrayList<String>();
+	private List<String> etiquetas = new ArrayList<String>();
 
 	@Override
 	public String toString() {
@@ -78,7 +78,7 @@ public class TourOfertado {
 		return parts[2].split("T")[0]+"/"+parts[1]+"/"+parts[0];
 	}
 	public String getFechaUltimaInstancia(){
-		return formatDate(Instancias.get(Instancias.size()-1).getFechaIni());
+		return formatDate(instancias.get(instancias.size()-1).getFechaIni());
 	}
 	
 }

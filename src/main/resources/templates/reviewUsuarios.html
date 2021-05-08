@@ -59,23 +59,23 @@
                   </div>
                 </div>
                 <h2 class="h4 text-black"></h2>
-                <div th:each="u: ${tour.Turistas}">
-                  <div class="card_guia" th:if="${valoradosu.get(u.Id)!= true}">
-                    <div class="card-avatar" th:if="${valoradosu.get(u.Id)!= true}">
-                      <a href="javascript:;" th:if="${valoradosu.get(u.Id)!= true}">
-                        <img class="img guia_tour_foto" th:src="@{${u.Foto}}" alt="La imagen del guia" th:if="${valoradosu.get(u.Id)!= true}">
+                <div th:each="u: ${tour.turistas}">
+                  <div class="card_guia" th:if="${valoradosu.get(u.id)!= true}">
+                    <div class="card-avatar" th:if="${valoradosu.get(u.id)!= true}">
+                      <a href="javascript:;" th:if="${valoradosu.get(u.id)!= true}">
+                        <img class="img guia_tour_foto" th:src="@{${u.foto}}" alt="La imagen del guia" th:if="${valoradosu.get(u.id)!= true}">
                       </a>
                     </div>
-                      <h4 class="card-title" th:text="${u.Nombre}" th:if="${valoradosu.get(u.Id)!= true}">Alec Thompson</h4>
-                      <h2 class="h4 text-black" th:if="${valoradosu.get(u.Id)!= true}">Indique a continuacion su valoracion respecto al usuario y los motivos de dicha valoracion</h2>
-                <form method="post" class="form-contact-agent" th:action="@{/tour/{id}/valorarUser/{iduser}(id=${tour.Id}, iduser=${u.Id})}" th:if="${valoradosu.get(u.Id)!= true}">
+                      <h4 class="card-title" th:text="${u.nombre}" th:if="${valoradosu.get(u.id)!= true}">Alec Thompson</h4>
+                      <h2 class="h4 text-black" th:if="${valoradosu.get(u.id)!= true}">Indique a continuacion su valoracion respecto al usuario y los motivos de dicha valoracion</h2>
+                <form method="post" class="form-contact-agent" th:action="@{/tour/{id}/valorarUser/{iduser}(id=${tour.id}, iduser=${u.id})}" th:if="${valoradosu.get(u.id)!= true}">
                     
-                    <div class="form-group" th:if="${valoradosu.get(u.Id)!= true}">
-                        <label for="valoracion" th:if="${valoradosu.get(u.Id)!= true}">Valoracion</label>
-                        <input name="valoracion" th:id="'valoracion' + ${u.Id}" type="number" class="form-control" th:value="0" th:min=0 th:max=5 th:if="${valoradosu.get(u.Id)!= true}">
-                        <label for="textoReview" th:if="${valoradosu.get(u.Id)!= true}">Explique aqui los motivos de su valoracion</label>
-                        <input name="textoReview" th:id="'textoReview' + ${u.Id} " type="text" class="form-control" th:if="${valoradosu.get(u.Id)!= true}">
-                          <input type="submit" id="enviarReview" class="btn btn-primary" value="Enviar" th:if="${valoradosu.get(u.Id)!= true}">
+                    <div class="form-group" th:if="${valoradosu.get(u.id)!= true}">
+                        <label for="valoracion" th:if="${valoradosu.get(u.id)!= true}">Valoracion</label>
+                        <input name="valoracion" th:id="'valoracion' + ${u.id}" type="number" class="form-control" th:value="0" th:min=0 th:max=5 th:if="${valoradosu.get(u.Id)!= true}">
+                        <label for="textoReview" th:if="${valoradosu.get(u.id)!= true}">Explique aqui los motivos de su valoracion</label>
+                        <input name="textoReview" th:id="'textoReview' + ${u.id} " type="text" class="form-control" th:if="${valoradosu.get(u.id)!= true}">
+                          <input type="submit" id="enviarReview" class="btn btn-primary" value="Enviar" th:if="${valoradosu.get(u.id)!= true}">
                       </form>
                     </div>
               </div>

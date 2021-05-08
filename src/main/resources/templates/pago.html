@@ -53,8 +53,8 @@
             <div class="col-lg-8">
               <div>
                 <div class="slide-one-item home-slider owl-carousel">
-                  <div><img th:src="@{${tour.Datos.Portada}}" alt="Imágen del tour" class="img-fluid"></div>
-                  <div><img th:src="@{${tour.Datos.Mapa}}" alt="La imagen del mapa" class="img-fluid"></div>
+                  <div><img th:src="@{${tour.datos.portada}}" alt="Imágen del tour" class="img-fluid"></div>
+                  <div><img th:src="@{${tour.datos.mapa}}" alt="La imagen del mapa" class="img-fluid"></div>
                 </div>
               </div>
               <div class="bg-white property-body border-bottom border-left border-right">
@@ -69,7 +69,7 @@
                       
                     </li>
                     <li>
-                      <span class="property-specs-number" th:text="${tour.Datos.Precio} * ${asistentes} + ' €'"></span>
+                      <span class="property-specs-number" th:text="${tour.datos.precio} * ${asistentes} + ' €'"></span>
                       
                     </li>
                   </ul>
@@ -79,33 +79,33 @@
                 <div class="row mb-5">
                   <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
                     <span class="d-inline-block text-black mb-0 caption-text" >Inicio</span>
-                    <strong class="d-block" th:text="${tour.FechaIni}">Condo</strong>
+                    <strong class="d-block" th:text="${tour.fechaIni}">Condo</strong>
                     <span class="d-inline-block text-black mb-0 caption-text" >Fin</span>
-                    <strong class="d-block" th:text="${tour.FechaFin}">2018</strong>
+                    <strong class="d-block" th:text="${tour.fechaFin}">2018</strong>
                   </div>
                 
                   <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
                     <span class="d-inline-block text-black mb-0 caption-text" >Ciudad</span>
-                    <strong class="d-block" th:text="${tour.Datos.Ciudad}">$520</strong>
+                    <strong class="d-block" th:text="${tour.datos.ciudad}">$520</strong>
                   </div>
                   <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
                     <span class="d-inline-block text-black mb-0 caption-text">Lugar</span>
-                    <strong class="d-block" th:text="${tour.Datos.Lugar}">$520</strong>
+                    <strong class="d-block" th:text="${tour.datos.lugar}">$520</strong>
                   </div>
                 </div>
-                <h2 class="h4 text-black"th:if="${session.u.NumTarjeta == 0}">Introduzca sus datos de pago para completar la transacción</h2>
+                <h2 class="h4 text-black"th:if="${session.u.numTarjeta == 0}">Introduzca sus datos de pago para completar la transacción</h2>
                 <form method="post" class="form-contact-agent" th:action="@{/tour/{id}/pagar/{asistentes}(id=${tour.id}, asistentes=${asistentes})}">
                     
                     <div class="form-group">
                         <label for="numTarjeta" th:if="${session.u.NumTarjeta == 0}">Numero de tarjeta</label>
-                        <input th:if="${session.u.NumTarjeta == 0}" name="numTarjeta" id="numTarjeta" type="number" class="form-control" th:value="0">
-                        <input th:unless="${session.u.NumTarjeta == 0}" name="numTarjeta" id="numTarjeta" type="hidden" class="form-control" th:value="${session.u.NumTarjeta}">
-                        <label for="caducidadTarjeta" th:if="${session.u.NumTarjeta == 0}">Fecha de caducidad de la tarjeta</label>
-                        <input th:if="${session.u.NumTarjeta == 0}" name="caducidadTarjeta" id="caducidadTarjeta" type="text" class="form-control" th:value="">
-                        <input th:unless="${session.u.NumTarjeta == 0}" name="caducidadTarjeta" id="caducidadTarjeta" type="hidden" class="form-control" th:value="${session.u.CaducidadTarjeta}">
-                        <label th:if="${session.u.NumTarjeta == 0}" for="numSecreto">Numero secreto</label>
-                        <input th:if="${session.u.NumTarjeta == 0}"name="numSecreto" id="numSecreto" type="number" class="form-control" th:value="0">
-                        <input th:unless="${session.u.NumTarjeta == 0}"name="numSecreto" id="numSecreto" type="hidden" class="form-control" th:value="${session.u.NumSecreto}">
+                        <input th:if="${session.u.numTarjeta == 0}" name="numTarjeta" id="numTarjeta" type="number" class="form-control" th:value="0">
+                        <input th:unless="${session.u.numTarjeta == 0}" name="numTarjeta" id="numTarjeta" type="hidden" class="form-control" th:value="${session.u.numTarjeta}">
+                        <label for="caducidadTarjeta" th:if="${session.u.numTarjeta == 0}">Fecha de caducidad de la tarjeta</label>
+                        <input th:if="${session.u.numTarjeta == 0}" name="caducidadTarjeta" id="caducidadTarjeta" type="text" class="form-control" th:value="">
+                        <input th:unless="${session.u.numTarjeta == 0}" name="caducidadTarjeta" id="caducidadTarjeta" type="hidden" class="form-control" th:value="${session.u.caducidadTarjeta}">
+                        <label th:if="${session.u.numTarjeta == 0}" for="numSecreto">Numero secreto</label>
+                        <input th:if="${session.u.numTarjeta == 0}"name="numSecreto" id="numSecreto" type="number" class="form-control" th:value="0">
+                        <input th:unless="${session.u.numTarjeta == 0}"name="numSecreto" id="numSecreto" type="hidden" class="form-control" th:value="${session.u.numSecreto}">
                         <input type="submit" id="enviarPago" class="btn btn-primary" value="Enviar">
                       </form>
                       </div>
@@ -117,19 +117,19 @@
                 <div class="card_guia">
                     <div class="card-avatar">
                       <a href="javascript:;">
-                        <img class="img guia_tour_foto" th:src="@{${tour.Datos.Guia.Foto}}" alt="La imagen del guia" >
+                        <img class="img guia_tour_foto" th:src="@{${tour.datos.guia.foto}}" alt="La imagen del guia" >
                       </a>
                     </div>
                       <img class="estrellas card-category" th:src="@{/img/5estrellas.png}" alt="Estrellas de valoración">
-                      <h4 class="card-title" th:text="${tour.Datos.Guia.Nombre}">Alec Thompson</h4>
-                      <div class="box_idiomas">
+                      <h4 class="card-title" th:text="${tour.datos.guia.nombre}">Alec Thompson</h4>
+                      <div class="box_">
                         <h5 th:text="Idiomas"></h5>
                           <div th:each="idioma: ${idiomas}">
                             <p class="idiomas" th:text="${idioma}">Ingles</p>
                           </div>
                       </div>
                       <!--th:href="@{'perfil/'+${tour.getDatos().getGuia().getId()}}"-->
-                      <a th:href="@{'/user/'+${tour.Datos.Guia.Id}+'/perfil/'}" class="btn btn-primary btn-round" id="ver_perfil">Ver perfil</a>
+                      <a th:href="@{'/user/'+${tour.datos.guia.id}+'/perfil/'}" class="btn btn-primary btn-round" id="ver_perfil">Ver perfil</a>
                     </div>
                 </div>
   

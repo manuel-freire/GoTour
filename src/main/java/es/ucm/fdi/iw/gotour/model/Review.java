@@ -18,16 +18,16 @@ public class Review {
 	private long Id;
 
 	private String texto;
-	private int Puntuacion;
+	private int puntuacion;
 	
 	@NotNull
 	@ManyToOne(targetEntity=User.class)
-	private User Creador;
+	private User creador;
 
 	@ManyToOne(targetEntity=User.class)
-	private User Destinatario;
+	private User destinatario;
 
 	@ManyToOne(targetEntity=Tour.class)
-	private Tour TourValorado;
+	private Tour tourValorado;
 
 }

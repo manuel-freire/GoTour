@@ -64,20 +64,20 @@
             <div class="p-4 mb-3 bg-white">
               <h3 class="h6 text-black mb-3 text-uppercase">Estos datos son privados y solo son usados para tareas de pago y de gestión de la aplicación</h3>
               <p class="mb-0 font-weight-bold">Nombre Completo</p>
-              <p class="mb-4" th:text="|${session.u.Nombre} ${session.u.Apellidos}|">nombre</p>
+              <p class="mb-4" th:text="|${session.u.nombre} ${session.u.apellidos}|">nombre</p>
 
               <p class="mb-0 font-weight-bold">Email</p>
-              <p class="mb-4" th:text="${session.u.Email}">patata</p>
+              <p class="mb-4" th:text="${session.u.email}">patata</p>
               <p class="mb-0 font-weight-bold">Número de teléfono</p>
-              <p class="mb-0"th:text="${session.u.NumTelefono}">telefono</p>
+              <p class="mb-0"th:text="${session.u.numTelefono}">telefono</p>
 
               <p class="mb-0 font-weight-bold">Pregunta de seguridad</p>
-              <p class="mb-0"th:text="${session.u.PreguntaSeguridad}">pregunta</p>
+              <p class="mb-0"th:text="${session.u.preguntaSeguridad}">pregunta</p>
 
               <p class="mb-0 font-weight-bold">Respuesta de seguridad</p>
-              <p class="mb-0"th:text="${session.u.RespuestaSeguridad}">respuesta</p>
+              <p class="mb-0"th:text="${session.u.respuestaSeguridad}">respuesta</p>
 
-              <p><a th:href="@{/user/{id}/EditarDatos(id=${session.u.Id})}" class="btn btn-success text-white btn-block rounded-0" id="editarPriv">Editar mis datos</a></p>
+              <p><a th:href="@{/user/{id}/EditarDatos(id=${session.u.id})}" class="btn btn-success text-white btn-block rounded-0" id="editarPriv">Editar mis datos</a></p>
 
             </div>
             

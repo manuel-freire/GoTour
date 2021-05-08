@@ -48,28 +48,28 @@
   
     <div class="contenedor">
         <div class="informacion">
-            <div th:if="${session.u.Id == user.Id}">
-                <p th:text="${user.Username}">Nombre usuario</p>
-                <a th:href="@{/user/{id}/datosPrivados(id=${user.Id})}" id="datosPrivados">Mi cuenta</a>
+            <div th:if="${session.u.id == user.id}">
+                <p th:text="${user.username}">Nombre usuario</p>
+                <a th:href="@{/user/{id}/datosPrivados(id=${user.id})}" id="datosPrivados">Mi cuenta</a>
                 <a th:href="@{/crearTour}" id="crearTour">Nuevo tour</a>
             </div>
-            <p th:text="${user.Nombre} + ' ' + ${user.Apellidos}">Nombre usuario</p>
+            <p th:text="${user.nombre} + ' ' + ${user.apellidos}">Nombre usuario</p>
         </div>
         <img id="user" th:src="@{/img/perro.jpg}" alt="La imagen del usuario" class="custom1">
 
         <div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}"><img th:src="@{/img/star.png}" width="30" /></div>
         <div>
-            <h3>-------------Tours disponibles---------------</h3> <a th:href="@{/user/{id}/toursOfertados(id=${user.Id})}" >Ver todo</a>
-            <div class="tour" th:each="tour: ${user.TourOfertados}">
-                <div th:if="${tour.Datos.Disponible}">
-                    <img id="user" th:src="@{${tour.Datos.Portada}}" alt="Coliseo" class="custom1">
-                    <div class="titulo"><a th:href="@{/tour/{id}(id=${tour.Id})}" th:text="${tour.Datos.Titulo}"></a></div>
-                    <div class="fecha" th:text="'Inicio: '+${tour.FechaIni}"></div>
-                    <div class="fecha" th:text="'Fin: '+${tour.FechaFin}"></div>
-                    <div class="lugar" th:text="${tour.Datos.Ciudad}+', '+${tour.Datos.Pais}"></div>
-                    <div class="lugar" th:text="${tour.Datos.Lugar}"></div>
-                    <div class="precio" th:text="${tour.Datos.Precio}+'€'"></div>
-                    <div class="personas" th:text="${tour.ActTuristas}+'/'+${tour.Datos.MaxTuristas}+' turistas'"></div>
+            <h3>-------------Tours disponibles---------------</h3> <a th:href="@{/user/{id}/toursOfertados(id=${user.id})}" >Ver todo</a>
+            <div class="tour" th:each="tour: ${user.tourOfertados}">
+                <div th:if="${tour.datos.disponible}">
+                    <img id="user" th:src="@{${tour.datos.portada}}" alt="Coliseo" class="custom1">
+                    <div class="titulo"><a th:href="@{/tour/{id}(id=${tour.id})}" th:text="${tour.datos.titulo}"></a></div>
+                    <div class="fecha" th:text="'Inicio: '+${tour.fechaIni}"></div>
+                    <div class="fecha" th:text="'Fin: '+${tour.fechaFin}"></div>
+                    <div class="lugar" th:text="${tour.Datos.ciudad}+', '+${tour.datos.pais}"></div>
+                    <div class="lugar" th:text="${tour.Datos.lugar}"></div>
+                    <div class="precio" th:text="${tour.Datos.precio}+'€'"></div>
+                    <div class="personas" th:text="${tour.actTuristas}+'/'+${tour.datos.maxTuristas}+' turistas'"></div>
                     <p>-----------------------------------------------</p>
                 </div>
             </div>

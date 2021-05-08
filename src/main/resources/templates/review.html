@@ -53,36 +53,36 @@
             <div class="col-lg-8">
               <div>
                 <div class="slide-one-item home-slider owl-carousel">
-                  <div><img th:src="@{${tour.Datos.Portada}}" alt="Imágen del tour" class="img-fluid"></div>
-                  <div><img th:src="@{${tour.Datos.Mapa}}" alt="La imagen del mapa" class="img-fluid"></div>
+                  <div><img th:src="@{${tour.datos.portada}}" alt="Imágen del tour" class="img-fluid"></div>
+                  <div><img th:src="@{${tour.datos.mapa}}" alt="La imagen del mapa" class="img-fluid"></div>
                 </div>
               </div>
               <div class="bg-white property-body border-bottom border-left border-right">
                 <div class="row mb-5">
                   <div class="col-md-6">
-                    <strong class="text-success h1 mb-3" th:text="${tour.Datos.Titulo}"></strong>
+                    <strong class="text-success h1 mb-3" th:text="${tour.datos.titulo}"></strong>
                   </div>
                 </div>
   
                 <div class="row mb-5">
                   <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
                     <span class="d-inline-block text-black mb-0 caption-text" >Inicio</span>
-                    <strong class="d-block" th:text="${tour.FechaIni}">Condo</strong>
+                    <strong class="d-block" th:text="${tour.fechaIni}">Condo</strong>
                     <span class="d-inline-block text-black mb-0 caption-text" >Fin</span>
-                    <strong class="d-block" th:text="${tour.FechaFin}">2018</strong>
+                    <strong class="d-block" th:text="${tour.fechaFin}">2018</strong>
                   </div>
                 
                   <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
                     <span class="d-inline-block text-black mb-0 caption-text" >Ciudad</span>
-                    <strong class="d-block" th:text="${tour.Datos.Ciudad}">$520</strong>
+                    <strong class="d-block" th:text="${tour.datos.ciudad}">$520</strong>
                   </div>
                   <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
                     <span class="d-inline-block text-black mb-0 caption-text">Lugar</span>
-                    <strong class="d-block" th:text="${tour.Datos.Lugar}">$520</strong>
+                    <strong class="d-block" th:text="${tour.datos.lugar}">$520</strong>
                   </div>
                 </div>
                 <h2 class="h4 text-black">Indique a continuacion su valoracion respecto al tour y los motivos de dicha valoracion</h2>
-                <form method="post" class="form-contact-agent" th:action="@{/tour/{id}/valorar(id=${tour.Datos.Id})}">
+                <form method="post" class="form-contact-agent" th:action="@{/tour/{id}/valorar(id=${tour.datos.id})}">
                     
                     <div class="form-group">
                         <label for="valoracion">Valoracion</label>
@@ -100,19 +100,18 @@
                 <div class="card_guia">
                     <div class="card-avatar">
                       <a href="javascript:;">
-                        <img class="img guia_tour_foto" th:src="@{${tour.Datos.Guia.Foto}}" alt="La imagen del guia" >
+                        <img class="img guia_tour_foto" th:src="@{${tour.datos.guia.foto}}" alt="La imagen del guia" >
                       </a>
                     </div>
                       <img class="estrellas card-category" th:src="@{/img/5estrellas.png}" alt="Estrellas de valoración">
-                      <h4 class="card-title" th:text="${tour.Datos.Guia.Nombre}">Alec Thompson</h4>
+                      <h4 class="card-title" th:text="${tour.datos.guia.nombre}">Alec Thompson</h4>
                       <div class="box_idiomas">
                         <h5 th:text="Idiomas"></h5>
                           <div th:each="idioma: ${idiomas}">
                             <p class="idiomas" th:text="${idioma}">Ingles</p>
                           </div>
                       </div>
-                      <!--th:href="@{'perfil/'+${tour.getDatos().getGuia().getId()}}"-->
-                      <a th:href="@{'/user/'+${tour.Datos.Guia.Id}+'/perfil/'}" class="btn btn-primary btn-round" id="ver_perfil">Ver perfil</a>
+                      <a th:href="@{'/user/'+${tour.datos.guia.id}+'/perfil/'}" class="btn btn-primary btn-round" id="ver_perfil">Ver perfil</a>
                     </div>
                 </div>
   

@@ -25,69 +25,69 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @NamedQueries({
 	@NamedQuery(name="AllTours", query="Select t from Tour t"),
-	@NamedQuery(name="ToursBySearch", query="Select t from Tour t where t.Datos.Pais=:paisParam and "+
-																		"t.Datos.Ciudad=:ciudadParam and "+
-																		"t.Datos.Lugar=:lugarParam and "+
-																		"(t.FechaIni<:fechaIniParam or "+
-																		"t.FechaIni=:fechaIniParam) and "+
-																		"(t.FechaFin>:fechaFinParam or "+
-																		"t.FechaFin=:fechaFinParam)"),
+	@NamedQuery(name="ToursBySearch", query="Select t from Tour t where t.datos.pais=:paisParam and "+
+																		"t.datos.ciudad=:ciudadParam and "+
+																		"t.datos.lugar=:lugarParam and "+
+																		"(t.fechaIni<:fechaIniParam or "+
+																		"t.fechaIni=:fechaIniParam) and "+
+																		"(t.fechaFin>:fechaFinParam or "+
+																		"t.fechaFin=:fechaFinParam)"),
 	@NamedQuery(name="Tour.getTour",
 		query="SELECT u FROM Tour u "
-				+ "WHERE u.Id = :id "),
+				+ "WHERE u.id = :id "),
 	@NamedQuery(name="Tour.getFirstTour",
 		query="SELECT u FROM Tour u "
-			+ "WHERE u.Datos.Guia.Id = :guia_id "
-			+ "ORDER BY u.FechaIni DESC"),
+			+ "WHERE u.datos.guia.id = :guia_id "
+			+ "ORDER BY u.fechaIni DESC"),
 	@NamedQuery(name="Tour.getToursByUser",
 		query="SELECT u FROM Tour u "
-			+ "WHERE u.Datos.Guia.Id = :guia_id")
+			+ "WHERE u.datos.guia.id = :guia_id")
 })
 
 public class Tour {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long Id;
+	private long id;
 
 	 @NotNull
 	 @ManyToOne (targetEntity=TourOfertado.class)
-	 private TourOfertado Datos;
+	 private TourOfertado datos;
 
 	 @NotNull
-	private LocalDateTime FechaIni;
+	private LocalDateTime fechaIni;
 
 	@NotNull
-	private LocalDateTime FechaFin;
+	private LocalDateTime fechaFin;
 
 	@NotNull
-	private int ActTuristas;
+	private int actTuristas;
 
-	@OneToMany (mappedBy="TourValorado", fetch=FetchType.EAGER)
-	private List<Review>  Reviews = new ArrayList<>();
+	@OneToMany (mappedBy="tourValorado", fetch=FetchType.EAGER)
+	private List<Review>  reviews = new ArrayList<>();
 	
-	@ManyToMany (mappedBy="ToursAsistidos",fetch=FetchType.EAGER)
-	private List<User>  Turistas = new ArrayList<>();
+	@ManyToMany (mappedBy="toursAsistidos",fetch=FetchType.EAGER)
+	private List<User>  turistas = new ArrayList<>();
 
 	public void addTurista(User u,int numero){
-		if(Datos.getMaxTuristas() >= (ActTuristas+numero)){
-			Turistas.add(u);
-			ActTuristas+=numero;
+		if(datos.getMaxTuristas() >= (actTuristas+numero)){
+			turistas.add(u);
+			actTuristas+=numero;
 			u.addTour(this);
 		}
 	}
 	public String getFechaIniString(){
-		return FechaIni.toString().replace('T', ' ');
+		return fechaIni.toString().replace('T', ' ');
 	}
 	public String getFechaFinString(){
-		return FechaFin.toString().replace('T', ' ');
+		return fechaFin.toString().replace('T', ' ');
 	}
 	@Override
 	public String toString() {
 		return "";
 	}
 	public String getFirstTourInfo(){
-		String[] parts = FechaIni.toString().split("-");
+		String[] parts = fechaIni.toString().split("-");
 		return "Guía desde "+parts[1]+"/"+parts[0];
 	}
 }

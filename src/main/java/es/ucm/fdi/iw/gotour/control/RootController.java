@@ -119,9 +119,7 @@ public class RootController {
 
     @GetMapping(value="tour/{id}/apuntarse")
     public String apuntarse(@PathVariable("id") Long id, Model model, HttpSession session){
-        Tour t = entityManager.createNamedQuery("Tour.getTour", Tour.class)
-                .setParameter("id", id)
-                .getSingleResult();
+        Tour t =  entityManager.find(Tour.class, id);
                 List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
                 .setParameter("id", id)
                 .getResultList();
@@ -138,9 +136,7 @@ public class RootController {
     @PostMapping(value="tour/{id_tour}/apuntarse")
     @Transactional
     public String apuntado(@PathVariable("id_tour") Long id_tour, Model model, HttpSession session, @RequestParam int asistentes){
-        Tour t = entityManager.createNamedQuery("Tour.getTour", Tour.class)
-                .setParameter("id", id_tour)
-                .getSingleResult();
+        Tour t = entityManager.find(Tour.class, id_tour);
         User u = (User)session.getAttribute("u");
         t.setActTuristas(t.getActTuristas() + asistentes);
         List<User> turistas = t.getTuristas();
