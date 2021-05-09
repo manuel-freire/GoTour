@@ -78,27 +78,6 @@ public class RootController {
     @Autowired
 	private LocalData localData;
 
-	@GetMapping("/chat")
-	public String chat(Model model, HttpServletRequest request) {
-		return "chat";
-	}
-	
-	@GetMapping("/error")
-	public String error(Model model) {
-		return "error";
-	}
-	
-	@GetMapping("/login")
-	public String login(Model model) {
-        model.addAttribute("classActiveLogin","active");
-		return "login";
-	}
-
-    @GetMapping("/registro")
-	public String registro(Model model) {
-        model.addAttribute("classActiveRegistro","active");
-		return "registro";
-	}
     @PostMapping("/")
     public String searchTours(Model model, HttpSession session,@RequestParam String pais
                                         ,@RequestParam String ciudad
@@ -164,6 +143,28 @@ public class RootController {
         return "index";
     }
 
+	@GetMapping("/chat")
+	public String chat(Model model, HttpServletRequest request) {
+		return "chat";
+	}
+	
+	@GetMapping("/error")
+	public String error(Model model) {
+		return "error";
+	}
+	
+	@GetMapping("/login")
+	public String login(Model model) {
+        model.addAttribute("classActiveLogin","active");
+		return "login";
+	}
+
+    @GetMapping("/registro")
+	public String registro(Model model) {
+        model.addAttribute("classActiveRegistro","active");
+		return "registro";
+	}
+
 	@GetMapping("/crearTour")
     public String crearTour(Model model, HttpSession session)
     {
@@ -183,12 +184,6 @@ public class RootController {
     public String busqueda(Model model)
     {  
         return "busqueda";
-    }
-
-    @GetMapping("/tour")
-    public String tour(Model model)
-    {  
-        return "tour";
     }
 
     @GetMapping("/leeme")

@@ -45,19 +45,25 @@
          <div class="container">
             <div class="row">
                <div class="col-lg-8">
-                  <div class="bg-white property-body border rounded">
-                     <h2 class="card-title" th:text="${user.nombre}+' '+${user.apellidos}"></h2> 
+                  <div class="bg-white property-body border rounded widget">
                      <div class="row">
-                        <div th:each="i: ${#numbers.sequence(1, user.puntuacion)}"><img class="card-category img-fluid ml-3" th:src="@{/img/estrellas.png}" width="60"/></div>
+                        <h2 class="card-title" th:text="${user.Nombre}+' '+${user.Apellidos}"></h2> 
+                        <div th:if="${(session.u != null) and (session.u.Id == user.Id)} " >
+                           <div class="ml-3"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editarPerfil"><a th:href="@{'/user/editarDatos'}">Editar perfil</a></button></div>
+                        </div>
+                        <div th:if="${(session.u != null) and (session.u.Id == user.Id)} " >
+                           <div class="ml-3"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#crearTour"><a th:href="@{'/crearTour'}">Crear Tour</a></button></div>
+                        </div>
+                     </div>
+                     
+                     <div class="row">
+                        <div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}"><img class="card-category img-fluid ml-3" th:src="@{/img/estrellas.png}" width="60"/></div>
                      </div>
                      <div th:if="${user.tourOfertados.size()>0}">
                         <h5 class="mt-3" th:text="${firstTour.getFirstTourInfo()}"></h5>
                         <h5 class="mt-3" th:text="'Ha realizado '+ ${tours.size()}+' tour(s)'"></h5>
                      </div>
-                     <h5 class="mt-3" th:text="'Ha asistido a '+ ${user.toursAsistidos.size()}+' tour(s)'"></h5>
-                     <div th:if="${(session.u != null) and (session.u.id == user.Id)} " >
-                        <div class="mt-3 mb-5"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editarPerfil"><a th:href="@{'/user/editarDatos'}">Editar perfil</a></button></div>
-                     </div>
+                     <h5 class="mt-3" th:text="'Ha asistido a '+ ${user.ToursAsistidos.size()}+' tour(s)'"></h5>                     
                      <div th:if="${user.tourOfertados.size()>0}">
                         <div class="mt-3 mb-5"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#toursCerrados">Ver tours cerrados</button></div>
 
@@ -109,7 +115,7 @@
                      <div class="card_guia">
                         <div class="card-avatar">
                            <a href="javascript:;">
-                           <img class="img guia_tour_foto" th:src="@{${user.foto}}" alt="La imagen del guia" >
+                           <img class="img guia_tour_foto" th:src="@{/user/{id}/foto(id=${user.Id})}" alt="La imagen del guia" >
                            </a>
                         </div>
                         <div class="box_idiomas">
