@@ -133,11 +133,23 @@
         </div>
     </div>
     <script>
+        var tour_id = document.getElementsByClassName("tour_id")[0].id;
 
         function formatDate(d) {
             // 2020-03-23T10:48:11.074 => 23/3/2020@10:48:18
             return new Date(d).toLocaleString("es-ES").split(" ").join(" ")
 	    }
+
+        // mostrando una tabla dinámica con datos cargados del servidor vía AJAX
+        $.ajax({
+            type:"GET",
+            url: config.rootUrl + "mensaje/tour/"+tour_id+"/received",
+            success: function(data){
+                data.forEach(element => {
+                    procesarMensaje(element);
+                });
+            }
+        });
 
         // envío de mensajes vía AJAX, sin recargar la página
         document.addEventListener("DOMContentLoaded", () => {
@@ -153,10 +165,12 @@
             }
         });
 
-
         ws.receive = (m) => {
-            var my_id = document.getElementsByClassName("container")[0].id;
+            procesarMensaje(m);
+        }
 
+        function procesarMensaje(m){
+            var my_id = document.getElementsByClassName("container")[0].id;
             if(my_id == m.id_sender){
                 /*
                 <div class="outgoing_msg">
@@ -240,8 +254,8 @@
                 node21.appendChild(node211);
                 node21.appendChild(node212);
             }
-	
         }
+
     </script>
 </body>
 

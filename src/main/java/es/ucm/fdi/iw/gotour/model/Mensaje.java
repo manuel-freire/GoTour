@@ -24,11 +24,6 @@ import javax.validation.constraints.NotNull;
  * @author mfreire
  */
 @Entity
-/*@NamedQueries({
-	@NamedQuery(name="Mensaje.countUnread",
-	query="SELECT COUNT(m) FROM MENSAJE m "
-			+ "WHERE m.recipient.id = :userId AND m.dateRead = null")
-})*/
 @Data
 public class Mensaje implements Transferable<Mensaje.Transfer> {
 	
@@ -56,21 +51,29 @@ public class Mensaje implements Transferable<Mensaje.Transfer> {
     @Getter
     @AllArgsConstructor
 	public static class Transfer {
+		private long id_sender;
 		private String from;
 		private String sent;
 		private String text;
+		private String img_sender;
+
 		public Transfer(Mensaje m) {
+			this.id_sender = m.getSender().getId();
 			this.from = m.getSender().getUsername();
 			this.sent = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(m.getDateSent());
 			this.text = m.getText();
+			this.img_sender = m.getSender().getFoto();
 		}
 	}
 
 	@Override
 	public Transfer toTransfer() {
-		return new Transfer(sender.getUsername(),
+		return new Transfer(
+			sender.getId(),
+			sender.getUsername(),
 			DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(dateSent),
-			text
+			text,
+			sender.getFoto()
         );
     }
 
