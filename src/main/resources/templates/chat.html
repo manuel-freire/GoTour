@@ -5,6 +5,22 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head><th:block th:replace="fragments/head :: header"/>
     <title>Chat</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
+    <link rel="stylesheet" th:href="@{/fonts/icomoon/style.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
+    <link rel="stylesheet" th:href="@{/css/mediaelementplayer.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" th:href="@{/fonts/flaticon/font/flaticon.css}">
+    <link rel="stylesheet" th:href="@{/css/fl-bigmug-line.css}">
+    <link rel="stylesheet" th:href="@{/css/aos.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
         rel="stylesheet" >
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -14,7 +30,14 @@
 </head>
 
 <body>
-    <div class="container" th:id="${user_id}">
+    <nav th:replace="fragments/nav.html :: nav">
+		Nav goes here
+	</nav>
+    <div th:replace="fragments/imagenes-principales.html :: images-principales">
+     
+    </div>
+
+    <div class="container user_id" th:id="${user_id}">
         <h3 class="text-center tour_id" th:id="${tour_id}">Chat del tour </h3>
         <div class="messaging">
             <div class="inbox_msg">
@@ -132,6 +155,11 @@
 
         </div>
     </div>
+
+    <nav th:replace="fragments/footer.html :: footer">
+        Nav goes here
+      </nav>
+
     <script>
         var tour_id = document.getElementsByClassName("tour_id")[0].id;
 
@@ -155,14 +183,16 @@
         document.addEventListener("DOMContentLoaded", () => {
             let b = document.getElementById("sendmsg");
             b.onclick = (e) => {
-                let url = b.parentNode.action;
-                e.preventDefault();
-                console.log(b, b.parentNode)
-                go(url, 'POST', {message: 
-                        document.getElementById("message").value})
-                    .then(d => console.log("happy", d))
-                    .catch(e => console.log("sad", e))
-            }
+                    let url = b.parentNode.action;
+                    e.preventDefault();
+                    console.log(b, b.parentNode)
+                    go(url, 'POST', {message: 
+                            document.getElementById("message").value})
+                        .then(d => {
+                            document.getElementById("message").value = '';
+                        })
+                        .catch(e => console.log("sad", e))
+                }
         });
 
         ws.receive = (m) => {
@@ -170,7 +200,9 @@
         }
 
         function procesarMensaje(m){
-            var my_id = document.getElementsByClassName("container")[0].id;
+            var my_id = document.getElementsByClassName("user_id")[0].id;
+            var element = document.getElementById("tablon");
+
             if(my_id == m.id_sender){
                 /*
                 <div class="outgoing_msg">
@@ -180,7 +212,6 @@
                     </div>
                 </div>
                 */
-                var  element = document.getElementById("tablon");
 
                 var node1 = document.createElement('div');
                 node1.className = "outgoing_msg";
@@ -214,7 +245,6 @@
                     </div>
                 </div>
                 */
-                var  element = document.getElementById("tablon");
 
                 var node1 = document.createElement('div');
                 node1.className = "incoming_msg";
@@ -222,6 +252,7 @@
                 var node11 = document.createElement('div');
                 node11.className = "incoming_msg_img";
                 var foto = document.createElement('img');
+                foto.className = "avatar";
                 foto.src = (m.img_sender != null) ? m.img_sender : "https://ptetutorials.com/images/user-profile.png";
                 node11.appendChild(foto);
 
@@ -257,6 +288,20 @@
         }
 
     </script>
+    <script th:src="@{~/js/jquery-migrate-3.0.1.min.js}"></script>
+    <script th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{~/js/popper.min.js}"></script>
+    <script th:src="@{~/js/jquery-ui.js}"></script>
+    <script th:src="@{~/js/owl.carousel.min.js}"></script>
+    <script th:src="@{~/js/bootstrap.min.js}"></script>
+    <script th:src="@{~/js/jquery.stellar.min.js}"></script>
+    <script th:src="@{~/js/mediaelement-and-player.min.js}"></script>
+    <script th:src="@{~/js/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{~/js/jquery.countdown.min.js}"></script>
+    <script th:src="@{~/js/aos.js}"></script>
+    <script th:src="@{~/js/bootstrap-datepicker.min.js}"></script>
+    <script th:src="@{~/js/circleaudioplayer.js}"></script>
+    <script th:src="@{~/js/main.js}"></script>
 </body>
 
 </html>
