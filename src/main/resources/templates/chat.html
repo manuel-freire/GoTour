@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" th:id="${user_id}">
         <h3 class="text-center tour_id" th:id="${tour_id}">Chat del tour </h3>
         <div class="messaging">
             <div class="inbox_msg">
@@ -114,57 +114,12 @@
                 </div>-->
                 <div class="mesgs">
                     <div class="msg_history" id="tablon">
-                       <!-- <div class="incoming_msg">
-                            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png"
-                                    alt="sunil"> </div>
-                            <div class="received_msg">
-                                <div class="received_withd_msg">
-                                    <p>Test which is a new approach to have all
-                                        solutions</p>
-                                    <span class="time_date"> 11:01 AM | June 9</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="outgoing_msg">
-                            <div class="sent_msg">
-                                <p>Test which is a new approach to have all
-                                    solutions</p>
-                                <span class="time_date"> 11:01 AM | June 9</span>
-                            </div>
-                        </div>
-                        <div class="incoming_msg">
-                            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png"
-                                    alt="sunil"> </div>
-                            <div class="received_msg">
-                                <div class="received_withd_msg">
-                                    <p>Test, which is a new approach to have</p>
-                                    <span class="time_date"> 11:01 AM | Yesterday</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="outgoing_msg">
-                            <div class="sent_msg">
-                                <p>Apollo University, Delhi, India Test</p>
-                                <span class="time_date"> 11:01 AM | Today</span>
-                            </div>
-                        </div>
-                        <div class="incoming_msg">
-                            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png"
-                                    alt="sunil"> </div>
-                            <div class="received_msg">
-                                <div class="received_withd_msg">
-                                    <p>We work directly with our designers and suppliers,
-                                        and sell direct to you, which means quality, exclusive
-                                        products, at a price anyone can afford.</p>
-                                    <span class="time_date"> 11:01 AM | Today</span>
-                                </div>
-                            </div>
-                        </div>-->
+                       
                     </div>
                     <div class="type_msg">
                         <form class="input_msg_write" th:action="@{'/tour/'+${tour_id}+'/msg'}" method="POST">
                             <input type="text" class="write_msg" id="message" placeholder="Type a message" />
-                            <button class="msg_send_btn" id="sendmsg" type="submit" ><i class="fa fa-paper-plane-o"
+                            <button class="msg_send_btn" id="sendmsg" type="submit"><i class="fa fa-paper-plane-o"
                                     aria-hidden="true"></i></button>
                         </form>
                     </div>
@@ -178,10 +133,12 @@
         </div>
     </div>
     <script>
+
         function formatDate(d) {
             // 2020-03-23T10:48:11.074 => 23/3/2020@10:48:18
             return new Date(d).toLocaleString("es-ES").split(" ").join(" ")
 	    }
+
         // envío de mensajes vía AJAX, sin recargar la página
         document.addEventListener("DOMContentLoaded", () => {
             let b = document.getElementById("sendmsg");
@@ -198,28 +155,85 @@
 
 
         ws.receive = (m) => {
+            var my_id = document.getElementsByClassName("container")[0].id;
 
-            var  element = document.getElementById("tablon");
+            if(my_id == m.id_sender){
+                /*
+                <div class="outgoing_msg">
+                    <div class="sent_msg">
+                        <p>Apollo University, Delhi, India Test</p>
+                        <span class="time_date"> 11:01 AM | Today</span>
+                    </div>
+                </div>
+                */
+                var  element = document.getElementById("tablon");
 
-            var node1 = document.createElement('div');
-            node1.className = "outgoing_msg";
+                var node1 = document.createElement('div');
+                node1.className = "outgoing_msg";
 
-            var node2 = document.createElement('div');
-            node2.className = "sent_msg";
+                var node2 = document.createElement('div');
+                node2.className = "sent_msg";
 
-            var node3 = document.createElement('p');
-            var mensaje = document.createTextNode(m.text);
-            node3.appendChild(mensaje);
+                var node3 = document.createElement('p');
+                var mensaje = document.createTextNode(m.text);
+                node3.appendChild(mensaje);
 
-            var node4 = document.createElement('span');
-            node4.className = "time_date";
-            var fecha = document.createTextNode(formatDate(new Date().toISOString()));
-            node4.appendChild(fecha);
+                var node4 = document.createElement('span');
+                node4.className = "time_date";
+                var fecha = document.createTextNode(formatDate(new Date().toISOString()));
+                node4.appendChild(fecha);
 
-            element.appendChild(node1);
-            node1.appendChild(node2);
-            node2.appendChild(node3);
-            node2.appendChild(node4);
+                element.appendChild(node1);
+                node1.appendChild(node2);
+                node2.appendChild(node3);
+                node2.appendChild(node4);
+            }else {
+                /*
+                <div class="incoming_msg">
+                    <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png"
+                            alt="sunil"> </div>
+                    <div class="received_msg">
+                        <div class="received_withd_msg">
+                            <p>Test, which is a new approach to have</p>
+                            <span class="time_date"> 11:01 AM | Yesterday</span>
+                        </div>
+                    </div>
+                </div>
+                */
+                var  element = document.getElementById("tablon");
+
+                var node1 = document.createElement('div');
+                node1.className = "incoming_msg";
+
+                var node11 = document.createElement('div');
+                node11.className = "incoming_msg_img";
+                var foto = document.createElement('img');
+                foto.src = "https://ptetutorials.com/images/user-profile.png";
+                node11.appendChild(foto);
+
+                var node2 = document.createElement('div');
+                node2.className = "received_msg";
+
+                var node21 = document.createElement('div');
+                node21.className = "received_withd_msg";
+
+                var node211 = document.createElement('p');
+                var mensaje = document.createTextNode(m.text);
+                node211.appendChild(mensaje);
+
+                var node212 = document.createElement('span');
+                node212.className = "time_date";
+                var fecha = document.createTextNode(formatDate(new Date().toISOString()));
+                node212.appendChild(fecha);
+
+                element.appendChild(node1);
+                node1.appendChild(node11);
+                
+                element.appendChild(node2);
+                node2.appendChild(node21);
+                node21.appendChild(node211);
+                node21.appendChild(node212);
+            }
 	
         }
     </script>

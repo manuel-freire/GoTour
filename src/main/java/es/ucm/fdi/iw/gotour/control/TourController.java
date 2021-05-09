@@ -123,6 +123,7 @@ public class TourController {
             }
         }
         model.addAttribute("tour_id",id);
+        model.addAttribute("user_id",user_id);
 		return encontrado ? "chat" : "/index";
 	}
     
@@ -138,6 +139,7 @@ public class TourController {
         log.info("El tour con id {} es {}",id, tour.getId());
 		User sender = entityManager.find(
 				User.class, ((User)session.getAttribute("u")).getId());
+        
 		//model.addAttribute("user", u);
 		
 		// construye mensaje, lo guarda en BD
@@ -157,6 +159,7 @@ public class TourController {
 		//rootNode.put("to", u.getUsername());
 		rootNode.put("text", text);
 		rootNode.put("id", m.getId());
+        rootNode.put("id_sender", sender.getId());
 		String json = mapper.writeValueAsString(rootNode);
 		
 		log.info("Sending a Mensaje to {} with contents '{}'", id, json);
