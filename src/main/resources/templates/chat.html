@@ -208,8 +208,13 @@
                 var node11 = document.createElement('div');
                 node11.className = "incoming_msg_img";
                 var foto = document.createElement('img');
-                foto.src = "https://ptetutorials.com/images/user-profile.png";
+                foto.src = (m.img_sender != null) ? m.img_sender : "https://ptetutorials.com/images/user-profile.png";
                 node11.appendChild(foto);
+
+                var nodo12 = document.createElement('h3');
+                nodo12.className = "nombre";
+                var  nombre = document.createTextNode(m.from);
+                nodo12.appendChild(nombre);
 
                 var node2 = document.createElement('div');
                 node2.className = "received_msg";
@@ -228,7 +233,8 @@
 
                 element.appendChild(node1);
                 node1.appendChild(node11);
-                
+                node1.appendChild(nodo12);
+
                 element.appendChild(node2);
                 node2.appendChild(node21);
                 node21.appendChild(node211);

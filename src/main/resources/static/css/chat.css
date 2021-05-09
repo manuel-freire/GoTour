@@ -62,7 +62,18 @@ img{ max-width:100%;}
 
 .incoming_msg_img {
   display: inline-block;
-  width: 6%;
+}
+img{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 0.5px solid black;
+}
+.incoming_msg {
+  display: flex;
+}
+.nombre{
+  margin: 1%;
 }
 .received_msg {
   display: inline-block;
