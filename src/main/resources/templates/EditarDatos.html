@@ -114,7 +114,7 @@
               <div class="card_guia">
                 <div class="card-avatar">
                   <div class="foto col-lg-10">
-                    <img class="img guia_tour_foto" th:src="@{${u.Foto}}" alt="La imagen del guia" >
+                    <img class="img guia_tour_foto" th:src="@{/user/{id}/foto(id=${u.Id})}" alt="La imagen del guia" >
                   </div>
                 </div>
                 <div class="box_form pt-3">

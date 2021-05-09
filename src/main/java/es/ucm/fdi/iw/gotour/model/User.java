@@ -119,7 +119,6 @@ public class User implements Transferable<User.Transfer> {
 	private String Apellidos;
 	
 	private String Email;
-	private String Foto;
 	@Size(max=4)
     private int NumTarjeta;
 	private String CaducidadTarjeta;

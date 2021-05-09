@@ -114,7 +114,7 @@
                 <div class="card_guia">
                     <div class="card-avatar">
                       <a href="javascript:;">
-                        <img class="img guia_tour_foto" th:src="@{${tour.Guia.Foto}}" alt="La imagen del guia" >
+                        <img class="img guia_tour_foto" th:src="@{/user/{id}/foto(id=${tour.Guia.Id})}" alt="La imagen del guia" >
                       </a>
                     </div>
                       <img class="estrellas card-category" th:src="@{/img/5estrellas.png}" alt="Estrellas de valoración">

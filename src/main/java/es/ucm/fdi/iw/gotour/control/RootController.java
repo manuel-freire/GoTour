@@ -78,6 +78,38 @@ public class RootController {
     @Autowired
 	private LocalData localData;
 
+    @PostMapping("/")
+    public String searchTours(Model model, HttpSession session,@RequestParam String pais
+                                        ,@RequestParam String ciudad
+                                        ,@RequestParam String lugar
+                                        ,@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaini
+                                        ,@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechafin){
+        List<Tour> busqueda = entityManager.createNamedQuery("ToursBySearch")
+            .setParameter("paisParam", pais)
+            .setParameter("ciudadParam", ciudad)
+            .setParameter("lugarParam", lugar)
+            .setParameter("fechaIniParam", fechaini)
+            .setParameter("fechaFinParam", fechafin).getResultList();      	
+        model.addAttribute("busqueda", busqueda);	
+        return index(model, session);
+    }
+
+    @GetMapping("/")            // <-- en qué URL se expone, y por qué métodos (GET)        
+    public String index(        // <-- da igual, sólo para desarrolladores
+            Model model, HttpSession session)        // <-- hay muchos, muchos parámetros opcionales
+    {
+        List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();        
+        // dumps them via log
+        log.info("Dumping table {}", "tour");
+        for (Object o : tours) {
+            log.info("\t{}", o);
+        }        
+        // adds them to model
+        model.addAttribute("tours", tours);	
+        model.addAttribute("classActiveHome","active");		
+        return "index";
+    }
+
 	@GetMapping("/chat")
 	public String chat(Model model, HttpServletRequest request) {
 		return "chat";
@@ -99,74 +131,6 @@ public class RootController {
         model.addAttribute("classActiveRegistro","active");
 		return "registro";
 	}
-    @PostMapping("/")
-    public String searchTours(Model model, HttpSession session,@RequestParam String pais
-                                        ,@RequestParam String ciudad
-                                        ,@RequestParam String lugar
-                                        ,@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaini
-                                        ,@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechafin){
-        List<Tour> busqueda = entityManager.createNamedQuery("ToursBySearch")
-            .setParameter("paisParam", pais)
-            .setParameter("ciudadParam", ciudad)
-            .setParameter("lugarParam", lugar)
-            .setParameter("fechaIniParam", fechaini)
-            .setParameter("fechaFinParam", fechafin).getResultList();      	
-        model.addAttribute("busqueda", busqueda);	
-        return index(model, session);
-    }
-
-    
-
-    @GetMapping(value="tour/{id}/apuntarse")
-    public String apuntarse(@PathVariable("id") Long id, Model model, HttpSession session){
-        Tour t = entityManager.createNamedQuery("Tour.getTour", Tour.class)
-                .setParameter("id", id)
-                .getSingleResult();
-                List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
-                .setParameter("id", id)
-                .getResultList();
-        long id_guia = t.getDatos().getGuia().getId();
-        List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
-                .setParameter("user_id", id_guia)
-                .getResultList();
-        model.addAttribute("tour",t);
-        model.addAttribute("etiquetas",etiquetas);
-        model.addAttribute("idiomas",idiomas);
-
-        return "apuntarse";
-    }
-    @PostMapping(value="tour/{id_tour}/apuntarse")
-    @Transactional
-    public String apuntado(@PathVariable("id_tour") Long id_tour, Model model, HttpSession session, @RequestParam int asistentes){
-        Tour t = entityManager.createNamedQuery("Tour.getTour", Tour.class)
-                .setParameter("id", id_tour)
-                .getSingleResult();
-        User u = (User)session.getAttribute("u");
-        t.setActTuristas(t.getActTuristas() + asistentes);
-        List<User> turistas = t.getTuristas();
-        turistas.add(u);
-        t.setTuristas(turistas);
-        // entityManager.persist(u);
-        entityManager.persist(t);
-        entityManager.flush();
-        return "tour";
-    }
-
-    @GetMapping("/")            // <-- en qué URL se expone, y por qué métodos (GET)        
-    public String index(        // <-- da igual, sólo para desarrolladores
-            Model model, HttpSession session)        // <-- hay muchos, muchos parámetros opcionales
-    {
-        List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();        
-        // dumps them via log
-        log.info("Dumping table {}", "tour");
-        for (Object o : tours) {
-            log.info("\t{}", o);
-        }        
-        // adds them to model
-        model.addAttribute("tours", tours);	
-        model.addAttribute("classActiveHome","active");		
-        return "index";
-    }
 
 	@GetMapping("/crearTour")
     public String crearTour(Model model, HttpSession session)
@@ -187,12 +151,6 @@ public class RootController {
     public String busqueda(Model model)
     {  
         return "busqueda";
-    }
-
-    @GetMapping("/tour")
-    public String tour(Model model)
-    {  
-        return "tour";
     }
 
     @GetMapping("/leeme")

@@ -362,6 +362,24 @@ public class UserController {
         return "perfil";
     }
 
+	@GetMapping("/{id}/foto")
+	public StreamingResponseBody getFoto(@PathVariable long id, Model model) throws IOException {		
+		File f = localData.getFile("users", ""+id);
+		InputStream in;
+		if (f.exists()) {
+			in = new BufferedInputStream(new FileInputStream(f));
+		} else {
+			in = new BufferedInputStream(getClass().getClassLoader()
+					.getResourceAsStream("static/img/defaultuser.png"));
+		}
+		return new StreamingResponseBody() {
+			@Override
+			public void writeTo(OutputStream os) throws IOException {
+				FileCopyUtils.copy(in, os);
+			}
+		};
+	}
+
 
 	@GetMapping("/{id}/datosPrivados")
     public String datosPrivados(Model model, HttpSession session, @PathVariable("id") Long id)
