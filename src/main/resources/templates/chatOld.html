@@ -18,12 +18,12 @@
 	<h1 class="tour_id" th:id="${tour_id}">Chat del tour</h1>
 	
 	<table class="datatable" id="datatable"></table>
-	<button th:onclick="|ws.subscribe('/topic/1/tour')|">SUBSCRIBE</button>
+	<!--<button th:onclick="|ws.subscribe('/topic/1/tour')|">SUBSCRIBE</button>-->
 	</div>
 	</div>	
 	<div class="sidebar">
 		<!--<form th:action="@{/user/idOfTarget/msg}" method="POST">-->
-		<form th:action="@{/tour/1/msg}" method="POST">
+		<form th:action="@{'/tour/'+${tour_id}+'/msg'}" method="POST">
 		<textarea id="message" placeholder="Escribe algo" rows="4" cols="20"></textarea>
 		<button id="sendmsg" type="submit">Enviar</button>
 		</form>
@@ -40,9 +40,8 @@
 	let dt = new simpleDatatables.DataTable(
 		'#datatable', { 
 		    ajax: {
-		        url: config.rootUrl + "mensaje/oferta/1/received", // empieza siempre por config.rootUrl
-		        load: function(xhr) {
-					console.log("xhr: ", xhr);
+		        url: config.rootUrl + "mensaje/tour/1/received", // empieza siempre por config.rootUrl
+				load: function(xhr) {
 		        	let data = JSON.parse(xhr.responseText);
 					console.log("Cargando mensajes");
 					console.log("Mensajes", data);

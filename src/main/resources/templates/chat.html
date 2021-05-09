@@ -1,8 +1,10 @@
 <!--Fuente: https://bootsnipp.com/snippets/1ea0N-->
 <!DOCTYPE html>
-<html>
-
-<head>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head><th:block th:replace="fragments/head :: header"/>
+    <title>Chat</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
         rel="stylesheet" >
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -13,7 +15,7 @@
 
 <body>
     <div class="container">
-        <h3 class=" text-center">Chat del tour </h3>
+        <h3 class="text-center tour_id" th:id="${tour_id}">Chat del tour </h3>
         <div class="messaging">
             <div class="inbox_msg">
                 <!--<div class="inbox_people">
@@ -111,8 +113,8 @@
                     </div>
                 </div>-->
                 <div class="mesgs">
-                    <div class="msg_history">
-                        <div class="incoming_msg">
+                    <div class="msg_history" id="tablon">
+                       <!-- <div class="incoming_msg">
                             <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png"
                                     alt="sunil"> </div>
                             <div class="received_msg">
@@ -157,14 +159,14 @@
                                     <span class="time_date"> 11:01 AM | Today</span>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="type_msg">
-                        <div class="input_msg_write">
-                            <input type="text" class="write_msg" placeholder="Type a message" />
-                            <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o"
+                        <form class="input_msg_write" th:action="@{'/tour/'+${tour_id}+'/msg'}" method="POST">
+                            <input type="text" class="write_msg" id="message" placeholder="Type a message" />
+                            <button class="msg_send_btn" id="sendmsg" type="submit" ><i class="fa fa-paper-plane-o"
                                     aria-hidden="true"></i></button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -175,6 +177,52 @@
 
         </div>
     </div>
+    <script>
+        function formatDate(d) {
+            // 2020-03-23T10:48:11.074 => 23/3/2020@10:48:18
+            return new Date(d).toLocaleString("es-ES").split(" ").join(" ")
+	    }
+        // envío de mensajes vía AJAX, sin recargar la página
+        document.addEventListener("DOMContentLoaded", () => {
+            let b = document.getElementById("sendmsg");
+            b.onclick = (e) => {
+                let url = b.parentNode.action;
+                e.preventDefault();
+                console.log(b, b.parentNode)
+                go(url, 'POST', {message: 
+                        document.getElementById("message").value})
+                    .then(d => console.log("happy", d))
+                    .catch(e => console.log("sad", e))
+            }
+        });
+
+
+        ws.receive = (m) => {
+
+            var  element = document.getElementById("tablon");
+
+            var node1 = document.createElement('div');
+            node1.className = "outgoing_msg";
+
+            var node2 = document.createElement('div');
+            node2.className = "sent_msg";
+
+            var node3 = document.createElement('p');
+            var mensaje = document.createTextNode(m.text);
+            node3.appendChild(mensaje);
+
+            var node4 = document.createElement('span');
+            node4.className = "time_date";
+            var fecha = document.createTextNode(formatDate(new Date().toISOString()));
+            node4.appendChild(fecha);
+
+            element.appendChild(node1);
+            node1.appendChild(node2);
+            node2.appendChild(node3);
+            node2.appendChild(node4);
+	
+        }
+    </script>
 </body>
 
 </html>

@@ -42,7 +42,7 @@ public class MensajeController {
 		return "chat";
 	}
 
-	@GetMapping(path = "oferta/{id}/received", produces = "application/json")
+	@GetMapping(path = "tour/{id}/received", produces = "application/json")
 	@Transactional // para no recibir resultados inconsistentes
 	@ResponseBody  // para indicar que no devuelve vista, sino un objeto (jsonizado)
 	public List<Mensaje.Transfer> retrieveMensajes(@PathVariable long id,HttpSession session) {

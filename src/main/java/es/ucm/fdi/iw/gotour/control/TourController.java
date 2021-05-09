@@ -123,7 +123,7 @@ public class TourController {
             }
         }
         model.addAttribute("tour_id",id);
-		return encontrado ? "chatOld" : "/index";
+		return encontrado ? "chat" : "/index";
 	}
     
     @PostMapping("/{id}/msg")
