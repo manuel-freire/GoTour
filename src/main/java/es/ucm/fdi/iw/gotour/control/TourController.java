@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -105,6 +106,26 @@ public class TourController {
 		return "review";
 	}
 
+    @GetMapping("/{id}/chat")
+	public String chat(@PathVariable long id, Model model, HttpServletRequest request, HttpSession session) {
+        Tour t = entityManager.find(Tour.class, id);
+        List<User> turistas = t.Turistas;
+        long user_id = ((User)session.getAttribute("u")).getId();
+        boolean encontrado = false;
+        if(t.getDatos().getGuia().getId() == user_id){
+            encontrado = true;
+        }else{
+            for (User u : turistas) {
+                if(u.getId() == user_id){
+                    encontrado = true;
+                    break;
+                }
+            }
+        }
+        model.addAttribute("tour_id",id);
+		return encontrado ? "chatOld" : "/index";
+	}
+    
     @PostMapping("/{id}/msg")
 	@ResponseBody
 	@Transactional

@@ -84,8 +84,18 @@ function go(url, method, data = {}) {
  */
 document.addEventListener("DOMContentLoaded", () => {
 	if (config.socketUrl) {
-		let subs = config.admin ? 
-				["/topic/admin", "/user/queue/updates", "/topic/1/tour"] : ["/user/queue/updates", "/topic/1/tour"]
+		console.log(config);
+		var id_tour = document.getElementsByClassName("tour_id")[0].id;
+		console.log("EL id del tour es: ", id_tour);
+		let subs;
+		if(config.admin) { 
+			subs = ["/topic/admin", "/user/queue/updates"];
+		}else if(id_tour){
+			subs = ["/user/queue/updates", "/topic/"+id_tour+"/tour"];
+		}else{
+			subs = ["/user/queue/updates"];
+		}
+		console.log("Subs: ", subs);
 		ws.initialize(config.socketUrl, subs);
 	}
 	

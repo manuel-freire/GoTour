@@ -47,15 +47,7 @@ public class MensajeController {
 	@ResponseBody  // para indicar que no devuelve vista, sino un objeto (jsonizado)
 	public List<Mensaje.Transfer> retrieveMensajes(@PathVariable long id,HttpSession session) {
 		Tour u = entityManager.find(Tour.class, id);
-		log.info("Generating message list for tour {} ({} chat)", 
-				u.getId(), u.getMensajes().size());
-		log.info("Mensajes: {}",u.getMensajes().stream().map(Transferable::toTransfer).collect(Collectors.toList()));
 		return  u.getMensajes().stream().map(Transferable::toTransfer).collect(Collectors.toList());
-		//long userId = ((User)session.getAttribute("u")).getId();		
-		//User u = entityManager.find(User.class, userId);
-		//log.info("Generating message list for user {} ({} chat)", 
-		//		u.getUsername(), u.getReceived().size());
-		//return  u.getReceived().stream().map(Transferable::toTransfer).collect(Collectors.toList());
 	}	
 	
 	/*@GetMapping(path = "/unread", produces = "application/json")

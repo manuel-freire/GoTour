@@ -58,11 +58,12 @@ public class Tour {
 	//@OneToOne
 	//private Chat chat;
 
-	@OneToMany (mappedBy="tour", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany
+	@JoinColumn(name = "tour_id")
 	private List<Mensaje> mensajes = new ArrayList<>();
 
-	@ManyToMany (mappedBy="ToursAsistidos")
-	private List<User>  Turistas = new ArrayList<>();
+	@ManyToMany (mappedBy="ToursAsistidos", fetch=FetchType.EAGER)
+	public List<User>  Turistas = new ArrayList<>();
     
 	@OneToMany (mappedBy="TourValorado")
 	private List<Review>  Reviews = new ArrayList<>();
