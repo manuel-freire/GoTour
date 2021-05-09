@@ -9,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -66,8 +68,18 @@ public class Tour {
 	@OneToMany (mappedBy="tourValorado", fetch=FetchType.EAGER)
 	private List<Review>  reviews = new ArrayList<>();
 	
-	@ManyToMany (mappedBy="toursAsistidos",fetch=FetchType.EAGER)
-	private List<User>  turistas = new ArrayList<>();
+	//@OneToOne
+	//private Chat chat;
+
+	@OneToMany
+	@JoinColumn(name = "tour_id")
+	private List<Mensaje> mensajes = new ArrayList<>();
+
+	@ManyToMany (mappedBy="ToursAsistidos", fetch=FetchType.EAGER)
+	public List<User>  Turistas = new ArrayList<>();
+    
+	@OneToMany (mappedBy="TourValorado")
+	private List<Review>  Reviews = new ArrayList<>();
 
 	public void addTurista(User u,int numero){
 		if(datos.getMaxTuristas() >= (actTuristas+numero)){

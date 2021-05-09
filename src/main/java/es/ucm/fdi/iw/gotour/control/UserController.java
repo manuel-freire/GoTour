@@ -48,7 +48,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import es.ucm.fdi.iw.gotour.LocalData;
-import es.ucm.fdi.iw.gotour.model.Message;
+import es.ucm.fdi.iw.gotour.model.Mensaje;
 import es.ucm.fdi.iw.gotour.model.Review;
 import es.ucm.fdi.iw.gotour.model.User;
 import es.ucm.fdi.iw.gotour.model.Tour;
@@ -153,15 +153,14 @@ public class UserController {
 			@RequestBody JsonNode o, Model model, HttpSession session) 
 		throws JsonProcessingException {
 		
-		String text = o.get("message").asText();
+		String text = o.get("mensaje").asText();
 		User u = entityManager.find(User.class, id);
 		User sender = entityManager.find(
 				User.class, ((User)session.getAttribute("u")).getId());
 		model.addAttribute("user", u);
 		
 		// construye mensaje, lo guarda en BD
-		Message m = new Message();
-		m.setRecipient(u);
+		Mensaje m = new Mensaje();
 		m.setSender(sender);
 		m.setDateSent(LocalDateTime.now());
 		m.setText(text);
@@ -177,11 +176,11 @@ public class UserController {
 		rootNode.put("id", m.getId());
 		String json = mapper.writeValueAsString(rootNode);
 		
-		log.info("Sending a message to {} with contents '{}'", id, json);
+		log.info("Sending a Mensaje to {} with contents '{}'", id, json);
 
 		messagingTemplate.convertAndSend("/user/"+u.getUsername()+"/queue/updates", json);
-		return "{\"result\": \"message sent.\"}";
-	}	
+		return "{\"result\": \"mensaje sent.\"}";
+	}
 	
 	@PostMapping("/{id}/photo")
 	public String postPhoto(
@@ -339,7 +338,7 @@ public class UserController {
 		List<Tour> ofertados =  new ArrayList<>(user.getTourOfertados());
 		List<Review> recibidas =  new ArrayList<>(user.getReviewsRecibidas());
 		for (Tour t : ofertados) {
-			t.getDatos(); // arggs, mis ojos!
+			t.getDatos();
 		}
         List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
                 .setParameter("user_id", user.getId())

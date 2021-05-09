@@ -59,10 +59,10 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		log.info("LA LISTA DE IDIOMAS OBTENIDOS ES {}", idiomas);
 		u.setIdiomasHablados(idiomas);		
 		session.setAttribute("u", u);
-		long unread = entityManager.createNamedQuery("Message.countUnread", Long.class)
+		/*long unread = entityManager.createNamedQuery("Mensaje.countUnread", Long.class)
 		        .setParameter("userId", u.getId())
 		        .getSingleResult();	
-		session.setAttribute("unread", unread);
+		session.setAttribute("unread", unread);*/
 		
 		// add a 'ws' session variable
 		session.setAttribute("ws", request.getRequestURL().toString()
@@ -72,6 +72,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		// redirects to 'admin' or 'user/{id}', depending on the user
 		response.sendRedirect(u.hasRole(User.Role.ADMIN) ? 
 				"admin/" :
-				"user/" + u.getId() + "/perfil/");
+				//"user/" + u.getId() + "/perfil/");
+				//"chat");
+				"tour/1/chat");
 	}
 }

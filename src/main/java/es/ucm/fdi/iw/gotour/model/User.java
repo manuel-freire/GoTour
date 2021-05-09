@@ -200,11 +200,11 @@ public class User implements Transferable<User.Transfer> {
         private String Username;
 		private long Numtelefono;
 		private int Puntuacion;
-		private List<Tour> TourOfrecidos;
+		private List<Tour> TourOfertados;
 		private List<Tour> ToursAsistidos;
 		private List<Review> ReviewsHechas;
-		private List<Message> Sent;
-		private List<Message> Received;
+		private List<Mensaje> Sent;
+		private List<Mensaje> Received;
 		private List<Review> ReviewsRecibidas;
 		private List<String> IdiomasHablados;
 
