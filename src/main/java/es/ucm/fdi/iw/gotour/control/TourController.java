@@ -17,13 +17,11 @@ import javax.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.core.env.Environment;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import es.ucm.fdi.iw.gotour.LocalData;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,9 +30,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 import org.yaml.snakeyaml.tokens.Token.ID;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -45,16 +40,19 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
+import javax.servlet.http.HttpServletRequest;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import es.ucm.fdi.iw.gotour.LocalData;
-import java.time.LocalDateTime;
 import es.ucm.fdi.iw.gotour.model.Tour;
 import es.ucm.fdi.iw.gotour.model.TourOfertado;
 import es.ucm.fdi.iw.gotour.model.User;
-import es.ucm.fdi.iw.gotour.model.Mensaje;
 import es.ucm.fdi.iw.gotour.model.Review;
+import es.ucm.fdi.iw.gotour.model.Mensaje;
 
 /**
  * Admin-only controller
@@ -75,12 +73,11 @@ public class TourController {
 	@Autowired
 	private Environment env;
 
+    @Autowired
+	private SimpMessagingTemplate messagingTemplate;
+
     RootController root;
 	
-
-	@Autowired
-	private SimpMessagingTemplate messagingTemplate;
-    
     @GetMapping(value="/{id}")
     @Transactional
 	public String tourOfertado(@PathVariable long id, Model model, HttpSession session) {
@@ -114,21 +111,6 @@ public class TourController {
         session.setAttribute("u", u);
 		return "tour";
 	}
-
-    // @GetMapping(value="/{id}/pago")
-	// public String pago(@PathVariable long id, Model model) {
-    //     Tour t = entityManager.find(Tour.class, id);
-    //     List<String> etiquetas = entityManager.createNamedQuery("TourOfertado.getEtiquetas")
-    //     .setParameter("id", id)
-    //     .getResultList();
-    //     long id_guia = t.getDatos().getGuia().getId();
-    //     List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
-    //     .setParameter("user_id", id_guia)
-    //     .getResultList();
-    //     model.addAttribute("tour",t);
-    //     model.addAttribute("idiomas",idiomas);
-	// 	return "pago";
-	// }
     @GetMapping(value="/{id}/review")
 	public String review(@PathVariable long id, Model model, HttpSession session) {
         Tour t = entityManager.find(Tour.class, id);
@@ -143,69 +125,6 @@ public class TourController {
 		return "review";
 	}
 
-    @GetMapping("/{id}/chat")
-	public String chat(@PathVariable long id, Model model, HttpServletRequest request, HttpSession session) {
-        Tour t = entityManager.find(Tour.class, id);
-        List<User> turistas = t.Turistas;
-        long user_id = ((User)session.getAttribute("u")).getId();
-        boolean encontrado = false;
-        if(t.getDatos().getGuia().getId() == user_id){
-            encontrado = true;
-        }else{
-            for (User u : turistas) {
-                if(u.getId() == user_id){
-                    encontrado = true;
-                    break;
-                }
-            }
-        }
-        model.addAttribute("tour_id",id);
-        model.addAttribute("user_id",user_id);
-		return encontrado ? "chat" : "/index";
-	}
-    
-    @PostMapping("/{id}/msg")
-	@ResponseBody
-	@Transactional
-	public String postMsg(@PathVariable long id, 
-			@RequestBody JsonNode o, Model model, HttpSession session) 
-		throws JsonProcessingException {
-		
-		String text = o.get("message").asText();
-		Tour tour = entityManager.find(Tour.class, id);
-        log.info("El tour con id {} es {}",id, tour.getId());
-		User sender = entityManager.find(
-				User.class, ((User)session.getAttribute("u")).getId());
-        
-		//model.addAttribute("user", u);
-		
-		// construye mensaje, lo guarda en BD
-		Mensaje m = new Mensaje();
-		//m.setRecipient(u);
-		m.setSender(sender);
-		m.setDateSent(LocalDateTime.now());
-		m.setText(text);
-        m.setTour(tour);
-		entityManager.persist(m);
-		entityManager.flush(); // to get Id before commit
-		
-		// construye json
-		ObjectMapper mapper = new ObjectMapper();
-		ObjectNode rootNode = mapper.createObjectNode();
-		rootNode.put("from", sender.getUsername());
-		//rootNode.put("to", u.getUsername());
-		rootNode.put("text", text);
-		rootNode.put("id", m.getId());
-        rootNode.put("id_sender", sender.getId());
-        rootNode.put("img_sender", sender.getFoto());
-		String json = mapper.writeValueAsString(rootNode);
-		
-		log.info("Sending a Mensaje to {} with contents '{}'", id, json);
-
-		messagingTemplate.convertAndSend("/topic/"+id+"/tour", json);
-		return "{\"result\": \"mensaje sent.\"}";
-	}	
-	
 
 	@PostMapping("/{id}/inscribirse")
     @Transactional
@@ -308,6 +227,69 @@ public class TourController {
         model.addAttribute("tours", tours);
         session.setAttribute("u", u);	
 		return "index";
+	}
+
+    @GetMapping("/{id}/chat")
+	public String chat(@PathVariable long id, Model model, HttpServletRequest request, HttpSession session) {
+        Tour t = entityManager.find(Tour.class, id);
+        List<User> turistas = t.turistas;
+        long user_id = ((User)session.getAttribute("u")).getId();
+        boolean encontrado = false;
+        if(t.getDatos().getGuia().getId() == user_id){
+            encontrado = true;
+        }else{
+            for (User u : turistas) {
+                if(u.getId() == user_id){
+                    encontrado = true;
+                    break;
+                }
+            }
+        }
+        model.addAttribute("tour_id",id);
+        model.addAttribute("user_id",user_id);
+		return encontrado ? "chat" : "/index";
+	}
+    
+    @PostMapping("/{id}/msg")
+	@ResponseBody
+	@Transactional
+	public String postMsg(@PathVariable long id, 
+			@RequestBody JsonNode o, Model model, HttpSession session) 
+		throws JsonProcessingException {
+		
+		String text = o.get("message").asText();
+		Tour tour = entityManager.find(Tour.class, id);
+        log.info("El tour con id {} es {}",id, tour.getId());
+		User sender = entityManager.find(
+				User.class, ((User)session.getAttribute("u")).getId());
+        
+		//model.addAttribute("user", u);
+		
+		// construye mensaje, lo guarda en BD
+		Mensaje m = new Mensaje();
+		//m.setRecipient(u);
+		m.setSender(sender);
+		m.setDateSent(LocalDateTime.now());
+		m.setText(text);
+        m.setTour(tour);
+		entityManager.persist(m);
+		entityManager.flush(); // to get Id before commit
+		
+		// construye json
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode rootNode = mapper.createObjectNode();
+		rootNode.put("from", sender.getUsername());
+		//rootNode.put("to", u.getUsername());
+		rootNode.put("text", text);
+		rootNode.put("id", m.getId());
+        rootNode.put("id_sender", sender.getId());
+        rootNode.put("img_sender", sender.getFoto());
+		String json = mapper.writeValueAsString(rootNode);
+		
+		log.info("Sending a Mensaje to {} with contents '{}'", id, json);
+
+		messagingTemplate.convertAndSend("/topic/"+id+"/tour", json);
+		return "{\"result\": \"mensaje sent.\"}";
 	}
 
     

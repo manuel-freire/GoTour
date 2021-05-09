@@ -153,7 +153,7 @@ public class User implements Transferable<User.Transfer> {
 
 	@OneToMany
 	@JoinColumn(name="Creador_id")
-	private List<Mensajes> mensajes = new ArrayList<>();
+	private List<Mensaje> mensajes = new ArrayList<>();
 	
 	@OneToMany(targetEntity=Review.class)
 	@JoinColumn(name="destinatario_id")
@@ -165,10 +165,10 @@ public class User implements Transferable<User.Transfer> {
 
 	@OneToMany
 	@JoinColumn(name = "Sender_id")
-	private List<Message> sent = new ArrayList<>();
+	private List<Mensaje> sent = new ArrayList<>();
 	@OneToMany
 	@JoinColumn(name = "Recipient_id")	
-	private List<Message> received = new ArrayList<>();	
+	private List<Mensaje> received = new ArrayList<>();	
 	
 	// utility methods
 	

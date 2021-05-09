@@ -75,11 +75,8 @@ public class Tour {
 	@JoinColumn(name = "tour_id")
 	private List<Mensaje> mensajes = new ArrayList<>();
 
-	@ManyToMany (mappedBy="ToursAsistidos", fetch=FetchType.EAGER)
-	public List<User>  Turistas = new ArrayList<>();
-    
-	@OneToMany (mappedBy="TourValorado")
-	private List<Review>  Reviews = new ArrayList<>();
+	@ManyToMany (mappedBy="toursAsistidos", fetch=FetchType.EAGER)
+	public List<User>  turistas = new ArrayList<>();
 
 	public void addTurista(User u,int numero){
 		if(datos.getMaxTuristas() >= (actTuristas+numero)){
