@@ -74,6 +74,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 				"admin/" :
 				//"user/" + u.getId() + "/perfil/");
 				//"chat");
-				"tour/1/chat");
+				"/");
 	}
 }
