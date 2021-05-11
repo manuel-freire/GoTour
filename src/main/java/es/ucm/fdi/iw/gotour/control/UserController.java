@@ -311,8 +311,6 @@ public class UserController {
 			}
 			log.info("Successfully uploaded profile photo for {} into {}!", u.getId(), f.getAbsolutePath());
 		}
-		u.setFoto("users/"+u.getId());
-		session.setAttribute("u", u);
 
 		//return perfil(model,session,id);*/
 		return "datosPrivados";
