@@ -107,6 +107,24 @@ public class AdminController {
 		return "admin/users";
 	}
 
+
+	@PostMapping("/user-busqueda")
+	public String userBusqueda(Model model, List<User> users) {
+		model.addAttribute("activeProfiles", env.getActiveProfiles());
+		model.addAttribute("basePath", env.getProperty("es.ucm.fdi.base-path"));
+		model.addAttribute("debug", env.getProperty("es.ucm.fdi.debug"));
+		      
+        // dumps them via log
+        log.info("Dumping table {}", "user");
+        for (Object o : users) {
+            log.info("\t{}", o);
+        }        
+        // adds them to model
+        model.addAttribute("users", users);
+		model.addAttribute("classActiveUsers","active");
+		return "admin/user-busqueda";
+	}
+
 	@GetMapping("/notificaciones")
 	public String notificaciones(Model model) {
 		model.addAttribute("classActiveNotificaciones","active");
@@ -129,7 +147,27 @@ public class AdminController {
 	public String configuracion(Model model) {
 		model.addAttribute("classActiveSettings","active");
 	return "admin/configuracion";
+
+
 	}
+
+
+	@PostMapping("/userSearch")
+    public String searchUsers(Model model,@RequestParam String username
+                                        ,@RequestParam String email
+                                        ){
+
+											System.out.println("Hola");
+        List<User> busqueda = entityManager.createNamedQuery("UsersByAdminSearch")
+            .setParameter("usernameParam", username)
+            .setParameter("emailParam", email).getResultList();      	
+        model.addAttribute("busqueda", busqueda);
+		
+        return userBusqueda(model,busqueda);
+    }
+
+
+	
 
 
 	

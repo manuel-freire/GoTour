@@ -1,14 +1,4 @@
-<!--
-=========================================================
-Material Dashboard - v2.1.2
-=========================================================
 
-Product Page: https://www.creative-tim.com/product/material-dashboard
-Copyright 2020 Creative Tim (https://www.creative-tim.com)
-Coded by Creative Tim
-
-=========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +8,7 @@ The above copyright notice and this permission notice shall be included in all c
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-      Material Dashboard by Creative Tim
+      Go Tour Users
     </title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -52,23 +42,23 @@ The above copyright notice and this permission notice shall be included in all c
         <div class="container-fluid">
          <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Buscar Reporte</h4>
-                  <p class="card-category">Buscar reporte por email, username o contenido</p>
+                  <h4 class="card-title">Buscar Usuario</h4>
+                  <p class="card-category">Buscar usuario</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form  method="post" th:action="@{/admin/userSearch}">
                     <div class="row">
                       
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="username">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Direccion Email</label>
-                          <input type="email" class="form-control">
+                          <input type="email" class="form-control" name="email">
                         </div>
                       </div>
                     </div>
@@ -118,7 +108,7 @@ The above copyright notice and this permission notice shall be included in all c
                           <td th:text="${user.Username}" th:if="${user.Enabled == 1}">
                             
                           </td>
-                          <td th:text="${user.Email}" th:if="${user.Enabled == 1}">
+                          <td th:text="${user.email}" th:if="${user.Enabled == 1}">
                          
                           </td> 
                           <td>
