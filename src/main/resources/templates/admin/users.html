@@ -36,43 +36,7 @@
         </div>
     </div>
     <div class="main-panel">
-      <!-- Navbar -->
 
-      <div class="content">
-        <div class="container-fluid">
-         <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Buscar Usuario</h4>
-                  <p class="card-category">Buscar usuario</p>
-                </div>
-                <div class="card-body">
-                  <form  method="post" th:action="@{/admin/userSearch}">
-                    <div class="row">
-                      
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control" name="username">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Direccion Email</label>
-                          <input type="email" class="form-control" name="email">
-                        </div>
-                      </div>
-                    </div>
-                    
-                   
-                    <button type="submit" class="btn btn-primary pull-right">Buscar Usuario</button>
-                    <div class="clearfix"></div>
-                  </form>
-                </div>
-              </div>
-              <div th:replace="admin/fragment/nav_busqueda.html :: nav_busqueda">
-     
-              </div>
-      <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
           <div class="row">
@@ -108,7 +72,7 @@
                           <td th:text="${user.Username}" th:if="${user.Enabled == 1}">
                             
                           </td>
-                          <td th:text="${user.email}" th:if="${user.Enabled == 1}">
+                          <td th:text="${user.Email}" th:if="${user.Enabled == 1}">
                          
                           </td> 
                           <td>

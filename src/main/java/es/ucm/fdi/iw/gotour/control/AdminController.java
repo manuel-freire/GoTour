@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import es.ucm.fdi.iw.gotour.LocalData;
 import es.ucm.fdi.iw.gotour.model.User;
+import es.ucm.fdi.iw.gotour.model.Tour;
+import es.ucm.fdi.iw.gotour.model.TourOfertado;
 
 /**
  * Admin-only controller
@@ -54,12 +56,36 @@ public class AdminController {
 		model.addAttribute("debug", env.getProperty("es.ucm.fdi.debug"));
 		List<User> users = entityManager.createNamedQuery("AllUsers").getResultList();        
         // dumps them via log
+		
         log.info("Dumping table {}", "user");
         for (Object o : users) {
             log.info("\t{}", o);
-        }        
+        }
+
+		List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();
+		List<TourOfertado> toursOfertados = entityManager.createNamedQuery("AllToursOfer").getResultList();
+		
+		int tourNumber=0;
+		if(tours!=null){
+			tourNumber=tours.size();
+			toursOfertados.size();
+
+		}
+		int tourOfertadoNumber=0;
+
+		if(toursOfertados!=null){
+			
+			tourOfertadoNumber=toursOfertados.size();
+			
+
+		}
+
+
+		int userNumber= users.size();
         // adds them to model
-        model.addAttribute("users", users);
+        model.addAttribute("userNumber", userNumber);
+		model.addAttribute("users", users);
+		model.addAttribute("tourNumber", tourNumber);
 		model.addAttribute("classActiveAdmin","active");		
         return "admin/index";
 

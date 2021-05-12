@@ -28,7 +28,9 @@
                   <li class="has-children" th:if="${session.u}">
                     <a th:href="@{'/user/'+ ${session.u.id}+'/perfil'}" id="perfil_ref">Mi perfil</a>
                     <ul class="dropdown arrow-top">
+                     
                       <li><a th:href="@{/user/logout}" id="salir">Log out</a></li>
+                      
                     </ul>
                   </li>
                 </ul>
