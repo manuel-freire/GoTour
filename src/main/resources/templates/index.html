@@ -99,11 +99,11 @@
         </div>  
 
 
-        <div class="site-section site-section-sm bg-light" th:each="tour: ${busqueda}">
+        <div class="site-section site-section-sm bg-light" th:if="${busqueda!=null}">
           <div class="container">
           
             <div class="row mb-5">
-              <div class="col-md-6 col-lg-4 mb-4" th:each="tour: ${tours}">
+              <div class="col-md-6 col-lg-4 mb-4" th:each="tour: ${busqueda}">
                 <div class="property-entry h-100">
                   <a href="property-details.html" class="property-thumbnail">
                     <div class="offer-type-wrap">
@@ -111,7 +111,7 @@
                       <span class="offer-type bg-success">Rent</span>
                     </div>
                     
-                    <img th:src="@{${tour.datos.guia.foto}}" alt="Image" class="img-fluid">
+                    <img th:src="${tour.Datos.Portada}" alt="Image" class="img-fluid">
                   </a>
                   <div class="p-4 property-body">
                     <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
