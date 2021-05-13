@@ -53,8 +53,8 @@
             <div class="col-lg-8">
               <div>
                 <div class="slide-one-item home-slider owl-carousel">
-                  <div><img th:src="@{${tour.datos.portada}}" alt="Imágen del tour" class="img-fluid"></div>
-                  <div><img th:src="@{${tour.datos.mapa}}" alt="La imagen del mapa" class="img-fluid"></div>
+                  <div><img th:src="@{/tour/{id}/portada(id=${tour.datos.id})}" alt="Imágen del tour" class="img-fluid"></div>
+                  <div><img th:src="@{/tour/{id}/mapa(id=${tour.datos.id})}" alt="La imagen del mapa" class="img-fluid"></div>
                 </div>
               </div>
               <div class="bg-white property-body border-bottom border-left border-right">
@@ -100,7 +100,7 @@
                 <div class="card_guia">
                     <div class="card-avatar">
                       <a href="javascript:;">
-                        <img class="img guia_tour_foto" th:src="@{${tour.datos.guia.foto}}" alt="La imagen del guia" >
+                        <img class="img guia_tour_foto" th:src="@{/user/{id}/foto(id=${user.Id})}" alt="La imagen del guia" >
                       </a>
                     </div>
                       <img class="estrellas card-category" th:src="@{/img/5estrellas.png}" alt="Estrellas de valoración">

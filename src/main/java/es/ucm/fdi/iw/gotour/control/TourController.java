@@ -248,7 +248,7 @@ public class TourController {
         model.addAttribute("tour_id",id);
         model.addAttribute("user_id",user_id);
 		return encontrado ? "chat" : "/index";
-	}
+    }
     
     @PostMapping("/{id}/msg")
 	@ResponseBody

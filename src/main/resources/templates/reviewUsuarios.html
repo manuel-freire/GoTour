@@ -63,7 +63,7 @@
                   <div class="card_guia" th:if="${valoradosu.get(u.id)!= true}">
                     <div class="card-avatar" th:if="${valoradosu.get(u.id)!= true}">
                       <a href="javascript:;" th:if="${valoradosu.get(u.id)!= true}">
-                        <img class="img guia_tour_foto" th:src="@{${u.foto}}" alt="La imagen del guia" th:if="${valoradosu.get(u.id)!= true}">
+                        <img class="img guia_tour_foto" th:src="@{/user/{id}/foto(id=${u.id})}" alt="La imagen del usuario" th:if="${valoradosu.get(u.id)!= true}">
                       </a>
                     </div>
                       <h4 class="card-title" th:text="${u.nombre}" th:if="${valoradosu.get(u.id)!= true}">Alec Thompson</h4>
