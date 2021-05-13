@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
-
+import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -245,6 +245,8 @@ public class TourController {
                 }
             }
         }
+        int topic_id = t.getTopicId();
+        model.addAttribute("topic_id",topic_id);
         model.addAttribute("tour_id",id);
         model.addAttribute("user_id",user_id);
 		return encontrado ? "chat" : "/index";
@@ -288,7 +290,7 @@ public class TourController {
 		
 		log.info("Sending a Mensaje to {} with contents '{}'", id, json);
 
-		messagingTemplate.convertAndSend("/topic/"+id+"/tour", json);
+		messagingTemplate.convertAndSend("/topic/"+tour.getTopicId()+"/tour", json);
 		return "{\"result\": \"mensaje sent.\"}";
 	}
 
@@ -336,7 +338,6 @@ public class TourController {
         tourO.setMaxTuristas(maxTuristas);
         tourO.setPrecio(precio);
         tourO.setDisponible(true);
-
         User guia = entityManager.find(User.class, ((User)session.getAttribute("u")).getId());
         tourO.setGuia(guia);
 
@@ -450,7 +451,9 @@ public class TourController {
         tour.setFechaFin(fechaFin);
         tour.setActTuristas(0);
         tour.setDatos(tourO);
-        
+        Random r= new Random();
+        int topicId = r.nextInt();
+        tour.setTopicId(topicId);
         guia.getTourOfertados().add(tour);
         tourO.getInstancias().add(tour);
 
