@@ -28,3 +28,32 @@ $(document).ajaxSend(function(e, xhr, options) {
     }
   });
 }
+
+$("#add-review").on("click", addReview);
+
+function addReview() {
+    var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+
+$(document).ajaxSend(function(e, xhr, options) {
+    xhr.setRequestHeader(header, token);
+});
+    var valoracion;
+    var textoReview;
+    var instancia;
+    val = +$("#valoracion").val();
+    text = $("#textoReview").val();
+    instancia =$("#elegida").val();
+  $.ajax({
+    url: '/tour/'+instancia+'/valorar',
+    type: "POST",
+    data: {valoracion: val, textoReview: text},
+    success: function(respuesta) {
+        console.log("Review añadida")
+        $("#esconder").hide()
+    },
+    error: function() {
+      console.log("No se ha podido realizar la review ", instancia, valoracion, textoReview);
+    }
+  });
+}
