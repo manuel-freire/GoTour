@@ -52,6 +52,7 @@ import es.ucm.fdi.iw.gotour.model.Mensaje;
 import es.ucm.fdi.iw.gotour.model.Review;
 import es.ucm.fdi.iw.gotour.model.User;
 import es.ucm.fdi.iw.gotour.model.Tour;
+import es.ucm.fdi.iw.gotour.model.Reporte;
 import es.ucm.fdi.iw.gotour.model.TourOfertado;
 import es.ucm.fdi.iw.gotour.model.User.Role;
 
@@ -359,6 +360,23 @@ public class UserController {
         model.addAttribute("idiomas",idiomas);
         model.addAttribute("user", user);
         return "perfil";
+    }
+
+	@GetMapping("/{id}/reporte")
+	@Transactional
+    public String reporteUser(Model model, HttpSession session,@RequestParam String motivo, @RequestParam String reporte, @PathVariable("id") long id)
+    {
+	    User user = entityManager.find(User.class, id);
+		User userCreador = entityManager.find(User.class,((User)session.getAttribute("u")).getId());
+        Reporte r = new Reporte();
+
+		r.setCreador(userCreador);
+        r.setTexto(reporte);
+        r.setTourReportado(null);
+        r.setUserReportado(user);
+                            
+        model.addAttribute("user", user);
+        return "reporte";
     }
 
 	@GetMapping("/{id}/foto")

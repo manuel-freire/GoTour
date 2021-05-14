@@ -141,7 +141,8 @@
                     <div class="droppydown-content">
                       <a th:each="t: ${tour.instancias}" th:text="${t.fechaIni}" th:onclick="'muestraInstancia(\'' + ${t.id} + '\', \'' + ${tour.instancias.size} + '\');'">Fecha</a>
                     </div>
-                  </div> 
+                  </div>
+                
 
                   <div th:each="t: ${tour.instancias}" th:id="'instancia' + ${t.id}" class="contratacion">
 
@@ -178,6 +179,20 @@
                   </div>
 
                   <a th:if="${session.u.id == tour.guia.id}" th:href="@{'/tour/'+${tour.id}+'/crearInstancia2'}" class="btn btn-primary btn-round">Añadir nueva convocatoria</a>
+
+                </div>
+
+                <div th:if="${session.u.id != tour.guia.id}" class="bg-white widget border rounded">
+
+                  <h3 class="h4 text-black widget-title mb-3">Reportar Tour</h3>
+
+                  <div class="text-center py-3 droppy">
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#reportarTour"><a th:href="">Reportar Tour</a></button>
+                    
+                  </div>
+                
+
+                 
 
                 </div>
   
