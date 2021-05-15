@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.util.Random;
+import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,6 @@ import es.ucm.fdi.iw.gotour.model.TourOfertado;
 import es.ucm.fdi.iw.gotour.model.User;
 import es.ucm.fdi.iw.gotour.model.Review;
 import es.ucm.fdi.iw.gotour.model.Mensaje;
-
 /**
  * Admin-only controller
  * @author mfreire
@@ -77,7 +77,7 @@ public class TourController {
 	private SimpMessagingTemplate messagingTemplate;
 
     RootController root;
-	
+
     @GetMapping(value="/{id}")
     @Transactional
 	public String tourOfertado(@PathVariable long id, Model model, HttpSession session) {
@@ -245,7 +245,7 @@ public class TourController {
                 }
             }
         }
-        int topic_id = t.getTopicId();
+        String topic_id = t.getTopicId();
         model.addAttribute("topic_id",topic_id);
         model.addAttribute("tour_id",id);
         model.addAttribute("user_id",user_id);
@@ -435,7 +435,6 @@ public class TourController {
 		};
 	}
 
-
     @PostMapping("{id}/instancia")
 	@Transactional
     public String nuevoTour(@PathVariable("id") long idTourO,
@@ -451,8 +450,11 @@ public class TourController {
         tour.setFechaFin(fechaFin);
         tour.setActTuristas(0);
         tour.setDatos(tourO);
-        Random r= new Random();
-        int topicId = r.nextInt();
+        //Random r= new Random();
+        //int topicId = r.nextInt();
+        String topicId = UUID.randomUUID().toString();
+        topicId = topicId.replace("-", "");
+        topicId = topicId.substring(0, 10);
         tour.setTopicId(topicId);
         guia.getTourOfertados().add(tour);
         tourO.getInstancias().add(tour);
