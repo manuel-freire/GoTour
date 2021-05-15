@@ -38,10 +38,10 @@ var header = $("meta[name='_csrf_header']").attr("content");
 $(document).ajaxSend(function(e, xhr, options) {
     xhr.setRequestHeader(header, token);
 });
-    var valoracion;
-    var textoReview;
+    var val;
+    var text;
     var instancia;
-    val = +$("#valoracion").val();
+    val = $("#valoracion").val();
     text = $("#textoReview").val();
     instancia =$("#elegida").val();
   $.ajax({
@@ -56,4 +56,54 @@ $(document).ajaxSend(function(e, xhr, options) {
       console.log("No se ha podido realizar la review ", instancia, valoracion, textoReview);
     }
   });
+}
+
+$("[name=review-user]").on("click", addReviewUser);
+function addReviewUser() {
+  var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+
+$(document).ajaxSend(function(e, xhr, options) {
+  xhr.setRequestHeader(header, token);
+});
+    var val;
+    var text;
+    var tour;
+    var user = [];
+    var userbueno;
+    var textoprueba;
+    var patata;
+    $(".usuario").each( function() {
+      user.push(this.value);
+  });
+
+    user.forEach(function(e){
+      patata = e;
+      textoprueba = $("#textoReview"+patata).val();
+      if(textoprueba == ""){
+        console.log("El usuario no es ", patata)
+
+      }
+      else{
+        console.log("El usuario es ", patata)
+        userbueno=patata;
+      }
+    });
+    // user = $(".usuario").val();
+    // user2 = $(".usuario").val();
+    val = $("#valoracion"+userbueno).val();
+    text = $("#textoReview"+userbueno).val();
+    tour =$("#tour").val();
+  $.ajax({
+    url: '/tour/'+tour+'/valorarUser/' +userbueno,
+    type: "POST",
+    data: {valoracion: val, textoReview: text},
+    success: function(respuesta) {
+      console.log("Review añadida")
+      $("#esconderTurista"+userbueno).remove()
+    },
+    error: function() {
+      console.log("No se ha podido realizar la review ", tour, user, valoracion, textoReview);
+  }
+});
 }
