@@ -146,7 +146,7 @@ public class TourController {
 
     @PostMapping("/{id}/valorar")
     @Transactional
-    public String valorar(@PathVariable("id") long id, Model model, @RequestParam int valoracion, @RequestParam String textoReview, HttpSession session){
+    public String valorar(@PathVariable("id") long id,@RequestParam int valoracion, @RequestParam String textoReview, Model model, HttpSession session){
         Tour t = entityManager.find(Tour.class, id); // mejor que PreparedQueries que sólo buscan por ID
         User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
             ((User)session.getAttribute("u")).getId());
@@ -160,7 +160,7 @@ public class TourController {
         log.info("La review actual es {}", r);
         entityManager.persist(r);
         entityManager.flush();
-        return "redirect:/";
+        return "redirect:/tour/"+t.getDatos().getId();
     }
 
     @GetMapping("/{id}/reviewUser")
@@ -183,7 +183,7 @@ public class TourController {
     }
     @PostMapping("/{id}/valorarUser/{iduser}")
     @Transactional
-    public String puntuar(@PathVariable("id") long id, @PathVariable("iduser") long iduser,Model model, @RequestParam int valoracion, @RequestParam String textoReview, HttpSession session){
+    public String puntuar(@PathVariable("id") long id, @PathVariable("iduser") long iduser, @RequestParam int valoracion, @RequestParam String textoReview,Model model, HttpSession session){
         Tour t = entityManager.find(Tour.class, id);
         User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
             ((User)session.getAttribute("u")).getId());
@@ -250,7 +250,7 @@ public class TourController {
         model.addAttribute("tour_id",id);
         model.addAttribute("user_id",user_id);
 		return encontrado ? "chat" : "/index";
-	}
+    }
     
     @PostMapping("/{id}/msg")
 	@ResponseBody
