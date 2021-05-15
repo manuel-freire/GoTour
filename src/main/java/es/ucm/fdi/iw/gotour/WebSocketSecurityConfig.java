@@ -28,29 +28,6 @@ public class WebSocketSecurityConfig
             .simpSubscribeDestMatchers("/topic/admin")	// solo admines pueden suscribirse a este topic
             	.hasRole(User.Role.ADMIN.toString())
             .anyMessage().authenticated(); 				// todo tiene que proceder de sesiones autenticadas
-
-       /* List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList(); 
-        for (Tour t : tours) {
-            long topic_id = t.getId();
-            List<User> turistas = t.turistas;
-            long user_id = ((User)session.getAttribute("u")).getId();
-            boolean encontrado = false;
-            if(t.getDatos().getGuia().getId() == user_id){
-                encontrado = true;
-            }else{
-                for (User u : turistas) {
-                    if(u.getId() == user_id){
-                        encontrado = true;
-                        break;
-                    }
-                }
-            }
-            if(encontrado){
-                messages
-                .simpSubscribeDestMatchers("/topic/"+topic_id+"/tour");
-            }
-           
-        }*/
        
     }
 }
