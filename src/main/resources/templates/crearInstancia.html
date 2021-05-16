@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
     <title>Crear instancia</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/style_tour.css}">
+    <script type="text/javascript" th:src="@{/js/tour.js}"></script>
   </head>
   <body>
     <th:block th:replace="frags/header.html">
@@ -17,20 +19,20 @@
         <p class="precio" th:text="${tour.precio}+'€'">Precio</p>
         <p class="personas" th:text="'Turistas permitidos: ' + ${tour.maxTuristas}">Turistas</p>
 
-        <h3 th:if="${inicial}">Rellena para cuándo quieres organizar la primera convocatoria del tour</h3>
-        <h3 th:unless="${inicial}">Rellena para crear una nueva convocatoria del tour</h3>
+        <h3>Rellena para crear una nueva convocatoria del tour</h3>
 
         <form class="form-tour" method="post" th:action="@{/tour/{id}/instancia(id=${tour.id})}">
 
             <label for="fechaIni" class="sr-only">Fecha y hora de inicio</label>
-            <input type="datetime-local" id="fechaIni" name="fechaIni" placeholder="Fecha de inicio" />
+            <input type="datetime-local" id="fechaIni" name="fechaIni" placeholder="Fecha de inicio" required onchange="siguientePaso()"/>
 
-            <label for="fechaFin" class="sr-only">Fecha y hora de fin</label>
-            <input type="datetime-local" id="fechaFin" name="fechaFin" placeholder="Fecha de fin" />
+            <div id="divFinal">
+              <label for="fechaFin" class="sr-only">Fecha y hora de fin</label>
+              <input type="datetime-local" id="fechaFin" name="fechaFin" placeholder="Fecha de fin" required onchange="validarFechas()" />
+            </div>
             
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Crear</button>
+            <button id="buttonInstancia" class="btn btn-lg btn-primary btn-block" type="submit">Crear</button>
         </form>
 
-        <a th:if="${inicial}" th:href="@{/tour/{id}(id=${tour.id})}" >Saltarse este paso</a>
 </div>
 </body></html>

@@ -292,25 +292,12 @@ public class TourController {
 		return "{\"result\": \"mensaje sent.\"}";
 	}
 
-    
-    @GetMapping("/{id}/crearInstancia2")
-    @Transactional
-    public String crearInstancia2(@PathVariable("id") long id, Model model, HttpSession session)
-    {
-        TourOfertado tour = entityManager.find(TourOfertado.class, id);
-        model.addAttribute("tour", tour);
-        model.addAttribute("inicial", false);
-
-        return "crearInstancia";
-    }
-
     @GetMapping("/{id}/crearInstancia")
     @Transactional
     public String crearInstancia(@PathVariable("id") long id, Model model, HttpSession session)
     {
         TourOfertado tour = entityManager.find(TourOfertado.class, id);
         model.addAttribute("tour", tour);
-        model.addAttribute("inicial", true);
 
         return "crearInstancia";
     }
@@ -324,7 +311,11 @@ public class TourController {
                             @RequestParam String descripcion,
                             @RequestParam int maxTuristas,
                             @RequestParam double precio,
-                            Model model, HttpSession session) {
+                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaIni,
+                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaFin,
+                            @RequestParam("portada") MultipartFile portada,
+                            @RequestParam("mapa") MultipartFile mapa,
+                            Model model, HttpSession session) throws IOException {
 
         TourOfertado tourO = new TourOfertado();
 
@@ -343,7 +334,10 @@ public class TourController {
         entityManager.persist(tourO);
         entityManager.flush();
 
-        return portada(tourO.getId(), model, session);
+        portada(tourO.getId(), portada, mapa, model, session);
+        nuevoTour(tourO.getId(), fechaIni, fechaFin, model, session);
+
+        return "redirect:/tour/" + tourO.getId();
     }
 
     @GetMapping("/{id}/actualizarPortada")
