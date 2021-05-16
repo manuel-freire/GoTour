@@ -37,8 +37,8 @@
      
     </div>
 
-    <div class="container user_id" th:id="${user_id}">
-        <h3 class="text-center tour_id" th:id="${tour_id}">Chat del tour </h3>
+    <div class="container user_id" th:id="'user'+${user_id}">
+        <h3 class="text-center tour_id" th:id="'tour'+${tour_id}">Chat del tour </h3>
         <div class="messaging topic_id" th:id="${topic_id}">
             <div class="inbox_msg">
                 <!--<div class="inbox_people">
@@ -161,9 +161,8 @@
       </nav>
 
     <script>
-        const tour_id = document.getElementsByClassName("tour_id")[0].id;
-        const user_id = document.getElementsByClassName("user_id")[0].id;
-
+        const tour_id = (document.getElementsByClassName("tour_id")[0].id).slice(4);
+        const user_id = (document.getElementsByClassName("user_id")[0].id).slice(4);
         function formatDate(d) {
             // 2020-03-23T10:48:11.074 => 23/3/2020@10:48:18
             return new Date(d).toLocaleString("es-ES").split(" ").join(" ")
@@ -203,7 +202,7 @@
         function procesarMensaje(m){
             const my_id = user_id;
             const element = document.getElementById("tablon");
-
+            console.log("My id", my_id);
             if(my_id == m.id_sender){
                 /*
                 <div class="outgoing_msg">
