@@ -39,6 +39,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
@@ -98,16 +99,38 @@ public class RootController {
     public String index(        // <-- da igual, sólo para desarrolladores
             Model model, HttpSession session)        // <-- hay muchos, muchos parámetros opcionales
     {
+        actualizarTours();
         List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();        
         // dumps them via log
         log.info("Dumping table {}", "tour");
         for (Object o : tours) {
             log.info("\t{}", o);
-        }        
+        }     
+        List<User> users = entityManager.createNamedQuery("AllUsersByPuntuacion").setMaxResults(20).getResultList();        
+        // dumps them via log
+        log.info("Dumping table {}", "user");
+        for (Object o : users) {
+            log.info("\t{}", o);
+        }       
+
         // adds them to model
         model.addAttribute("tours", tours);	
+        model.addAttribute("users", users);	
         model.addAttribute("classActiveHome","active");		
         return "index";
+    }
+
+    @Transactional
+    public void actualizarTours(){
+        List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList(); 
+        for(Tour t:tours){
+            if(t.getFechaIni().isBefore(LocalDateTime.now())){
+                t.getDatos().setDisponible(false);
+            }
+            else{
+                t.getDatos().setDisponible(true);
+            }
+        }
     }
 
 	@GetMapping("/chat")

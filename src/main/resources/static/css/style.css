@@ -28,6 +28,17 @@ a {
   .guia_tour_foto{
     width:100%
   }
+  .busqueda{
+    overflow: auto;
+    max-height: 650px;
+  }
+  .lista-tours{
+    flex-wrap: nowrap;
+    overflow:auto;
+  }
+  .selectExplora:hover{
+    cursor:pointer;
+  }
 .text-black {
   color: #000 !important; }
 
