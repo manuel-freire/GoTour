@@ -43,6 +43,7 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -315,6 +316,7 @@ public class TourController {
                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaFin,
                             @RequestParam("portada") MultipartFile portada,
                             @RequestParam("mapa") MultipartFile mapa,
+                            @RequestParam String etiquetas,
                             Model model, HttpSession session) throws IOException {
 
         TourOfertado tourO = new TourOfertado();
@@ -327,6 +329,8 @@ public class TourController {
         tourO.setMaxTuristas(maxTuristas);
         tourO.setPrecio(precio);
         tourO.setDisponible(true);
+        tourO.setEtiquetas(Arrays.asList(etiquetas.split(";")));
+        
 
         User guia = entityManager.find(User.class, ((User)session.getAttribute("u")).getId());
         tourO.setGuia(guia);

@@ -23,6 +23,7 @@
     <link rel="stylesheet" th:href="@{/css/style_tour.css}">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script type="text/javascript" th:src="@{/js/tour.js}"></script>
 
   </head>
@@ -103,16 +104,17 @@
                   <h2 class="h4 text-black">Descripcion</h2>
                   <input type="text" id="descripcion" class="inputBonito" name="descripcion" placeholder="Tour por el Madrid del sigo XIX." required>
                   
-                  <!--<div class="row no-gutters mt-5">
+                  <div class="row no-gutters mt-5">
                     <div class="col-12">
                       <h2 class="h4 text-black mb-3">Etiquetas</h2>
                     </div>
-                    <div class="etiquetas_tour">
-                      <div th:each="e: ${etiquetas}">
-                          <button th:text="${e}">museo</button>
-                      </div>
+                    <input type="text" id="etiqueta">
+                    <div class="col-md-6">
+                      <span class="btn btn-lg btn-primary btn-block" onclick="anadirEtiqueta()">Añadir</span>
                     </div>
-                  </div>-->
+                    <div class="col-12 etiquetas_tour" id="etiq"></div>
+                    <input type="hidden" id="etiquetas" name="etiquetas">
+                  </div>
 
                 </div>
 

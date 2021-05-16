@@ -31,3 +31,22 @@ function siguientePaso(){
 function instanciaNueva(){
     document.getElementById("instanciaNueva").style.display = "block";
 }
+
+function anadirEtiqueta(){
+    let valor = document.getElementById("etiqueta").value;
+    let htmlEtiq = document.getElementById("etiq").innerHTML;
+    let valorE = document.getElementById("etiquetas").value;
+    document.getElementById("etiq").innerHTML = htmlEtiq + "<button id='" + valor + "' disabled>" + valor + "</button><i class='fas fa-times' title='" + valor + "' onclick='eliminarEtiqueta(this)'></i>"
+    document.getElementById("etiquetas").value = valorE + valor + ";";
+    document.getElementById("etiqueta").value = "";
+}
+
+function eliminarEtiqueta(elemento){
+    let valor = elemento.title;
+    let valorE = document.getElementById("etiquetas").value;
+    elemento.style.display = "none";
+    document.getElementById(valor).style.display = "none";
+    valorE = valorE.replace(valor + ";", "");
+    document.getElementById("etiquetas").value = valorE;
+    
+}
