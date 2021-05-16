@@ -199,19 +199,7 @@
         ws.receive = (m) => {
             procesarMensaje(m);
         }
-
-        function getFoto(id) {
-
-            $.ajax({
-            type:"GET",
-            url: config.rootUrl + "/user/"+id+"/foto",
-            success: function(data){
-                console.log(url);
-                console.log(data);
-                return data;
-            }
-        });
-        }
+        
         function procesarMensaje(m){
             const my_id = user_id;
             const element = document.getElementById("tablon");
@@ -266,9 +254,8 @@
                 node11.className = "incoming_msg_img";
                 let foto = document.createElement('img');
                 foto.className = "avatar";
-               //foto.src = (m.img_sender != null) ? getFoto() : "https://ptetutorials.com/images/user-profile.png";
-               foto.src = getFoto(m.id_sender);
-                //<img class="img guia_tour_foto" th:src="@{/user/{id}/foto(id=${user.Id})}" alt="La imagen del guia" >
+                const url_foto = "/user/"+m.id_sender+"/foto";
+                foto.src =  url_foto;
                 node11.appendChild(foto);
 
                 let nodo12 = document.createElement('h3');
