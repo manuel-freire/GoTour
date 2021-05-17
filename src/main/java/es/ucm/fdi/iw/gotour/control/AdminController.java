@@ -28,6 +28,9 @@ import es.ucm.fdi.iw.gotour.LocalData;
 import es.ucm.fdi.iw.gotour.model.User;
 import es.ucm.fdi.iw.gotour.model.Tour;
 import es.ucm.fdi.iw.gotour.model.TourOfertado;
+import es.ucm.fdi.iw.gotour.model.Reporte;
+
+
 
 /**
  * Admin-only controller
@@ -82,10 +85,39 @@ public class AdminController {
 
 
 		int userNumber= users.size();
+		List<Reporte> reportes = entityManager.createNamedQuery("AllReportes").getResultList();
+        int reportesNumber=0;
+		reportesNumber= reportes.size();
+  
+		List<Reporte> reportesTour= new ArrayList<Reporte>();
+		List<Reporte> reportesUser= new ArrayList<Reporte>();
+      
+		for(int i=0;i<reportes.size();i++){
+			Reporte aux=reportes.get(i);
+			String tipo=aux.getTipo();
+			if(tipo.equalsIgnoreCase("TOUR")){
+				reportesTour.add(aux);
+			}
+			if(aux.getTipo().equalsIgnoreCase("USER")){
+				reportesUser.add(aux);
+			}
+		}
+
+		int reportesTourNumber=0;
+        reportesTourNumber=reportesTour.size();
+
+		int reportesUserNumber=0;
+        reportesUserNumber=reportesUser.size();
+		
         // adds them to model
         model.addAttribute("userNumber", userNumber);
 		model.addAttribute("users", users);
 		model.addAttribute("tourNumber", tourNumber);
+		model.addAttribute("reportesNumber", reportesNumber);
+		model.addAttribute("reportesUser", reportesTour);
+		model.addAttribute("reportesTour", reportesUser);
+		model.addAttribute("reportesUser", reportesTourNumber);
+		model.addAttribute("reportesTour", reportesUserNumber);
 		model.addAttribute("classActiveAdmin","active");		
         return "admin/index";
 
@@ -177,13 +209,41 @@ public class AdminController {
 
 	}
 
+	@GetMapping("/{id}/contesta-reporte")
+	public String contestaReporte(Model model, @PathVariable("id") long id) {
+	Reporte r = entityManager.find(Reporte.class, id);
+	model.addAttribute("reporte",r);
+	model.addAttribute("classActiveSettings","active");
+	return "admin/contesta-reporte";
+
+
+	}
+
+	@PostMapping("/{id}/contesta-reporte-admin")
+	public String contestarAlReporte(Model model, HttpSession session,@RequestParam String motivo, @RequestParam String reporte, @PathVariable("id") long id) {
+	Reporte r = entityManager.find(Reporte.class, id);
+	model.addAttribute("classActiveSettings","active");
+	return "admin/";
+
+
+	}
+	
+	@PostMapping("/{id}/no-contesta-reporte")
+	public String noContestarAlReporte(Model model, HttpSession session,@RequestParam String motivo, @RequestParam String reporte, @PathVariable("id") long id) {
+		
+	model.addAttribute("classActiveSettings","active");
+	return "admin/";
+
+
+	}
+
 
 	@PostMapping("/userSearch")
     public String searchUsers(Model model,@RequestParam String username
                                         ,@RequestParam String email
                                         ){
 
-											System.out.println("Hola");
+											
         List<User> busqueda = entityManager.createNamedQuery("UsersByAdminSearch")
             .setParameter("usernameParam", username)
             .setParameter("emailParam", email).getResultList();      	

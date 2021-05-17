@@ -362,21 +362,47 @@ public class UserController {
         return "perfil";
     }
 
-	@GetMapping("/{id}/reporte")
+	@PostMapping("/{id}/userReportado")
 	@Transactional
-    public String reporteUser(Model model, HttpSession session,@RequestParam String motivo, @RequestParam String reporte, @PathVariable("id") long id)
+    public String reportarUser(Model model, HttpSession session,@RequestParam String motivo, @RequestParam String reporte, @PathVariable("id") long id)
     {
 	    User user = entityManager.find(User.class, id);
 		User userCreador = entityManager.find(User.class,((User)session.getAttribute("u")).getId());
         Reporte r = new Reporte();
-
+        r.setTipo("USER");
 		r.setCreador(userCreador);
+		r.setMotivo(motivo);
         r.setTexto(reporte);
         r.setTourReportado(null);
         r.setUserReportado(user);
-                            
+		r.setContestada(false);
+		userCreador.getReporteCreados().add(r);
+		entityManager.persist(r);
+        entityManager.flush();
+		List<User> users = entityManager.createNamedQuery("AllUsers").getResultList(); 
+
+		for(int i=0; i<users.size();i++){
+			User admin=users.get(i);
+			boolean a=false;
+			if(admin.hasRole(Role.ADMIN)){
+				a=true;
+				admin.getReporteRecibidos().add(r);
+			}
+		}
+		
+
+        
+		return "redirect:/";
+    }
+
+	@GetMapping("/{id}/reporteUser")
+	@Transactional
+    public String reporteUser(Model model, HttpSession session, @PathVariable("id") long id)
+    {
+		
+	    User user = entityManager.find(User.class, id);
         model.addAttribute("user", user);
-        return "reporte";
+        return "reporteUser";
     }
 
 	@GetMapping("/{id}/foto")

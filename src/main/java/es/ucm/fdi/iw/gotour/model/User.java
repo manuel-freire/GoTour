@@ -164,14 +164,19 @@ public class User implements Transferable<User.Transfer> {
 
 	@ElementCollection
 	private List<String> idiomasHablados=new ArrayList<>();
-	
+
 
 	@OneToMany
 	@JoinColumn(name = "Sender_id")
 	private List<Mensaje> sent = new ArrayList<>();
 	@OneToMany
 	@JoinColumn(name = "Recipient_id")	
-	private List<Mensaje> received = new ArrayList<>();	
+	private List<Mensaje> received = new ArrayList<>();
+    
+	@OneToMany(targetEntity=Reporte.class)
+	private List<Reporte> reporteCreados = new ArrayList<>();
+	@OneToMany(targetEntity=Reporte.class)
+	private List<Reporte> reporteRecibidos = new ArrayList<>();	
 	
 	// utility methods
 	
@@ -194,6 +199,13 @@ public class User implements Transferable<User.Transfer> {
 		idiomasHablados.add(idioma);
 	}
 
+	public void addReporteRespuestas(Reporte e){
+		reporteRecibidos.add(e);
+	}
+	public void addReporteCreados(Reporte e){
+		reporteCreados.add(e);
+	}
+
     @Getter
     @AllArgsConstructor
     public static class Transfer {
@@ -210,12 +222,14 @@ public class User implements Transferable<User.Transfer> {
 		private List<Mensaje> Received;
 		private List<Review> ReviewsRecibidas;
 		private List<String> IdiomasHablados;
+		private List<Reporte> ReporteRespuestas;
+		private List<Reporte> ReporteCreados;
 
     }
 
 	@Override
     public Transfer toTransfer() {
-		return new Transfer(id, apellidos, nombre,	username, numTelefono, puntuacion, tourOfertados, toursAsistidos, reviewsHechas, sent,  received, reviewsRecibidas, idiomasHablados);
+		return new Transfer(id, apellidos, nombre,	username, numTelefono, puntuacion, tourOfertados, toursAsistidos, reviewsHechas, sent,  received, reviewsRecibidas, idiomasHablados, reporteRecibidos, reporteCreados);
     }
 
 	@Override

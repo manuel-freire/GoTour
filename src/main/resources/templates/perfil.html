@@ -55,8 +55,8 @@
                            <div class="ml-3"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#crearTour"><a th:href="@{'/crearTour'}">Crear Tour</a></button></div>
                         </div>
                         <div th:if="${(session.u != null) and (session.u.Id != user.Id)} " >
-                           <div class="ml-3"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#reportarUsuario"><a th:href="">Reportar Usuario</a></button></div>
-                        </div>
+                           <div class="ml-3"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#crearTour"><a th:href="@{'/user/'+${user.id}+'/reporteUser'}">Reportar</a></button></div>
+                        </div>                                                                                                      
                      </div>
                      
                      <div class="row">

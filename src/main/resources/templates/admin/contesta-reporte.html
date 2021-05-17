@@ -37,33 +37,62 @@
     <div class="main-panel">
       <!-- Navbar -->
 
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">Responder reporte</h4>
+          <p class="card-category">Responder Reporte</p>
+        </div>
+        <div class="card-body">
+          <form  method="post">
+            <div class="row">
+              
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="bmd-label-floating">Motivo</label>
+                  <input type="text" class="form-control" th:value="${reporte.motivo}">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="bmd-label-floating">Texto</label>
+                  <input type="text" class="form-control" th:value="${reporte.texto}">
+                </div>
+              </div>
+            </div>
+            
+    
+            <div class="clearfix"></div>
+          </form>
+        </div>
+      </div>
+
       <div class="content">
         <div class="container-fluid">
          <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Buscar Usuario</h4>
-                  <p class="card-category">Buscar usuario</p>
+                  <h4 class="card-title">Responder reporte</h4>
+                  <p class="card-category">Responder Reporte</p>
                 </div>
                 <div class="card-body">
-                  <form  method="post" th:action="@{/admin/userSearch}">
+                  <form  method="post" th:action="@{/admin/respondeReporte}">
                     <div class="row">
                       
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control" name="username">
+                          <label class="bmd-label-floating">Motivo</label>
+                          <input type="text" class="form-control" name="motivo">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Direccion Email</label>
-                          <input type="email" class="form-control" name="email">
+                          <label class="bmd-label-floating">Respuesta</label>
+                          <input type="text" class="form-control" name="respuesta">
                         </div>
                       </div>
                     </div>
                     
                    
-                    <button type="submit" class="btn btn-primary pull-right">Buscar Usuario</button>
+                    <button type="submit" class="btn btn-primary pull-right">Contestar Reporte</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
@@ -72,60 +101,7 @@
      
               </div>
       <!-- End Navbar -->
-      <div class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Usuarios</h4>
-                  <p class="card-category"> Listado de usuarios de GoTour</p>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead class=" text-primary">
-                        <th>
-                          ID
-                        </th>
-                        <th>
-                          Username
-                        </th>
-                        <th>
-                          Email
-                        </th>
-                        <th>
-                          Deshabilitar Usuario
-                        </th>
-
-                      </thead>
-                      <tbody>
-                        <tr th:each="user: ${users}">
-                          <td  th:text="${user.Id}" th:if="${user.Enabled == 1}">
-                            
-                          </td>
-                          <td th:text="${user.Username}" th:if="${user.Enabled == 1}">
-                            
-                          </td>
-                          <td th:text="${user.email}" th:if="${user.Enabled == 1}">
-                         
-                          </td> 
-                          <td>
-                            <form method="post" th:action="@{/admin/toggleuser(id=${user.Id})}">
-                              <button type="submit" class="btn btn-primary" th:if="${user.Enabled == 1}">Deshabilitar</button>
-                              
-                            </form>
-                            
-                          </td>
-                          
-                        </tr>
-                        
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
+     
 
       <footer th:replace="admin/fragment/footer.html :: footer"></footer>
 
