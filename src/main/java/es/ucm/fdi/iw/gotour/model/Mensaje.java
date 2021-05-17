@@ -55,14 +55,12 @@ public class Mensaje implements Transferable<Mensaje.Transfer> {
 		private String from;
 		private String sent;
 		private String text;
-		private String img_sender;
 
 		public Transfer(Mensaje m) {
 			this.id_sender = m.getSender().getId();
 			this.from = m.getSender().getUsername();
 			this.sent = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(m.getDateSent());
 			this.text = m.getText();
-			this.img_sender = m.getSender().getFoto();
 		}
 	}
 
@@ -72,8 +70,7 @@ public class Mensaje implements Transferable<Mensaje.Transfer> {
 			sender.getId(),
 			sender.getUsername(),
 			DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(dateSent),
-			text,
-			sender.getFoto()
+			text
         );
     }
 

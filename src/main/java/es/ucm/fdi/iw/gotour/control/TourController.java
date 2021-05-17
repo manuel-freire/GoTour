@@ -286,7 +286,6 @@ public class TourController {
 		rootNode.put("text", text);
 		rootNode.put("id", m.getId());
         rootNode.put("id_sender", sender.getId());
-        rootNode.put("img_sender", sender.getFoto());
 		String json = mapper.writeValueAsString(rootNode);
 		
 		log.info("Sending a Mensaje to {} with contents '{}'", id, json);
