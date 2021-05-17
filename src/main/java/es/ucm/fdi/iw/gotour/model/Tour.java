@@ -44,6 +44,8 @@ import lombok.NoArgsConstructor;
 	@NamedQuery(name="Tour.getToursByUser",
 		query="SELECT u FROM Tour u "
 			+ "WHERE u.datos.guia.id = :guia_id")
+
+
 })
 
 public class Tour {

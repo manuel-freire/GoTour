@@ -55,6 +55,9 @@ import es.ucm.fdi.iw.gotour.model.TourOfertado;
 import es.ucm.fdi.iw.gotour.model.User;
 import es.ucm.fdi.iw.gotour.model.Review;
 import es.ucm.fdi.iw.gotour.model.Mensaje;
+import es.ucm.fdi.iw.gotour.model.Reporte;
+import es.ucm.fdi.iw.gotour.model.User.Role;
+
 /**
  * Admin-only controller
  * @author mfreire
@@ -496,6 +499,47 @@ public class TourController {
         entityManager.persist(t);
         entityManager.flush();
         return "tour";
+    }
+
+    @PostMapping("/{id}/tourReportado")
+	@Transactional
+    public String reportarUser(Model model, HttpSession session,@RequestParam String motivo, @RequestParam String reporte, @PathVariable("id") long id)
+    {
+        Tour tour = entityManager.find(Tour.class, id);
+		User userCreador = entityManager.find(User.class,((User)session.getAttribute("u")).getId());
+        Reporte r = new Reporte();
+        r.setTipo("TOUR");
+		r.setCreador(userCreador);
+		r.setMotivo(motivo);
+        r.setTexto(reporte);
+        r.setTourReportado(tour);
+        r.setContestada(false);
+
+        userCreador.getReporteCreados().add(r);
+        entityManager.persist(r);
+        entityManager.flush();
+		List<User> users = entityManager.createNamedQuery("AllUsers").getResultList(); 
+
+		for(int i=0; i<users.size();i++){
+			User admin=users.get(i);
+			boolean a=false;
+			if(admin.hasRole(Role.ADMIN)){
+				a=true;
+				admin.getReporteRecibidos().add(r);
+			}
+		}
+        
+		return "redirect:/";
+    }
+
+	@GetMapping("/{id}/reportarTour")
+	@Transactional
+    public String reporteUser(Model model, HttpSession session, @PathVariable("id") long id)
+    {
+		
+	    Tour tour = entityManager.find(Tour.class, id);
+        model.addAttribute("tour", tour);
+        return "reporteTour";
     }
 
 }

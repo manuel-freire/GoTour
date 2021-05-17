@@ -148,7 +148,8 @@
                     <div class="droppydown-content">
                       <a th:each="t: ${tour.instancias}" th:text="${t.fechaIni}" th:onclick="'muestraInstancia(\'' + ${t.id} + '\', \'' + ${tour.instancias.size} + '\');'">Fecha</a>
                     </div>
-                  </div> 
+                  </div>
+                
 
                   <div th:each="t: ${tour.instancias}" th:id="'instancia' + ${t.id}" class="contratacion">
 
@@ -213,6 +214,20 @@
                       <button id="buttonInstancia" class="btn btn-primary btn-round margen" type="submit">Crear</button>
                     </form>
                   </div>
+                </div>
+
+    
+
+                  <div th:if="${session.u.id != tour.guia.id}" class="bg-white widget border rounded">
+                    <div class="card_guia">
+
+                          <a th:href="@{'/tour/'+${tour.id}+'/reportarTour'}" class="btn btn-primary btn-round" >Reportar Tour</a>
+                        </div>
+                    </div>
+                
+
+                 
+
                 </div>
   
             </div>
