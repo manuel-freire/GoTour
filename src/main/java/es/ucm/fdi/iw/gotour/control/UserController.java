@@ -285,6 +285,8 @@ public class UserController {
                             @RequestParam String email,
                             @RequestParam String username,
                             @RequestParam long numtelefono,
+							@RequestParam String pregunta,
+							@RequestParam String respuesta,
                             Model model, HttpSession session){
 		User user = entityManager.find(User.class, id);
 		log.info("SE HA OBTENIDO EL USUARIO {}", user);
@@ -295,8 +297,11 @@ public class UserController {
         user.setNumTelefono(numtelefono);
         user.setRoles("USER");
         user.setEnabled(1);
+		user.setPreguntaSeguridad(pregunta);
+		user.setRespuestaSeguridad(respuesta);
 		session.setAttribute("u", user);
-        return "datosPrivados";
+		model.addAttribute("u", user);
+        return "EditarDatos";
 
     }
 	@PostMapping("/actualizarFoto")
@@ -329,7 +334,7 @@ public class UserController {
             ((User)session.getAttribute("u")).getId());
 		u.addLanguaje(idioma);
 		session.setAttribute("u", u);
-		return "datosPrivados";
+		return "EditarDatos";
 	}
 
 
@@ -383,14 +388,6 @@ public class UserController {
 			}
 		};
 	}
-
-
-	@GetMapping("/{id}/datosPrivados")
-    public String datosPrivados(Model model, HttpSession session, @PathVariable("id") Long id)
-    {
-        return "datosPrivados";
-    }
-
 	@GetMapping("/editarDatos")
 	public String editar(Model model, HttpSession session) {
 		User user = entityManager.find(User.class, ((User)session.getAttribute("u")).getId());
@@ -399,7 +396,7 @@ public class UserController {
                 .getResultList();
 		model.addAttribute("idiomas",idiomas);
         model.addAttribute("u", user);
-		return "editarDatos";
+		return "EditarDatos";
 	}
 
 
