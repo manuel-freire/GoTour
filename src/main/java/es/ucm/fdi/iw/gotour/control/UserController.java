@@ -224,15 +224,22 @@ public class UserController {
 			log.error("Fallo al hacer logout", e);
 		}
 		{
-			List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();        
-			// dumps them via log
-			log.info("Dumping table {}", "tour");
-			for (Object o : tours) {
-				log.info("\t{}", o);
-			}        
-			// adds them to model
-			model.addAttribute("tours", tours);			
-			return "index";
+		List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList();        
+        // dumps them via log
+        log.info("Dumping table {}", "tour");
+        for (Object o : tours) {
+            log.info("\t{}", o);
+        }     
+        List<User> users = entityManager.createNamedQuery("AllUsersByPuntuacion").setMaxResults(20).getResultList();        
+        // dumps them via log
+        log.info("Dumping table {}", "user");
+        for (Object o : users) {
+            log.info("\t{}", o);
+        }       
+        // adds them to model
+        model.addAttribute("tours", tours);	
+        model.addAttribute("users", users);		
+		return "index";
 		}
 	}
 
@@ -312,7 +319,7 @@ public class UserController {
 		}
 
 		//return perfil(model,session,id);*/
-		return "datosPrivados";
+		return perfil(model,session,u.getId());
 	}
 	@PostMapping("/addLanguaje")
 	@Transactional

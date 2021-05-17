@@ -267,6 +267,18 @@ jQuery(document).ready(function($) {
 	};
 	siteDatePicker();
 
-	
+	$("#exploraGuias").hide();
+	$("#selectExploraTours").click(function(){
+		$("#selectExploraGuias").removeClass("active");
+		$("#selectExploraTours").addClass("active");
+		$("#exploraGuias").hide();
+		$("#exploraTours").show();
+	});
+	$("#selectExploraGuias").click(function(){
+		$("#selectExploraTours").removeClass("active");
+		$("#selectExploraGuias").addClass("active");
+		$("#exploraGuias").show();
+		$("#exploraTours").hide();
+	});
 
 });

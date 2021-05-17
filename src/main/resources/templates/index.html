@@ -58,36 +58,33 @@
               <div class="col-md-2">
                 <label for="pais">Pais</label>
                 <div class="select-wrap">
-                  <span class="icon icon-arrow_drop_down"></span>
-                  <input type="text" class="form-control d-block rounded-0" name="pais" placeholder="Pais">
+                  <input type="text" class="form-control d-block rounded-0" name="pais" placeholder="Pais" required>
                 </div>
               </div>
               <div class="col-md-2">
                 <label for="ciudad">Ciudad</label>
                 <div class="select-wrap">
-                  <span class="icon icon-arrow_drop_down"></span>
-                  <input type="text" class="form-control d-block rounded-0" name="ciudad" placeholder="Ciudad">
+                  <input type="text" class="form-control d-block rounded-0" name="ciudad" placeholder="Ciudad" required>
                 </div>
               </div>
               <div class="col-md-2">
                 <label for="lugar">Lugar</label>
                 <div class="select-wrap">
-                  <span class="icon icon-arrow_drop_down"></span>
-                  <input type="text" class="form-control d-block rounded-0" name="lugar" placeholder="Lugar">
+                  <input type="text" class="form-control d-block rounded-0" name="lugar" placeholder="Lugar" required>
                 </div>
               </div>
 
                <div class="col-md-2">
                 <label for="fechaini">Fecha Inicio</label>
                 <div class="select-wrap">
-                  <input type="datetime-local" class="form-control d-block rounded-0" name="fechaini" />
+                  <input type="datetime-local" class="form-control d-block rounded-0" name="fechaini" required />
                   
                 </div>
               </div>
                <div class="col-md-2">
                 <label for="fechafin">Fecha Fin</label>
                 <div class="select-wrap">
-                  <input type="datetime-local" class="form-control d-block rounded-0" name="fechafin" />
+                  <input type="datetime-local" class="form-control d-block rounded-0" name="fechafin" required />
                   
                 </div>
               </div>
@@ -99,16 +96,15 @@
         </div>  
 
 
-        <div class="site-section site-section-sm bg-light" th:if="${busqueda!=null}">
+        <div class="site-section site-section-sm bg-light busqueda" th:if="${busqueda!=null}">
           <div class="container">
           
-            <div class="row mb-5">
+            <div class="row">
               <div class="col-md-6 col-lg-4 mb-4" th:each="tour: ${busqueda}">
                 <div class="property-entry h-100">
                   <a href="property-details.html" class="property-thumbnail">
                     <div class="offer-type-wrap">
-                      <span class="offer-type bg-danger">Sale</span>
-                      <span class="offer-type bg-success">Rent</span>
+                      <span class="offer-type bg-success">ABIERTO</span>
                     </div>
                     
                     <img th:src="@{/tour/{id}/portada(id=${tour.datos.id})}" alt="Image" class="img-fluid">
@@ -116,7 +112,7 @@
                   <div class="p-4 property-body">
                     <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
                     <h2 class="property-title"  th:text="${tour.datos.guia.nombre}"><a href="property-details.html"></a></h2>
-                    <span class="property-location d-block mb-3"  th:text="${tour.datos.titulo}"><span class="property-icon icon-room"></span> Sidney, Australia</span>
+                    <span class="property-location d-block mb-3"  th:text="${tour.datos.titulo}"><span class="property-icon icon-room"></span></span>
                     <strong class="property-price text-primary mb-3 d-block text-success" th:text="${tour.datos.precio}+'€'"></strong>
                     <ul class="property-specs-wrap mb-3 mb-lg-0">
     
@@ -148,26 +144,26 @@
         <div class="row">
           <div class="col-md-12">
             <div class="view-options bg-white py-3 px-3 d-md-flex align-items-center">
-              <div class="mr-auto">
+              <!--<div class="mr-auto">
                 <a th:href="@{index.html}" class="icon-view view-module active"><span class="icon-view_module"></span></a>
                 <a href="view-list.html" class="icon-view view-list"><span class="icon-view_list"></span></a>
                 
-              </div>
+              </div>-->
               <div class="ml-auto d-flex align-items-center">
                 <div>
-                  <a href="#" class="view-list px-3 border-right active">Tours</a>
-                  <a href="#" class="view-list px-3 border-right">Guías turísticos</a>
+                  <a class="view-list px-3 border-right active selectExplora" id="selectExploraTours">Tours</a>
+                  <a class="view-list px-3 selectExplora" id="selectExploraGuias">Guías turísticos</a>
                 </div>
 
 
-                <div class="select-wrap">
+                <!--<div class="select-wrap">
                   <span class="icon icon-arrow_drop_down"></span>
                   <select class="form-control form-control-sm d-block rounded-0">
                     <option value="">Ordenar por</option>
                     <option value="">Reputación</option>
                     <option value="">Precio</option>
                   </select>
-                </div>
+                </div>-->
               </div>
             </div>
           </div>
@@ -176,19 +172,18 @@
       </div>
     </div>
 
-    <div class="site-section site-section-sm bg-light">
+    <div class="site-section site-section-sm bg-light" id="exploraTours">
       <div class="site-section-title text-center">
-        <h2>Explora Tours</h2>
+        <h2 class="card-title mb-4">Explora Tours</h2>
       </div>      
       <div class="container">
       
-        <div class="row mb-5">
-          <div class="col-md-6 col-lg-4 mb-4" th:each="tour: ${tours}">
+        <div class="row mb-5 lista-tours">
+          <div class="col-md-6 col-lg-4 mb-4" th:each="tour: ${tours}" th:if="${tour.Datos.Disponible}">
             <div class="property-entry h-100">
               <a th:href="@{'/tour/'+${tour.datos.Id}}" class="property-thumbnail">
                 <div class="offer-type-wrap">
-                  <span class="offer-type bg-danger">Sale</span>
-                  <span class="offer-type bg-success">Rent</span>
+                  <span class="offer-type bg-success">ABIERTO</span>
                 </div>
 
                 <img th:href="@{'/tour/'+${tour.id}}" th:src="@{/tour/{id}/portada(id=${tour.datos.id})}" alt="Image" class="img-fluid">
@@ -225,7 +220,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <!--<div class="row">
           <div class="col-md-12 text-center">
             <div class="site-pagination">
               <a href="#" class="active">1</a>
@@ -236,103 +231,51 @@
               <span>...</span>
               <a href="#">10</a>
             </div>
-          </div>  
+          </div>  -->
         </div>
         
       </div>
-    </div>
-
-    <div class="site-section">
+    </div> 
+    <div class="site-section site-section-sm bg-light" id="exploraGuias">
+      <div class="site-section-title text-center">
+        <h2 class="card-title mb-4">Explora Guias</h2>
+      </div>      
       <div class="container">
       
+        <div class="row mb-5 lista-tours">
+          <div class="col-md-6 col-lg-4 mb-4" th:each="user: ${users}">
+            <div class="property-entry h-100">
+              <a th:href="@{'/user/'+${user.Id}+'/perfil'}" class="property-thumbnail">
 
-       
+                <img th:href="@{'/user/'+${user.Id}+'/perfil'}" th:src="@{'/user/'+${user.Id}+'/foto'}" alt="Image" class="img-fluid">
+              </a>
+              <div class="p-4 property-body">
+                <h2 class="property-title"  th:text="${user.Nombre}+' '+${user.Apellidos}"><a th:href="@{'/user/'+${user.Id}+'/perfil'}"></a></h2>
+                <div class="row">
+                  <div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}"><img class="card-category img-fluid ml-3" th:src="@{/img/star.png}" width="30"/></div>
+               </div>
 
-   
-
-    
-    <div class="site-section">
-    <div class="container">
-      <div class="row mb-5 justify-content-center">
-        <div class="col-md-7">
-          <div class="site-section-title text-center">
-            <h2>Guias más populares</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero magnam officiis ipsa eum pariatur labore fugit amet eaque iure vitae, repellendus laborum in modi reiciendis quis! Optio minima quibusdam, laboriosam.</p>
+              </div>
+            </div>
           </div>
         </div>
+        <!--<div class="row">
+          <div class="col-md-12 text-center">
+            <div class="site-pagination">
+              <a href="#" class="active">1</a>
+              <a href="#">2</a>
+              <a href="#">3</a>
+              <a href="#">4</a>
+              <a href="#">5</a>
+              <span>...</span>
+              <a href="#">10</a>
+            </div>
+          </div>  -->
+        </div>
+        
       </div>
-      <div class="row">
-          <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
-            <div class="team-member">
-
-              <img th:src="@{images/person_1.jpg}" alt="Image" class="img-fluid rounded mb-4">
-
-              <div class="text">
-
-                <h2 class="mb-2 font-weight-light text-black h4">Megan Smith</h2>
-                <span class="d-block mb-3 text-white-opacity-05">Real Estate Agent</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi dolorem totam non quis facere blanditiis praesentium est. Totam atque corporis nisi, veniam non. Tempore cupiditate, vitae minus obcaecati provident beatae!</p>
-                <p>
-                  <a href="#" class="text-black p-2"><span class="icon-facebook"></span></a>
-                  <a href="#" class="text-black p-2"><span class="icon-twitter"></span></a>
-                  <a href="#" class="text-black p-2"><span class="icon-linkedin"></span></a>
-                </p>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
-            <div class="team-member">
-
-              <img th:src="@{images/person_2.jpg}" alt="Image" class="img-fluid rounded mb-4">
-
-              <div class="text">
-
-                <h2 class="mb-2 font-weight-light text-black h4">Brooke Cagle</h2>
-                <span class="d-block mb-3 text-white-opacity-05">Real Estate Agent</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, cumque vitae voluptates culpa earum similique corrupti itaque veniam doloribus amet perspiciatis recusandae sequi nihil tenetur ad, modi quos id magni!</p>
-                <p>
-                  <a href="#" class="text-black p-2"><span class="icon-facebook"></span></a>
-                  <a href="#" class="text-black p-2"><span class="icon-twitter"></span></a>
-                  <a href="#" class="text-black p-2"><span class="icon-linkedin"></span></a>
-                </p>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
-            <div class="team-member">
-
-              <img th:src="@{images/person_3.jpg}" alt="Image" class="img-fluid rounded mb-4">
-
-              <div class="text">
-
-                <h2 class="mb-2 font-weight-light text-black h4">Philip Martin</h2>
-                <span class="d-block mb-3 text-white-opacity-05">Real Estate Agent</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores illo iusto, inventore, iure dolorum officiis modi repellat nobis, praesentium perspiciatis, explicabo. Atque cupiditate, voluptates pariatur odit officia libero veniam quo.</p>
-                <p>
-                  <a href="#" class="text-black p-2"><span class="icon-facebook"></span></a>
-                  <a href="#" class="text-black p-2"><span class="icon-twitter"></span></a>
-                  <a href="#" class="text-black p-2"><span class="icon-linkedin"></span></a>
-                </p>
-              </div>
-
-            </div>
-          </div>
-
-          
-
-        </div>
-    </div>
-    </div>
-    
-
-    <footer th:replace="fragments/footer.html :: footer">
-     
-    </footer>
-
+    </div> 
+    <footer th:replace="fragments/footer.html :: footer"></footer>
   </div>
 
   <script th:src="@{~/js/jquery-3.3.1.min.js}"></script>
