@@ -43,6 +43,7 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -292,25 +293,12 @@ public class TourController {
 		return "{\"result\": \"mensaje sent.\"}";
 	}
 
-    
-    @GetMapping("/{id}/crearInstancia2")
-    @Transactional
-    public String crearInstancia2(@PathVariable("id") long id, Model model, HttpSession session)
-    {
-        TourOfertado tour = entityManager.find(TourOfertado.class, id);
-        model.addAttribute("tour", tour);
-        model.addAttribute("inicial", false);
-
-        return "crearInstancia";
-    }
-
     @GetMapping("/{id}/crearInstancia")
     @Transactional
     public String crearInstancia(@PathVariable("id") long id, Model model, HttpSession session)
     {
         TourOfertado tour = entityManager.find(TourOfertado.class, id);
         model.addAttribute("tour", tour);
-        model.addAttribute("inicial", true);
 
         return "crearInstancia";
     }
@@ -324,7 +312,12 @@ public class TourController {
                             @RequestParam String descripcion,
                             @RequestParam int maxTuristas,
                             @RequestParam double precio,
-                            Model model, HttpSession session) {
+                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaIni,
+                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaFin,
+                            @RequestParam("portada") MultipartFile portada,
+                            @RequestParam("mapa") MultipartFile mapa,
+                            @RequestParam String etiquetas,
+                            Model model, HttpSession session) throws IOException {
 
         TourOfertado tourO = new TourOfertado();
 
@@ -336,6 +329,8 @@ public class TourController {
         tourO.setMaxTuristas(maxTuristas);
         tourO.setPrecio(precio);
         tourO.setDisponible(true);
+        tourO.setEtiquetas(Arrays.asList(etiquetas.split(";")));
+        
 
         User guia = entityManager.find(User.class, ((User)session.getAttribute("u")).getId());
         tourO.setGuia(guia);
@@ -343,7 +338,10 @@ public class TourController {
         entityManager.persist(tourO);
         entityManager.flush();
 
-        return portada(tourO.getId(), model, session);
+        portada(tourO.getId(), portada, mapa, model, session);
+        nuevoTour(tourO.getId(), fechaIni, fechaFin, model, session);
+
+        return "redirect:/tour/" + tourO.getId();
     }
 
     @GetMapping("/{id}/actualizarPortada")

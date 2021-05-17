@@ -61,3 +61,28 @@
   .droppy:hover .droppydown-content {
     display: block;
   }
+
+#divFinal {
+  display: none;
+  margin: 20px;
+}
+
+#instanciaNueva {
+  display: none;
+}
+
+.convocatorias{
+  text-align: center;
+}
+
+.margen{
+  margin: 20px;
+}
+
+form{
+  display: contents;
+}
+
+.inputBonito{
+  width: -webkit-fill-available;
+}

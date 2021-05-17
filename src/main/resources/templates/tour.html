@@ -83,7 +83,12 @@
                   </div>
                 </div>
   
-                <div class="row mb-5">                
+                <div class="row mb-5">  
+                  <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
+                    <span class="d-inline-block text-black mb-0 caption-text" >País</span>
+                    <strong class="d-block" th:text="${tour.pais}">$520</strong>
+                  </div>
+                  
                   <div class="col-md-6 col-lg-4 text-center border-bottom border-top py-3">
                     <span class="d-inline-block text-black mb-0 caption-text" >Ciudad</span>
                     <strong class="d-block" th:text="${tour.ciudad}">$520</strong>
@@ -132,7 +137,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white widget border rounded">
+                <div class="bg-white widget border rounded convocatorias">
 
                   <h3 class="h4 text-black widget-title mb-3">Fechas disponibles</h3>
 
@@ -187,8 +192,27 @@
 
                   </div>
 
-                  <a th:if="${session.u.id == tour.guia.id}" th:href="@{'/tour/'+${tour.id}+'/crearInstancia2'}" class="btn btn-primary btn-round">Añadir nueva convocatoria</a>
+                  <div class="convocatorias">
+                    <a th:if="${session.u.id == tour.guia.id}" onclick="instanciaNueva()" class="btn btn-primary btn-round" >Nueva convocatoria</a>
+                  </div>
 
+                </div>
+
+                <div class="bg-white widget border rounded" id="instanciaNueva" th:if="${session.u.id == tour.guia.id}">
+                  <div class="convocatorias">
+                    <form class="form-tour" method="post" th:action="@{/tour/{id}/instancia(id=${tour.id})}">
+
+                      <h5>Fecha y hora de inicio</h5>
+                      <input type="datetime-local" id="fechaInicial" name="fechaIni" placeholder="Fecha de inicio" required onchange="siguientePaso()"/>
+          
+                      <div id="divFinal">
+                        <h5>Fecha y hora de fin</h5>
+                        <input type="datetime-local" id="fechaFinal" name="fechaFin" placeholder="Fecha de fin" required onchange="validarFechas()" />
+                      </div>
+                      
+                      <button id="buttonInstancia" class="btn btn-primary btn-round margen" type="submit">Crear</button>
+                    </form>
+                  </div>
                 </div>
   
             </div>
