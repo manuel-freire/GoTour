@@ -56,6 +56,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.ucm.fdi.iw.gotour.LocalData;
@@ -175,12 +176,24 @@ public class RootController {
     {  
         return "busqueda";
     }
+    @GetMapping("/validar")
+    @ResponseBody
+	public Long validarUser(@RequestParam String username,
+						Model model, HttpSession session) throws IOException {
+		Long res = (Long)entityManager.createNamedQuery("User.hasUsername")
+		.setParameter("username", username)
+		.getSingleResult();
+		log.info("El numero de usuarios con ese nombre es {}", res);
+		String response;
+		// if(res > 0){
+		// 	response = "<span id='Ocupado'style='color: red;'>Not Available.</span>";
+		// }
+		// else{
+		// 	response = "<span id='Libre' style='color: green;'>Available.</span>";
+		// }
+		return res;
+	}
 
-    @GetMapping("/leeme")
-    public String leeme(Model model, HttpSession session )
-    {  
-        return "leeme";
-    }
 
    
 

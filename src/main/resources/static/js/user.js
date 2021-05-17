@@ -58,6 +58,8 @@ $(document).ajaxSend(function(e, xhr, options) {
   });
 }
 
+
+
 $("[name=review-user]").on("click", addReviewUser);
 function addReviewUser() {
   var token = $("meta[name='_csrf']").attr("content");
@@ -107,3 +109,37 @@ $(document).ajaxSend(function(e, xhr, options) {
   }
 });
 }
+
+$("[name=username]").on("keyup", validarUser);//Esto para validar usuarios
+
+  function validarUser(){
+    var username = document.getElementById("username")
+
+     if(username.value != ''){
+        $.ajax({
+           url: '/validar',
+           type: 'GET',
+           data: {username: username.value},
+           success: function(response){
+             console.log("ha funcionado");
+             if(response > 0){
+               console.log("Nombre ocupado ", response);
+               username.setCustomValidity("Ese nombre de usuario ya esta cogido");
+
+             }
+             else{
+               console.log("Nombre ocupado ", response);
+               username.setCustomValidity("");
+
+             }
+
+              //  $('#username_response').html(response);
+
+            }
+        });
+     }else{
+        console.log("No ha funcionado y porque username esta vacio");
+        $("#username_response").html("");
+     }
+
+   }
