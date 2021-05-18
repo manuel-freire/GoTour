@@ -232,7 +232,7 @@
                            <h5 class="card-title creador"><a th:href="@{/user/{id}/perfil(id=${review.creador.id})}" th:text="${review.creador.username}"></a></h5>
                            <h5 class="card-title tour"><a th:href="@{/tour/{id}(id=${review.tourValorado.Id})}" th:text="${review.tourValorado.datos.titulo}"></a></h5>
                            <div class="row">
-                              <div th:each="i: ${#numbers.sequence(1, user.puntuacion)}" class="col-lg-1"><img th:src="@{/img/star.png}" width="30" /></div>
+                              <div th:each="i: ${#numbers.sequence(1, user.puntuacion)}" class="col-lg-1"><img th:src="@{/img/estrellas.png}" width="30" /></div>
                            </div>
                            <p class="card-text textoReview" th:text="${review.texto}"></p>
                         </div>

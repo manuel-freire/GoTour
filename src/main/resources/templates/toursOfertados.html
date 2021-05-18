@@ -57,7 +57,7 @@
         </div>
         <img id="user" th:src="@{/img/perro.jpg}" alt="La imagen del usuario" class="custom1">
 
-        <div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}"><img th:src="@{/img/star.png}" width="30" /></div>
+        <div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}"><img th:src="@{/img/estrellas.png}" width="30" /></div>
         <div>
             <h3>-------------Tours disponibles---------------</h3> <a th:href="@{/user/{id}/toursOfertados(id=${user.id})}" >Ver todo</a>
             <div class="tour" th:each="tour: ${user.tourOfertados}">

@@ -408,7 +408,7 @@ public class TourController {
 			in = new BufferedInputStream(new FileInputStream(f));
 		} else {
 			in = new BufferedInputStream(getClass().getClassLoader()
-					.getResourceAsStream("static/img/default_tour.jpg"));
+					.getResourceAsStream("static/img/default_tour.jfif"));
 		}
 		return new StreamingResponseBody() {
 			@Override

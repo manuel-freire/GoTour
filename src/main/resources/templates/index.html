@@ -252,7 +252,7 @@
               <div class="p-4 property-body">
                 <h2 class="property-title"  th:text="${user.Nombre}+' '+${user.Apellidos}"><a th:href="@{'/user/'+${user.Id}+'/perfil'}"></a></h2>
                 <div class="row">
-                  <div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}"><img class="card-category img-fluid ml-3" th:src="@{/img/star.png}" width="30"/></div>
+                  <div th:each="i: ${#numbers.sequence(1, user.Puntuacion)}"><img class="card-category img-fluid ml-3" th:src="@{/img/estrellas.png}" width="30"/></div>
                </div>
 
               </div>
