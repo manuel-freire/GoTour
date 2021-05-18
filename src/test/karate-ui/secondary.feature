@@ -24,23 +24,23 @@ Scenario: Registrarse, crear un tour y editar la direccion de correo nueva
   # Nos metemos en nuestro perfil
   * click("a[id=perfil_ref]")
   * match html('title') contains 'Perfil'
-  #* click("a[id=crearTour]")
+  * click("a[id=crearTour]")
   * driver.screenshot()
-  # A continuacion creariamos un tour pero en el estado actual del perfil no hay boton para ello
-  #* input('#pais', 'España')
-  #* input('#ciudad', 'Madrid')
-  #* input('#lugar', 'Sol')
-  #* input('#titulo', 'Tour de Ejemplo')
-  #* input('#descripcion', 'Tour muy bonito que se hace para empezar a probar la funcionalidad de crearTours')
-  #* driver.screenshot()
-  #* input('#fechaIni', '10-10-2021')
-  #* input('#fechaFin', '10-11-2021')
-  #* input('#maxTuristas', '15')
-  #* input('#precio', '10')
-  #* driver.screenshot()
-  #* submit().click("[type=submit]")
+  # A continuacion creamos un tour
+  * input('#pais', 'España')
+  * input('#ciudad', 'Madrid')
+  * input('#lugar', 'Sol')
+  * input('#titulo', 'Tour de Ejemplo')
+  * input('#descripcion', 'Tour muy bonito que se hace para empezar a probar la funcionalidad de crearTours')
+  * driver.screenshot()
+  * input('#fechaInicial', '10-10-2021 11:40')
+  * input('#fechaFinal', '10-11-2021 12:50')
+  * input('#maxTuristas', '15')
+  * input('#precio', '10')
+  * driver.screenshot()
+  * click("[type=submit]")
   #* match html('title') contains 'Tour'
-  #* driver.screenshot()
+  * driver.screenshot()
   #* click("a[id=perfil_ref]")
   #* driver.screenshot()
   # Lo de editar no esta acabado aun

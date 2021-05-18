@@ -79,7 +79,7 @@
                         <input name="valoracion" th:id="'valoracion' + ${u.id}" type="number" class="form-control" th:value="0" th:min=0 th:max=5 th:if="${valoradosu.get(u.Id)!= true}">
                         <label for="textoReview" th:if="${valoradosu.get(u.id)!= true}">Explique aqui los motivos de su valoracion</label>
                         <input name="textoReview" th:id="'textoReview' + ${u.id} " type="text" class="form-control" th:if="${valoradosu.get(u.id)!= true}">
-                        <button name="review-user" class="btn btn-primary py-2 px-4 rounded-0 col-lg-3" th:if="${valoradosu.get(u.id)!= true}">Enviar</button>
+                        <button name="review-user" th:id="review-user" class="btn btn-primary py-2 px-4 rounded-0 col-lg-3" th:if="${valoradosu.get(u.id)!= true}">Enviar</button>
                       <!-- </form> -->
                     </div>
               </div>
