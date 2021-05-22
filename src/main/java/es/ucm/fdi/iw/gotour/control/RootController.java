@@ -96,6 +96,7 @@ public class RootController {
         return index(model, session);
     }
 
+    @Transactional
     @GetMapping("/")            // <-- en qué URL se expone, y por qué métodos (GET)        
     public String index(        // <-- da igual, sólo para desarrolladores
             Model model, HttpSession session)        // <-- hay muchos, muchos parámetros opcionales
@@ -121,11 +122,10 @@ public class RootController {
         return "index";
     }
 
-    @Transactional
     public void actualizarTours(){
         List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList(); 
         for(Tour t:tours){
-            if(t.getFechaIni().isBefore(LocalDateTime.now())){
+            if(t.cerrado()){
                 t.getDatos().setDisponible(false);
             }
             else{
