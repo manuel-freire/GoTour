@@ -302,6 +302,10 @@ public class UserController {
 		user.setRespuestaSeguridad(respuesta);
 		session.setAttribute("u", user);
 		model.addAttribute("u", user);
+		List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
+		.setParameter("user_id", user.getId())
+		.getResultList();
+		model.addAttribute("idiomas", idiomas);
         return "EditarDatos";
 
     }
