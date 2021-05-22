@@ -335,7 +335,7 @@ public class UserController {
             ((User)session.getAttribute("u")).getId());
 		u.addLanguaje(idioma);
 		session.setAttribute("u", u);
-		return "EditarDatos";
+		return "index";
 	}
 
 
