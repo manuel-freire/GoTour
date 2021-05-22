@@ -16,6 +16,7 @@ $(document).ajaxSend(function(e, xhr, options) {
     success: function(respuesta) {
 
       var listaIdiomas = $("#lista-idiomas");
+      console.log("Se lee bien el idioma")
       listaIdiomas.append(
         '<div>'
       +     '<p class="idiomas">'+$("#idioma").val()+ '</p>'

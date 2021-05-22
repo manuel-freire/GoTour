@@ -49,7 +49,7 @@
                      <div class="row">
                         <h2 class="card-title" th:text="${user.nombre}+' '+${user.apellidos}"></h2> 
                         <div th:if="${(session.u != null) and (session.u.id == user.id)} " >
-                           <div class="ml-3"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editarPerfil"><a th:href="@{'/user/editarDatos'}">Editar perfil</a></button></div>
+                           <div class="ml-3"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editarPerfil"><a th:href="@{'/user/editarDatos'}" th:id="editarPerfil">Editar perfil</a></button></div>
                         </div>
                         <div th:if="${(session.u != null) and (session.u.id == user.id)} " >
                            <div class="ml-3"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#crearTour"><a th:href="@{'/crearTour'}" th:id="crearTour">Crear Tour</a></button></div>

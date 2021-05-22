@@ -221,7 +221,8 @@
 						<!--<argument>src/test/karate-ui/login.feature</argument>--> 
 						<!-- <argument>src/test/karate-ui/principal.feature</argument> -->
 						<!-- <argument>src/test/karate-ui/secondary.feature</argument>				 -->
-						<argument>src/test/karate-ui/fecha.feature</argument>
+						<!-- <argument>src/test/karate-ui/fecha.feature</argument> -->
+						<argument>src/test/karate-ui/editarDatos.feature</argument>
 					</arguments>
 				</configuration>
 			</plugin>
