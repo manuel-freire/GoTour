@@ -18,12 +18,22 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.ElementCollection;
 import javax.validation.constraints.Size;
 
+
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
 
 @Entity
 @Data
 @NamedQueries({
-	@NamedQuery(name="AllReportes", query="Select r from Reporte r")
+	@NamedQuery(name="AllReportes", query="Select r from Reporte r"),
+	@NamedQuery(name="AllTypeReportes", query="Select r from Reporte r  where r.tipo=:tipo"),
+	@NamedQuery(name="ReportesByAdminSearch", query="Select r from Reporte r  where r.creador = :usernameParam")
+	
 })
 public class Reporte {
 
@@ -45,6 +55,9 @@ public class Reporte {
 
 	@ManyToOne(targetEntity=Tour.class)
 	private Tour tourReportado;
+	
+    @ManyToOne(targetEntity=User.class)
+	private User userContestado;
 
 	private String tipo;
 

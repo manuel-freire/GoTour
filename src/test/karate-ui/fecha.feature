@@ -1,4 +1,4 @@
-Feature: browser automation 2
+Feature: intentar introducir una fecha
 #mvn exec:java
 Background:
   # chromium bajo linux; 

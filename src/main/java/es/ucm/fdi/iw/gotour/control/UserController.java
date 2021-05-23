@@ -302,6 +302,10 @@ public class UserController {
 		user.setRespuestaSeguridad(respuesta);
 		session.setAttribute("u", user);
 		model.addAttribute("u", user);
+		List<String> idiomas = entityManager.createNamedQuery("User.haslanguajes")
+		.setParameter("user_id", user.getId())
+		.getResultList();
+		model.addAttribute("idiomas", idiomas);
         return "EditarDatos";
 
     }
@@ -335,7 +339,7 @@ public class UserController {
             ((User)session.getAttribute("u")).getId());
 		u.addLanguaje(idioma);
 		session.setAttribute("u", u);
-		return "EditarDatos";
+		return "index";
 	}
 
 
@@ -385,6 +389,7 @@ public class UserController {
         r.setTexto(reporte);
         r.setTourReportado(null);
         r.setUserReportado(user);
+		r.setUserContestado(null);
 		r.setContestada(false);
 		userCreador.getReporteCreados().add(r);
 		entityManager.persist(r);
@@ -402,7 +407,7 @@ public class UserController {
 		
 
         
-		return "redirect:/";
+		return "gracias-reporte-ha-sido-recibido";
     }
 
 	@GetMapping("/{id}/reporteUser")

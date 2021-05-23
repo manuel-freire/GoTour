@@ -82,9 +82,22 @@ public class TourController {
 
     RootController root;
 
+    public void actualizarTours(){
+        List<Tour> tours = entityManager.createNamedQuery("AllTours").getResultList(); 
+        for(Tour t:tours){
+            if(t.cerrado()){
+                t.getDatos().setDisponible(false);
+            }
+            else{
+                t.getDatos().setDisponible(true);
+            }
+        }
+    }	
+
     @GetMapping(value="/{id}")
     @Transactional
 	public String tourOfertado(@PathVariable long id, Model model, HttpSession session) {
+        actualizarTours();
         TourOfertado tour = entityManager.find(TourOfertado.class, id);
         User u = entityManager.find(User.class,      // IMPORTANTE: tiene que ser el de la BD, no vale el de la sesión
         ((User)session.getAttribute("u")).getId());
@@ -227,7 +240,13 @@ public class TourController {
         }        
         // adds them to model
         log.info("LOS TURISTAS SON {}", asistentes);
-        t.addTurista(u, asistentes);
+        if(!u.getToursAsistidos().contains(t)){
+            t.addTurista(u, asistentes);
+        }
+        else{
+            t.addTurista(asistentes);
+        }
+
         model.addAttribute("tours", tours);
         session.setAttribute("u", u);	
 		return "index";
@@ -513,6 +532,7 @@ public class TourController {
 		r.setMotivo(motivo);
         r.setTexto(reporte);
         r.setTourReportado(tour);
+        r.setUserContestado(null);
         r.setContestada(false);
 
         userCreador.getReporteCreados().add(r);
@@ -529,7 +549,7 @@ public class TourController {
 			}
 		}
         
-		return "redirect:/";
+		return "gracias-reporte-ha-sido-recibido";
     }
 
 	@GetMapping("/{id}/reportarTour")
