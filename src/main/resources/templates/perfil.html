@@ -88,7 +88,7 @@
                                           <div class="offer-type-wrap">
                                              <span class="offer-type bg-danger">Cerrado</span>
                                           </div>
-                                          <img th:href="@{'/tour/'+${tour.id}}" th:src="@{${tour.datos.portada}}" alt="Image" class="img-fluid">
+                                          <img th:href="@{'/tour/'+${tour.id}}" th:src="@{/tour/{id}/portada(id=${tour.id})}" alt="Image" class="img-fluid">
                                        </a>
                                        <div class="p-4 property-body">
                                           <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
