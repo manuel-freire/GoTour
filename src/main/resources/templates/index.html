@@ -186,10 +186,6 @@
                   <span class="offer-type bg-success">ABIERTO</span>
                 </div>
 
-
-                <!-- ELIMINAR AL ACABAR -->
-                <input type="datetime-local" id="fechaInicial" name="fechaIni" placeholder="Fecha de inicio" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}T[0-9]{2}:[0-9]{2}" required onchange="siguientePaso()"/>
-
                 <img th:href="@{'/tour/'+${tour.id}}" th:src="@{/tour/{id}/portada(id=${tour.datos.id})}" alt="Image" class="img-fluid">
               </a>
               <div class="p-4 property-body">
