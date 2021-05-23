@@ -58,8 +58,8 @@ INSERT INTO USER_IDIOMAS_HABLADOS VALUES (4, 'Aleman');
 INSERT INTO REVIEW VALUES(1,3,'Buen tour',3,2,1);
 INSERT INTO REVIEW VALUES(2,3,'Buen tour',3,1,1);
 INSERT INTO REVIEW VALUES(3,3,'Buen tour',2,4,1);
-INSERT INTO REPORTE VALUES(1, "Es un estafador", "Nos dijo que no llegaban las transferencias",2, 3, 1, null, "USER",false);
-INSERT INTO REPORTE VALUES(2, "Llego una hora tarde", "El tour era de dos horas y llegó una hora tarde",2, 3, null, 2, "TOUR",false);
+INSERT INTO REPORTE VALUES(1, "Es un estafador", "Nos dijo que no llegaban las transferencias",2, 3, 1, null, null, "USER",false);
+INSERT INTO REPORTE VALUES(2, "Llego una hora tarde", "El tour era de dos horas y llegó una hora tarde",2, 3, null,null "TOUR",false);
 -- -- Unos pocos auto-mensajes de prueba
 -- INSERT INTO MESSAGE VALUES(1,NULL,'2020-03-23 10:48:11.074000','probando 1',1,1);
 -- INSERT INTO MESSAGE VALUES(2,NULL,'2020-03-23 10:48:15.149000','probando 2',1,1);
