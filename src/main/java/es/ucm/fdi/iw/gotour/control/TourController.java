@@ -513,6 +513,7 @@ public class TourController {
 		r.setMotivo(motivo);
         r.setTexto(reporte);
         r.setTourReportado(tour);
+        r.setUserContestado(null);
         r.setContestada(false);
 
         userCreador.getReporteCreados().add(r);
@@ -529,7 +530,7 @@ public class TourController {
 			}
 		}
         
-		return "redirect:/";
+		return "gracias-reporte-ha-sido-recibido";
     }
 
 	@GetMapping("/{id}/reportarTour")

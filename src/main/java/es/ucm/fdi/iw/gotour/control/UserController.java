@@ -385,6 +385,7 @@ public class UserController {
         r.setTexto(reporte);
         r.setTourReportado(null);
         r.setUserReportado(user);
+		r.setUserContestado(null);
 		r.setContestada(false);
 		userCreador.getReporteCreados().add(r);
 		entityManager.persist(r);
@@ -402,7 +403,7 @@ public class UserController {
 		
 
         
-		return "redirect:/";
+		return "gracias-reporte-ha-sido-recibido";
     }
 
 	@GetMapping("/{id}/reporteUser")

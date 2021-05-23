@@ -89,19 +89,10 @@ public class AdminController {
         int reportesNumber=0;
 		reportesNumber= reportes.size();
   
-		List<Reporte> reportesTour= new ArrayList<Reporte>();
-		List<Reporte> reportesUser= new ArrayList<Reporte>();
+		List<Reporte> reportesTour= entityManager.createNamedQuery("AllTypeReportes").setParameter("tipo", "TOUR").getResultList();
+		List<Reporte> reportesUser= entityManager.createNamedQuery("AllTypeReportes").setParameter("tipo", "USER").getResultList();
       
-		for(int i=0;i<reportes.size();i++){
-			Reporte aux=reportes.get(i);
-			String tipo=aux.getTipo();
-			if(tipo.equalsIgnoreCase("TOUR")){
-				reportesTour.add(aux);
-			}
-			if(aux.getTipo().equalsIgnoreCase("USER")){
-				reportesUser.add(aux);
-			}
-		}
+		
 
 		int reportesTourNumber=0;
         reportesTourNumber=reportesTour.size();
@@ -113,6 +104,7 @@ public class AdminController {
         model.addAttribute("userNumber", userNumber);
 		model.addAttribute("users", users);
 		model.addAttribute("tourNumber", tourNumber);
+		model.addAttribute("reportes", reportes);
 		model.addAttribute("reportesNumber", reportesNumber);
 		model.addAttribute("reportesUser", reportesTour);
 		model.addAttribute("reportesTour", reportesUser);
@@ -183,23 +175,57 @@ public class AdminController {
 		return "admin/user-busqueda";
 	}
 
-	@GetMapping("/notificaciones")
-	public String notificaciones(Model model) {
-		model.addAttribute("classActiveNotificaciones","active");
-		return "admin/notificaciones";
-	}
+
 
 	@GetMapping("/reportes-usuarios")
 	public String reportes(Model model) {
+		model.addAttribute("activeProfiles", env.getActiveProfiles());
+		model.addAttribute("basePath", env.getProperty("es.ucm.fdi.base-path"));
+		model.addAttribute("debug", env.getProperty("es.ucm.fdi.debug"));
+		List<Reporte> reportes = entityManager.createNamedQuery("AllReportes").getResultList();        
+        // dumps them via log
+        log.info("Dumping table {}", "user");
+        for (Object o : reportes) {
+            log.info("\t{}", o);
+        }        
+        // adds them to model
+        model.addAttribute("reportes", reportes);
 		model.addAttribute("classActiveReportes","active");
+		
 		return "admin/reportes-usuarios";
 	}
 
 	@GetMapping("/reporte-usuario")
-	public String reporteUsuario(Model model) {
+	public String reporteBusqueda(Model model, List<Reporte> reportes) {
+
+		
+		model.addAttribute("activeProfiles", env.getActiveProfiles());
+		model.addAttribute("basePath", env.getProperty("es.ucm.fdi.base-path"));
+		model.addAttribute("debug", env.getProperty("es.ucm.fdi.debug"));
+		      
+        // dumps them via log
+        log.info("Dumping table {}", "reportes");
+        for (Object o : reportes) {
+            log.info("\t{}", o);
+        }        
+        // adds them to model
+        model.addAttribute("reportes", reportes);
 		model.addAttribute("classActiveReportes","active");
 		return "admin/reporte-usuario";
 	}
+
+	@PostMapping("/reporteSearch")
+    public String searchReporte(Model model,@RequestParam String username
+                                        , @RequestParam String motivo, @RequestParam String texto
+                                        ){
+
+											
+        List<Reporte> busqueda = entityManager.createNamedQuery("ReportesByAdminSearch")
+            .setParameter("usernameParam", username).getResultList();      	
+        model.addAttribute("busqueda", busqueda);
+		
+        return reporteBusqueda(model,busqueda);
+    }
 
 	 @GetMapping("/configuracion")
 	public String configuracion(Model model) {
@@ -209,7 +235,7 @@ public class AdminController {
 
 	}
 
-	@GetMapping("/{id}/contesta-reporte")
+	@GetMapping("reporte/{id}/contesta-reporte")
 	public String contestaReporte(Model model, @PathVariable("id") long id) {
 	Reporte r = entityManager.find(Reporte.class, id);
 	model.addAttribute("reporte",r);
@@ -222,6 +248,21 @@ public class AdminController {
 	@PostMapping("/{id}/contesta-reporte-admin")
 	public String contestarAlReporte(Model model, HttpSession session,@RequestParam String motivo, @RequestParam String reporte, @PathVariable("id") long id) {
 	Reporte r = entityManager.find(Reporte.class, id);
+	r.setContestada(true);
+	Reporte respuestaAdmin= new Reporte();
+	User userContestado = entityManager.find(User.class, r.getCreador());
+	User userCreador = entityManager.find(User.class,((User)session.getAttribute("u")).getId());
+	respuestaAdmin.setTipo("a");
+	respuestaAdmin.setCreador(userCreador);
+	respuestaAdmin.setMotivo(motivo);
+	respuestaAdmin.setTexto(reporte);
+	respuestaAdmin.setTourReportado(null);
+	respuestaAdmin.setUserReportado(null);
+	respuestaAdmin.setUserContestado(userContestado);
+	userCreador.getReporteCreados().add(r);
+	entityManager.persist(r);
+	entityManager.flush();
+
 	model.addAttribute("classActiveSettings","active");
 	return "admin/";
 
