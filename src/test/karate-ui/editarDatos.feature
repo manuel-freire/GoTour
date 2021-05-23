@@ -1,4 +1,4 @@
-Feature: browser automation 1
+Feature: Editar datos de usuario
 #mvn exec:java
 Background:
   # chromium bajo linux; 

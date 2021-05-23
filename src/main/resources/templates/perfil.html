@@ -173,7 +173,7 @@
                                  </ul>
                               </div>
                            </div>
-                           <div class="ml-3"><button type="button" class="btn btn-secondary" data-toggle="modal" ><a th:href="@{'/tour/'+${tour.id}+'/chat'}">Chat</a></button></div>
+                           <div class="ml-3"><button type="button" class="btn btn-secondary" data-toggle="modal" ><a th:href="@{'/tour/'+${tour.id}+'/chat'}" th:id="chat+${tour.id}">Chat</a></button></div>
                         </div>
                      </div>                     
                   </div>
@@ -215,7 +215,7 @@
                                     </li>
                                  </ul>
                               </div>
-                              <div class="ml-3"><button type="button" class="btn btn-secondary" data-toggle="modal" ><a th:href="@{'/tour/'+${tour.id}+'/chat'}">Chat</a></button></div>
+                              <div class="ml-3"><button type="button" class="btn btn-secondary" data-toggle="modal" ><a th:href="@{'/tour/'+${tour.id}+'/chat'}" th:id="ChatAsistido+${tour.id}">Chat</a></button></div>
                            </div>
                         </div>
                      </div>
